@@ -28,7 +28,7 @@ In this file, just edit,  do a pull request, send to github.
 
 
     
-*** TODO Memoryless excursions
+*** TODO Memoryless excursions (Wietze)
 
     Ready for feedback. Feel free to put you name behind this if you like reviewing this. First review on a high level. Once things are organized, we repair the details.
 
