@@ -8,13 +8,20 @@
 #+OPTIONS:  toc:t num:t
 #+OPTIONS: H:5
 
-#+include: preamble.org
+#+LATEX_HEADER: \usepackage{a4wide}
+#+LATEX_HEADER: \usepackage[english]{babel}
+#+LATEX_HEADER: \usepackage{mathpazo}
+#+LaTeX_HEADER: \usepackage{mathtools,amsthm,amssymb,amsmath}
+#+LaTeX_HEADER: \renewcommand{\P}[1]{\,\mathsf{P}\left[#1\right]}
+#+LaTeX_HEADER: \newcommand{\E}[1]{\,\mathsf{E}\/\left[#1\right]}
+#+LaTeX_HEADER: \newcommand{\V}[1]{\,\mathsf{V}\left[#1\right]}
+#+LaTeX_HEADER: \newcommand{\cov}[1]{\,\mathsf{Cov}\left[#1\right]}
 
 * Material
 
 We use [[https://projects.iq.harvard.edu/stat110/home][Introduction to Probability]] by Blitzstein and Hwang (BH) as the main material.
-The [[https://projects.iq.harvard.edu/stat110/home][book's homepage]] provides an electronic copy of the book, video lectures by Blizstein, and a solution manual for part of the problems.
-I expect you to watch Blizstein's lectures for the overview and general background of the book.
+The [[https://projects.iq.harvard.edu/stat110/home][book's homepage]] provides an electronic copy of the book, video lectures by Blitzstein, and a solution manual for part of the problems.
+I expect you to watch Blitzstein's lectures for the overview and general background of the book.
 
 I advise you to buy the book as it makes studying easier, and a physical book is much more  practical than an ebook when working on the material and solving problems. 
 
@@ -42,13 +49,12 @@ The document =discussion_board_questions.pdf= contains the questions and answers
 With a bit of searching you can find lots of help and solutions on the web, such as here, 
 - [[https://github.com/buruzaemon/stats-110]]
 - https://github.com/buruzaemon/IntroductionToProbabilityPy
-\end{itemize}
 However, use this at your own risk, I haven't checked it. If you find other useful sources, let me know, so that I can put them in this list. 
 
 
 Blitzstein gave me  the advice to use /named/ results, as this sticks much better. I fully agree with him, so here are some more names:
 - VOS law (Ch 7): Variance of sums: $\V{X+Y}= \cov{X+Y, X+Y} = \V X + \V Y + \cov{X,Y} + \cov{Y, X}$.
-- LOTE  (Ch 9):  Law of total expectation: $\E{X} = \sum_{i} \E{X \given A_i} \P{A_i}$. 
+- LOTE  (Ch 9):  Law of total expectation: $\E{X} = \sum_{i} \E{X \mid A_i} \P{A_i}$. 
 
 * Schedule
 
@@ -79,7 +85,7 @@ Blitzstein gave me  the advice to use /named/ results, as this sticks much bette
 |------+---------+------------+-------------------------+------------|
 
 There will be one tutorial group during which you can ask questions.
-This group is indicated as `Probability Distributions Pr. gr.02' in the [[https://rooster.rug.nl/#/en/current/schedule/course-EBP038A05%257D%257Bschedule&course-EBP038A05][schedule]]. 
+This group is indicated as `Probability Distributions Pr. gr.01' in the [[https://rooster.rug.nl/#/en/current/schedule/course-EBP038A05%257D%257Bschedule&course-EBP038A05][schedule]]. 
 
 
 * On making exercises
@@ -103,13 +109,10 @@ Here is a list of good, and important, advice when making the exercises.
 
 
 * Assignments
-There are 6 assignments, see the table above.
 
-For each week we will make new groups of two students, hence every week you have to work together with another student.
-The reason behind this is to help all of you expand your network, which we find very important in the current situation.
-We realize this is perhaps not what all of you like, but this seems the best we can do to really help you get started and work with other students.
-You should also know that in professional life you will often have to work in different teams and with many different people.
-You'd better learn such skills early in your carreer.
+- For the general rules, read the general information in = assignments.pdf=
+- There are 6 assignments, see the table above. 
+- For each week we will make new groups of two students, hence every week you have to work together with another student. The reason behind this is to help all of you expand your network, which we find very important in the current situation. We realize this is perhaps not what all of you like, but this seems the best we can do to really help you get started and work with other students. You should also know that in professional life you will often have to work in different teams and with many different people. You'd better learn such skills early in your career.
 
 The due dates are  simple: turn in the assignment for that week  before Friday 24h. 
 
@@ -119,6 +122,8 @@ Post your questions on the discussion board on nestor.
 We or fellow students will answer them during the lectures or in the discussion board.
 
 * Exam
+
+The exam will be a timed online exam. 
 
 We use the problems of BH, the ME, and the ones indicated in the assignments as inspiration.
 Hence, these problems are at about exam level.
@@ -184,23 +189,23 @@ It is intentional that if you do a lousy job on the assignments, your final grad
 
 - [[https://www.rug.nl/staff/n.d.van.foreest/][Nicky van Foreest]] (coordinator)
 - [[https://www.rug.nl/staff/e.r.van.beesten/?lang=en][Ruben van Beesten]]
-- Teaching assistents
+- Teaching assistants
 
 
 
 * Interesting other literature
 
-There are a number of books that you might like too. (From experience I can tell that reading different types of explanation can be very helpfulp.)
+There are a number of books that you might like too. (From experience I can tell that reading different types of explanation can be very helpful.)
 1. [[https://faculty.math.illinois.edu/~r-ash/BPT.html][R.B. Ash]]: Basic probability theory, free online
-2. [[https://math.dartmouth.edu/~prob/prob/prob.pdf][C.M. Grinsted and J. Laurie Snell]]: Introduction to probablity, also free online
+2. [[https://math.dartmouth.edu/~prob/prob/prob.pdf][C.M. Grinsted and J. Laurie Snell]]: Introduction to probability, also free online
 3. F.M. Dekking, et al.: A Modern Introduction to Probability and Statistics, Understanding Why and How. 
 
 After the course you might be interested in the following two books that I liked a lot. 
 1. D.V. Lindley, Understanding Uncertainty. This book explains why probability theory is the way it is. There are three rules that any coherent system of probabilities has to satisfy. 
    1. For any event $E$, $\P{E} \in [0,1]$; 
-   2. $\P{E \text{ or } F} = \P{E} + \P{F} - \P{EF}$; 
-   3. $\P{EF} = \P{F\given E} \P{E}$. 
-   If you want to understand probability in terms of betting, any sensible strategy you can imagine should satify   these rules, for otherwise people can use arbitrage (an essential idea in the financial theory and asset and option pricing) to consistently make  money from you.  
+   2. $\P{E \text{ or } F} = \P{E} + \P{F} - \P{E F}$; 
+   3. $\P{E F} = \P{F \mid E} \P{E}$. 
+   If you want to understand probability in terms of betting, any sensible strategy you can imagine should satisfy   these rules, for otherwise people can use arbitrage (an essential idea in the financial theory and asset and option pricing) to consistently make  money from you.  
 2. E.T. Jaynes, Probability Theory: The Logic of Science. It is hard at times, but very interesting. it discusses  applications and ideas behind probability and statistics, and how to think about these topics as a sensible person (not just as a theoretician).
 3. [[https://www.microsoft.com/en-us/research/uploads/prod/2006/01/Bishop-Pattern-Recognition-and-Machine-Learning-2006.pdf][C. Bishop, Pattern Recognition and Machine Learning]]. This is a really nice book on data analysis and  machine learning. After the course you can read the first two chapters. At the end of the master, you can read most of the book. 
 

@@ -3,13 +3,13 @@
 % arara: pdflatex: { shell: yes }
 
 
-\documentclass[a4paper]{article}
-\newcommand{\wk}[1]{\textbf{#1}} 
+\documentclass[a4paper,11pt]{article}
+\newcommand{\wk}[1]{\textbf{#1}}
 
 
-\usepackage[check]{optional}
-\usepackage{fouriernc}
+\usepackage[nosolutions]{optional}
 \usepackage{preamble}
+\usepackage{a4wide}
 
 
 \author{Nicky D. van Foreest and student assistents}
@@ -44,7 +44,7 @@ The coding exercises address this skill.
 You should know that much of programming is `monkey see, monkey do'.
 This means that you take code of others, try to understand it, and then adapt it to your needs.
 For this reason we include the code to answer the question.
-The idea is that you copy the code, you  run it and include the numerical results in your report. You should be able to explain how the code works. For this reason we include questions in which you have explain how the most salient parts of the code works. 
+The idea is that you copy the code, you  run it and include the numerical results in your report. You should be able to explain how the code works. For this reason we include questions in which you have explain how the most salient parts of the code works.
 
 We include python and R code, and leave the choice to you what to use.
 In the exam we will also include both languages in the same problem, so you can stay with the language you like.
@@ -55,19 +55,21 @@ Once you have the raw data, you process it with \texttt{R} or python to do stati
 I got tired of this, so I went to using python as it did all of this stuff, but then within one language.)
 For your interest, based on the statistics \href{https://www.tiobe.com/tiobe-index/}{here} or \href{https://www.northeastern.edu/graduate/blog/most-popular-programming-languages/}{here}, python scores (much) higher than R in popularity; if you opt for a business career, the probability you have to use python is simply higher than to have to use R.
 
-You should become familiar with look up documentation on coding on the web, no matter your programming language of choice. Invest time in understanding the, at times, rather technical and terse, explanations.  Once you are used to it, the core documentation is faster to read, i.e., less clutter. In the long run, it pays off. 
+You should become familiar with look up documentation on coding on the web, no matter your programming language of choice. Invest time in understanding the, at times, rather technical and terse, explanations.  Once you are used to it, the core documentation is faster to read, i.e., less clutter. In the long run, it pays off.
 
 
 
-The rules: 
+The rules:
 \begin{enumerate}
 \item For each assigment you have to turn in a pdf document typeset in \LaTeX{}. Include a title, group number, student names and ids, and date.
-\item We expect brief answers, just a sentence or so, or a number plus some short explanation. The idea of the assignment is to help you studying, not to turn you in a writer. 
+\item We expect brief answers, just a sentence or so, or a number plus some short explanation. The idea of the assignment is to help you studying, not to turn you in a writer.
 \item When you have to turn in a graph, provide decent labels and a legend, ensure the axes have labels too.
 \end{enumerate}
 
 \subfile{assignment1}
 \subfile{assignment2}
+\end{document}
+
 \subfile{assignment3}
 \subfile{assignment4}
 \subfile{assignment5}
@@ -95,9 +97,9 @@ The rules:
 \subsubsection{Introduction}
 \label{sec:org41a02a9}
 
-In an A/B test the problem is to find out which of two alternatives is the better, in that it yields higher profit (webpages), cures more patients (medicine), and so on. In this assignment you have to study different policies to find out the better of two alternatives. 
+In an A/B test the problem is to find out which of two alternatives is the better, in that it yields higher profit (webpages), cures more patients (medicine), and so on. In this assignment you have to study different policies to find out the better of two alternatives.
 
-A/B testing is a very interesting topic, and lies at the heart of \emph{reinforcement learning}, see wikipedia for background, in particular with respect to machine learning, automatic car driving, and so on. 
+A/B testing is a very interesting topic, and lies at the heart of \emph{reinforcement learning}, see wikipedia for background, in particular with respect to machine learning, automatic car driving, and so on.
 
 
 \subsubsection{{\bfseries\sffamily TODO} Use beta priors}
@@ -122,7 +124,7 @@ A/B testing is a very interesting topic, and lies at the heart of \emph{reinforc
 \subsection{Sport uitslagen}
 \label{sec:org9a46c5b}
 
-Som 7.48 gaat over hoeveel maxima optreden. Wat is de verdeling van de maxima? Wat is de toename? Relatie met extreme waarde verdelingen. 
+Som 7.48 gaat over hoeveel maxima optreden. Wat is de verdeling van de maxima? Wat is de toename? Relatie met extreme waarde verdelingen.
 
 \subsection{Random variable code en die van Niels}
 \label{sec:org57ced54}

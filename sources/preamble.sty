@@ -1,10 +1,10 @@
 \usepackage{classicthesis}
-\usepackage{a4wide}
 
 \usepackage[english]{babel}
 \usepackage{mathtools,amsthm,amssymb,amsmath}
 
-% \usepackage{fouriernc}
+\usepackage{fouriernc}
+\usepackage{hyperref}
 \usepackage[capitalize]{cleveref}
 
 \usepackage{subfiles}
@@ -14,8 +14,12 @@
 \setminted[python]{frame=lines}
 \setminted[R]{linenos=true}
 \setminted[R]{frame=lines}
+
 \theoremstyle{definition}
 \usepackage{pythontex}
+
+\usepackage{comment}
+\usepackage{enumerate}
 
 \usepackage{titlesec}
 \newcommand{\sectionbreak}{\clearpage}
@@ -33,35 +37,28 @@
 \renewcommand{\Solutionlabel}[1]{\textbf{s.#1.}}
 }
 
-\opt{solutionfiles}{
-\usepackage{answers}
-\Newassociation{solution}{Solution}{ans}
-\Newassociation{hint}{Hint}{hint}
-\renewcommand{\Hintlabel}[1]{\textbf{h.#1.}}
-\renewcommand{\Solutionlabel}[1]{\textbf{s.#1.}}
-}
-
-\opt{nosolutionfiles}{
-\excludecomment{hint}
-\excludecomment{solution}
-}
-
 \opt{check}{
 \usepackage[nosolutionfiles]{answers}
 \Newassociation{solution}{Solution}{ans}
 \Newassociation{hint}{Hint}{hint}
 \renewcommand{\Hintlabel}[1]{\textbf{h.#1.}}
 \renewcommand{\Solutionlabel}[1]{\textbf{s.#1.}}
-%\usepackage{showlabels}
+\AtEndEnvironment{exercise}{\clearpage} %  each exercise on a new page
 }
 
 
+
+\opt{nosolutions}{
+\excludecomment{hint}
+\excludecomment{solution}
+}
 
 
 % I don't like slanted fonts in the exercises
 \theoremstyle{definition}
 %\newtheorem{theorem}{Theorem}[section]
 \newtheorem{exercise}{Ex}[section]
+\newtheorem{remark}{Remark}[section]
 \newtheorem{todo}{TODO}[section]
 
 
@@ -80,15 +77,13 @@
 \newcommand{\cm}{\,\mathrm{cm}}
 \newcommand{\m}{\,\mathrm{m}}
 \newcommand{\given}{\,\middle|\,}
-\newcommand{\Bern}[1]{\mathrm{Bern}(#1)} 
-\newcommand{\Exp}[1]{\mathrm{Exp}(#1)} 
-\newcommand{\FS}[1]{\mathrm{FS}(#1)} 
+\newcommand{\Bern}[1]{\mathrm{Bern}(#1)}
+\newcommand{\Exp}[1]{\mathrm{Exp}(#1)}
+\newcommand{\FS}[1]{\mathrm{FS}(#1)}
 \newcommand{\Geo}[1]{\mathrm{Geo}(#1)}
-\newcommand{\Norm}[1]{\mathrm{N}(#1)}
-\newcommand{\Pois}[1]{\mathrm{P}(#1)}
-\newcommand{\Unif}[1]{\mathrm{U}(#1)}
-\renewcommand{\max}[1]{\mathrm{max}\{#1\}}
-\renewcommand{\min}[1]{\mathrm{min}\{#1\}}
+\newcommand{\Norm}[1]{\mathrm{Norm}(#1)}
+\newcommand{\Pois}[1]{\mathrm{Pois}(#1)}
+\newcommand{\Unif}[1]{\mathrm{Unif}(#1)}
 \renewcommand{\P}[1]{\,\mathsf{P}\left\{#1\right\}}
 \newcommand{\E}[1]{\,\mathsf{E}\left[#1\right]}
 \newcommand{\EE}[2]{\,\mathsf{E}_{#1}\left[#2\right]}
@@ -97,5 +92,3 @@
 \renewcommand{\d}[1]{\,\textrm{d}#1}
 \newcommand{\1}[1]{\,I_{#1}} % indicator
 \newcommand{\iid}{\ensuremath{\mathrm{iid.}\,}}
-
-

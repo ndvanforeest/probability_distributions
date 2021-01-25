@@ -7,6 +7,8 @@
 \usepackage{mathpazo}
 \usepackage{preamble}
 %\usepackage{refcheck}
+\renewcommand{\max}[1]{\mathrm{max}\{#1\}}
+\renewcommand{\min}[1]{\mathrm{min}\{#1\}}
 
 \opt{check}{
 %\AtBeginEnvironment{exercise}{\clearpage}
@@ -33,11 +35,11 @@ Notes on joint distributions }
 \label{sec:confusing-problem}
 
 Write $M=\max{X,Y}$ and $L=\min{X,Y}$ for given r.v.s $X$ and $Y$.
-It is simple to see that when $X$ and $Y$  have the same distribution, 
+It is simple to see that when $X$ and $Y$  have the same distribution,
 \begin{equation}
 \E L + \E M = \E{L+M}=\E{X+Y} = 2\E X.
 \end{equation}
-From this, we have that 
+From this, we have that
 \begin{equation}
   \label{eq:6}
 \E M = 2\E X - \E L.
@@ -81,13 +83,13 @@ To solve the problems, I often  use the following step-wise approach:
 \item To compute probabilities of functions of r.v.s: I use the fundamental bridge, specifically, for discrete r.v.s
   \begin{equation}
     \label{eq:60}
-\P{g(X,Y}\in A\} = \sum_{i}\sum_j \1{(i, j)\in A} \P{X=i, Y=j}, 
+\P{g(X,Y}\in A\} = \sum_{i}\sum_j \1{(i, j)\in A} \P{X=i, Y=j},
   \end{equation}
-and for continuous r.v.s, 
+and for continuous r.v.s,
   \begin{equation}
     \label{eq:55}
     \begin{split}
-\P{g(X, Y) \in A} 
+\P{g(X, Y) \in A}
 &= \E{\1{g(X,Y)\in A}} \\
 &= \iint \1{g(x,y) \in A} f_{X,Y}(x,y) \d x \d y \\
 &= \iint_{g^{-1}(A)} f_{X,Y}(x, y) \d x \d y,\\
@@ -139,10 +141,10 @@ Here are a couple of tricks with recursions; this is how I rederive the properti
 \E X &= p\cdot 0 + q(1+\E X) \implies \E X = q/(1-q) = q/p.
 \end{align}
 
-Now the same answers, but with the regular method. 
+Now the same answers, but with the regular method.
   \begin{align}
     \label{eq:5}
-\P{X>j}    
+\P{X>j}
 &= \sum_{i=j+1}^{\infty} \P{X=i} \\
 &= p\sum_{i=j+1}^{\infty} q^{i} \\
 &= p\sum_{i=0}^{\infty} q^{j+1+i} \\
@@ -158,7 +160,7 @@ From this,
 The use of indicator variables is particularly important:
   \begin{align}
     \label{eq:58}
-\E X 
+\E X
 &= \sum_{i=0}^{\infty} i\P{X=i} \\
 &=  \sum_{i=0}^{\infty} \sum_{j=0}^{\infty} \1{j<i} \P{X=i} \\
 &=  \sum_{j=0}^{\infty} \sum_{i=0}^{\infty} \1{j<i} \P{X=i} \\
@@ -175,12 +177,12 @@ The use of indicator variables is particularly important:
 \begin{exercise}
 Check that $X$, and hence $Y$, is memoryless.
 \begin{hint}
-What is the definition of memorylessness for discrete r.v.s?  
+What is the definition of memorylessness for discrete r.v.s?
 \end{hint}
 \begin{solution}
   \begin{align}
     \label{eq:13}
-\P{X\geq n+m\given X\geq m} 
+\P{X\geq n+m\given X\geq m}
 &= \frac{ \P{X\geq n+m,  X\geq m}}{\P{X\geq m}} \\
 &= \frac{ \P{X\geq n+m}}{\P{X\geq m}} \\
 &= \frac{ q^{n+m}}{q^m} \\
@@ -197,7 +199,7 @@ Show that $\P{L\geq i}=q^{2i}$ and conclude that $L\sim\Geo{1-q^{2}}$. Just to k
 \begin{solution}
   \begin{align}
     \label{eq:12}
-\P{L\geq k} 
+\P{L\geq k}
 &= \sum_{ij} \1{\min{i,j}\geq k} \P{X=i, Y=j}\\
 &= \sum_{i\geq k} \sum_{j\geq k} \P{X=i}\P{Y=j}\\
 &=  \P{X\geq k}\P{Y\geq k} = q^{k} q^{k} = q^{2k}.
@@ -206,22 +208,22 @@ $\P{L>i}$ has the same form as $\P{X>i}$, but now with $q^{2i}$ rather than $q^{
 \end{solution}
 \end{exercise}
 
-As henceforth all r.v.s we consider are non-negative, I'll drop the question to specify the domain of the r.v.s. However, in general you should not forget to specify this. 
+As henceforth all r.v.s we consider are non-negative, I'll drop the question to specify the domain of the r.v.s. However, in general you should not forget to specify this.
 
 
 
 \begin{exercise}\label{ex:3}
 Show that  $\E L=q^{2}/(1-q^{2})$.
 \begin{hint}
-$X\sim \Geo{1-q} \implies \E X = q/(1-q)$. Now use that $L\sim\Geo{1-q^{2}}$. 
+$X\sim \Geo{1-q} \implies \E X = q/(1-q)$. Now use that $L\sim\Geo{1-q^{2}}$.
 \end{hint}
 \begin{solution}
-  Immediate from the hint and~\cref{ex:12}. 
+  Immediate from the hint and~\cref{ex:12}.
 \end{solution}
 \end{exercise}
 
 \begin{exercise}
-Show that 
+Show that
 \begin{equation}
   \label{eq:39}
 \E L + \E X = \frac q{1-q}\frac{1+2q}{1+q}.
@@ -232,7 +234,7 @@ Use that $1-q^2=(1-q)(1+q)$.
 \begin{solution}
   \begin{align}
     \label{eq:2}
-\E L     + \E X 
+\E L     + \E X
 &= \frac{q^{2}}{1-q^2} + \frac{q}{1-q} \\
 &= \frac q{1-q}\left(\frac{q}{1+q} + 1\right)\\
 &= \frac q{1-q} \frac{1+2q}{1+q}
@@ -251,7 +253,7 @@ Conclude that this violates the simultaneous truth of~\cref{eq:6} and \cref{eq:7
 \begin{solution}
   \begin{align}
     \label{eq:11}
-\E M 
+\E M
 &= 2\E X - \E L \\
 &= 2\frac q{1-q}  - \frac{q^2}{1-q^2}\\
 &= \frac q{1-q}\left(2  - \frac{q}{1+q}\right)\\
@@ -270,7 +272,7 @@ And, perhaps I am mistaken, and \cref{eq:7} is correct, and the other is not.
 In fact, to convince myself that~\cref{eq:7} is indeed wrong, I pursued three ideas to check~\cref{eq:10}, hence~\cref{eq:6}
 
 \begin{exercise}\label{ex:1}
-Idea 1: Show that for the PMF of $M$: 
+Idea 1: Show that for the PMF of $M$:
 \begin{align}
 p_M(k) &= \P{M=k} = 2 pq^{k}(1-q^{k}) + p^2q^{2k} \\
 &=2 pq^{k} +(p^{2}-2p) q^{2k} \label{eq:18}\\
@@ -283,7 +285,7 @@ Then use this to show~\cref{eq:10}.
 \begin{solution}
   \begin{align}
     \label{eq:14}
-\P{M=k}     
+\P{M=k}
 &= \P{\max{X, Y} = k} \\
 &=p^{2}\sum_{ij}\1{\max{i,j} =k} q^i q^j\\
 &=2 p^{2}\sum_{ij}\1{i=k}\1{j < k} q^i q^j + p^{2}\sum_{ij}\1{i=j=k} q^{i} q^j \\
@@ -296,7 +298,7 @@ Then use this to show~\cref{eq:10}.
 where I use that $p^{2}-2p = p(p-2) = (1-q)(1-q-2)=-(1-q)(1+q)=-(1-q^{2})$.
   \begin{align}
     \label{eq:15}
-\E M 
+\E M
 &= \sum_k k \P{M=k}     \\
 &=  \sum_{k}k (2\P{X=k} - \P{L=k}) \\
 &= 2 \E X  - \E L.
@@ -312,7 +314,7 @@ $\P{M=k} = \P{M\leq k} - \P{M\leq k-1}$.
 \begin{solution}
   \begin{align}
     \label{eq:16}
-\P{M\leq k}   
+\P{M\leq k}
 &= \P{X\leq k, Y\leq k} \\
 &= \P{X\leq k}\P{Y\leq k} \\
 &= (1-\P{X> k})(1-\P{Y> k}) \\
@@ -335,7 +337,7 @@ p_{L,M}(i,j) = \P{L=i, M=j} = 2p^{2}q^{i+j}\1{j>i}+ p^{2}q^{2i}\1{i=j}.
 \begin{solution}
   \begin{align}
     \label{eq:17}
-\P{L=i, M=j}    
+\P{L=i, M=j}
 &= 2\P{X=i, Y=j}\1{j>i} + \P{X=Y=i}\1{i=j} \\
 &= 2p^{2}q^{i+j}\1{j>i}+ p^{2}q^{2i}\1{i=j}.
   \end{align}
@@ -343,13 +345,13 @@ p_{L,M}(i,j) = \P{L=i, M=j} = 2p^{2}q^{i+j}\1{j>i}+ p^{2}q^{2i}\1{i=j}.
 \end{exercise}
 
 \begin{exercise}\label{ex:8}
-Idea 3b: Use~\cref{ex:2} to compute the marginal PMFs of $M$ and of $L$. 
+Idea 3b: Use~\cref{ex:2} to compute the marginal PMFs of $M$ and of $L$.
 \begin{hint}
 For the first, marginalize out $L$, for the second, marginalize out $M$.
 \end{hint}
 \begin{solution}
   \begin{align}
-\P{M=j}    
+\P{M=j}
 &= \sum_{i} \P{L=i, M=j} \\
  &= \sum_{i} (2p^{2}q^{i+j}\1{j>i}+ p^{2}q^{2i}\1{i=j}) \\
  &= 2p^2q^j\sum_{i=0}^{j-1} q^{i}+ p^{2}q^{2j} \label{eq:38}\\
@@ -358,7 +360,7 @@ For the first, marginalize out $L$, for the second, marginalize out $M$.
   \end{align}
 which is equal to \cref{eq:18}.
   \begin{align}
-\P{L=i}    
+\P{L=i}
 &= \sum_{j} \P{L=i, M=j} \\
  &= \sum_{j} (2p^{2}q^{i+j}\1{j>i}+ p^{2}q^{2i}\1{i=j}) \\
  &= 2p^2q^i\sum_{j=i+1}^{\infty} q^{j}+ p^{2}q^{2i} \\
@@ -376,22 +378,22 @@ and this we found earlier.
 Finally, BH Ex.5.6.5 use that the r.v.
 $M-L$ is independent of $L$ when $X, Y\sim\Exp{\lambda}$ and independent.
 But this leads to our confusing problem, so perhaps my intuition about memorylessness is not ok.
-To check this, I solved  the following exercise.  
+To check this, I solved  the following exercise.
 
 \begin{exercise}\label{ex:10}
-For  $X, Y$ iid and $\sim \Geo{p}$, show that the events $\{L=i\}$ and $\{M>L\}$ are independent by showing that 
+For  $X, Y$ iid and $\sim \Geo{p}$, show that the events $\{L=i\}$ and $\{M>L\}$ are independent by showing that
 \begin{equation}
   \label{eq:59}
 \P{L=i} = \P{L=i \given M>L} =  \frac{\P{L=i, M > L}}{\P{M>L}}.
 \end{equation}
-For this, realize first that 
+For this, realize first that
 \begin{equation}
   \label{eq:62}
 \P{L=i,  M > L} = 2\P{X=i,Y > X},
 \end{equation}
 and simplify this. Then find an expression for $\P{M>L}$ in three different ways:
 \begin{enumerate}
-\item Simplify 
+\item Simplify
   \begin{equation}
     \label{eq:61}
 \P{M>L}  = \P{X>Y} + \P{Y > X}.
@@ -399,10 +401,10 @@ and simplify this. Then find an expression for $\P{M>L}$ in three different ways
 \item Apply  2D LOTUS to $g(x,y) = \1{\max{x,y}>\min{x,y}}$.
 \item Work out the summation in $\P{M>L} = \sum_{i} \P{L=i, M>L}$.
 \end{enumerate}
-All three answers should match of course. Finally, substitute your expressions in the conditional probability in~\cref{eq:59}. 
+All three answers should match of course. Finally, substitute your expressions in the conditional probability in~\cref{eq:59}.
 \begin{solution}
 \begin{align}
-\P{L=i,  M > L} 
+\P{L=i,  M > L}
 &= 2\P{X=i,Y > X} \\
 &= 2\P{X=i}\P{Y > i} \\
 &= 2pq^i\cdot q^{i+1}\\
@@ -412,7 +414,7 @@ All three answers should match of course. Finally, substitute your expressions i
 I use three (related) ways to compute $\P{M>L}$. In the first I convert the event $\{M>L\}$ directly into a statement about $X$ and $Y$.
 \begin{align}
   \label{eq:3}
-\P{M>L} 
+\P{M>L}
 &= \P{X>Y} + \P{Y > X} \\
 &= 2\P{X>Y} \\
 &= 2\sum_{j} \P{X>j,Y=j} \\
@@ -443,9 +445,9 @@ In the third, I use the probability $\P{L=i, M>L}$ and take the sum over $i$:
 \P{M>L} = \sum_{i} \P{L=i, M>L}  = \sum_{i} 2pq^{2i+1} = 2pq\sum_{i} q^{2i} = \frac{2pq}{1-q^{2}}.
 \end{align}
 
-Hence, 
+Hence,
 \begin{align}
-\P{L=i\given M > L} 
+\P{L=i\given M > L}
 &=\frac{\P{L=i, M > L}}{\P{M>L}} \\
 &=\frac{2p q^{2i+1}}{2pq/(1-q^2)} \\
 &=q^{2i}(1-q^2) \\
@@ -458,7 +460,7 @@ where the last equation follows since $L\sim \Geo{1-q^2}$.
 
 
 What have we achieved up to now? With respect to our problem, we are sure that~\eqref{eq:6} is correct when $X, Y \sim \Geo{p}$ and~\cref{eq:7} is not.
-From the technical point of view, we practiced with joint, marginal, and conditional PMFs, and we have seen how to use indicator functions, the fundamental bridge and 2D LOTUS. 
+From the technical point of view, we practiced with joint, marginal, and conditional PMFs, and we have seen how to use indicator functions, the fundamental bridge and 2D LOTUS.
 
 So, this made me wonder why is~\eqref{eq:7} incorrect when $X, Y\sim\Geo{p}$, but it is correct when $X,Y\sim\Exp{\lambda}$.
 To understand this discrepancy better, I decided to analyze the latter case in as much detail as I could think of, hoping that this would  provide me with a lead.
@@ -491,7 +493,7 @@ Show that $\E X = 1/\lambda$.
 \begin{solution}
 It is essential that  you know both methods to solve this integral.
   \begin{align}
-\E X 
+\E X
 &= \int_{0}^{\infty}  x f_{X}(x) \d x  \\
 &= \int_{0}^{\infty}  x \lambda e^{-\lambda x} \d x  \\
 &= - xe^{-\lambda x} \biggr|_{0}^{\infty} + \int_{0}^{\infty}  e^{-\lambda x} \d x  \\
@@ -499,10 +501,10 @@ It is essential that  you know both methods to solve this integral.
   \end{align}
 Substitution is also a very important technique to solve such integrals. Here we go again:
   \begin{align}
-\E X 
+\E X
 &= \int_{0}^{\infty}  x f_{X}(x) \d x  \\
 &= \int_{0}^{\infty}  x \lambda e^{-\lambda x} \d x  \\
-&= \frac 1 \lambda \int_{0}^{\infty}  u  e^{- u} \d u, 
+&= \frac 1 \lambda \int_{0}^{\infty}  u  e^{- u} \d u,
   \end{align}
   by the substitution $u=\lambda x \implies \d u = \d (\lambda x) \implies \d u = \lambda \d x \implies \d x = \d u / \lambda$.
   With partial integration (do it!), the integral evaluates to $1$.
@@ -533,12 +535,12 @@ Here are two related ways. This is one:
 \begin{align}
 \P{M\leq v}   &= \P{X \leq v, Y \leq v} = (F_{X}(v))^{2},
 \end{align}
-since $X, Y$ iid.  
+since $X, Y$ iid.
 
 The second is based on the fundamental bridge:
 \begin{align}
-\P{M\leq v}   
-&= \E{\1{M\leq v}} \\ 
+\P{M\leq v}
+&= \E{\1{M\leq v}} \\
 &=\int_0^{\infty} \int_0^{\infty} \1{x\leq v, y\leq v} f_{XY}(x,y) \d x \d y \\
 &= \int_0^{\infty} \int_0^{\infty} \1{x\leq v, y\leq v} f_{X}(x) f_{Y}(y) \d x \d y \\
 &= \int_0^{v} f_{X}(x) \d x \int_0^{v}  f_{Y}(y)  \d y \\
@@ -551,16 +553,16 @@ Now  the density:
   \label{eq:26}
   f_M(v) = F_M'(v) = 2 F_X(v) f_X(v) = 2(1-e^{-\lambda v}) \lambda e^{- \lambda v}.
 \end{align}
-With this, 
+With this,
 \begin{align}
   \label{eq:27}
-\E M 
+\E M
 &= \int_{0}^{\infty} v f_M(v) \d v = \\
 &= 2 \lambda \int_{0}^{\infty} v (1-e^{-\lambda v}) e^{-\lambda v} \d v = \\
 &= 2 \lambda \int_{0}^{\infty} v e^{-\lambda v} \d v -  2 \lambda \int_{0}^{\infty} v e^{-2 \lambda v} \d v \\
-&= 2 \E X - \E L, 
+&= 2 \E X - \E L,
 \end{align}
-where the last equality follows from the previous exercises. 
+where the last equality follows from the previous exercises.
 \end{solution}
 \end{exercise}
 
@@ -569,7 +571,7 @@ However, to get $f_{L,M}$, we first need $F_{L,M}$.
 \begin{exercise}
 Use the fundamental bridge~\cref{eq:55} to show that
 \begin{equation*}
-  F_{L,M}(u,v) = \P{L\leq u, M\leq v} = 2\int_0^u (F_Y(v)- F_Y(x)) f_X(x) \d x, 
+  F_{L,M}(u,v) = \P{L\leq u, M\leq v} = 2\int_0^u (F_Y(v)- F_Y(x)) f_X(x) \d x,
 \end{equation*}
 with $u\leq v$ (of course). Then take partial derivatives to show that
 \begin{align}
@@ -584,12 +586,12 @@ First the joint distribution. With $u\leq v$,
 F_{L,M}(u,v) &= \P{L\leq u, M \leq v} \\
 &= 2\iint \1{x \leq u, y\leq v, x\leq y} f_{X,Y}(x,y)\d x \d y \\
 &= 2\int_0^u \int_x^v f_Y(y) \d y f_X(x) \d x & \text{independence} \\
-&= 2\int_0^u (F_Y(v)- F_Y(x)) f_X(x) \d x. 
+&= 2\int_0^u (F_Y(v)- F_Y(x)) f_X(x) \d x.
   \end{align}
 Taking partial derivatives,
 \begin{align}
-f_{L,M}(u,v) 
-&=\partial_v\partial_{u}F_{L,M}(u,v) \\  
+f_{L,M}(u,v)
+&=\partial_v\partial_{u}F_{L,M}(u,v) \\
 &=2 \partial_v\partial_{u} \int_0^u (F_Y(v)- F_Y(x)) f_X(x) \d x  \\
 &=2 \partial_v \left\{(F_Y(v)- F_Y(u)) f_X(u) \right \}  \\
 &=2 f_X(u)\partial_v F_Y(v)  \\
@@ -621,11 +623,11 @@ Let's try to verify that also.
 For this, we can first compute the conditional density $f_{M-L| L}(y| x)$; once you did the next exercise you will directly see how to compute $\E{M-L}$.
 
 \begin{exercise}\label{ex:5}
-Show that 
+Show that
 \begin{align}  \label{eq:23}
 F_{L,M-L}(x,y) &= (1-e^{-\lambda y})(1- e^{-2\lambda x}) = F_Y(y) F_L(x).
 \end{align}
-% hence, 
+% hence,
 % \begin{align}
 %   \label{eq:25}
 % f_{L, M-L}(x,y )  &= f_L(x)f_Y(y)
@@ -634,8 +636,8 @@ Conclude that $M-L$ and $L$ are independent, and $M-L\sim Y$, hence $\E{M-L} = \
 \begin{solution}
 I'll use the standard method, i.e., the fundamental bridge.
 In itself the idea is not difficult, but the technical details require attention, in particular the limits in the integrations.
-\begin{align} 
-\P{L\leq x, M-L\leq y} 
+\begin{align}
+\P{L\leq x, M-L\leq y}
 &= 2\P{X\leq x, Y-X \leq y, X \leq Y} \\
 &= 2\int_0^{\infty} \int_0^{\infty} \1{u\leq x, v-u\leq y, u \leq v} f_{X,Y}(u, v)  \d u \d v\\
 &= 2\int_0^{\infty} \int_0^{\infty} \1{u\leq x, v-u\leq y, u\leq v} \lambda^2e^{-\lambda u}e^{-\lambda v}\d u \d v\\
@@ -645,8 +647,8 @@ In itself the idea is not difficult, but the technical details require attention
 &= 2\int_0^{x} \lambda e^{-\lambda u} (e^{-\lambda u} - e^{-\lambda (u+y)})\d u \\
 &= 2\lambda\int_0^{x}  e^{-2 \lambda u}\d u  - 2\lambda \int_{0}^{x} e^{-\lambda (2u+y)}\d u \\
 &= 2\lambda\int_0^{x}  e^{-2 \lambda u}\d u  - 2\lambda e^{-\lambda y }\int_{0}^{x} e^{-2 \lambda u}\d u \\
-&= (1-e^{-\lambda y}) 2 \lambda \int_0^{x} e^{-2 \lambda u} \d u\\ 
-&= (1-e^{-\lambda y}) ( -e^{-2\lambda u}) \biggr|_0^{x} \\ 
+&= (1-e^{-\lambda y}) 2 \lambda \int_0^{x} e^{-2 \lambda u} \d u\\
+&= (1-e^{-\lambda y}) ( -e^{-2\lambda u}) \biggr|_0^{x} \\
 &= (1-e^{-\lambda y})(1- e^{-2\lambda x}).
 \end{align}
 \end{solution}
@@ -660,15 +662,15 @@ Now I want to see that  by taking proper limits, I can  obtain the same results.
 
 More specically, I want to see intuitively\footnote{A formal proof is too hard for this course.} how $X\sim \Geo{\lambda/n}$ approaches  $Y\sim\Exp{\lambda}$ as $n\to\infty$.
 
-\begin{exercise}\label{ex:7} 
+\begin{exercise}\label{ex:7}
 Divide the interval $[0, \infty)$ into many small intervals of length $1/n$.
 Let  $X\sim \Geo{\lambda/n}$ for some $\lambda>0$ and $n\gg 0$. Then take  some $x\geq 0$ and  let $i$ be such that $x\in[i/n, (i+1)/n)$.
-Show that 
+Show that
 \begin{align}\label{eq:53}
 \P{X/n \approx x} \approx \frac{\lambda} n \left(1-\frac \lambda n\right)^{xn}.
 \end{align}
 \begin{solution}
-First, 
+First,
 \begin{align}
 \P{X/n \approx x} &= \P{X/n \in [i/n, (i+1)/n]} = \P{X \in [i, i+1]} = p q^{i} \\
 &\approx p q^{n x} = \frac{\lambda} n \left(1-\frac \lambda n\right)^{xn},
@@ -685,7 +687,7 @@ Next, by introducing the highly intuitive definition $\d x = \lim_{n\to \infty} 
 % The intuition is that $\d x$ is some really small number but not zero.
 % In a tiny bit more formal words, $0<\d x < 1/n$ for any $n$, but $\d x \neq 0$.
 % For details, check out the web; search on `nonstandard calculus'.
-% However, while the method is very intuitive, it's easy to mess up. (Power tools are nice, but often only when you know how to handle them and practice a lot.) 
+% However, while the method is very intuitive, it's easy to mess up. (Power tools are nice, but often only when you know how to handle them and practice a lot.)
 % If you don't want to learn this, no problem, it will not be part of the course proper.
 
 If you don't like this trick with $\d x$, is also possible obtain this limit with moment-generating functions.
@@ -700,12 +702,12 @@ Then, let $p = \lambda/n$, and show that $\lim_{n\to\infty}M_{X/n}(s) = M_{Y}(s)
 \begin{solution}
   \begin{align}
     \label{eq:20}
-M_{X/n}(s) 
+M_{X/n}(s)
 &= \E{e^{s X/n}} = \sum_{i} e^{s i/n} p q^{i} = p\sum_{i} (qe^{s/n})^{i} = \frac{p}{1-qe^{s/n}}.
   \end{align}
 With $p=\lambda/n$ this becomes
   \begin{align}
-M_{X/n}(s) 
+M_{X/n}(s)
 &= \frac{\lambda/n}{1-(1-\lambda/n) (1+s/n + 1/n^{2}\times(\cdots))} \\
 &= \frac{\lambda/n}{\lambda/n - s/n + 1/n^{2}\times (\cdots)} \\
 &= \frac{\lambda}{\lambda - s + 1/n\times(\cdots)} \\
@@ -735,17 +737,17 @@ Check that $\lim_{n\to\infty}\E{L/n} = 1/(2\lambda)$ when $X\sim \Geo{\lambda/n}
 
 
 \begin{exercise}
-Here is yet another check on the correctness of $f_M(x)$. 
+Here is yet another check on the correctness of $f_M(x)$.
 Show that  the PMF $\P{M=k}$ of~\cref{eq:34} converges to $f_M(x)$ of~\cref{ex:6} when $n\to \infty$. Take $k$ suitable.
 \begin{solution} Take $p=\lambda/n$,  $q=1-\lambda/n$, and $k \approx x n$, hence $k/n \approx x$. Then,
   \begin{align}
     \label{eq:31}
-\P{M/n=k/n}  
+\P{M/n=k/n}
 &= 2 p q^{k/n}(1-q^{k/n}) + p^2q^{2k/n} \\
 &= 2 \frac \lambda n \left(1-\frac \lambda n\right)^{k/n}\left(1-\left(1-\frac \lambda n\right)^{k/n}\right) + \frac{\lambda^2}{n^2}\left(1-\frac \lambda n \right)^{2k/n} \\
 &\to 2 \lambda \d x e^{-\lambda x} \left(1 - e^{-\lambda x}\right) + \lambda^{2} \d x^{2}e^{-2\lambda}.\label{eq:37}
   \end{align}
-Now observe that the second term, proportional to $\d x^{2}$ can be neglected. 
+Now observe that the second term, proportional to $\d x^{2}$ can be neglected.
 \end{solution}
 \end{exercise}
 
@@ -768,19 +770,19 @@ because either $M=L$ or $M>L$.
 Recall from earlier work that the factor 2 in the second equality follows from the fact that $X,Y$ iid.
 
 \begin{exercise}\label{ex:9}
-Show that 
+Show that
 \begin{equation}
   \label{eq:41}
 2\E{(Y-X) \1{Y>X}} = \frac{2q} {1-q^{2}}.
 \end{equation}
-Combine this with the expression for $\E L$ of~\cref{ex:3} to obtain \cref{eq:10} for $\E M = 2\E X - \E L$, thereby verifying the correctness of~\cref{eq:40}. 
+Combine this with the expression for $\E L$ of~\cref{ex:3} to obtain \cref{eq:10} for $\E M = 2\E X - \E L$, thereby verifying the correctness of~\cref{eq:40}.
 \begin{hint}
-  Reread BH.7.2.2. to realize that $\E{M-L} = \E{|X-Y|}$. Relate the latter expectation to the expression in the problem. 
+  Reread BH.7.2.2. to realize that $\E{M-L} = \E{|X-Y|}$. Relate the latter expectation to the expression in the problem.
 \end{hint}
 \begin{solution}
   \begin{align}
     \label{eq:42}
-\E{(Y-X) \1{Y>X}} 
+\E{(Y-X) \1{Y>X}}
 &= p^2\sum_{ij} (j-i)\1{j>i} q^iq^j\\
 &= p^2\sum_{i} q^i\sum_{j=i+1}^{\infty}(j-i)q^j\\
 &= p^2\sum_{i} q^i q^{i}\sum_{k=1}^{\infty}kq^k, \quad k = j-i\\
@@ -789,7 +791,7 @@ Combine this with the expression for $\E L$ of~\cref{ex:3} to obtain \cref{eq:10
 &= \frac{p}{1-q^{2}}\frac q p \\
 &= \frac{q}{1-q^{2}}.
   \end{align}
-With this, 
+With this,
 \begin{align}
   \label{eq:43}
 \E L + 2  \E{(Y-X) \1{Y>X}} = \frac{q^{2}}{1-q^2} +  \frac{2q}{1-q^{2}} = \frac q{1-q}\frac{q+2}{1+q},
@@ -799,7 +801,7 @@ where I use that $1-q^{2}=(1-q)(1+q)$.
 \end{exercise}
 
 While~\cref{eq:40} is correct, I am still not happy with the second part of~\eqref{eq:40} (I find this hard/unintuitive to interpret).
-Restarting again from scratch, here is another attempt to rewrite $\E M$: 
+Restarting again from scratch, here is another attempt to rewrite $\E M$:
 \begin{align}
   \label{eq:44}
 \E M = \E L + \E{ Z \1{M>L}},
@@ -814,7 +816,7 @@ Hence, if $Z\sim \Geo{p}$ we are `double counting' when $Z=0$.
 By including the condition $M>L$ and by taking $Z\sim\FS{p}$ (so that $Z>0$) I can prevent this.
 
 \begin{exercise}
-Show that 
+Show that
 \begin{equation}
   \label{eq:45}
 \E{Z\1{M>L}} = \frac{2q} {1-q^{2}},
@@ -828,26 +830,26 @@ Observe that $Z$   is independent from $X$ and $Y$, hence from $M$ and $L$
     \label{eq:46}
 \E{Z\1{M>L}}  = \E Z \E{\1{M>L}} = \E Z \P{M>L} = \frac 1 p \frac{2pq}{1-q^{2}} = \frac{2q}{1-q^{2}},
   \end{align}
-where, from the book, $\E Z = 1/p$, and $\P{M>L}$ follows from~\cref{ex:10}. 
+where, from the book, $\E Z = 1/p$, and $\P{M>L}$ follows from~\cref{ex:10}.
 \end{solution}
 \end{exercise}
 
 
-I am nearly happy, but I want to see that~\eqref{eq:44}, which is correct for discrete r.v.s, has also the correct limiting behavior, similar to~\cref{ex:11}. 
+I am nearly happy, but I want to see that~\eqref{eq:44}, which is correct for discrete r.v.s, has also the correct limiting behavior, similar to~\cref{ex:11}.
 \begin{exercise}
 Show that $\E{Z/n\1{M>L}} \to 1/\lambda$, which is indeed the expectation of an $\Exp{\lambda}$ r.v. And thus, when $X,Y\sim \Exp{\lambda}$, $\E M = \E L + \E X$.
 \begin{solution}
 By independence,
   \begin{align}
     \label{eq:47}
-\E{Z/n\1{M>L}} = \E{Z/n} \P{M>L}. 
+\E{Z/n\1{M>L}} = \E{Z/n} \P{M>L}.
   \end{align}
 Then,
 \begin{align}
   \label{eq:49}
-\P{M>L}   = \frac{2pq}{1-q^{2}} 
-= \frac{2\lambda/n (1-\lambda/n)}{1-(1-\lambda/n)^{2}} 
-= \frac{2\lambda/n (1-\lambda/n)}{2\lambda/n -\lambda^{2}/n^{2}}  
+\P{M>L}   = \frac{2pq}{1-q^{2}}
+= \frac{2\lambda/n (1-\lambda/n)}{1-(1-\lambda/n)^{2}}
+= \frac{2\lambda/n (1-\lambda/n)}{2\lambda/n -\lambda^{2}/n^{2}}
 = \frac{2 (1-\lambda/n)}{2 -\lambda/n}  \to 1,
 \end{align}
 and
@@ -876,9 +878,9 @@ Derive the density $f_L(u)$ from the joint density $f_{X,Y}$.
 \begin{solution}
 Hence, with $u=x$,
 \begin{align}
-\P{L \approx u} = 2 \P{X \approx x, Y > x}. 
+\P{L \approx u} = 2 \P{X \approx x, Y > x}.
 \end{align}
-Hence, as $u=x \implies \d u/\d x = 1$, 
+Hence, as $u=x \implies \d u/\d x = 1$,
 \begin{align*}
   f_{L}(u) \d u = 2f_{X}(x) G_{Y}(x) \d x \implies   f_{L}(u)  = 2f_{X}(u) G_{Y}(u).
 \end{align*}
@@ -890,9 +892,9 @@ Derive the density $f_M(v)$ from the joint density $f_{X,Y}$.
 \begin{solution}
 With $v=y$
 \begin{align}
-\P{M \approx v} = 2 \P{X \leq v, Y \approx v}. 
+\P{M \approx v} = 2 \P{X \leq v, Y \approx v}.
 \end{align}
-As $v=y \implies \d v/\d y = 1$, 
+As $v=y \implies \d v/\d y = 1$,
 \begin{align}
 f_M(v) \d v =  2F_{X}(y) f_{Y}(y)\d y \implies f_M(v) =  2F_{X}(v) f_{Y}(v).
 \end{align}
@@ -900,18 +902,18 @@ f_M(v) \d v =  2F_{X}(y) f_{Y}(y)\d y \implies f_M(v) =  2F_{X}(v) f_{Y}(v).
 \end{exercise}
 
 \begin{exercise}
-Find a function $g$ that maps $X,Y$ to $L,M$. Then compute $f_{L,M}$ by using change of variables. 
+Find a function $g$ that maps $X,Y$ to $L,M$. Then compute $f_{L,M}$ by using change of variables.
 \begin{solution}
-We need $g$ first, and then we compute the Jacobian. 
+We need $g$ first, and then we compute the Jacobian.
 \begin{align}
 (u,v) = g(x, y) = (\min{x,y}, \max{x,y}).
 \end{align}
 Hence, $g^{-1}(u,v) = \{(u,v), (v, u)\}$; note that this occurs because $g$ is not one-to-one.
-However, this is not a real problem because we can easily keep track of `each branch' of $g^{-1}$. 
+However, this is not a real problem because we can easily keep track of `each branch' of $g^{-1}$.
 
-Next, noting that $\partial_{x}\min{x,y} = \1{x\leq y}$, 
+Next, noting that $\partial_{x}\min{x,y} = \1{x\leq y}$,
 \begin{align}
-\frac{\partial (u,v)}{\partial(x,y)} = 
+\frac{\partial (u,v)}{\partial(x,y)} =
   \begin{vmatrix}
     \1{x\leq y} & \1{y<x} \\
     \1{x > y} & \1{y \geq x} \\
@@ -935,7 +937,7 @@ Find $f_{L,M-L}(x,y)$ by means of changing of variables from $L,M$ to $L,M-L$.
   The function $h(x,y)= (x, y-x)\1{x\leq y}$ maps $(L,M)$ to $(L, M-L)$. Then, $h^{-1}(u,v) = (u, u+v)$. For the Jacobian
   \begin{align}
     \label{eq:57}
-\frac{\partial (u,v)}{\partial(x,y)} = 
+\frac{\partial (u,v)}{\partial(x,y)} =
     \begin{vmatrix}
       \1{x\leq y} & 0 \\
 -\1{x\leq y} & \1{x\leq y}
@@ -944,7 +946,7 @@ Find $f_{L,M-L}(x,y)$ by means of changing of variables from $L,M$ to $L,M-L$.
 And with this,
 \begin{align}
   \label{eq:19}
-f_{L, M-L}(u,v) 
+f_{L, M-L}(u,v)
 &= f_{L, M}(u, u+v) \1{u\leq u+v}  \\
 &= f_{L,M}(u, u+v) \\
 &= 2 f_{X}(u) f_Y(u+v) \\
@@ -959,13 +961,13 @@ f_{L, M-L}(u,v)
 Now two exercises just to practice with the method.
 
 \begin{exercise}
-Compute $f_{L^2}(l)$, where $L=\min{X,Y}$ and $X, Y$ iid $\sim \Exp{\lambda}$. 
+Compute $f_{L^2}(l)$, where $L=\min{X,Y}$ and $X, Y$ iid $\sim \Exp{\lambda}$.
 \begin{solution}
 With $l = x^{2}, x\leq y$
 \begin{align*}
 f_{L^2}(l) \d l = 2f_{X}(x) G_{Y}(x) \d x.
 \end{align*}
-As $\d l/\d x = 2 x = 2 \sqrt l$, 
+As $\d l/\d x = 2 x = 2 \sqrt l$,
 \begin{align*}
 f_{L^2}(l)  = 2f_{X}(\sqrt{l}) G_{Y}(\sqrt l ) \d x / \d l = f_{X}(\sqrt{l}) G_{Y}(\sqrt l ) /\sqrt l.
 \end{align*}
@@ -981,14 +983,14 @@ There are $3!$ ways to order $X, Y, Z$. Therefore, with $u=x \leq y \leq z = v$,
 \begin{align*}
   f_{L,M}(u,v) \d u \d v= 6 f_{X}(x) (F_{Y}(z)-F_{Y}(x)) f_{Z}(z) \d x \d z
 \end{align*}
-Since $\partial(u,v)/\partial (x, z) = 1$, 
+Since $\partial(u,v)/\partial (x, z) = 1$,
 \begin{align*}
   f_{L,M}(u,v) = 6 f_{X}(u) (F_{Y}(v)-F_{Y}(u)) f_{Z}(v)\1{u\leq v}.
 \end{align*}
 
 Here is a neat method with CDFs.
 \begin{align*}
-  F_{L,M}(u,v) 
+  F_{L,M}(u,v)
 &= \P{L\leq u, M\leq v}\\
 &= \P{M\leq v} - \P{L\geq u, M\leq v}\\
 &= (F_{X}(v))^{3} - (F_{X}(v) - F_{X}(u))^{3}.

@@ -12,7 +12,7 @@ Topics of chapter 8.
 \label{sec:have-you-read-1}
 
 \begin{exercise}
-Explain in your own words: 
+Explain in your own words:
 \begin{enumerate}
 \item What is a prior?
 \item What is a conjugate prior?
@@ -31,7 +31,7 @@ Look up on the web: what is the conjugate prior of the multinomial distribution?
 \label{sec:chapter-8}
 
 \begin{exercise}
-Let $X, Y$ iid $\sim \Unif{[0,1]}$. 
+Let $X, Y$ iid $\sim \Unif{[0,1]}$.
 \begin{enumerate}
 \item What is the joint CDF of $X+Y, XY$?
 \item What is the joint PDF of $X+^Y XY$?
@@ -48,7 +48,7 @@ How many ping pong balls fit into an Airbus Beluga?
 One way to answer this is as follows.
 According to this \href{https://en.wikipedia.org/wiki/Airbus\_Beluga}{wikipage} the cargo volume $V$ of this airplane is $1500 \m^{3}$.
 But this number is based on the physical dimensions that is available to store containers, tanks, and so on.
-So, I estimate the volume as about twice that amount, i.e., $V = 2500 \m^{3}$. 
+So, I estimate the volume as about twice that amount, i.e., $V = 2500 \m^{3}$.
 The volume of a ping pong ball is $v = 4 \pi r^3/3  = \py{4*3.14*8/3} \cm^{3}$ with $r=2$ cm.
 A plain division gives \py{2500/33.5} ping pong balls.
 Note, I left out the $10^{6}$ conversion from meters to cm, and I do not take into the sphere packing factor.
@@ -62,7 +62,7 @@ Let's assume that
    \begin{align*}
 V & \sim N(2500, 500^{2}), & v  & \sim N(33.5, \sigma=0.5^{2}),
 \end{align*}
-where the variances express my trust in my guess work. 
+where the variances express my trust in my guess work.
 What is now the mean of $N = V/v$ and its std?
 In fact, finding the closed form expression for the distribution of $N$ is not entirely simple.
 However, with simulation it's easy to get an estimate.
@@ -130,6 +130,8 @@ Exercise 5.6 Write a program that simulates a baker who chooses n loaves from a 
 
 \end{exercise}
 
+\end{document}
+
 
 \subsection{Challenges}
 \label{sec:challenges-1}
@@ -138,7 +140,7 @@ Exercise 5.6 Write a program that simulates a baker who chooses n loaves from a 
 
 \begin{exercise}\label{ex:3}
 This is a continuation of~\cref{ex:2}.  TBD.
- 
+
 \begin{verbatim}
 Als V[V] = 0 of V[v] = 0, is rechts 0, links niet perse.
 Maar er is nog een betere reden waarom dit niet kan kloppen. Definieer V' = 2V, v'=2v en N' = V'/v'. Dan N=N', dus links blijft gelijk. Maar rechts wordt 16 keer zo groot...
@@ -149,11 +151,9 @@ Als we er van uit gaan dat we V en v voldoende precies weten, geldt er V[V]V[1/v
 De eerste-orde Taylorbenadering van 1/v rond E[v] is 2/E[v] - v/E[v]^2. We kunnen dus benaderen V[1/v] \approx  V[v]/E[v]^4.
 Dezelfde benadering geeft ook E[1/v]^2 \approx 1/ E[v]^2. Dus het resultaat is al met al  V[V/v]\approx  E[V]^2 V[v]/E[v]^4 + V[V] / E[v]^2 = E[V/v]^2( V[v]/E[v]^2 +  V[V]/E[V]^2 ).
 Ofwel: V[V/v]/E[V/v]^2=  V[v]/E[v]^2 +  V[V]/E[V]^2, dus SCV(V/v) \approx SCV(V)  + SCV(v).
-Overigens: de benadering zit hier in SCV(1/v) \approx SCV(v). Immers, SCV(V/v) = SCV(V)  + SCV(1/v) wegens onafhankelijkheid. 
+Overigens: de benadering zit hier in SCV(1/v) \approx SCV(v). Immers, SCV(V/v) = SCV(V)  + SCV(1/v) wegens onafhankelijkheid.
 
 \end{verbatim}
 
 
 \end{exercise}
-
-\end{document}
