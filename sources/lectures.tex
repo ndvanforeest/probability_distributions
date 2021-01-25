@@ -1,0 +1,505 @@
+\author{Nicky van Foreest and Ruben van Beesten}
+
+\opt{all-solutions-at-end}{
+\Opensolutionfile{hint}
+\Opensolutionfile{ans}
+}
+
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\section{Lecture 1}
+
+An insurance company receives on a certain day two claims $X, Y \geq 0$.
+We will find the PMF of the loss $Z=X+Y$ under different assumptions.
+
+The CDF $F_{X,Y}$ and PMF $p_{X,Y}$ are assumed known.
+
+\begin{exercise}
+Why is it not interesting to consider the case $i=j=0$?
+\begin{solution}
+When the claim sizes are $0$, then the insurance company does not receive a claim.
+\end{solution}
+\end{exercise}
+
+
+\begin{exercise}
+Find an expression for $F_{Z}(k)$.
+
+\begin{solution}
+By the fundamental bridge,
+\begin{align}
+  \label{}
+F_{Z}(k) &= \P{Z=k} \\
+&= \sum_{i,j} \1{i+j=k} p_{X,Y}(i,j) \\
+&= \sum_{i,j} \1{i, j \geq 0} \1{j=k-i} p_{X,Y}(i,j) \\
+&= \sum_{i=0}^{k} p_{X,Y}(i,k-i).
+\end{align}
+\end{solution}
+\end{exercise}
+
+Suppose $p_{X,Y}(i,j) = c \sum_{i,j} \1{i=j}\1{1\leq i \leq 4}$.
+
+
+\begin{exercise}
+What is $c$?
+\begin{solution}
+$c=1/4$ because there are just four possible values for $i$ and $j$.
+\end{solution}
+\end{exercise}
+
+\begin{exercise}
+What is $F_{x}(i)$?
+What is $F_{Y}(j)$?
+\begin{solution}
+Use marginalization:
+\begin{align*}
+F_X(i) &= \sum_j F_{X,Y}(i, j) = F_{X,Y}(i,i) = i/4 \\
+F_Y(j) &= \sum_i F_{X,Y}(i, j) = F_{X,Y}(j,j) = j/4.
+\end{align*}
+This follows since $i=j$.
+\end{solution}
+\end{exercise}
+
+
+\begin{exercise}
+Are $X$ and $Y$ dependent?  If so, why, because $1=F_{X,Y}(4,4)= F_X(4)F_Y(4)$
+\begin{solution}
+  The equality in the equation must hold for all $i,j$, not just $i=j=4$.
+  If you take $i=j=1$, you'll see immediately that the equation is not true.
+\end{solution}
+\end{exercise}
+
+\begin{exercise}
+What is $\P{Z=k}$?
+\begin{solution}
+$\P{Z=2} = \P{X=1, Y=1} = 1/4 = \P{Z=4}$, etc.
+$\P{Z=k} = 0$ for $k\not \in \{2, 4, 6, 8\}$.
+\end{solution}
+\end{exercise}
+
+
+\begin{exercise}
+What is $\V Z$?
+\begin{solution}
+Here is one approach
+\begin{align}
+\label{eq:3}
+\V Z &= \E{Z^2} - (\E Z)^{2}\\
+\E{Z^2} &= \E{(X+Y)^{2}} = \E{X^{2}} + 2\E{XY} + \E{Y^{2}} \\
+(E{Z})^{2} &= (\E X)^2 + 2\E X \E Y + (\E Y)^{2} \\
+&\implies \\
+\V Z &= \V X + \V Y + 2 (\E{XY} - (\E X \E Y))\\
+\E{XY} &= \sum_{ij} ijp_{X,Y}(i,j) = \frac 1 4 (1 + 4 + 9 + 16) = \ldots \\
+\E{X^{2}} &= \ldots
+\end{align}
+The numbers are for you to compute.
+\end{solution}
+\end{exercise}
+
+
+Now take $X, Y$ iid $\sim\Unif{\{1,2,3,4\}}$.
+
+\begin{exercise}
+What is $\P{Z=4}$?
+\begin{solution}
+\begin{align}
+\label{eq:2}
+\P{Z=4}
+&= \sum_{i, j} \1{i+j=4} p_{X,Y}(i,j) \\
+&= \sum_{i=1}^4 \sum_{j=1}^{4} \1{j=4-i} \frac{1}{16} \\
+&= \sum_{i=1}^3  \frac{1}{16} \\
+&= \frac{3}{16}.
+\end{align}
+\end{solution}
+\end{exercise}
+
+\begin{remark}
+We can  make lots of variations on this theme.
+\begin{enumerate}
+\item Let $X\in \{1,2,3\}$ and $Y\in \{1,2,3,4\}$.
+\item Take $X\sim\Pois{\lambda}$ and $Y\sim\Pois{\mu}$. (Use the chicken-egg story)
+\item We can make $X$ and $Y$ such that they are (both) continuous, i.e., have densities.
+  The conceptual ideas\footnote{Unless you start digging deeper.
+    Then things change drastically, but we skip this technical stuff.}
+  don't change much, except that the summations become integrals.
+\item Why do people often/sometimes (?) model the claim sizes as iid $\sim\Norm{\mu, \sigma^{2}}$? There is a slight problem with this model (can claim sizes be negative), but what is the way out?
+\item The example is more versatile than you might think. Here is another interpretation.
+
+A supermarket has 5 packets of rice on the shelf.
+Two customers buy rice, with amounts $X$ and $Y$.
+What is the probability of a lost sale, i.e., $\P{X+Y>5}$?
+What is the expected amount lost, i.e., $\E{ \max{X+Y - 5,0}}$?
+
+Here is yet another.
+Two patients arrive in to the first aid of a hospital.
+They need $X$ and $Y$ amounts of service, and there is one doctor.
+When it is 2 pm, what is the probability that the doctor has work in overtime, i.e., $\P{X+Y > 5pm- 2pm}$?
+\end{enumerate}
+\end{remark}
+
+\section{Lecture 2}
+
+See memoryless\_excursions.pdf.
+
+\section{Lecture 3}
+
+\begin{exercise}
+We ask a married woman on the street her height $X$. What does this tell us about the height $Y$ of her spouse? We suspect that taller/smaller people choose  taller/smaller partners, so, given $X$, a simple estimator $\hat Y$ of $Y$ is given by
+\begin{equation*}
+  \hat Y = a X + b.
+\end{equation*}
+But how to determine $a$ and $b$? A common method to find $a$ and $b$ such that the function
+\begin{equation*}
+  f(a,b) = \E{(Y-\hat Y)^2}
+\end{equation*}
+is minimized. Show that the optimal values are such that
+\begin{align*}
+  \hat Y = \E Y + \rho \V Y (X - \E X),
+\end{align*}
+where $\rho$ is the correlation between $X$ and $Y$.
+
+\begin{solution}
+We take the partial derivates of $f$ wrt $a$ and $b$, and solve for $a$ and $b$.
+  \begin{align*}
+f(a,b) &= \E{(Y-\hat Y)^2} \\
+ &= \E{(Y-a X - b)^2} \\
+ &= \E{Y^{2}} - 2a\E{YX} - 2b\E Y + a^{2}\E{X^2} + 2 ab \E X + b^{2}\\
+\partial_{a} f &=-2 \E{YX} + 2a \E{X^2} + 2 b \E X = 0 \\
+&\implies a \E{X^2} =  \E{YX}  -  b \E X \\
+\partial_{b} f &=-2 \E{Y}  + 2 a \E X  + 2 b= 0 \\
+& \implies  b = \E Y - a \E{X}\\
+a \E{X^2} &=  \E{YX}  -  \E X (\E Y - a \E X) \\
+&\implies  a (\E{X^{2}} - \E X \E X)  = \E{YX} - \E X \E Y  \\
+&\implies a = \frac{\cov{X,Y}}{\V X} = \rho \V Y\\
+b &= \E Y - \rho \V Y \E X\\
+\hat Y &= a X + b \\
+&= \rho \V Y X + \E Y - \rho \V Y \E X \\
+&= \rho \V Y (X-\E X)  + \E Y.
+  \end{align*}
+What a neat formula! Memorize the derivation, at least the structure. You'll come across many more optimization problems.
+
+What if $\rho=0$?
+\end{solution}
+\end{exercise}
+
+
+\begin{exercise}
+$N$ people throw their hat in a box. After shuffling, each of them takes out a hat at random. How many people do you expect to take out their own hat (i.e., the hat they put in the box); what is the variance? In BH.7.46 you have to solve this analytically. In the exercise here you have to write a simulator for compute the expectation and variance.
+\begin{solution}
+Let us first do one run.
+\begin{pyblock}[][numbers=left,frame=lines]
+import numpy as np
+from numpy.random import uniform
+
+np.random.seed(3)
+
+N = 4
+X = np.arange(N)
+np.random.shuffle(X)
+print(X)
+print(np.arange(N))
+print((X == np.arange(N)))
+print((X == np.arange(N)).sum())
+\end{pyblock}
+Here are the results of the print statements: $X = \py{X}$. The matches are \py{(X == np.arange(N))}; we see that $X[1] = 1$ (recall, python arrays start at index 0, not at 1, so $X[1]$ is the second element of $X$, not the first), so that the second person picks his own hat. The number of matches is therefore 1 for this simulation.
+
+Now put the people to work, and let them pick hats for $50$ times.
+\begin{pyblock}[][numbers=left,frame=lines]
+import numpy as np
+from numpy.random import uniform
+
+np.random.seed(3)
+
+num_samples = 50
+N = 5
+
+res = np.zeros(num_samples)
+for i in range(num_samples):
+    X = np.arange(N)
+    np.random.shuffle(X)
+    res[i] = (X == np.arange(N)).sum()
+
+print(res.mean(), res.var())
+\end{pyblock}
+Here is the number of matches for each round: \py{res}
+The mean and variance are as follows: $\E X = \py{res.mean()}$ and $\V X = \py{res.var()}$.
+
+For your convenience, here's the R code
+\begin{minted}[]{R}
+# set seed such that results can be recreated
+set.seed(42)
+
+# number simulations and people
+numSamples <- 50
+N <- 5
+
+# initialize empty result vector
+res <- c()
+
+# for loop to simulate repeatedly
+for (i in 1:numSamples) {
+
+  # shuffle the N hats
+  x <- sample(1:N)
+
+  # number of people picking own hat (element by element the vectors x and
+  # 1:N are compared, which yields a vector of TRUE and FALSE, TRUE = 1 and
+  # FALSE = 0)
+  correctPicks <- sum(x == 1:N)
+
+  # append the result vector by the result of the current simulation
+  res <- append(res, correctPicks)
+}
+
+# printing of observed mean and variance
+print(mean(res))
+print(var(res))
+\end{minted}
+
+
+\end{solution}
+\end{exercise}
+
+\section{Lecture 4}
+
+\section{Lecture 5}
+\label{sec:lecture-5}
+
+\begin{exercise}\label{ex:1}
+Here is a nice geometrical explanation of the origin of the normal distribution.
+Suppose $z_0=(x_0,y_{0})$ is the target on a dart board at which Barney aims, or the true position of a star in the sky, and let $z$ be the actual position at which the dart of Barney lands on the board, or the measured position of the star.
+For ease, take $z_0$ as the origin, i.e., $z_0=(0,0)$ Then make the following assumptions:
+\begin{enumerate}
+\item The disturbance $(x,y)$ has the same distribution in the $x$ and the $y$ direction.
+\item The disturbance $(x,y)$ along the $x$ direction and the $y$ direction are independent.
+\item Large disturbances are less likely than small disturbances.
+\end{enumerate}
+Show that the disturbance along the $x$-axis (hence $y$-axis) is normally distributed. You can use BH.8.19 as a source of inspiration. (This is perhaps a hard exercise, but  the solution is easy and useful to memorize.)
+\begin{solution}
+From properties 1 and 2 we conclude that the joint PDF of the disturbance $(x,y)$ must satisfy
+\begin{equation}
+  \label{eq:1}
+  f_{X,Y}(x,y) = f_X(x)f_Y(x) =: f(x)f(y),
+\end{equation}
+where we use property 2 first and then property 1, and we write $f(x)$ for ease.
+Since the disturbance has the same distribution in the $x$ and $y$ direction, the density $f$ can only depend on the distance $r$ from the angle but not on the angle. Therefore, the probability that the dart lands on some square $\d x\d y$ must be such that
+\begin{equation}
+  \label{eq:4}
+  f(x)f(y) \d x \d y = g(r) \d x \d y,
+\end{equation}
+for some function $g$, hence $g(r) = f(x)f(y)$. But since $g$ does not depend on the angle $\phi$,
+\begin{equation}
+\label{eq:5}
+\partial_{\phi} g(r) = 0 = f(x) \partial_{\phi}f(y) + f(y) \partial_{\phi}f(x).
+\end{equation}
+The relation between $x$ and $y$ and $r$ and $\phi$ is given by the relations:
+\begin{align}
+\label{eq:6}
+x &= r \cos \phi, & y&=r\sin \phi.
+\end{align}
+Using the chain rule,
+\begin{align}
+  \label{eq:7}
+  \partial_{\phi} f(x) &= \partial_{x} f(x) \frac{\d x}{\d \phi} = f'(x) r (-\sin \phi) = - f'(x) y, \\
+  \partial_{\phi} f(y) &= \partial_{y} f(y) \frac{\d y}{\d \phi} = f'(y) r \cos \phi =  f'(y) x.
+\end{align}
+All this gives,
+\begin{equation}
+\label{eq:8}
+0 = x f(x) f'(y) - y f(y)f'(x).
+\end{equation}
+Simplyfing,
+\begin{equation}
+  \label{eq:9}
+   \frac{f'(x)}{x f(x)} = \frac{f'(y)}{ y f(y)}.
+\end{equation}
+But now notice that must hold for all $x$ and $y$ at the same time. The only possibility is that there is some constant $\alpha$ such that
+\begin{equation}
+\label{eq:10}
+   \frac{f'(x)}{x f(x)} =  \frac{f'(y)}{y f(y)} = \alpha.
+\end{equation}
+Hence, our $f$ must satisfy for all $x$
+\begin{equation}
+\label{eq:11}
+f'(x) = \alpha x f(x).
+\end{equation}
+Differentiating the guess $f(x) = a e^{ x^2/{2 \alpha}}$, for some constant $a$, shows that this $f$ satisfies this differential equation.
+
+Finally, by the third property, we want that $f$ decays as  $x$ increases, so that $\alpha<0$. So, we set $\alpha = -1/2\sigma^{2}$, to get the final answer:
+\begin{equation}
+  \label{eq:12}
+  f(x) = a e^{-x^{2}/2 \sigma^{2}}.
+\end{equation}
+It remains to find the normalization constant $a$; recall, $f$ must be a PDF.
+\end{solution}
+\end{exercise}
+
+\begin{exercise}
+We next find the normalizing constant of the normal distribution (and thereby offer an opportunity to practice with change of variables).
+For this purpose consider two circles in the plane: $C(N)$ with radius $N$ and $C(\sqrt 2 N)$ with radius $\sqrt 2 N$.
+It is obvious that the square $S(N) = [-N,N]\times[N,N]$ contains the first circle, and is contained in the second.
+Therefore,
+\begin{equation}
+  \label{eq:13}
+  \iint_{C(N)}f_{X,Y}(x,y) \d x\d y \leq
+  \iint_{S(N)}f_{X,Y}(x,y) \d x\d y \leq
+  \iint_{C(\sqrt 2 N)}f_{X,Y}(x,y) \d x\d y.
+\end{equation}
+Now substitute the normal distribution, as obtained in~\cref{ex:1}. Then use polar coordinates to solve the integrals over the circles, and derive the normalization constant.
+\begin{solution}
+\begin{equation}
+\label{eq:14}
+  \iint_{C(N)}f_{X,Y}(x,y) \d x\d y =
+a^{2}  \iint_{C(N)} e^{-(x^{2}+y^{2})/2\sigma} \d x\d y.
+\end{equation}
+Since  $x = r \cos \phi$ and $y=r\sin \phi$, we get that $x^2+y^2 = r^{2}$. For the Jacobian,
+\begin{equation}
+  \label{eq:15}
+  \frac{\partial(x, y)}{\partial(r,\phi)} =
+  \begin{vmatrix}
+    \cos \phi  & -r\sin \phi \\
+    \sin \phi  & r\cos \phi
+  \end{vmatrix}
+= r(\cos^{2} \phi + \sin^2 \phi) = r.
+\end{equation}
+Therefore
+\begin{equation}
+\label{eq:16}
+\d x \d y = r \d r \d \phi,
+\end{equation}
+from which
+\begin{align}
+a^{2}  \iint_{C(N)} e^{-(x^{2}+y^{2})/2\sigma} \d x\d y
+&=a^{2}  \iint_{C(N)} e^{-r^{2}/2\sigma^{2}} r \d r\d \phi \\
+&= a^{2}  \int_{0}^{N} \int_{0}^{2\pi} e^{-r^{2}/2\sigma^{2}} r \d r\d \phi \\
+&= a^{2}  2\pi \int_{0}^{N}  e^{-r^{2}/2\sigma^{2}} r \d r \\
+&= a^{2}  2\pi \int_{0}^{N}  e^{-r^{2}/2\sigma^{2}} r \d r \\
+&= - a^{2}  2\pi{\sigma^{2}} e^{-r^{2}/2\sigma^{2}}|_{0}^{N} \\
+&= a^{2}2\pi{\sigma^{2}} (1-e^{-N^{2}/2\sigma^{2}}),
+\end{align}
+where we use~\cref{eq:11}.
+And therefore
+\begin{equation}
+a^{2}2\pi{\sigma^{2}} (1-e^{-N^{2}/2\sigma^{2}}) \leq
+  \iint_{S(N)}f_{X,Y}(x,y) \d x\d y \leq
+a^{2}2\pi{\sigma^{2}} (1-e^{-2N^{2}/2\sigma^{2}}).
+\end{equation}
+Taking $N\to\infty$ we conclude that
+\begin{align}
+a^{2}2\pi{\sigma^{2}}
+&=\iint f_{X,Y}(x,y) \d x\d y
+=a^{2}  \iint e^{-x^{2}/2\sigma^{2}} e^{-y^{2}/2\sigma} \d x\d y\\
+&=a^{2}  \int_{-\infty}^{\infty} \int_{-\infty}^{\infty }e^{-x^{2}/2\sigma^{2}} e^{-y^{2}/2\sigma} \d x\d y
+=a^{2} \left( \int_{-\infty}^{\infty }e^{-x^{2}/2\sigma^{2}} \d x\right)^{2},
+\end{align}
+and therefore
+\begin{equation}
+\label{eq:18}
+\int_{-\infty}^{\infty }e^{-x^{2}/2\sigma^{2}} \d x = \sqrt{2 \pi}\sigma.
+\end{equation}
+\end{solution}
+\end{exercise}
+
+
+\begin{exercise}
+Let $X,Y$ be iid with density $f$ and support $[1,10)$. Find an expression for the density of $Z=XY$. What is the (domain) support of $Z$? If $X,Y\sim\Unif{[1,10)}$, what is $f_{Z}$?
+\begin{solution}
+Let's first find the density $f_{X,Z}$. Then, with marginalization $f_{Z}(z) = \int_{1}^{10} f_{X,Z}(x,z) \d x.$
+Let $g(x,y) = (x, z)$ with $z=xy$. Then we need to compute
+\begin{equation}
+\label{eq:20}
+f_{X,Z}(x,z) \d x \d z =
+f_{X,Y}(x,y) \d x \d y.
+\end{equation}
+It is simple to see that $y=z/x$. Moreover,
+\begin{equation}
+f_{X,Z}(x,z)  = f_{X,Y}(x,y) \frac{\partial(x,y)}{\partial(x, z)}.
+\end{equation}
+Now (I take this form because I find it easier to differentiate in this sequence),
+\begin{equation}
+\label{eq:19}
+\left(\frac{\partial(x,y)}{\partial(x,z)}\right)^{-1} =
+\frac{\partial(x,z)}{\partial(x,y)} =
+\begin{vmatrix}
+  1 & 0 \\
+y & x
+\end{vmatrix} = x.
+\end{equation}
+and therefore, using that $X$ and $Y$ are iid with density $f$,
+\begin{equation}
+f_{X,Z}(x,z)  = f_{X,Y}(x,y) \frac{1}{x} = f(x)f(y)/x = f(x)f(z/x)/ x.
+\end{equation}
+(Don't forget to take $1/x$ instead of $x$.)
+This is nearly, complete, except that we need to take into account that $Y\in [1,10)$.
+(Note, $X,Y\geq 1 \implies Z\geq 1$).
+We need to impose the condition $z/x \in [1, 10)]$:
+\begin{equation}
+f_{X,Z}(x,z)  = f(x)f(z/x)/ x \1{1\leq z/x <10}.
+\end{equation}
+But,
+\begin{equation}
+\label{eq:22}
+1\leq z/x < 10 \iff 1 \geq x/z > 1/10 \iff z \geq x > z/10.
+\end{equation}
+Combining this with the requirement that $x\in [1, 10)$,  this becomes
+\begin{equation}
+\max{1, z/10} < x \leq \min\{10, z\}.
+\end{equation}
+All in all,
+\begin{equation}
+f_{X,Z}(x,z)  = f(x)f(z/x)/ x \1{\max\{1, z/10\}< x \leq \min\{10, z}\}.
+\end{equation}
+As a test, $z=110 \implies x > 110/10 > 10$, but the indicator says that $x\leq 10$, hence we get 0 for the indicator, which is what we want in this case.
+
+
+With marginalization
+\begin{equation}
+  \label{eq:21}
+f_{Z}(z) =
+\int_{1}^{10} f_{X,Z}(x,z) \d x.
+\end{equation}
+We can plug in the above expression, but that just results in a longer expression that we cannot solve unless we make a specific choice for $f$.
+
+Finally, if $X,Y$ uniform on $[1,10)$, then $f(x)=1/9$, hence,
+\begin{align}
+  \label{eq:21}
+f_{Z}(z)
+=\frac{1}{9^{2}}\int_{1}^{10}  \1{\max\{1, z/10\}< x \leq \min\{10, z}\} \frac{\d x}{x}
+=(\log(\min\{10, z\}) - \log(\max\{1, z/10\})/81.
+\end{align}
+
+It's easy to make some interesting variations:
+\begin{enumerate}
+\item Change the domains or the distributions of $X$ and $Y$.
+\item Take $Z=X/Y$, or $Z=X+Y$.
+\end{enumerate}
+
+\end{solution}
+\end{exercise}
+
+
+
+\begin{remark}
+  The above exercise is a step in the analysis of Benford's law that makes a statement on the first significant digit of numbers.
+  Look it up on the web; it is a fascinating law.
+  It's used to detect fraud by insurance companies and the tax department, but also to see whether the US elections in 2020 have been rigged, or whether authorities manipulate the statistics of the number of deceased by Covid.
+  You can find the rest of the analysis in Section 5.5 of The art of probablity for scientists and engineers by R.W.
+  Hamming.
+\end{remark}
+
+
+\opt{all-solutions-at-end}{
+\clearpage
+\Closesolutionfile{ans}
+\section{Solutions}
+\input{ans}
+}
+
+\end{document}
+
+%%% Local Variables:
+%%% TeX-master: "lectures-demo"
+%%% End:
