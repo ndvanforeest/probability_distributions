@@ -1,10 +1,10 @@
-#+title:   Probability distributions: Course manual 
+#+title:   Probability distributions: Course manual
 #+SUBTITLE: EBP038A05
 #+author: Nicky D. van Foreest
 #+date: {{{time(%Y-%m-%d)}}}
 
 #+STARTUP: indent
-#+STARTUP: overview 
+#+STARTUP: overview
 #+OPTIONS:  toc:t num:t
 #+OPTIONS: H:5
 
@@ -19,19 +19,33 @@
 
 * Material
 
+** The book
+
 We use [[https://projects.iq.harvard.edu/stat110/home][Introduction to Probability]] by Blitzstein and Hwang (BH) as the main material.
 The [[https://projects.iq.harvard.edu/stat110/home][book's homepage]] provides an electronic copy of the book, video lectures by Blitzstein, and a solution manual for part of the problems.
 I expect you to watch Blitzstein's lectures for the overview and general background of the book.
 
-I advise you to buy the book as it makes studying easier, and a physical book is much more  practical than an ebook when working on the material and solving problems. 
+I advise you to buy the book as it makes studying easier, and a physical book is much more  practical than an ebook when working on the material and solving problems.
+
+Blitzstein gave me  the advice to use /named/ results, as this sticks much better. I fully agree with him, so here are some more names:
+- VOS law (Ch 7): Variance of sums: $\V{X+Y}= \cov{X+Y, X+Y} = \V X + \V Y + \cov{X,Y} + \cov{Y, X}$.
+- LOTE  (Ch 9):  Law of total expectation: $\E{X} = \sum_{i} \E{X \mid A_i} \P{A_i}$.
+
+** Lectures
 
 In our lectures (that will be given on-line), we will illustrate the material by solving problems.
-We expect that you have already watched the relevant lectures of BH. We will publish the problems for our lecture before the lecture starts. The idea is that you have read these problems before the lecture, but you should not have solved them.
+We expect that you have already watched the relevant lectures of BH.
 
+There are three files
+- =lectures-questions.pdf=: the problems that we address during the lectures. We will publish these problems  before the lecture starts, and we expect that you have read, and thought about, them.  You don't have to solve the problems before the lecture.
+- =lectures-questions-answers.pdf=: the  problems and the answers. We will make the answers available after the lecture.
+- =lectures-demo.pdf=: We use this just during the lectures. The page is formatted such that it is easy to use in blackboard collaborate. This does not contain any extra info, so you just as well keep it untouched.
 
-The document =notes.pdf= contains notes that I took while reading the book and lots of hints for the exercises of BH.
-It contains also hints for exercises that are not in the table of compulsory exercises below.
-It's up to you to do these other exercises.
+** Notes
+
+=notes.pdf= contains notes that I (=nvf) took while reading the book., and also lots of hints for the exercises of BH.
+(It contains also hints for exercises that are not in the table of compulsory exercises below.
+It's up to you to do these other exercises.)
 I worked hard on making this set of hints, and I include many remarks and recipes (general strategies) I used to solve the exercises.
 As you'll notice, I prefer to stay clear of quick and/or slick solutions.
 Sure, such solutions can provide fast and elegant answers to hard questions, but such tricks often don't work in more general settings, and they depend on knowledge that takes a long time to acquire.
@@ -39,22 +53,25 @@ In fact, tricks give people (students and me alike) the feeling that they will n
 So, it's better to avoid that altogether, and for that reason I tend to use plain and straightforward, but perhaps long and tedious, derivations.
 You should learn and master the computational skills as you will need them time and again in many other courses.
 
-The document =memoryless excursions.pdf= (henceforth referred to as ME) discusses the core concepts of BH.7.1 and BH 7.2, and contains solutions with very detailed computations.
-This serves two goals. You don't get stuck while reading the solutions and, more importantly, they set an example for the type of computations you are supposed to (already) master.
+** Memoryless excursions
 
-The document =assignments.pdf= contains the material for the assignments.
+=memoryless excursions.pdf= (henceforth referred to as ME) discusses the core concepts of BH.7.1 and BH 7.2, and contains solutions with very detailed computations.
+This serves two goals. You don't get stuck while reading the solutions and, more importantly, they set an example for the type of computations you are supposed to master.
 
-The document =discussion_board_questions.pdf= contains the questions and answers posted on nestor. 
+** Assignments
 
-With a bit of searching you can find lots of help and solutions on the web, such as here, 
+=assignments.pdf= contains the material for the assignments.
+
+** Discussion board
+=discussion_board_questions.pdf= contains the questions and answers posted on nestor.
+
+** Info on the web
+
+With a bit of searching you can find lots of help and solutions on the web, such as here,
 - [[https://github.com/buruzaemon/stats-110]]
 - https://github.com/buruzaemon/IntroductionToProbabilityPy
-However, use this at your own risk, I haven't checked it. If you find other useful sources, let me know, so that I can put them in this list. 
+However, use this at your own risk, I haven't checked it. If you find other useful sources, let me know, so that I can put them in this list.
 
-
-Blitzstein gave me  the advice to use /named/ results, as this sticks much better. I fully agree with him, so here are some more names:
-- VOS law (Ch 7): Variance of sums: $\V{X+Y}= \cov{X+Y, X+Y} = \V X + \V Y + \cov{X,Y} + \cov{Y, X}$.
-- LOTE  (Ch 9):  Law of total expectation: $\E{X} = \sum_{i} \E{X \mid A_i} \P{A_i}$. 
 
 * Schedule
 
@@ -85,7 +102,7 @@ Blitzstein gave me  the advice to use /named/ results, as this sticks much bette
 |------+---------+------------+-------------------------+------------|
 
 There will be one tutorial group during which you can ask questions.
-This group is indicated as `Probability Distributions Pr. gr.01' in the [[https://rooster.rug.nl/#/en/current/schedule/course-EBP038A05%257D%257Bschedule&course-EBP038A05][schedule]]. 
+This group is indicated as `Probability Distributions Pr. gr.01' in the [[https://rooster.rug.nl/#/en/current/schedule/course-EBP038A05%257D%257Bschedule&course-EBP038A05][schedule]].
 
 
 * On making exercises
@@ -98,7 +115,7 @@ You can expect to spend between 30 minutes (and sometimes more) per problem; if 
 Here is a list of good, and important, advice when making the exercises.
 (As a student I did not always do this, partly because I was not aware about how useful this advice is. Hopefully you are smart enough to avoid making the same mistakes as I did as a student.
 )
-- Read an example in the book. Close the book, and try to redo the example. When I try, I often fail. Why is that? Simple, I did not really /think/ about the example while just reading it, I /skimmed/ it.  Instead, /reading/ requires pen and paper. 
+- Read an example in the book. Close the book, and try to redo the example. When I try, I often fail. Why is that? Simple, I did not really /think/ about the example while just reading it, I /skimmed/ it.  Instead, /reading/ requires pen and paper.
 - Before trying to solve an exercise, read all parts of it, i.e., part a, b, etc. Ensure you /understand the problem./
 - Before actually solving  an exercise, /make a plan on how to solve it/. A first step is to look for simple corner cases (set things to zero, make certain probabilities equal to one, and so on), make extra assumptions that simplify the problem, and solve the problem under these simplifying (stronger) assumptions. Then drop an assumption, and try to generalize to a pattern or some property you expect to hold. You'll be astonished to see how many problems you can actually solve by following this strategy. And even if you cannot solve it with this approach, the corner cases help to check throughout whether you're still working in the right direction. Also, reduce the problem to simpler cases you do understand. Try to solve the simpler problem first, and then generalize.
 - Carry out your plan. In my hints, you should notice that I often do not directly aim to solve just the exercise. Instead, I `play', I develop intuition, I try different ideas, I discover new things. And, I /relax/, even if I cannot directly find the answer.
@@ -111,10 +128,10 @@ Here is a list of good, and important, advice when making the exercises.
 * Assignments
 
 - For the general rules, read the general information in = assignments.pdf=
-- There are 6 assignments, see the table above. 
+- There are 6 assignments, see the table above.
 - For each week we will make new groups of two students, hence every week you have to work together with another student. The reason behind this is to help all of you expand your network, which we find very important in the current situation. We realize this is perhaps not what all of you like, but this seems the best we can do to really help you get started and work with other students. You should also know that in professional life you will often have to work in different teams and with many different people. You'd better learn such skills early in your career.
 
-The due dates are  simple: turn in the assignment for that week  before Friday 24h. 
+The due dates are  simple: turn in the assignment for that week  before Friday 24h.
 
 * Questions
 
@@ -123,7 +140,7 @@ We or fellow students will answer them during the lectures or in the discussion 
 
 * Exam
 
-The exam will be a timed online exam. 
+The exam will be a timed online exam.
 
 We use the problems of BH, the ME, and the ones indicated in the assignments as inspiration.
 Hence, these problems are at about exam level.
@@ -131,7 +148,7 @@ Hence, these problems are at about exam level.
 At the exam we will pay attention to details and computational errors. Why? Because /You should learn to check/.
 One reason for this is that checks require the application of many different methods and strategies to solve probability problems.
 Hence, you will look at the same problem from different angles, so that you learn a lot.
-A second reason is that not checking thoroughly is, simply put, unacceptable. 
+A second reason is that not checking thoroughly is, simply put, unacceptable.
 To see why, consider this example:  you bring your car to a mechanic to have the tires changed.
 The mechanic is too lazy to check whether the bolts are tight.
 As a result, you get an accident, and when you wake up in hospital, your left arm has to be amputated.
@@ -162,10 +179,10 @@ The estimated work load is as in the table.
 
 * Grading
 
-For each assignment you  have to turn in  parts 1, 2, and 3, i.e. the parts  that are below and at exam level and the coding skills. You are allowed to skip part 4, the challenges. 
+For each assignment you  have to turn in  parts 1, 2, and 3, i.e. the parts  that are below and at exam level and the coding skills. You are allowed to skip part 4, the challenges.
 Each assignment will be graded as a 1, 6, 8, or 10.
 If you skip the challenges, the highest grade you can get is an 8.
-For a 10 you have to do all parts of the assignment (and have the right answers). 
+For a 10 you have to do all parts of the assignment (and have the right answers).
 If you don't turn in an assignment, the grade will default to 1.
 
 
@@ -185,7 +202,7 @@ def compute_grade(a, e):
 #+end_src
 It is intentional that if you do a lousy job on the assignments, your final grade $g$ is most surely lower than your exam grade $e$.
 
-* Contact info 
+* Contact info
 
 - [[https://www.rug.nl/staff/n.d.van.foreest/][Nicky van Foreest]] (coordinator)
 - [[https://www.rug.nl/staff/e.r.van.beesten/?lang=en][Ruben van Beesten]]
@@ -198,16 +215,13 @@ It is intentional that if you do a lousy job on the assignments, your final grad
 There are a number of books that you might like too. (From experience I can tell that reading different types of explanation can be very helpful.)
 1. [[https://faculty.math.illinois.edu/~r-ash/BPT.html][R.B. Ash]]: Basic probability theory, free online
 2. [[https://math.dartmouth.edu/~prob/prob/prob.pdf][C.M. Grinsted and J. Laurie Snell]]: Introduction to probability, also free online
-3. F.M. Dekking, et al.: A Modern Introduction to Probability and Statistics, Understanding Why and How. 
+3. F.M. Dekking, et al.: A Modern Introduction to Probability and Statistics, Understanding Why and How.
 
-After the course you might be interested in the following two books that I liked a lot. 
-1. D.V. Lindley, Understanding Uncertainty. This book explains why probability theory is the way it is. There are three rules that any coherent system of probabilities has to satisfy. 
-   1. For any event $E$, $\P{E} \in [0,1]$; 
-   2. $\P{E \text{ or } F} = \P{E} + \P{F} - \P{E F}$; 
-   3. $\P{E F} = \P{F \mid E} \P{E}$. 
-   If you want to understand probability in terms of betting, any sensible strategy you can imagine should satisfy   these rules, for otherwise people can use arbitrage (an essential idea in the financial theory and asset and option pricing) to consistently make  money from you.  
+After the course you might be interested in the following two books that I liked a lot.
+1. D.V. Lindley, Understanding Uncertainty. This book explains why probability theory is the way it is. There are three rules that any coherent system of probabilities has to satisfy.
+   1. For any event $E$, $\P{E} \in [0,1]$;
+   2. $\P{E \text{ or } F} = \P{E} + \P{F} - \P{E F}$;
+   3. $\P{E F} = \P{F \mid E} \P{E}$.
+   If you want to understand probability in terms of betting, any sensible strategy you can imagine should satisfy   these rules, for otherwise people can use arbitrage (an essential idea in the financial theory and asset and option pricing) to consistently make  money from you.
 2. E.T. Jaynes, Probability Theory: The Logic of Science. It is hard at times, but very interesting. it discusses  applications and ideas behind probability and statistics, and how to think about these topics as a sensible person (not just as a theoretician).
-3. [[https://www.microsoft.com/en-us/research/uploads/prod/2006/01/Bishop-Pattern-Recognition-and-Machine-Learning-2006.pdf][C. Bishop, Pattern Recognition and Machine Learning]]. This is a really nice book on data analysis and  machine learning. After the course you can read the first two chapters. At the end of the master, you can read most of the book. 
-
-
-
+3. [[https://www.microsoft.com/en-us/research/uploads/prod/2006/01/Bishop-Pattern-Recognition-and-Machine-Learning-2006.pdf][C. Bishop, Pattern Recognition and Machine Learning]]. This is a really nice book on data analysis and  machine learning. After the course you can read the first two chapters. At the end of the master, you can read most of the book.
