@@ -36,10 +36,9 @@ Blitzstein gave me  the advice to use /named/ results, as this sticks much bette
 In our lectures (that will be given on-line), we will illustrate the material by solving problems.
 We expect that you have already watched the relevant lectures of BH.
 
-There are three files
-- =lectures-questions.pdf=: the problems that we address during the lectures. We will publish these problems  before the lecture starts, and we expect that you have read, and thought about, them.  You don't have to solve the problems before the lecture.
-- =lectures-questions-answers.pdf=: the  problems and the answers. We will make the answers available after the lecture.
-- =lectures-demo.pdf=: We use this just during the lectures. The page is formatted such that it is easy to use in blackboard collaborate. This does not contain any extra info, so you just as well keep it untouched.
+There are files
+- =lectures.pdf=: the problemsthat we address during the lectures. We will publish these problems  before the lecture starts, and we expect that you have read, and thought about, them.  You don't have to solve the problems before the lecture.  The  solutions are at the end of the document.
+- =lectures-demo.pdf=: We use this just during the lectures. The page is formatted such that it is easy to use in blackboard collaborate. However, it does not contain any extra info, so you can just as well keep it untouched.
 
 ** Notes
 
