@@ -12,10 +12,46 @@
 
 \section{Lecture 1}
 
+\begin{exercise}
+Consider 12 football players on a football field.
+Eleven of them are players of FC Barcelone, the other one is an arbiter.
+We select a random player, uniform.
+This player must take a penalty.
+The probability that a player of Barcelone scores is 70\%, for the arbiter it is 50\%.
+Let $P\in \{A, B\}$ be rv that says whether selected player is the arbiter or not, and $S\in\{0,1\}$ be the score.
+\begin{enumerate}
+\item What is the PMF, in other words, determine $\P{P = A, S=1}$ and so on for all possibilities?
+\item What is $\P{S=1}$? What is $\P{P=B}$?
+\item Show that $S$ and $P$ are dependent.
+\end{enumerate}
+\begin{solution}
+Here is the joint PMF:
+\begin{align}
+  \label{}
+\P{P=A, S=1} &= \frac{1}{12}0.5 & \P{P=A, S=0} &= \frac{1}{12}0.5 \\
+\P{P=B, S=1} &= \frac{11}{12}0.7 & \P{P=B, S=0} &= \frac{11}{12}0.3.
+\end{align}
+Now the marginal PMFs
+\begin{align*}
+\P{S=1}  &= \P{P=A, S=1} + \P{P=B, S=1} = 0.042 + 0.64 = 0.683 = 1-\P{S=0}\\
+\P{P=B}  &= \frac{11}{12} = 1-\P{P=A}.
+\end{align*}
+For independence we take the definition.
+In general, for all outcomes $x,y$ we must have that $\P{X=x, Y=y} = \P{X=x}\P{Y=y}$.
+For our present example, let's check with for a particular outcome:
+\begin{align*}
+\P{P=B, S=1} &= \frac{11}{12}\cdot0.7 \neq \P{P=B}\P{S=1} = \frac{11}{12} \cdot 0.683
+\end{align*}
+The joint PMF is obviously not the same as the product of the marginals, which implies that $P$ and $S$ are not independent.
+\end{solution}
+\end{exercise}
+
+
+
 An insurance company receives on a certain day two claims $X, Y \geq 0$.
 We will find the PMF of the loss $Z=X+Y$ under different assumptions.
 
-The CDF $F_{X,Y}$ and PMF $p_{X,Y}$ are assumed known.
+The joint CDF $F_{X,Y}$ and joint PMF $p_{X,Y}$ are assumed known.
 
 \begin{exercise}
 Why is it not interesting to consider the case $i=j=0$?
@@ -26,8 +62,7 @@ When the claim sizes are $0$, then the insurance company does not receive a clai
 
 
 \begin{exercise}
-Find an expression for $F_{Z}(k)$.
-
+Find an expression for $F_{Z}(k)$ for $Z=X+Y$.
 \begin{solution}
 By the fundamental bridge,
 \begin{align}
@@ -65,7 +100,7 @@ This follows since $i=j$.
 
 
 \begin{exercise}
-Are $X$ and $Y$ dependent?  If so, why, because $1=F_{X,Y}(4,4)= F_X(4)F_Y(4)$
+Are $X$ and $Y$ dependent?  If so, why, because $1=F_{X,Y}(4,4)= F_X(4)F_Y(4)$?
 \begin{solution}
   The equality in the equation must hold for all $i,j$, not just $i=j=4$.
   If you take $i=j=1$, you'll see immediately that the equation is not true.

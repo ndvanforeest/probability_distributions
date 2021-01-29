@@ -25,10 +25,10 @@ In your own words, explain what is
 \end{exercise}
 
 \begin{exercise}
-We have two r.v.s $X, Y \in [0,1]^{2}$ with the joint PDF $f_{X,Y}(x,y) = 2 \1{x\leq y}$? 
+We have two r.v.s $X, Y \in [0,1]^{2}$ with the joint PDF $f_{X,Y}(x,y) = 2 \1{x\leq y}$?
 \begin{enumerate}
-\item Are $X$ and $Y$ independent? 
-\item Compute $F_{X,Y}(x,y)$. 
+\item Are $X$ and $Y$ independent?
+\item Compute $F_{X,Y}(x,y)$.
 \end{enumerate}
 \end{exercise}
 
@@ -39,7 +39,7 @@ Even though the joint CDF factors into the product of the marginals, i.e., $F_{X
 \end{exercise}
 
 \begin{exercise}
-Express Bayes' formula for two rvs $X$ and $Y$ in terms of the joint CDF, i.e., provide a formula.
+Define the conditional CDF as $F_{Y|X}(y|x) = F_{X,Y}(x,y)/F_{X}(x)$. Explain this definition with Bayes' formula.
 \end{exercise}
 
 \begin{exercise}
@@ -57,14 +57,14 @@ What is $N$, what is $p$, what are the `eggs' in this context, and what is the m
 What type of `hatching' do we have here?
 \end{exercise}
 
-\begin{exercise}
-Apply the chicken-egg story. Families enter a zoo in a given hour. Some families have one child, other two, and so on. 
-What are the `eggs' in this context, and what is the meaning of `hatching'? 
-\end{exercise}
+% \begin{exercise}
+% Apply the chicken-egg story. Families enter a zoo in a given hour. Some families have one child, other two, and so on.
+% What are the `eggs' in this context, and what is the meaning of `hatching'?
+% \end{exercise}
 
 
 \begin{exercise}
-Claim: We have two rvs $X$ and $Y$ on $\R^{+}$. It is given that $F_{X,Y}(x,y) = F_X(x)F_Y(y)$ for $x,y \leq 1/3$. Then  $X$ and $Y$ are necessarily independent. 
+Claim: We have two rvs $X$ and $Y$ on $\R^{+}$. It is given that $F_{X,Y}(x,y) = F_X(x)F_Y(y)$ for $x,y \leq 1/3$. Then  $X$ and $Y$ are necessarily independent.
 \end{exercise}
 
 \begin{exercise}
@@ -99,7 +99,7 @@ We start with an initial capital $I_0=2$.
 The company receives claims and contributions every period, a week say.
 In the $i$th period, we receive a contribution $X_{i}$ uniform on the set $\{1, 2,\ldots,10\}$ and a claim $C_i$ uniform on $\{0, 1, \ldots 8\}$.
 \begin{enumerate}
-\item What is the interpretation of $\bar I_{n} = \min{I_{i} : 0\leq i\leq n}$? 
+\item What is the interpretation of $\bar I_{n} = \min{I_{i} : 0\leq i\leq n}$?
 \item What is the meaning of $I_1=I_0+X_1-C_1$?
 \item What is the meaning of $I_2=I_1+X_2-C_2$?
 \item What is the interpretation of $I_1'=\max{I_0-C_1,0} + X_1$?
@@ -117,8 +117,8 @@ In the $i$th period, we receive a contribution $X_{i}$ uniform on the set $\{1, 
 
 
 
-\begin{exercise} 
-Use simulation to estimate the answer of BH.7.1. Run the code below and explain line 9 of python code or line 7 of the R code. 
+\begin{exercise}
+Use simulation to estimate the answer of BH.7.1. Run the code below and explain line 9 of python code or line 7 of the R code.
 
 
 Then run the code for a larger sample, e.g, \verb|num=1000| or so, but remove the prints of \verb|a|, \verb|b|, and \verb|succes|, because that will fill your screen with numbers you don't need.
@@ -158,7 +158,7 @@ success
 paste(mean(success), var(success))
 \end{minted}
 
-Challenge (not obligatory): If you like, you can include a plot of the region (in time) in which Alice and Bob meet, and put marks on the points of the simulation that were `successful'. 
+Challenge (not obligatory): If you like, you can include a plot of the region (in time) in which Alice and Bob meet, and put marks on the points of the simulation that were `successful'.
 \end{exercise}
 
 
@@ -232,13 +232,19 @@ I
 \end{exercise}
 
 
-\subsection{Challenges}
+\subsection{Challenges, optional}
 \label{sec:above-exam-level}
+
+You are free to chose one of these problems, but of course you can do both if you like.
 
 \begin{exercise} %wk
 Consider the again the chicken-egg story (BH 7.1.9): A chicken lays a random number of eggs $N$ an each egg independently hatches with probability $p$ and fails to hatch with probability $q = 1-p$.
-For $N \sim \Pois{\lambda}$ it is shown in BH 7.1.9 that $X$ and $Y$ are independent and $X\sim\Pois{\lambda p}$ and $Y\sim\Pois{\lambda(1-p)}$. 
+For $N \sim \Pois{\lambda}$ it is shown in BH 7.1.9 that $X$ and $Y$ are independent and $X\sim\Pois{\lambda p}$ and $Y\sim\Pois{\lambda(1-p)}$.
 This exercise asks for the converse.
+
+Suppose $X|N\sim\Bin{N,p}$.
+Suppose that $Y$ independent of $X$, positive, and $X+Y=N$.
+Prove that $X+Y$ is Poisson distributed.
 
 Let $X\sim\Pois{\lambda}$ be the number of eggs that hatch and let $Y\sim\Pois{\mu}$ be the number of eggs that do not hatch.
 Assume that $X$ and $Y$ are independent.
@@ -249,10 +255,10 @@ Prove  $X+Y =: N \sim \Pois{\lambda + \mu}$.
 
 
 \begin{exercise} %wk
-Assume that $X$ has the Cauchy distribution. 
+Assume that $X$ has the Cauchy distribution.
 \begin{enumerate}
-\item Does $\E{\frac{X}{X^2+1}}$ exist? If so, find its value. 
-\item Does $\E{\frac{|X|}{X^2+1}}$ exist? If so, find its value. 
+\item Why does $\E{\frac{|X|}{X^2+1}}$ exist? Find its value.
+\item Based on part 1 you can conclude that $\E{\frac{X}{X^2+1}}$ exist? Explain why this is the case, then find its value.
 \end{enumerate}
 \end{exercise}
 
@@ -261,18 +267,12 @@ Assume that $X$ has the Cauchy distribution.
 
 \subsection{TODO for another year}
 
-Here are some ideas for another time. You can neglect this. 
-
-\begin{exercise}
-For another time: afrondregels, bijv \(2.11*3= 6\), omdat \(3\) maar op 1 digit bekend is. Wat is de kwaliteit van deze afrondregel?
-More generally,  check density for sum,product, and ratio of two normal (or other distributions)  by means of simulations.
-\end{exercise}
-
+Here are some ideas for another time. You can neglect this.
 
 
 
 \begin{exercise}\label{ex:1}
-We throw an unbiased die with six sides; the result of the $i$th throw is $X_i$. 
+We throw an unbiased die with six sides; the result of the $i$th throw is $X_i$.
 \begin{enumerate}
 \item What is the sample space of the two throws $(X_{1}, X_2)$?
 \item What is the joint CDF?
@@ -286,10 +286,10 @@ We throw an unbiased die with six sides; the result of the $i$th throw is $X_i$.
 \end{exercise}
 
 \begin{exercise}
-We select a random married couple (a man and a woman). His height is $X\sim \Norm{1.8, 0.1}$, her height is $Y\sim \Norm{1.7, 0.08}$ in meters. 
+We select a random married couple (a man and a woman). His height is $X\sim \Norm{1.8, 0.1}$, her height is $Y\sim \Norm{1.7, 0.08}$ in meters.
 \begin{enumerate}
 \item What is the sample space of $(X, Y)$?
-\item If your answer to question 1 is correct, you must have noticed that potentially the height of the man and the woman can be negative. Is this a problem for this model? 
+\item If your answer to question 1 is correct, you must have noticed that potentially the height of the man and the woman can be negative. Is this a problem for this model?
 \item What is the joint CDF?
 \item What is the joint PDF?
 \item  Marginalize out $Y$ to show that $X\sim \Norm{1.8, 0.1}$.

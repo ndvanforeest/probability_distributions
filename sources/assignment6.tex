@@ -11,9 +11,9 @@
 \begin{exercise}
 Here is (what I find) a simpler proof of the Cauchy-Schwartz inequality.  Define  $f(t) = \E{(Y-tX)^2}$.
 \begin{enumerate}
-\item Explain that $f(t)\geq 0$. 
+\item Explain that $f(t)\geq 0$.
 \item Write $f(t) = \E{(Y-tX)^2}$ as a polynomial of the second degree, i.e., in the form $f(t) = a t^2 + b t + c$ (Hint, see BH).
-\item Since $f(t) \geq 0$, how many (real) roots can it have at most? 
+\item Since $f(t) \geq 0$, how many (real) roots can it have at most?
 \item What are the implications of this for the discriminant $D=b^2-4ac$?
 \item Show that the Cauchy-Schwartz inequality directly follows.
 \end{enumerate}
@@ -23,15 +23,18 @@ Here is (what I find) a simpler proof of the Cauchy-Schwartz inequality.  Define
 And here is inequality from which all inequalities in BH 10.1.3 immediately follow.
 Take any rv $X$ and a function $f$ that is positive (non-negative) and  increasing (non-decreasing).
 \begin{enumerate}
-\item Why is this true for any $a$: $f(a) \1{X\geq a} \leq f(X) \1{X\geq a} \leq f(X)$? 
-\item Take expectations and use the fundamental bridge to show that $\P{X\geq a} \leq \E{f(X)}/f(a)$.  
+\item Why is this true for any $a$: $f(a) \1{X\geq a} \leq f(X) \1{X\geq a} \leq f(X)$?
+\item Take expectations and use the fundamental bridge to show that $\P{X\geq a} \leq \E{f(X)}/f(a)$.
 \item What part of the proof goes wrong if  $f$ can also be negative?
 \item Show that Markov's inequality follows by taking $Y=|X|$ and  $f(x)=x$. Why don't we take $f(x) = |x|$?
-\item Show that Chebyshev's inequality follows by taking $Y=|X-\mu|$ and $f(x)=x^2$. 
-\item Show that Chernoff's inequality follows by taking $f(x)=e^{x}$. 
+\item Show that Chebyshev's inequality follows by taking $Y=|X-\mu|$ and $f(x)=x^2$.
+\item Show that Chernoff's inequality follows by taking $f(x)=e^{x}$.
 \end{enumerate}
 \end{exercise}
 
+\begin{exercise}
+Use Eve's law to show that $\V Y \geq \V{\E{Y\given X}}$.
+\end{exercise}
 
 \subsection{Coding skills}
 
@@ -39,12 +42,12 @@ Take any rv $X$ and a function $f$ that is positive (non-negative) and  increasi
 Let us try to understand the weak law of large numbers by means of simulation. An easy example is to take $X_{i}\sim\Unif{0,1}$, so that is what we do here.
 
 \begin{enumerate}
-\item Explain lines 9 and 10 of the python code.  
-\item What is \texttt{Y}, i.e., the result of line 15 of the python code? What is the symbol that BH use for this? 
-\item What do lines P.17 and P.18 compute? 
+\item Explain lines 9 and 10 of the python code.
+\item What is \texttt{Y}, i.e., the result of line 15 of the python code? What is the symbol that BH use for this?
+\item What do lines P.17 and P.18 compute?
 \item What is P.20 in the notation of BH?
 \item What inequality do we check in P.21?
-\item Choose some different values for $n$ and the sample size $N$. Is the inequality always true? 
+\item Choose some different values for $n$ and the sample size $N$. Is the inequality always true?
 \end{enumerate}
 
 \begin{minted}[]{python}
