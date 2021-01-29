@@ -131,10 +131,83 @@ sqrt(500*0.5)
 \end{exercise}
 
 \begin{exercise}
-We start from BH.8.27, and we are interested in the difference between the distribution of $X+Y+Z$ and the normal distribution.
+We start from BH.8.27 (which you have to read now).  We are interested in the difference between the distribution of $X+Y+Z$ and the normal distribution.
 
-\begin{solution}
-\end{solution}
+Let's first do a simulation.
+
+\begin{minted}[]{python}
+import numpy as np
+from scipy.stats import norm
+
+import matplotlib.pylab as plt
+import seaborn as sns
+
+sns.set()
+
+np.random.seed(3)
+
+k = 3
+Z_exact = norm(loc=k / 2, scale=np.sqrt(k / 12))
+X = np.arange(0, 3, 0.1)
+
+XYZ = np.random.uniform(size=(4000, k))
+# print(XYZ)  # if you want to see it.
+Z = XYZ.sum(axis=1)
+sns.distplot(Z)
+plt.plot(X, Z_exact.pdf(X))
+plt.show()
+\end{minted}
+
+
+\begin{enumerate}
+\item What is shape of ~XYZ~ in the code below, i.e., how many rows and columns does it have? If you don't know, run the code, and print it.
+\item What is the shape of ~Z~?
+\item Explain the values for ~loc~ and ~shape~ in ~Z_exact~. (Read the documentation of ~scipy.stats.norm~ on the web is necessary.) To which definition in BH does this loc-scale transformation relate?
+\item Change the seed to your student id, or any other number you like, run the code, and include a graph. Explain what you see.
+\end{enumerate}
+
+Now we do an exact computation.
+
+\begin{minted}[]{python}
+import numpy as np
+from scipy.stats import norm
+
+import matplotlib.pylab as plt
+import seaborn as sns
+
+sns.set()
+
+N = 200
+x = np.linspace(0, 2, 2 * N)
+f_x = np.ones(N) / N
+f_2 = np.convolve(f_x, f_x)
+f_3 = np.convolve(f_2, f_x)
+
+k = 3
+
+x = np.linspace(0, k, len(f_3))
+Z_exact = norm(loc=k / 2, scale=np.sqrt(k / 12))
+
+
+plt.plot(x, N * f_3, label="conv")
+plt.plot(x, Z_exact.pdf(x))
+plt.legend()
+plt.show()
+\end{minted}
+
+\begin{enumerate}
+\item Read the documentation of ~np.convolve~. Why is it called like this?
+\item What is ~f_2~?
+\item What is ~f_3~?
+\item Why do we set ~k=3~?
+\item A bit harder, why do we plot ~N*f_3~, i.e., why do have to multiply with ~N~? Relate this to the meaning of $f(x)\d x$, where $f$ the density of some random variable.
+\item Yet a tiny bit harder, consider ~f_4 = np.convolve(f_3, f_x)~ and ~g_4 = np.convolve(f_2, f_2)~. Why are they, numerically speaking, the equal?
+\item An important problem is to deal with comparing floating point numbers): ~print(0 == 1e-40)~ gives as answer ~False~.
+  Ok.
+  But we know that floating point numbers in the computers are stored with less than 40 digits precision, so we want that ~0 == 1e-40~ is ~True~.
+  What would you do to realize this (hint, use ~np.isclose()~, explain what this does)?
+\end{enumerate}
+
 \end{exercise}
 
 

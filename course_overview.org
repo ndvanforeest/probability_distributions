@@ -180,10 +180,12 @@ The estimated work load is as in the table.
 
 * Grading
 
-For each assignment you  have to turn in  parts 1, 2, and 3, i.e. the parts  that are below and at exam level and the coding skills. You are allowed to skip part 4, the challenges.
-Each assignment will be graded as a 1, 6, 8, or 10.
-If you skip the challenges, the highest grade you can get is an 8.
-For a 10 you have to do all parts of the assignment (and have the right answers).
+For each assignment you have to turn in parts 1, 2, and 3, i.e.
+the parts that are below and at exam level and the coding skills.
+You are allowed to skip part 4, the challenges.
+Each assignment will be graded as a `real bad', `insufficient', `sufficient', `good', or `excellent', which in numbers comes down to 1, 4, 6, 8, or 10.
+If you skip the challenges, the highest grade you can get is a `good'.
+For an `excellent' you have to do all parts of the assignment (and have the right answers).
 If you don't turn in an assignment, the grade will default to 1.
 
 
