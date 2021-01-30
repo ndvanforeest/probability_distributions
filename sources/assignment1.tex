@@ -25,7 +25,7 @@ In your own words, explain what is
 \end{exercise}
 
 \begin{exercise}
-We have two r.v.s $X, Y \in [0,1]^{2}$ with the joint PDF $f_{X,Y}(x,y) = 2 \1{x\leq y}$?
+We have two r.v.s $X, Y \in [0,1]^{2}$ with the joint PDF $f_{X,Y}(x,y) = 2 \1{x\leq y}$.
 \begin{enumerate}
 \item Are $X$ and $Y$ independent?
 \item Compute $F_{X,Y}(x,y)$.
@@ -33,20 +33,23 @@ We have two r.v.s $X, Y \in [0,1]^{2}$ with the joint PDF $f_{X,Y}(x,y) = 2 \1{x
 \end{exercise}
 
 \begin{exercise}
-Correct (that is, is the following clam correct?)?
+Correct (that is, is the following claim correct?)?
 We have two continuous r.v.s $X, Y$.
 Even though the joint CDF factors into the product of the marginals, i.e., $F_{X,Y}(x,y) = F_X(x)F_Y(y)$, it is still possible in general that the joint PDF does not factor into a product of marginals PDFs of $X$ and $Y$, i.e., $f_{X,Y}(x,y) \neq f_X(x) f_Y(y)$.
 \end{exercise}
 
 \begin{exercise}
-Define the conditional CDF as $F_{Y|X}(y|x) = F_{X,Y}(x,y)/F_{X}(x)$. Explain this definition with Bayes' formula.
+Consider $F_{X,Y}(x,y)/F_{X}(x)$. Write this expression as a conditional probability. Is this equal to the conditional CDF of $X$ and $Y$?
 \end{exercise}
 
 \begin{exercise}
 Let $X$ be uniformly distributed on the set $\{0,1,2\}$ and let $Y \sim \Bern{1/4}$; $X$ and $Y$ are independent.
-Present a contingency table for the $X$ and $Y$.
-What is the interpretation of the column sums the table?
-What is the interpretation of the row sums of the table? Suppose you change some of the entries in the table, are $X$ and $Y$ still independent?
+\begin{enumerate}
+\item Present a contingency table for the $X$ and $Y$.
+\item What is the interpretation of the column sums the table?
+\item What is the interpretation of the row sums of the table? 
+\item Suppose you change some of the entries in the table. Are $X$ and $Y$ still independent?
+\end{enumerate}
 \end{exercise}
 
 \begin{exercise}
@@ -64,7 +67,7 @@ What type of `hatching' do we have here?
 
 
 \begin{exercise}
-Claim: We have two rvs $X$ and $Y$ on $\R^{+}$. It is given that $F_{X,Y}(x,y) = F_X(x)F_Y(y)$ for $x,y \leq 1/3$. Then  $X$ and $Y$ are necessarily independent.
+Correct? We have two r.v.s $X$ and $Y$ on $\R^{+}$. It is given that $F_{X,Y}(x,y) = F_X(x)F_Y(y)$ for $x,y \leq 1/3$. Then  $X$ and $Y$ are necessarily independent.
 \end{exercise}
 
 \begin{exercise}
@@ -76,7 +79,7 @@ Briefly comment on this claim.
 
 
 \begin{exercise}
-Correct? For any two rvs $X$ and $Y$ on $\R^{+}$ with marginals $F_{X}$ and $F_{Y}$. Then $\P{X\leq x, Y\leq y} = F_{X}(x) F_{Y}(x)$.
+Correct? For any two r.v.s $X$ and $Y$ on $\R^{+}$ with marginals $F_{X}$ and $F_{Y}$, it holds that $\P{X\leq x, Y\leq y} = F_{X}(x) F_{Y}(x)$.
 \end{exercise}
 
 \begin{exercise}
@@ -84,7 +87,7 @@ Theorem 7.1.11. What is the meaning of the notation $X|N=n$?
 \end{exercise}
 
 \begin{exercise}
-Correct? $X, Y$ two discrete rvs with CDF $F_{X,Y}$. We can compute the PDF as $\partial_{x}\partial_{y} F_{X,Y}(x,y)$.
+Correct? $X, Y$ are two discrete r.v.s with CDF $F_{X,Y}$. We can compute the PDF as $\partial_{x}\partial_{y} F_{X,Y}(x,y)$.
 \end{exercise}
 
 
@@ -176,7 +179,7 @@ from scipy.integrate import quad
 
 labda = 3
 
-X = expon(scale=1 / labda).rvs(1000)
+X = expon(scale = 1 / labda).rvs(1000)
 # print(X)
 print(X.mean())
 
@@ -237,24 +240,34 @@ I
 
 You are free to chose one of these problems, but of course you can do both if you like.
 
-\begin{exercise}
-Consider the again the chicken-egg story (BH 7.1.9): A chicken lays a random number of eggs $N$ an each egg independently hatches with probability $p$ and fails to hatch with probability $q = 1-p$.
-For $N \sim \Pois{\lambda}$ it is shown in BH 7.1.9 that $X$ and $Y$ are independent and $X\sim\Pois{\lambda p}$ and $Y\sim\Pois{\lambda(1-p)}$.
-This exercise asks for the converse.
+\begin{exercise} %wk
+Consider again the chicken-egg story (BH 7.1.9): A chicken lays a random number of eggs $N$ an each egg independently hatches with probability $p$ and fails to hatch with probability $q = 1-p$. Formally, $X|N\sim\Bin{N,p}$.
+For $N \sim \Pois{\lambda}$ it is shown in BH 7.1.9 that $X$ and $Y$ are independent.
+This exercise asks for the converse: showing that the independence of $X$ and $Y$ implies that $N \sim \Pois{\lambda}$ for some $\lambda$. 
+Hence, the Poisson distribution is quite special: it is the only distribution for which the number of hatched eggs doesn't tell you anything about the number of unhatched eggs.
 
-Suppose $X|N\sim\Bin{N,p}$.
-Suppose that $Y$ independent of $X$, positive, and $X+Y=N$.
-Prove that $X+Y$ is Poisson distributed.
+Let $0 < p < 1$. Let $N$ be an r.v. taking non-negative integer values with $P(N > 0) > 0$. 
+Assume that  $X|N\sim\Bin(N,p)$ and that $N-X$ is independent of $X$.
+
+\begin{enumerate}
+\item Prove that $N$ has support $\mathbb N$, i.e. that $P(N=n) > 0$ for all $n \in \mathbb N$. Note: $0 \in \mathbb N$. 
+\item Write $Y = N-X$. Prove that
+ $$P(X=x)P(Y=y) = \binom{x+y}{x} p^x (1-p)^y P(N=x+y).$$ 
+\item  Prove that $N$ is Poisson distributed. \\
+  \textit{Hint}: Use the relation of part 2 twice to express $P(N=n+1)$ in terms of $P(N=n)$.
+\end{enumerate}
 \end{exercise}
 
 
 
 
 \begin{exercise} %wk
-Assume that $X$ has the Cauchy distribution.
+This problem challenges your integration skills and lets you think about the subtleties of integrating a function over an infinite domain. Such integrals are called improper integrals. 
+
+Assume that $X$ has the Cauchy distribution. Recall that $\E{X}$ does not exist.
 \begin{enumerate}
 \item Why does $\E{\frac{|X|}{X^2+1}}$ exist? Find its value.
-\item Based on part 1 you can conclude that $\E{\frac{X}{X^2+1}}$ exist? Explain why this is the case, then find its value.
+\item Explain why part 1 implies that $\E{\frac{X}{X^2+1}}$ exists. Then find its value.
 \end{enumerate}
 \end{exercise}
 
