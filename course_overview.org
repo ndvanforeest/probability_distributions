@@ -40,6 +40,9 @@ There are files
 - =lectures.pdf=: the problemsthat we address during the lectures. We will publish these problems  before the lecture starts, and we expect that you have read, and thought about, them.  You don't have to solve the problems before the lecture.  The  solutions are at the end of the document.
 - =lectures-demo.pdf=: We use this just during the lectures. The page is formatted such that it is easy to use in blackboard collaborate. However, it does not contain any extra info, so you can just as well keep it untouched.
 
+** Tutorials
+There will be one tutorial group during which you can ask questions. We will give priority to questions posted on the discussion board (preferable the evening before the tutorial so that we have some time to prepare an answer.).
+
 ** Notes
 
 =notes.pdf= contains notes that I (=nvf) took while reading the book., and also lots of hints for the exercises of BH.
@@ -102,8 +105,7 @@ However, use this at your own risk, I haven't checked it. If you find other usef
 
 About  Section 8.6, memorize the main concept, i.e., what is an order statistic. You can skip the rest.
 
-There will be one tutorial group during which you can ask questions.
-This group is indicated as `Probability Distributions Pr. gr.01' in the [[https://rooster.rug.nl/#/en/current/schedule/course-EBP038A05%257D%257Bschedule&course-EBP038A05][schedule]].
+There will be one tutorial group during which you can ask questions. This group is indicated as `Probability Distributions Pr. gr.01' in the [[https://rooster.rug.nl/#/en/current/schedule/course-EBP038A05%257D%257Bschedule&course-EBP038A05][schedule]].
 
 
 
