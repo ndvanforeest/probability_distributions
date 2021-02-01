@@ -18,9 +18,9 @@ Eleven of them are players of FC Barcelone, the other one is an arbiter.
 We select a random player, uniform.
 This player must take a penalty.
 The probability that a player of Barcelone scores is 70\%, for the arbiter it is 50\%.
-Let $P\in \{A, B\}$ be rv that says whether selected player is the arbiter or not, and $S\in\{0,1\}$ be the score.
+Let $P\in \{A, B\}$ be r.v that corresponds to the selected player, and $S\in\{0,1\}$ be the score.
 \begin{enumerate}
-\item What is the PMF, in other words, determine $\P{P = A, S=1}$ and so on for all possibilities?
+\item What is the PMF? In other words, determine $\P{P = B, S=1}$ and so on for all possibilities.
 \item What is $\P{S=1}$? What is $\P{P=B}$?
 \item Show that $S$ and $P$ are dependent.
 \end{enumerate}
@@ -38,7 +38,7 @@ Now the marginal PMFs
 \end{align*}
 For independence we take the definition.
 In general, for all outcomes $x,y$ we must have that $\P{X=x, Y=y} = \P{X=x}\P{Y=y}$.
-For our present example, let's check with for a particular outcome:
+For our present example, let's check for  a particular outcome:
 \begin{align*}
 \P{P=B, S=1} &= \frac{11}{12}\cdot0.7 \neq \P{P=B}\P{S=1} = \frac{11}{12} \cdot 0.683
 \end{align*}
@@ -54,7 +54,7 @@ We will find the PMF of the loss $Z=X+Y$ under different assumptions.
 The joint CDF $F_{X,Y}$ and joint PMF $p_{X,Y}$ are assumed known.
 
 \begin{exercise}
-Why is it not interesting to consider the case $i=j=0$?
+Why is it not interesting to consider the case $\{X=0, Y=0\}$?
 \begin{solution}
 When the claim sizes are $0$, then the insurance company does not receive a claim.
 \end{solution}
@@ -62,12 +62,12 @@ When the claim sizes are $0$, then the insurance company does not receive a clai
 
 
 \begin{exercise}
-Find an expression for $F_{Z}(k)$ for $Z=X+Y$.
+Find an expression for the PMF of $Z=X+Y$.
 \begin{solution}
 By the fundamental bridge,
 \begin{align}
   \label{}
-F_{Z}(k) &= \P{Z=k} \\
+\P{Z=k}
 &= \sum_{i,j} \1{i+j=k} p_{X,Y}(i,j) \\
 &= \sum_{i,j} \1{i, j \geq 0} \1{j=k-i} p_{X,Y}(i,j) \\
 &= \sum_{i=0}^{k} p_{X,Y}(i,k-i).
@@ -90,11 +90,13 @@ What is $F_{x}(i)$?
 What is $F_{Y}(j)$?
 \begin{solution}
 Use marginalization:
-\begin{align*}
-F_X(i) &= \sum_j F_{X,Y}(i, j) = F_{X,Y}(i,i) = i/4 \\
-F_Y(j) &= \sum_i F_{X,Y}(i, j) = F_{X,Y}(j,j) = j/4.
-\end{align*}
-This follows since $i=j$.
+\begin{align}
+F_X(k) &=  F_{X,Y}(k, \infty ) = \sum_{i\leq k} \sum_j p_{X,Y}(i,j) \\
+ &= \frac{1}{4}\sum_{i\leq k} \sum_j \1{i=j}\1{1\leq i \leq 4}\\
+ &= \frac{1}{4}\sum_{i\leq k} \1{1\leq i \leq 4} \\
+&=k/4,\\
+F_Y(j) &= j/4.
+\end{align}
 \end{solution}
 \end{exercise}
 
@@ -102,8 +104,12 @@ This follows since $i=j$.
 \begin{exercise}
 Are $X$ and $Y$ dependent?  If so, why, because $1=F_{X,Y}(4,4)= F_X(4)F_Y(4)$?
 \begin{solution}
-  The equality in the equation must hold for all $i,j$, not just $i=j=4$.
-  If you take $i=j=1$, you'll see immediately that the equation is not true.
+  The equality in the equation must hold for all $i,j$, not only for $i=j=4$.
+  If you take $i=j=1$, you'll see immediately that $F_{X,Y}(1,1)\neq F_X(1)F_Y(1)$:
+  \begin{align}
+    \label{eq:23}
+    \frac{1}{4} = F_{X,Y}(1,1) \neq F_{X}(1) F_Y(1) = \frac{1}{4}\frac{1}{4}.
+  \end{align}
 \end{solution}
 \end{exercise}
 
@@ -124,9 +130,11 @@ Here is one approach
 \label{eq:3}
 \V Z &= \E{Z^2} - (\E Z)^{2}\\
 \E{Z^2} &= \E{(X+Y)^{2}} = \E{X^{2}} + 2\E{XY} + \E{Y^{2}} \\
-(E{Z})^{2} &= (\E X)^2 + 2\E X \E Y + (\E Y)^{2} \\
+(E{Z})^{2} &= (\E X + \E Y)^{2} \\
+ &= (\E X)^2 + 2\E X \E Y + (\E Y)^{2} \\
 &\implies \\
-\V Z &= \V X + \V Y + 2 (\E{XY} - (\E X \E Y))\\
+\V Z &= \E{Z^2} - (\E Z)^{2}\\
+ &= \V X + \V Y + 2 (\E{XY} - (\E X \E Y))\\
 \E{XY} &= \sum_{ij} ijp_{X,Y}(i,j) = \frac 1 4 (1 + 4 + 9 + 16) = \ldots \\
 \E{X^{2}} &= \ldots
 \end{align}
@@ -135,7 +143,7 @@ The numbers are for you to compute.
 \end{exercise}
 
 
-Now take $X, Y$ iid $\sim\Unif{\{1,2,3,4\}}$.
+Now take $X, Y$ iid $\sim\Unif{\{1,2,3,4\}}$ (so now no longer $p_{X,Y}(i,j) \neq \1{i=j}\1{1\leq i \leq 4}$).
 
 \begin{exercise}
 What is $\P{Z=4}$?
@@ -160,7 +168,9 @@ We can  make lots of variations on this theme.
   The conceptual ideas\footnote{Unless you start digging deeper.
     Then things change drastically, but we skip this technical stuff.}
   don't change much, except that the summations become integrals.
-\item Why do people often/sometimes (?) model the claim sizes as iid $\sim\Norm{\mu, \sigma^{2}}$? There is a slight problem with this model (can claim sizes be negative), but what is the way out?
+\item Why do people often/sometimes (?)
+  model the claim sizes as iid $\sim\Norm{\mu, \sigma^{2}}$?
+  There is a slight problem with this model (can real claim sizes be negative?), but what is the way out?
 \item The example is more versatile than you might think. Here is another interpretation.
 
 A supermarket has 5 packets of rice on the shelf.
@@ -171,13 +181,14 @@ What is the expected amount lost, i.e., $\E{ \max{X+Y - 5,0}}$?
 Here is yet another.
 Two patients arrive in to the first aid of a hospital.
 They need $X$ and $Y$ amounts of service, and there is one doctor.
-When it is 2 pm, what is the probability that the doctor has work in overtime, i.e., $\P{X+Y > 5pm- 2pm}$?
+When both patients arrive at 2 pm, what is the probability that the doctor has work in overtime (after 5 pm)n, i.e., $\P{X+Y > 5- 2}$?
 \end{enumerate}
 \end{remark}
 
-\section{Lecture 2}
 
-See memoryless\_excursions.pdf.
+% \section{Lecture 2}
+
+% See memoryless\_excursions.pdf.
 
 
 

@@ -4,7 +4,7 @@
 #+date: {{{time(%Y-%m-%d)}}}
 
 #+STARTUP: indent
-#+STARTUP: overview 
+#+STARTUP: overview
 #+STARTUP: nolatexpreview
 #+OPTIONS:  toc:nil num:t
 #+OPTIONS: H:5
@@ -33,10 +33,10 @@ The authors write `marginal distribution', but this must be the marginal density
 
 ** Example 7.1.24
 This works best with an indicator function and the fundamental bridge (recall, $\P{A} = \E{\1{A}}$ for an event $A$).
-It is easy to use, and prevents many mistakes. Consider this example. 
+It is easy to use, and prevents many mistakes. Consider this example.
 
 \begin{align*}
-\P{T_1 < T_2 } = \E{\1{T_1<T_2}} = 
+\P{T_1 < T_2 } = \E{\1{T_1<T_2}} =
 &= \int_0^\infty \int_0^\infty \1{t_1<t_2} \P{T_1 \in \d{t_1}, T_2 \in \d{t_2}} \\
 &= \int_0^\infty \int_0^{t_2}  \P{T_1 \in \d{t_1}} \P{T_2 \in \d{t_2}}\\
 &= \int_0^\infty \int_0^{t_2}  \lambda_1 e^{-\lambda_1 t_1} \d{t_1} \, \lambda_2 e^{-\lambda_2 t_2} \d{t_2}.
@@ -52,22 +52,22 @@ This theorem is fundamentally important.  You'll save yourself many hours for th
 
 
 *** 7.1
-Check BH 7.2.2. Bigger hint: Let $A$ the arrival time of Alice, and $B$ the time of Bob. Then we want to compute $\P{|A-B|\leq 1/4}$.  (15 minutes is 1/4 hour.)  Why is $f_{A,B}(a,b) = \1{a\in[0,1]}\1{b\in [0,1]}$? Now apply 2D-LOTUS to the function $g(a,b) = \1{|a-b|\leq 1/4}$. 
+Check BH 7.2.2. Bigger hint: Let $A$ the arrival time of Alice, and $B$ the time of Bob. Then we want to compute $\P{|A-B|\leq 1/4}$.  (15 minutes is 1/4 hour.)  Why is $f_{A,B}(a,b) = \1{a\in[0,1]}\1{b\in [0,1]}$? Now apply 2D-LOTUS to the function $g(a,b) = \1{|a-b|\leq 1/4}$.
 
 
 
 *** 7.9
 **** a.
 $\P{X=i, Y=j, N=n} = \P{X=i, Y=j} \1{i+j=n}$.
-**** c. 
+**** c.
 $\P{X=i\given N=n} = 1/(n+1)$. Why is this uniform?
 *** 7.10
 
 This is good exercise to straighten things out about conditional probability. In particular, it is important to see how to use conditional PDFs. Don't forget to relate this exercise to Exercise 7.9; it's the same for continuous r.v.s.
 
-**** a. 
+**** a.
 
-Perhaps I missed it, but the conditional CDF seems not to be formally defined in the book.  
+Perhaps I missed it, but the conditional CDF seems not to be formally defined in the book.
 
 
 Spoiler alert: here is the answer, in two different ways. But before answering the problem, I want to discuss the problem. Note beforehand that I do not expect that you could have  come with these answers, but you should definitely study them.
@@ -77,18 +77,18 @@ Spoiler alert: here is the answer, in two different ways. But before answering t
 \P{T\leq t \given X=x}  &= \frac{\P{T\leq t, X=x}}{\P{X=x}} = \frac{\P{X+Y\leq t, X=x}}{\P{X=x}} = \frac{\P{Y\leq t - x, X=x}}{\P{X=x}} \\
 &= \P{Y\leq t-x},
 \end{align*}
-where in the last equality I use that $Y$ and $X$ are independent to split the probability. 
-But I have committed a cardinal sin here: I divided by $0$ because $\P{X=x} = 0$. However, as we will see below, the end result is correct. 
+where in the last equality I use that $Y$ and $X$ are independent to split the probability.
+But I have committed a cardinal sin here: I divided by $0$ because $\P{X=x} = 0$. However, as we will see below, the end result is correct.
 
 How to get out of this situation in a technically correct way is one of the hard part of (mathematical) probability, and certainly not something we can solve in this course.
 All books on elementary probability, and lecturers similarly, struggle with this problem; this course is not an exception, nor am I.
 BTW, `elementary' is not the same as `simple'.
 An elementary book can still be hard; it simply does not use very advanced mathematical concepts.
 
-Now that you understand the problem we have to avoid---dividing by 0---I discuss two methods to work around the problem. 
+Now that you understand the problem we have to avoid---dividing by 0---I discuss two methods to work around the problem.
 
-*Solution Method.* 
-Let me  show I apply a general approach to find a conditional density, here $f_{T|X}(t|x)$. 
+*Solution Method.*
+Let me  show I apply a general approach to find a conditional density, here $f_{T|X}(t|x)$.
 - I make a /guess/ of the conditional density
 - I try to /verify/ the guess by using formal tools. For this, I follow these steps:
   - Compute the CDF $F_{T,X}(t,x)$
@@ -121,7 +121,7 @@ where I use the independence of $X$ and $Y$. Here is the verification. The joint
 \begin{align*}
 \P{T\leq t, X\leq x} = \E{\1{T\leq t, X\leq x}} = \E{\1{X+Y\leq t, X\leq x}}.
 \end{align*}
-To compute this, /you/ should apply the fundamental bridge on the indicator $\1{u+v\leq t, u \leq x}$ (Once you read BH.7.2, you'll see that this is the same as 2D LOTUS applied to the function $g(u,v) =\1{u+v\leq t, u \leq x}$). Specifically,  /you/ should show that 
+To compute this, /you/ should apply the fundamental bridge on the indicator $\1{u+v\leq t, u \leq x}$ (Once you read BH.7.2, you'll see that this is the same as 2D LOTUS applied to the function $g(u,v) =\1{u+v\leq t, u \leq x}$). Specifically,  /you/ should show that
 \begin{align*}
 \P{T\leq t, X\leq x} = \iint \1{u+v\leq t, u \leq x} f_{X,Y}(x,y) \d x \d y = 1 - e^{-\lambda x} - \lambda x e^{-\lambda t};
 \end{align*}
@@ -130,9 +130,9 @@ Then,
 \begin{align*}
 f_{T,X}(t, x) = \partial_{t}\partial_{x} F_{T,X}(t, x) = \lambda^2 e^{-\lambda t},
 \end{align*}
-precisely what I found earlier. 
+precisely what I found earlier.
 
-With this, 
+With this,
 \begin{align*}
 f_{T|X}(t|x) = \frac{f_{T,X}(t, x)}{f_X(x)} = \frac{\lambda^{2} e^{-\lambda t}}{\lambda e^{-\lambda x}} = \lambda e^{-\lambda(t-x)}\1{t\geq x};
 \end{align*}
@@ -178,7 +178,7 @@ But, mathematicians are (obsessively?) fond of infinity (and use it in the same 
 However, let's not enter a philosophical discussion on the foundations of mathematics here.
 We stick to the book!
 
-**** b. 
+**** b.
 Use method 2 of part a. to get $f_{T,X}$, then use the conditional PDF definition.
 
 **** c.
@@ -186,17 +186,17 @@ The answer is $1/t$ (I leave it to you to get the notation right.). This is inte
 **** d.
 Marginalize $X$ out of $f_{T,X}$.
 *** 7.11
-**** a. 
+**** a.
 First find $f_{Y|X}$ and $f{Z|X}$. Then, given $X$, $Z$ and $Y$ are iid. Hence $f_{X,Y,Z} = f_{Y, Z |X} f_{X}$. Use independence to split $f_{Y,Z|X}$ into a product.
-**** b. 
+**** b.
 Suppose that $Y$ is really big. Since $Y$ is dependent on $X$, $X$ must be dependent on $Y$. But $Z$ is in turn dependent on $X$. And therefore\ldots
-**** c. 
+**** c.
 Here is the answer. The ideas are important, you'll need them during nearly any course in statistics, given the importance of the normal distribution.
 \begin{align*}
 f_{Y,Z}(y, z) = \int \frac 1 {2\pi} e^{-(y-x)^2/2} e^{-(z-x)^2/2} \frac 1 {\sqrt{2\pi}} e^{-x^2/2}\d x.
 \end{align*}
 It remains to simplify $(y-x)^2 + (z-x)^2 + x^2$. With a bit of work, it follows that this can be written as
-\begin{align*} 
+\begin{align*}
 3(x-(y+z)/3)^{2} - (y+z)^2/3+y^2+z^2.
 \end{align*}
 When plugging this in the integral, the last two terms appear in front of the integral. The term $(y+z)/2$ is just a shift, hence can be neglected in the integration over $x$. The $3$ has to be absorbed in the standard deviation $\sigma=1/\sqrt{3}$. And therefore,
@@ -219,7 +219,7 @@ Use independence, and
 \end{align*}
 to determine the joint CDF. Take partial derivatives $\partial_l\partial_{m}$ to find the joint PDF.
 
-**** b. 
+**** b.
 Find the marginal PDF of $L$ and fill in the definition of the conditional PDF.
 
 
@@ -230,12 +230,12 @@ What is the volume of $[-1, 1]^n$? Then divide the relevant volumes.
 
 $X_n=\sum_i \1{|U_i|>c}$. Hence, $\E X = n \E{\1{|U_1|>c}}x = \ldots$ But, now realize that $\1{|U_{1}|}$ is Bernoulli distributed. Express  the parameter $p$ in terms of $c$. Then realize that $X_n$ is the sum of a set of Bernoulli r.v.s.
 **** d.
-Just fill in, in the result of c. The insight is relevant. 
+Just fill in, in the result of c. The insight is relevant.
 
 *** 7.29
 See `Memoryless excursions'.
 *** 7.32
-Write $M=\max{X, Y}$ and $L=\min{X, Y}$. Then $M-L = |X-Y|$ and $M+L = X+Y$.
+Write $M=\max\{X, Y\}$ and $L=\min\{X, Y\}$. Then $M-L = |X-Y|$ and $M+L = X+Y$.
 
 
 *** 7.35
@@ -251,7 +251,7 @@ So, $F_{R^2}(x) = \P{R^2\leq x} = ?$.
 With this, $F_R(t) = \P{R\leq t} = \P{R^2\leq t^{2}} = F_{R^2}(t^2)$.
 
 You should check your expression for $F_R$ with the expression of Theorem 5.3.8. This should give the result of part a.
-*** 7.36 
+*** 7.36
 I give  the answer here, because of the point I want to make after the proof. Take $g(x,y)= x+y$. I also assume that $X$ and $Y$ are continuous; for the proof it has no  consequences.
 
 As an aside, proving that $X+Y$ is a random variable when $X$ and $Y$ are random variables is not entirely trivial.
@@ -269,7 +269,7 @@ It is hard to overestimate the importance of this insight: Taking the expectatio
 
 *** 7.38
 
-It is useful to write $\max{x,y} = x\1{x\geq y}+y\1{y>x}$, and something similar for the minimum.
+It is useful to write $\max\{x,y\} = x\1{x\geq y}+y\1{y>x}$, and something similar for the minimum.
 Then add both up.
 BTW, memorize this trick with indicators.
 It is often useful in probability, statistics, queueing, inventory theory, optimization, and so on.
@@ -280,7 +280,7 @@ So, I just fill in the above expressions for the max and the min (in terms of in
 Then I use bilinearity (check  the list of key properties of covariance) of the covariance to see what I get.
 Hopefully the result is easy, otherwise I need some algebra to simplify.
 
-In the present case, $\cov{X,Y} = \E{X Y}-\E X \E Y$, and, similarly, $\cov{M,L} = \E{ML}- \E M \E L$, with $M$ is max, and $L$ is min. With the above indicators, it is simple to show that $\E{ML} = \E{X Y}$. However, take $X,Y\sim \Exp{\lambda}$. Then, $\E M = 3/(2\lambda)$ and $\E L= 1/(2\lambda)$, see the `Memoryless excursions'. But $\E X = \E Y = 1/\lambda$. 
+In the present case, $\cov{X,Y} = \E{X Y}-\E X \E Y$, and, similarly, $\cov{M,L} = \E{ML}- \E M \E L$, with $M$ is max, and $L$ is min. With the above indicators, it is simple to show that $\E{ML} = \E{X Y}$. However, take $X,Y\sim \Exp{\lambda}$. Then, $\E M = 3/(2\lambda)$ and $\E L= 1/(2\lambda)$, see the `Memoryless excursions'. But $\E X = \E Y = 1/\lambda$.
 
 
 
@@ -294,7 +294,7 @@ Take $I_j=1$ if person $j$ takes the slip with its own name. What is $\E{I_j}$? 
 *** 7.48
 
 Reread Example 5.7.4.
-Bigger hint: Write $I_j=\1{X_j=\max{X_1,\ldots, X_j}}$.
+Bigger hint: Write $I_j=\1{X_j=\max\{X_1,\ldots, X_j\}}$.
 Then, what is $\E{I_j} = \P{I_j=1}$?
 What is the meaning of $T=\sum_{j=1}^n I_j$?
 Why is $\cov{I_{i}, I_j} = 0$ when $i\neq j$?
@@ -317,7 +317,7 @@ For those of you that are interested in physics, the theory of random walk helps
 
 
 The notation of the book is a bit clumsy.
-Let $X_i$ be the movement along the $x$-axis at step $i$, and $Y_i$ along the $y$-axis.
+Let $X_i$ be the movement along the \(x\)-axis at step $i$, and $Y_i$ along the $y$-axis.
 Then $S_n=\sum_{i=1}^n X_i$ and $T_n=\sum_{j=1}^n Y_{j}$, and $R_n^2= S_n^2+T_n^2$. For your convenience, I'll stick to the notation of the book.
 
 **** a.
@@ -330,8 +330,8 @@ Is $\P{X_n=n}>0$?
 It is immediate that $\E{X_n} = 0$.
 Hence, focus on $\E{X_n Y_n}$.
 Now the bad notation breaks up a simple analysis.
-So, I want to write $X_i\in\{-1,0,1\}$ to denote the direction along the $x$-axis of the $i$ step, and likewise for $Y_i$.
-Then, $S_n=\sum_{i=1}^n X_i$, and $T_n$ is the sum over the $Y_i$. In our new notation, $\E{S_n}=0$. Then, multiply all terms in the sums of $\E{S_n T_n}$, and focus on the individual terms $\E{X_i Y_j}$. When $i\neq j$, then $X_i$ and $Y_{j}$ are independent (or not?); and when $i=j$? 
+So, I want to write $X_i\in\{-1,0,1\}$ to denote the direction along the \(x\)-axis of the $i$ step, and likewise for $Y_i$.
+Then, $S_n=\sum_{i=1}^n X_i$, and $T_n$ is the sum over the $Y_i$. In our new notation, $\E{S_n}=0$. Then, multiply all terms in the sums of $\E{S_n T_n}$, and focus on the individual terms $\E{X_i Y_j}$. When $i\neq j$, then $X_i$ and $Y_{j}$ are independent (or not?); and when $i=j$?
 
 **** c.
 It is clear that $R_n^2=S_n^2+T_{n}^2$. Now use linearity to split $\E{R^2_n}$. Finally, realize that $\E{S_n}=0$, hence $\E{S_n^2} = \V{S_n}$. But then we can use the formula of the variance of a sum to split it up into a sum of variances plus covariances.
@@ -352,7 +352,7 @@ Expand the brackets in the expression for the sample variance $r$ to see that
 \begin{align*}
 r = 1/n \sum_i x_i y_i - \bar x \bar y.
 \end{align*}
-Next, we choose with probability $n$ one the points $(x_i, y_{i})$.  Under this probability, $\E{X Y} = 1/n \sum_i x_i y_i$, $\E X = \bar x, \E Y = \bar y$. So, how do $\cov{X,Y}$ and $r$ relate?
+Next, we choose with probability $1/n$ one the points $(x_i, y_{i})$.  Under this probability, $\E{X Y} = 1/n \sum_i x_i y_i$, $\E X = \bar x, \E Y = \bar y$. So, how do $\cov{X,Y}$ and $r$ relate?
 
 **** b.
 Expand the brackets and use iid and linearity properties to show that the expected area spanned by two random points $(X,Y)$ and $(\tilde X, \tilde Y)$ satisfies
@@ -378,13 +378,13 @@ Why is $\cov{X,a}= 0$ for $a$ a constant? Because the `area' of rectangles, all 
 And this is what the above is all about.
 Since there is a direct relation between covariance and area, we can use geometric arguments to derive (and memorize!) all properties of covariance! Write i. as $\cov{X,Y} = \cov{Y,X}$. Suppose I flip the \(x\) and \(y\)-axis, does the area of a rectangle change?  For ii., What happens to the area of rectangle if you stretch the sides? For iii., realize that this is just a shift of a rectangle that leaves its area invariant. For iv., what happens to the area if you put an extra rectangle on top or to the right?
 
-BTW, iii. follows directly from iv. In iv., take $W_3$ equal to a constant $a_2$, in other words $\P{W_3=a_2}=1$. We know that $\cov{X, a} = 0$ for a constant $a$. 
+BTW, iii. follows directly from iv. In iv., take $W_3$ equal to a constant $a_2$, in other words $\P{W_3=a_2}=1$. We know that $\cov{X, a} = 0$ for a constant $a$.
 
 **** Final remarks
 
 Let's put all the above in a yet more general frame.  The covariance has a number of interesting properties:
-1. /bilinearity/: The covariance is linear in both arguments. The linearity in the first argument means that $\cov{X+Y, Z}=\cov{X,Z}+\cov{Y,Z}$ and $\cov{a X, Z}=a\cov{X,Z}$ for $a\in \R$. The linearity in the second argument means that $\cov{X, Y+Z}=\cov{X,Y}+\cov{X,Z}$ and $\cov{X, a Z}=a\cov{X,Z}$ for $a\in \R$. 
-2. /symmetry/: $\cov{X, Y}=\cov{Y,X}$, from which we define $\V X = \cov{X,X}$. 
+1. /bilinearity/: The covariance is linear in both arguments. The linearity in the first argument means that $\cov{X+Y, Z}=\cov{X,Z}+\cov{Y,Z}$ and $\cov{a X, Z}=a\cov{X,Z}$ for $a\in \R$. The linearity in the second argument means that $\cov{X, Y+Z}=\cov{X,Y}+\cov{X,Z}$ and $\cov{X, a Z}=a\cov{X,Z}$ for $a\in \R$.
+2. /symmetry/: $\cov{X, Y}=\cov{Y,X}$, from which we define $\V X = \cov{X,X}$.
 3. $\cov{X,a} = 0$ for all $a\in R$.
 If you memorize the first two properties of covariance, all the rest follows.
 
@@ -400,7 +400,7 @@ Let us use the properties to compute the area of a parallelogram spanned by the 
 \begin{align*}
 D((a,b), (c,d)) =  D(a (1,0)) + b(0,1), c(1,0) + d(0,1)) = ad D((1,0), (0,1)) + b c D((0,1), (1,0)) = ad - b c,
 \end{align*}
-where we use bilinearity in the first step, and skew-symmetry in the second and third. 
+where we use bilinearity in the first step, and skew-symmetry in the second and third.
 
 So, all in all, this is what I remembered throughout the years: the covariance and the determinant are bi-linear forms, the first is symmetric, the second skew- (or anti-)symmetric.
 
@@ -455,8 +455,8 @@ If we check our earlier insight, then we see that if $\V{Y_j}=0$, then $\V{\thet
 
 So, here is the hint to check that the above expression for $w_1$ is correct.
 \begin{align*}
-\E{(\hat \theta -\theta)^{2}} = 
-\E{(w_1(\hat \theta_{1} - \theta) + w_2(\hat \theta_{2}-\theta))^{2}} = 
+\E{(\hat \theta -\theta)^{2}} =
+\E{(w_1(\hat \theta_{1} - \theta) + w_2(\hat \theta_{2}-\theta))^{2}} =
 \V{w_1 \hat \theta_{1}} + \V{w_2 \hat \theta_{2}},
 \end{align*}
 by independence. Take the $w$'s out of the variances, then write $w_2=1-w_1$, take $\partial_{w_1}$ of the expression,  set the result to 0, and solve for $w_1$. You should get the above expression.
@@ -497,7 +497,7 @@ With genetics we can find out numerous interesting insights into history. I just
 **** a.
 Multinomial.
 **** b.
-The people in the sample of size $n$ with an $A$ is $X_1+X_2$. But this is the same as $n-X_3$. Hence, what is $\P{X_3=n-i}$? 
+The people in the sample of size $n$ with an $A$ is $X_1+X_2$. But this is the same as $n-X_3$. Hence, what is $\P{X_3=n-i}$?
 **** c.
 
 I found this a hard problem. Here is my solution, but it is a bit of a `hack'. Let $S_n$ be the number of $A$ in $n$ individuals. We want to know $\P{S_n=i}$. I like to use recursions, and this time it helped again. Let $Y_n$ be the phenotype of person $n$. For ease, let $f_n(i)=\P{S_n=i}$. The conditioning on the \(n\)th person:
@@ -534,10 +534,10 @@ It is easiest to work with $f(p) = \log \P{X_1=k, X_2=l, X_3 = m}$. With part a.
 \begin{align*}
 f(p) = C + (2k+l)\log p + (l+2m)\log(1-p),
 \end{align*}
-where $C$ is a constant (the log of the normalization constant). (BTW, with this you can check your answer for part a.) 
+where $C$ is a constant (the log of the normalization constant). (BTW, with this you can check your answer for part a.)
 Compute $\d f(p)/\d p = 0$, because at this $p$, $\log f$, hence $f$ itself, is maximal.  Observe that $C$ drops out of the computation, because when differentiating, it disappears.
 **** e.
-Now we like to know what $p$  maximizes $\P{X_3=n-i}$. Take $g(q) = \log \P{X_3 = n-i}$, then 
+Now we like to know what $p$  maximizes $\P{X_3=n-i}$. Take $g(q) = \log \P{X_3 = n-i}$, then
 \begin{align*}
 g(q) = C + i \log (1-q^{2}) + 2 (n-i)\log q.
 \end{align*}
@@ -554,22 +554,22 @@ Use Definition 7.5.1, Theorem 7.5.7, and Example 7.5.10.
 *** 7.80
 As soon as I read exercises like this, I think about /thinned Poison processes/. Such processes abound in many practical settings. Take a hospital; the number of patients that arrive at the first aid is mostly Poisson dependent (not directly in the morning, because people who had a a small accident, will not come during the night.), but for the rest the Poisson distribution is reasonable. A fraction $p$ is severely injured, hence as to stay at the hospital, for surgery say. The arrivals at the surgery must then form a Poisson process with rate $\lambda p$. Another fraction $q$ of patients has to go to the medical imaging department, for $X$ ray.  In shops we can make similar selections.
 
-If it helps you, memorize all such examples as `Chicken-egg' stories. I just think about /thinning/; that works for me. 
+If it helps you, memorize all such examples as `Chicken-egg' stories. I just think about /thinning/; that works for me.
 
 **** a.
-It is perhaps helpful to understand how the voting process works in the US. The people that have the right to vote  have to register first. (Depending to the state, adults in jail are not allowed to vote, but since the US prefers to have about  1\% of the adults behind bars, this is a non-negligible amount.)  Once registered, they also have to actually vote. 
+It is perhaps helpful to understand how the voting process works in the US. The people that have the right to vote  have to register first. (Depending to the state, adults in jail are not allowed to vote, but since the US prefers to have about  1\% of the adults behind bars, this is a non-negligible amount.)  Once registered, they also have to actually vote.
 
 Hence, the initial arrival process of voters is thinned twice, first with $p$, then with $s$.
 
 **** b.
 
-See Section 4.8. Why is it binomial?  What is the success probability, and what is the trial size? 
+See Section 4.8. Why is it binomial?  What is the success probability, and what is the trial size?
 
 **** c.
 Why is it binomial?  What is now the success probability, and what is the trial size?
 
 **** d.
-See Section 3.4. We select $n$ balls from an urn containing $d$ white and $r$ black balls. 
+See Section 3.4. We select $n$ balls from an urn containing $d$ white and $r$ black balls.
 
 *** 7.82
 Perhaps only in my book the assumption that $X$ and $Y$ are independent is missing. Anyway, make this assumption.
@@ -578,34 +578,34 @@ Take $Y$ continuous (for the discrete case the reasoning is analogous), and writ
 \begin{align*}
 \P{Y<X} = \int \1{y<x} f_{X,Y}(x,y)\d x \d y.
 \end{align*}
-Use independence to split $f_{X,Y}$ into the product $f_Y$ and $f_X$. Then use that $X\sim \Exp{\lambda}$ to find $f_X$. Integrate over $x$. Then, write down the /definition/ of $M_Y(s)$ as an integral, and compare the two results. 
+Use independence to split $f_{X,Y}$ into the product $f_Y$ and $f_X$. Then use that $X\sim \Exp{\lambda}$ to find $f_X$. Integrate over $x$. Then, write down the /definition/ of $M_Y(s)$ as an integral, and compare the two results.
 
 *** 7.86
-The concepts discussed here are a standard part of the education of GPs (i.e., medical doctors). The challenge for you is to try to understand the mathematics behind these concepts. 
-Read the exercise a number of times. I found it quite difficult to capture the concepts in formulas. (I solved it once. After two weeks,  I tried to solve it again, and found it just as hard as the first time. ) Once you have the model, the technical part itself is simple. 
+The concepts discussed here are a standard part of the education of GPs (i.e., medical doctors). The challenge for you is to try to understand the mathematics behind these concepts.
+Read the exercise a number of times. I found it quite difficult to capture the concepts in formulas. (I solved it once. After two weeks,  I tried to solve it again, and found it just as hard as the first time. ) Once you have the model, the technical part itself is simple.
 
 **** a.
 Kind of spoiler alert. Here is, up to some computational details, my answer.
 
-It is given that $\P{T\leq t\given D=1} = G(t)$ and $\P{T\leq t\given D=0} = H(t)$. From Theorem 5.3.1.i,  we have that we can associate a r.v. to a CDF F. Sometimes we say that the CDF $F$ /induces/ a r.v. $X$.  So let us use this here to say that $G$ induces the r.v. $T_1$ and $H$ induces $T_0$. 
+It is given that $\P{T\leq t\given D=1} = G(t)$ and $\P{T\leq t\given D=0} = H(t)$. From Theorem 5.3.1.i,  we have that we can associate a r.v. to a CDF F. Sometimes we say that the CDF $F$ /induces/ a r.v. $X$.  So let us use this here to say that $G$ induces the r.v. $T_1$ and $H$ induces $T_0$.
 So the /sensitivity/ is $\P{T_1>t_0} = 1-G(t_0)$ and the /specificity/ is $\P{T_1<t_0} = H(t_0)$.
 
 To make the ROC plot, I first made two plots, one of the sensitivity and the other for 1 minus the specificity, i.e., $1-H(t_0)$.
 Then, in the ROC plot, we put a specificity of $s$ on the \(x\)-axis, then we search for a $t$ such that $1-H(t) = s$, and then we plug this $t$ into $1-G(t)$ to get the sensitivity.
 To help you understand this better, check that $s=0 \implies t = b \implies 1-G(t) = 0$.
 Moreover, check that $s=1\implies t=a \implies 1- G(t) = 1$.
-Hence, the ROC curve starts in the origin and stops at the point $(1,1)$. 
+Hence, the ROC curve starts in the origin and stops at the point $(1,1)$.
 
 With this insight, the area under the ROC curve can be written as
 \begin{align*}
-\int_0^1 (1-G(H^{-1}(1-s))) \d s  = 
-1 - \int_0^1 G(H^{-1}(1-s)) \d s  = 
+\int_0^1 (1-G(H^{-1}(1-s))) \d s  =
+1 - \int_0^1 G(H^{-1}(1-s)) \d s  =
 1 - \int_a^b G(t) h(t) \d t,
 \end{align*}
 where, in the last step, we use the 1D change of variable $H(t)=1-s \implies h(t) \d t = -\d s$. It remains to  interpret the integral, so let's plug in the definitions:
 \begin{align*}
-\int_a^b G(t) h(t) \d t = 
-\int_a^b \P{T_1\leq t} f_{T_0}(t) \d t = 
+\int_a^b G(t) h(t) \d t =
+\int_a^b \P{T_1\leq t} f_{T_0}(t) \d t =
 \int_a^b \P{T_1\leq T_0\given T_0 = t} f_{T_0}(t) \d t =  \P{T_{1\leq T_0}}.
 \end{align*}
 
@@ -615,7 +615,7 @@ where, in the last step, we use the 1D change of variable $H(t)=1-s \implies h(t
 *** 7.87
 
 **** a.
-Just use the definition, $\E J = \sum_j j \P{J=j} = 1/n \sum_j j$ and use the appendix. 
+Just use the definition, $\E J = \sum_j j \P{J=j} = 1/n \sum_j j$ and use the appendix.
 
 For $\V J$, use that $\E{J^2} = 1/n \sum_{j=1}^n j^2$ and use the appendix to simplify the sum. Combine with $(\E J)^2$ and simplify.
 
@@ -628,9 +628,9 @@ For $\V{R_n}$, split this into a sum over variances and covariances.
 Now realize that $\cov{I_1, I_2} \neq 0$.
 To see why, explain that
 \begin{align*}
-\E{I_1, I_2} = \P{X_1<X_{n}, X_2< X_{n}} = 1/3, 
+\E{I_1, I_2} = \P{X_1<X_{n}, X_2< X_{n}} = 1/3,
 \end{align*}
-but $\E{I_1} \E{I_2}=1/4$. Now find a closed-form expression for $\V{R_n}$.  
+but $\E{I_1} \E{I_2}=1/4$. Now find a closed-form expression for $\V{R_n}$.
 
 **** d.
 Why is $\E J = \E{R_n}$? And once you see this, realize that $\E{J^2} = \E{R_{n}^2} = \V{R_n}c + (\E{R_n})^2$. Use part c. to express this in terms of $n$.
@@ -645,7 +645,7 @@ Why is $\E J = \E{R_n}$? And once you see this, realize that $\E{J^2} = \E{R_{n}
 
 Once you finished this chapter you can have a look at this [[http://www1.maths.leeds.ac.uk/mathsforesees/sg2017/probabilitybands_final.pdf][paper]].
 They apply the beta distribution and Bayes' formula to modeling the risks of flooding in any region of England.
-You have all tools to understand the entire paper. 
+You have all tools to understand the entire paper.
 
 
 ** 8.1 Change of variables
@@ -659,33 +659,33 @@ For instance, starting with $X$, we like to express $\P{Y \leq y}$ where $Y=g(X)
 When $g$ is strictly increasing this is easy:
 \begin{align}\label{eq:1D-CDF}
 F_{Y}(y) = \P{Y\leq y} = \P{g(X) \leq y} = \P{X\leq g^{-1}(y)} = F_X(g^{-1}(y).
-\end{align} 
+\end{align}
 However, when $g$ is not increasing everywhere, finding $F_Y$ in terms of $F_X$ is not so simple anymore because there can be no or multiple points $x$ such that $g(x)=y$.
 Moreover, when we want to generalize to 2D cases (or yet more dimensions), working with CDFs becomes messy.
-Of course, we can use the `manager's' or `politician's' strategy to deal with complications: just  avoid, or ignore, the complications. 
-But this strategy does not work for probability theory, not even for elementary probability problems. 
+Of course, we can use the `manager's' or `politician's' strategy to deal with complications: just  avoid, or ignore, the complications.
+But this strategy does not work for probability theory, not even for elementary probability problems.
 Here are some examples.
 
 In 1D, take $g(x)= x^{2}$.
-We know that $\V{X} = \E{X^2}-(\E X)^2$; so have to deal with functions like $g$, or yet higher moments. 
+We know that $\V{X} = \E{X^2}-(\E X)^2$; so have to deal with functions like $g$, or yet higher moments.
 But $\E{X^2}= \E{g(X)}$, and $g$ is not monotone increasing.
 Hence, even to define the variance, we already have to deal with a function that is not one-to-one everywhere on $\R$.
 In 2D, consider the maximum of a number of r.v.s, which is interesting for people that like to bet on horse races or 100 m sprint events.
-Then, $g(X,Y)=(\min{X,Y}, \max{X,Y})$ is also not one-to-one.
+Then, $g(X,Y)=(\min\{X,Y\}, \max\{X,Y\})$ is also not one-to-one.
 More generally, 2D function can have saddle points, i.e., points in which the function increases in one direction and decreases in another.
 Then finding the set of points $x$ such that\footnote{We say that $x<y$ on $\R^2$ when both $x_1<y_1$ and $x_2< y_2$.} $g(x,y)\leq (u,v)$ (which we need if we want to express $\P{g(X, Y) \leq (u,v)}$ in terms of the distribution $F_{X,Y}$) is not a particularly attractive task, to say the least.
 
 The easiest way seems to be the avoid using the CDFs, but characterize $Y=g(X)$  in terms of the PDFs $f_Y$ and $f_X$ instead.
-Then we only have to require /locally/ that $g$ is one-to-one, and we don't have to work with inequalities, but can focus on /points/ at which $g(x) = y$.  Thus, below we will concentrate on the transformation of densities.  I like to warn you right away: the reasoning below may seem simple, but as soon as you'll try to explain it to yourself with the book /closed/, you'll see that it is quite hard to get the details right.  It's easy to mess things up; it happens to me regularly, hence I /check/. 
+Then we only have to require /locally/ that $g$ is one-to-one, and we don't have to work with inequalities, but can focus on /points/ at which $g(x) = y$.  Thus, below we will concentrate on the transformation of densities.  I like to warn you right away: the reasoning below may seem simple, but as soon as you'll try to explain it to yourself with the book /closed/, you'll see that it is quite hard to get the details right.  It's easy to mess things up; it happens to me regularly, hence I /check/.
 
 *** Change of variables in 1D
 
-To organize the relations between the r.v.s and $g$,  I always draw the figure below. 
+To organize the relations between the r.v.s and $g$,  I always draw the figure below.
 \begin{center}
 \begin{tikzpicture}[shorten >=2pt]
   \coordinate [label=left:{$x$}] (A) at (0,0);
-  \coordinate [label=right:{$y$}] (B) at (3,0);  
-  \coordinate [label=below:{$\R$}] (C) at (3,-3);  
+  \coordinate [label=right:{$y$}] (B) at (3,0);
+  \coordinate [label=below:{$\R$}] (C) at (3,-3);
 \path[->,>=stealth]
 (A) edge node[anchor=center, above] {$g$} (B)
 (A) edge node[anchor=center, below] {$f_{X}$} (C)
@@ -693,13 +693,13 @@ To organize the relations between the r.v.s and $g$,  I always draw the figure b
 \end{tikzpicture}
 \end{center}
 We are given a density $f_X$ that maps a point $x$ to a real number $f_X(x)$, and we are given a function $g$ that maps $x$ to $y$, i.e, $y=g(x)$.
-The problem is to express  the density $f_Y$, that maps $y$ to $\R$, in terms of $g$ and $f_{X}$. 
+The problem is to express  the density $f_Y$, that maps $y$ to $\R$, in terms of $g$ and $f_{X}$.
 
 To proceed, we can take the derivative at the LHS and RHS of \cref{eq:1D-CDF}. This gives with the chain rule
 \begin{align*}
 f_{Y}(y) = F_{Y}'(y) = \frac{\d }{\d y} F_{X}(g^{-1}(y)) = f_{X}(g^{-1}(y) \frac{\d }{\d y} g^{-1}(y) = f_{X}(x) \frac{\d x}{\d y},
 \end{align*}
-where we write $x=g^{-1}(y)$ in the last step. 
+where we write $x=g^{-1}(y)$ in the last step.
 To get the derivative of $g^{-1}$, consider the next equation.  Taking derivatives with respect to $y$ at both sides, and then  applying the chain rule,
 \begin{align*}
 g(g^{-1}(y)) = y \implies \frac{\d}{\d y} g(g^{-1}(y)) =1 \iff g'(g^{-1}(y)) \frac{\d}{\d y} g^{-1}(y) = 1 \implies  \frac{\d}{\d y} g^{-1}(y)  = 1 /g'(x),
@@ -725,9 +725,9 @@ When $g(x)=x^{2}$, we have that $g'(x)= 2x$, hence,
 \begin{align*}
 f_{Y}(y) = f_{X}(\sqrt{y})\frac 1{2\sqrt y} + f_{X}(-\sqrt{y})\frac 1{2\sqrt y}.
 \end{align*}
-It is simple to generalize when there are yet more points $x$ such that $g(x)=y$. 
+It is simple to generalize when there are yet more points $x$ such that $g(x)=y$.
 
-The general /1D change of variables formula/ is therefore like this: 
+The general /1D change of variables formula/ is therefore like this:
 \begin{align*}
 f_{Y}(y) = \sum_{x_{i}: g(x_{i})=y}f_{X}(x_{i})\frac 1{|g'(x_{i})|}.
 \end{align*}
@@ -736,7 +736,7 @@ f_{Y}(y) = \sum_{x_{i}: g(x_{i})=y}f_{X}(x_{i})\frac 1{|g'(x_{i})|}.
 
 Take $X\sim \Exp{1}$, what is the density of $Y=g(X)=\lambda X$, and $\E Y$?
 
-Solution:  Let's first use  the change-of-variables theorem. Take $y= g(x)= \lambda x$. Then, 
+Solution:  Let's first use  the change-of-variables theorem. Take $y= g(x)= \lambda x$. Then,
 \begin{align*}
 f_{Y}(y) = f_X(x)\frac{\d x}{\d y} = f_{X}(x) \frac{1}{g'(x)} = e^{-y/\lambda} \frac 1 \lambda.
 \end{align*}
@@ -748,9 +748,9 @@ To solve this integral, I recognize $y/\lambda$ in the exponent, and I want to g
 \begin{align*}
 u = y/\lambda \implies \d u = \d y /\lambda \implies \d y = \lambda \d u.
 \end{align*}
-Then, including $a$ and $b$ for the boundaries to show explicitly what is going on, 
+Then, including $a$ and $b$ for the boundaries to show explicitly what is going on,
 \begin{align*}
-\int_{a}^b y/\lambda e^{-y/\lambda} \d y = 
+\int_{a}^b y/\lambda e^{-y/\lambda} \d y =
 \int_{a/\lambda }^{b/\lambda } u e^{-u} \lambda \d u = \lambda \int_{a/\lambda }^{b/\lambda } u e^{-u}  \d u.
 \end{align*}
 Since $0/\lambda = 0$ and $\infty/\lambda = \infty$,
@@ -759,7 +759,7 @@ Since $0/\lambda = 0$ and $\infty/\lambda = \infty$,
 \end{align*}
 Thus, to solve the integral over $y$, I used the /reverse/ of $g$ in the substitution. Indeed, to transform from $Y$ to $X$, I have to divide by $\lambda$.
 
-**** Example 
+**** Example
 Show that the 1D change-of-variables formula relates directly to the substitution rule to solve 1D integrals.
 
 Solution: when we have the density  $f_{Y}$ and the function $g$, then the substitution rule says that,
@@ -774,7 +774,7 @@ Combining the above two equations gives that
 \begin{align*}
 \int_{a}^{b} f_{Y}(g(x))) g'(x) \d x = \int_{a)}^{b} f_{X}(x) \d x.
 \end{align*}
-Since this holds for any $a$ and $b$, it follows that 
+Since this holds for any $a$ and $b$, it follows that
 \begin{align*}
 f_{Y}(g(x))) g'(x) = f_{X}(x).
 \end{align*}
@@ -783,12 +783,12 @@ f_{Y}(g(x))) g'(x) = f_{X}(x).
 
 *** Change of variables in 2D, and higher.
 
-Here is the figure to show how the r.v.s and $g$ relate. 
+Here is the figure to show how the r.v.s and $g$ relate.
 \begin{center}
 \begin{tikzpicture}[shorten >=2pt]
   \coordinate [label=left:{$x,y$}] (A) at (0,0);
-  \coordinate [label=right:{$u,v$}] (B) at (3,0);  
-  \coordinate [label=below:{$\R$}] (C) at (3,-3);  
+  \coordinate [label=right:{$u,v$}] (B) at (3,0);
+  \coordinate [label=below:{$\R$}] (C) at (3,-3);
 \path[->,>=stealth]
 (A) edge node[anchor=center, above] {$g$} (B)
 (A) edge node[anchor=center, below] {$f_{X,Y}$} (C)
@@ -805,10 +805,10 @@ For  the 2D (and higher dimensional) case, we need the following theorem of anal
 \end{align*}
 where $\partial(u,v)/\partial(x,y)$ is the absolute value of the Jacobian of $g$ computed at $(x,y)$. (Here my notation deviates from BH, they don't include the absolute values in the definition of $\partial(u,v)/\partial(x,y)$, but this is inconsistent with most of the mathematics books, and it leads to a extra pair of bars, which is ugly.)
 The functions $g$ and $f_{U,V}$ and the set $B$ should be `reasonable'; the functions and sets you'll meet in practice are always reasonable.
-For a bit more  detail about what is needed in general, see the appendix of BH, for yet more detail check the web, and if you really like such stuff, read the following books of Bressoud (in that order): 
-Second Year Calculus: From Celestial Mechanics to Special Relativity, A Radical Approach to Real Analysis, and A Radical Approach to Lebesgue's Theory of Integration.  And once your done with that, read Capinski, Zastawniak,  Jerzy:  Probability Through Problems. 
+For a bit more  detail about what is needed in general, see the appendix of BH, for yet more detail check the web, and if you really like such stuff, read the following books of Bressoud (in that order):
+Second Year Calculus: From Celestial Mechanics to Special Relativity, A Radical Approach to Real Analysis, and A Radical Approach to Lebesgue's Theory of Integration.  And once your done with that, read Capinski, Zastawniak,  Jerzy:  Probability Through Problems.
 
-Now, to relate $Y$ to $X$, remark that $\P{X, Y\in A} = \P{U, V \in B}$, i.e., 
+Now, to relate $Y$ to $X$, remark that $\P{X, Y\in A} = \P{U, V \in B}$, i.e.,
 \begin{align*}
 \iint_{A} f_{X,Y}(x,y)\d x \d y = \iint_{B} f_{U,V}(u,v) \d u \d v.
 \end{align*}
@@ -816,7 +816,7 @@ But the integral at the RHS over $B$ can be rewritten as an integral over $A$ by
 \begin{align*}
 \iint_{A} f_{X,Y}(x,y)\d \d y = \iint_{A}f_{U,V}(g(x,y)) \frac{\partial (u,v)}{\partial (x,y)} \d x \d y.
 \end{align*}
-As this holds for any (reasonable) set $A$, 
+As this holds for any (reasonable) set $A$,
 \begin{align*}
 f_{X,Y}(x,y) = f_{U,V}(g(x,y)) \frac{\partial (u,v)}{\partial (x,y)}.
 \end{align*}
@@ -824,7 +824,7 @@ Finally, since $(x,y) = g^{-1}(u,v)$,
 \begin{align*}
 f_{U,V}(u, v)) = f_{X,Y}(x,y) \frac{\partial (x,y)}{\partial (u,v)}.
 \end{align*}
-Analogous to the 1D case, this can be extended when there are several points $x_i$ such that $g(x_i)=y$. 
+Analogous to the 1D case, this can be extended when there are several points $x_i$ such that $g(x_i)=y$.
 
 To memorize things, recall that  $g(x,y) = (u,v)$ and we want the probability to be conserved under the transformation $g$, hence
 \begin{align*}
@@ -838,7 +838,7 @@ f_{U,V}(u,v) \d u \d v = f_{X,Y}(x,y) \d x \d y \implies  f_{,V}(u,v)  = f_{X,Y}
 
 Solution: $(u,v) = g(x,y)  = (x+y, x-y)$. Hence $x=(u+v)/2$, $y=(u-v)/2$, and
 \begin{align*}
-\frac{\partial(u,v)}{\partial(x,y)} = 
+\frac{\partial(u,v)}{\partial(x,y)} =
 \begin{bmatrix}
 1 & 1 \\
 1 & -1
@@ -850,12 +850,12 @@ f_{U,V}(u,v) = f_{X,Y}(x,y) \frac{\partial(x,y)}{\partial(u,v)} = f_{X,Y}(x,y)/2
 \end{align*}
 
 **** Example
-Let $X$ and $Y$ be independent, and take $g(x,y) = (\min{x,y}, \max{x,y})$. Determine $f_{U,V}$, with $(U,V) = g(X,Y)$. Simplify for the case $X, Y$ iid.
+Let $X$ and $Y$ be independent, and take $g(x,y) = (\min\{x,y\}, \max\{x,y\})$. Determine $f_{U,V}$, with $(U,V) = g(X,Y)$. Simplify for the case $X, Y$ iid.
 
 Solution:
 Now $g^{-1}(u,v) = \{(u,v), (v,u)\}$, i.e., a set of two points. For the Jacobian:
 \begin{align*}
-\frac{\partial(u,v)}{\partial(x,y)} = 
+\frac{\partial(u,v)}{\partial(x,y)} =
 \begin{bmatrix}
 \1{x\leq y} & \1{y < x} \\
 \1{y<x} & \1{x\leq y}
@@ -891,7 +891,7 @@ Note that I follow the proof, which I find that easy to memorize, of this theore
 Write $R=|Z|$. Observe that $\P{R\leq x} = \P{-x \leq Z \leq x}$. Rewrite this in terms of $\Phi(x)$ and $\Phi(-x)$, and then take the derivative. Don't forget, $x\geq 0$.
 
 *** 8.10
-This is just a funny exercise. Relate it to Exercise 7.89.b. 
+This is just a funny exercise. Relate it to Exercise 7.89.b.
 
 Write $a=\P{Y=0}$ and $b=\P{Y=1}$.  Clearly, $a + b =1$. From the hint in the book, write $a-b$ as a series to find that $a-b = e^{-2\lambda}$. Now solve for $a$ and $b$.
 
@@ -936,17 +936,17 @@ Recall, $T = X/Y$, to $1/T = Y/X$. But what are $Y$ and $X$\ldots?
 **** a.
 
 Make the pullback figures for this case, and just follow the logic. Then all is easy. Extra hint:
-Compute 
+Compute
 \begin{equation*}
 \frac{\partial (t,w)}{\partial(x, y)},  \quad \text{ or }  \quad \frac{\partial (x,y)}{\partial(w, t)},
 \end{equation*}
 whatever is easier, and compute the determinant.  Write the result in terms of $t$ and $w$ by expressing $x^2+y^2$ in $t$ and $w$.
-Even more hints: the Jacobian is $ad-b c$. Any idea why the exercise makes the assumption that this should not be equal to 0? 
+Even more hints: the Jacobian is $ad-b c$. Any idea why the exercise makes the assumption that this should not be equal to 0?
 **** b.
 Observe that this result implies that $T$ and $W$ are independent.
 
 *** 8.15
-The notation is a bit clumsy for the angle coordinate. Write $\Theta$ for the r.v., and $\theta$ for its value. 
+The notation is a bit clumsy for the angle coordinate. Write $\Theta$ for the r.v., and $\theta$ for its value.
 
 **** a.
 I remember this: $f_{X,Y}(x,y) \d x \d y = f_{R, \Theta}(r, \theta) \d r \d \theta$. Then,
@@ -973,25 +973,25 @@ Similar, realize that $x^2+y^2=r^2$.
 See Exercise 8.14.
 
 *** 8.18
-As motivation I explained above that the distribution of the division of r.v.s is important.  
+As motivation I explained above that the distribution of the division of r.v.s is important.
 
 **** a.
 Use Pullbacks, and note that,
 \begin{align*}
-\frac{\partial (x,t)}{\partial (x,y)} = 
+\frac{\partial (x,t)}{\partial (x,y)} =
   \begin{pmatrix}
     1 & 0 \\
 1/y & -x/y^{2}
   \end{pmatrix}.
 \end{align*}
-Take the absolute value of the determinant of this. Then, use this, or its inverse (in my first attempt I did it the wrong way around). 
+Take the absolute value of the determinant of this. Then, use this, or its inverse (in my first attempt I did it the wrong way around).
 
 **** b.
 Here is the answer.
 \begin{align*}
 f_{T} = \frac 1{t^2} \int_0^{\infty} f_X(x) f_Y(t x)\d x.
 \end{align*}
-Weird that probabilistic arithmetic is so hard, isn't it? 
+Weird that probabilistic arithmetic is so hard, isn't it?
 
 *** 8.23
 This is the last operation we use in elementary arithmetic.
@@ -999,7 +999,7 @@ This is the last operation we use in elementary arithmetic.
 You can also follow the approach of Exercise 8.18.
 \begin{align*}
 f_{X,T}(x,t) &= f_{X,Y}(x,y) |\frac{\partial (x,y)}{\partial (x, t)}|, \\
-|\frac{\partial (x,t)}{\partial (x,y)}| &= 
+|\frac{\partial (x,t)}{\partial (x,y)}| &=
 |  \begin{pmatrix}
     1 & 0 \\
 y & x
@@ -1012,7 +1012,7 @@ since $y=t/x$. Finally, for $f_T$, marginalize $x$ out by integration.
 **** b.
 Just do the algebra. With part a. you have the answer, so you can check.
 
-I did not try, but would 8.18 also work with taking logarithms? 
+I did not try, but would 8.18 also work with taking logarithms?
 
 *** 8.27
 This is simple, but comes down to good bookkeeping. I found the answer in a second with  Googling: `Sum of three uniform random variables'. There is no point in doing it here.
@@ -1028,7 +1028,7 @@ How to get to $X/Y$?
 
 *** 8.33
 
-I don't like to say that the arrival rate $\Lambda$ is a random variable. In my opinion, it is better to say that, as $\Lambda$ is unknown, we express /our belief/ about its value by means of a probability distribution.  For the mathematics this does not change, but for the interpretation of the results it does. 
+I don't like to say that the arrival rate $\Lambda$ is a random variable. In my opinion, it is better to say that, as $\Lambda$ is unknown, we express /our belief/ about its value by means of a probability distribution.  For the mathematics this does not change, but for the interpretation of the results it does.
 
 See also my  discussion of  Exercise 8.40.
 
@@ -1036,7 +1036,7 @@ Suppose I know $\lambda$.
 Then, $X\sim \Poi{2\lambda}$ (Why the 2?), so that $\P{X=2 \given \lambda} = e^{-2\lambda} (2\lambda)^{2}/2!$.
 With Bayes' rule, $f(\lambda | X=2 ) = \P{X=2\given \lambda} f_{\Lambda} (\lambda)/\P{X=2}$.
 The prior is given to be $\P{\Lambda\leq \lambda} = 1 - e^{-3\lambda}$, hence $f_{\Lambda}(\lambda) = 3e^{-3\lambda}$.
-Finally, compute the following integral, 
+Finally, compute the following integral,
 \begin{align*}
 \P{X=2} = \int \P{X=2\given \lambda} f_{\Lambda}(\lambda) \d \lambda = \int_0^{\infty} e^{-2\lambda} (2\lambda)^{2}/2! \cdots 3 e^{-3\lambda} \d \lambda,
 \end{align*}
@@ -1058,7 +1058,7 @@ Use symmetry. Bigger hint: for the LHS of the equation in the problem, use,
 1 &= \E{\frac{X+Y}{X+Y}} = \E{\frac{X}{X+Y}} + \E{\frac{Y}{X+Y}}\\
 \E{\frac{Y}{X+Y}} &= \E{\frac{X}{X+Y}}.
 \end{align*}
-Observe that we now have two equations, and two unknowns. For the RHS, note that $\E X = \E Y$. 
+Observe that we now have two equations, and two unknowns. For the RHS, note that $\E X = \E Y$.
 
 **** c.
 I was a bit confused about the meaning of $X^c$.
@@ -1121,7 +1121,7 @@ Suppose we do $n=1$ trial (I don't know of a simpler case.) I follow the standar
    \begin{align*}
    \P{N=1} = \int f(N=1|p) f(p) \d p = \int p \1{p\in [0, 1]}\d p = 1/2,
    \end{align*}
-   because $f(p) = \1{p\in [0,1]}$. 
+   because $f(p) = \1{p\in [0,1]}$.
 4. And then, $f_1(p|N=1) = \frac{p}{1/2} \1{p\in[0,1]} = 2p  \1{p\in[0,1]}$.
 5. Thus, $\P{p>r\given N=1} = \int_{0}^1 \1{p>r} f_1(p |N=1)\d p = \int_{r}^1 2p\d p = 1-r^2$.
 
@@ -1129,18 +1129,18 @@ Now generalize to larger $n$, compute $f_2(p|N=2)$, then for $n=3$, and so on, u
 (In my first attempt, I messed up, by making the dumb error to set $f(p| N=1) = f(N=1|p)$.
 We all make mistakes\ldots, but some check better than others.)
 
-There are three important remarks to make about Bayesian analysis. 
+There are three important remarks to make about Bayesian analysis.
 1. Not all people like the idea of using a prior.  Where does it come from, and what if your prior differs from mine?  To me, for instance, Bayesian analysis makes a lot of sense, and I don't have objections against the fact that people don't agree on the prior. The entire stock market is based on those differences!
-2. In particular I like the idea of a prior because animals (such as dogs, ants, people)  have an astonishingly efficient capacity to learn priors. (I have no clue how a baby learns from seeing a cat a couple of times that that animal is a cat. But a computer has to see a billion photo's with a cat before it `knows' what is a cat, and even then it can go wrong easily.) So, humans can make help making good models by formulating priors. 
+2. In particular I like the idea of a prior because animals (such as dogs, ants, people)  have an astonishingly efficient capacity to learn priors. (I have no clue how a baby learns from seeing a cat a couple of times that that animal is a cat. But a computer has to see a billion photo's with a cat before it `knows' what is a cat, and even then it can go wrong easily.) So, humans can make help making good models by formulating priors.
 
    But there is an interesting, and very scary, counterargument to using human-made priors for machine learning.
    When computers learn from massive amounts of data, they can learn things we humans cannot learn.
    For instance, we can train computers to use the sound of the voice on the phone to make a prediction about the state of health.
    What happens if insurance companies use this to update (real time) the price of an insurance product you would like to buy?
-3. It can be very hard (impossible) to carry out step 3 above. In particular when the integral is over many dimensions, it is a research problem how to do this. 
+3. It can be very hard (impossible) to carry out step 3 above. In particular when the integral is over many dimensions, it is a research problem how to do this.
 
 Suppose you would take another prior, e.g., $p$ uniform on $[1/3, 2/3]$. How would that affect the solution?
-   
+
 
 
 
@@ -1158,7 +1158,7 @@ Random deviates are random numbers but generated by an algorithm; they are not r
 Hence the different name.
 As far as I know, these random deviates pass all statistical tests to try to distinguish them from `real' random numbers (for instance generated by physical noise).
 For this reason, they can be treated in simulation for instance as if they are really random.
-You should also know that humans are /extremely/ bad at generating random patters. Never think you are an exception, turn to the computer right away. 
+You should also know that humans are /extremely/ bad at generating random patters. Never think you are an exception, turn to the computer right away.
 
 
 Since these algorithms are so fast, it is possible with the trick of the exercise to generate exponentially distributed r.v.s, and with similar ideas r.v.s.
@@ -1169,8 +1169,8 @@ Use Theorem 4.3.9.
 
 In more detail, write $X_i$ for the number of throws to go from the \(i-1\)th success until the \(i\)th success. Then $X_i\sim \Geo{p}$. Then,
 \begin{align*}
-M_{X p /(1-p)}(s) = 
-\E{\exp{s p/(1-p)\sum_{i=1}^r X_{i}}} = 
+M_{X p /(1-p)}(s) =
+\E{\exp{s p/(1-p)\sum_{i=1}^r X_{i}}} =
 (M{X_{1}p/(1-p)})^{r},
 \end{align*}
 where the RHS is the moment-generation function of $X_1\sim \Geo{p}$. Compute $M{X_{1}p/(1-p)}$, fill this in the above, use that $e^{s p/(1-p)} \approx 1 + s p/(1-p)$ for $p\ll 1$, and take the limit $p\to0$. You should get a Gamma distribution.
@@ -1183,11 +1183,11 @@ where the RHS is the moment-generation function of $X_1\sim \Geo{p}$. Compute $M
 
 ** Example 9.1.6
 You can skip this. I am not a particular fan of such type of paradoxes; at least not for students new to probability.
-To start with, why  is this a probability problem at all? For this, we should start with making a sample space, but what is it here? We also need probabilities (formally, a measure), but are those?  A a challenge, if you like,  try turning this `paradox' into a well-formulated probability problem. 
+To start with, why  is this a probability problem at all? For this, we should start with making a sample space, but what is it here? We also need probabilities (formally, a measure), but are those?  A a challenge, if you like,  try turning this `paradox' into a well-formulated probability problem.
 
 
 ** Example 9.1.7
-I  like this example as it is a simple start to understand how to set prices for insurance, and, more generally, it is an example of finding  optimal decisions under uncertainty. 
+I  like this example as it is a simple start to understand how to set prices for insurance, and, more generally, it is an example of finding  optimal decisions under uncertainty.
 
 This problem is more interesting as follows.
 If $b<\alpha V$, for some $\alpha\in(0,1)$ the bid is rejected.
@@ -1196,7 +1196,7 @@ But is there a smaller $\alpha$ at which entering the game is interesting?
 
 Spoiler alert: I solved the problem in a different way. (And I also find it more natural, but that is personal bias I suppose). Suppose I offer $b$ and the value is $V$. Then my payoff is $(V-b)\1{b \geq \alpha V}$. Then my expected gain is
 \begin{align*}
-\E W = \int_0^1 (V-b)\1{b \geq \alpha V}\d V = \int_0^{\min{1, b/\alpha}}1 (V-b)\d V.
+\E W = \int_0^1 (V-b)\1{b \geq \alpha V}\d V = \int_0^{\min\{1, b/\alpha\}}1 (V-b)\d V.
 \end{align*}
 Now solve this for $b<\alpha$ and $b>\alpha$.
 
@@ -1204,8 +1204,8 @@ Now solve this for $b<\alpha$ and $b>\alpha$.
 An interesting generalization: Suppose that $V$ is the size of a claim with a certain CDF $F$ (not uniform as in the example) what price $b$ should you ask to insure this product?
 
 
-** Example 9.1.8 
-What happens if you take $X$ to be the number of /throws/, rather than Heads, i.e., $X\sim \FS{p}$? In that case, $\E X = 1 + q\E X$, because we have to throw at least once, and with probability $q$, we start again. Hence, $\E X = 1/(1-q) = 1/p$. 
+** Example 9.1.8
+What happens if you take $X$ to be the number of /throws/, rather than Heads, i.e., $X\sim \FS{p}$? In that case, $\E X = 1 + q\E X$, because we have to throw at least once, and with probability $q$, we start again. Hence, $\E X = 1/(1-q) = 1/p$.
 
 With this idea, it is also easy to find $N_{r} := \E X$ when $X\sim \NBin{r,p}$. Suppose the first throw is a success, then we need $r-1$ more successes, if the first throw is a failure, we are back at `hole one'. Thus, $N_{r} = p N_{r-1}+q(1+N_{r})$. Simplifying (and using that $p/(1-q)=1$) gives $N_{r} = N_{r-1} + q/p$, which implies $N_{r} = r q/p$.
 
@@ -1218,7 +1218,7 @@ I reason slightly differently here. Write $N_{r}$ for the number of throws requi
 N_{r} = N_{r-1} + p\cdot 1 + q(1+N_{r}) \implies N_{r} = N_{r-1}/p + 1/p \implies N_{r} = \sum_{i=1}^{r} 1/p^i.
 \end{equation}
 
- 
+
 Here is a fun variation.
 We have a mouse that sits on one corner of a cube whose edges are made of wire, and at some other point (for instance diagonally opposite the mouse) there is some cheese.
 The mouse chooses at random (uniform) any edge and moves to the next corner.
@@ -1231,12 +1231,12 @@ T_3 &= 1 + T_{2} \\
 T_2 &= 1 + T_{2}\cdot 2/ 3 + T_3\cdot 1/3  \\
 T_1 &= 1 + T_{2}\cdot 2/ 3.
 \end{align*}
-Solving gives $T_1= 7, T_2=9, T_3 = 10$. 
+Solving gives $T_1= 7, T_2=9, T_3 = 10$.
 
 
-The general pattern is like this. Identity a set of states that capture what you want to know. (Like in the example of the mouse, I am not interested in which specific corner the mouse visits, I only want to know how many edges it still has to travel.) Then find out how to move from one state to another with which probability. And then do the algebra (which can be hard technically, but conceptually simple). Sometimes  you can find closed-form solutions, like here; otherwise you can use numerical tools. 
+The general pattern is like this. Identity a set of states that capture what you want to know. (Like in the example of the mouse, I am not interested in which specific corner the mouse visits, I only want to know how many edges it still has to travel.) Then find out how to move from one state to another with which probability. And then do the algebra (which can be hard technically, but conceptually simple). Sometimes  you can find closed-form solutions, like here; otherwise you can use numerical tools.
 
-** Example 9.1.10 
+** Example 9.1.10
 Skip the b part. The problem is not well-specified. Suppose the drunk hits $b$ and makes a step to the right. Then, with quite a bit of mathematics (harder than we do in this book), it is possible to prove that the expected time to hit $b$ again is \infty, but that the probability to hit $b$ is 1 (weird, not?). To repair for this, suppose that the drunk can only go to the left after hitting $b$, so that the drunk is confined to stay on the numbers $0,\ldots, b$. Then we first have to prove that the hitting time $T$ has finite expectation, which is necessary for the answer of the book to work.
 
 For 9.1.10.b, a more useful problem is to compute $\E T$, i.e., the expected time to hit $b$ for the first time, assuming the drunk stays on $0,\dots, b$, starts at some level $a$, and $\E T < \infty$.
@@ -1253,7 +1253,7 @@ When $Y$ is continuous we can compute $\E{Y \given X=x}$ with  the conditional C
 \E{Y\given X=x } =\int f_{Y| X}(y | x) \d y.
 \end{align*}
 (For discrete r.v., replace the integral by the PMF.)
-Observe that this is /just a function of $x$/; define this function as $g(x) = \int f_{Y| X}(y | x)\d y$. And now, as before, we consider the random variable $g(X)$, and give this r.v. a name: the conditional expectation of $Y$ given $X$. 
+Observe that this is /just a function of $x$/; define this function as $g(x) = \int f_{Y| X}(y | x)\d y$. And now, as before, we consider the random variable $g(X)$, and give this r.v. a name: the conditional expectation of $Y$ given $X$.
 
 It is true that $X$ plays some sort of double role---first we use it in the conditioning in the definition of the function $g$, and then we plug it into  $g$ again---and this is perhaps confusing. But I finally `got  it', when I understood that $g$ can be interpreted as just some function. And then we compute $\E{g(X)}$, and so on.
 
@@ -1277,7 +1277,7 @@ For the variance, you can also compute $\E{W^{2}\given Z} = \E{W^2\given X}$. Th
 
 ** Hints and remarks on exercises
 
-*** 9.1 
+*** 9.1
 Let $R$ be the route taken.
 Then, $\E{T\given R} = \sum_j \E{R_j} \1{R=j}$, where $R_j$ is the time of route $j$.
 Hence, $\E{R_j} = \mu_j$.
@@ -1295,10 +1295,10 @@ The value of $p$ is not relevant for the answer, but it is important that it is 
 A generalization: what if the probability of having the disease is different between women and men?
 
 *** 9.7
-See my remark above. As a variation, what if the bid  is lost if it is rejected? So you pay $b$ always, and only get the prize if $b>\alpha V$. 
+See my remark above. As a variation, what if the bid  is lost if it is rejected? So you pay $b$ always, and only get the prize if $b>\alpha V$.
 
 *** 9.12
-Such problems find applications in medicine testing and DNA sequencing.  Let $X_1$ the outcome of the first throw. Then, given $X_1$, the run length $R_{1}\sim \FS{p}$ or $\sim\FS{q}$, depending on $X_{1}$. 
+Such problems find applications in medicine testing and DNA sequencing.  Let $X_1$ the outcome of the first throw. Then, given $X_1$, the run length $R_{1}\sim \FS{p}$ or $\sim\FS{q}$, depending on $X_{1}$.
 
 
 *** 9.15
@@ -1310,12 +1310,12 @@ Expand the square. Take out what is known, in other words, realize that $\E{Y\gi
 *** 9.19
 Check Example 9.5.4. The ideas of this exercise are important for your statistics courses.
 
-**** a. 
+**** a.
 My guess was that in the relation $X=d Y + W$,  $d=1/a$. Why is this wrong; that is the aim of this exercise.
 
 **** b.
 
-Take $V=Y-c X$. We know from Ch 8 that $V$ is normally distributed. Therefore, when $\cov{X,V} = 0$, $X$ and $V$ are independent. 
+Take $V=Y-c X$. We know from Ch 8 that $V$ is normally distributed. Therefore, when $\cov{X,V} = 0$, $X$ and $V$ are independent.
 
 *** 9.21
 Using indicators like this lies at the heart of more advanced probability theory and measure theory. For instance, the proof of LOTUS is based on indicators.
@@ -1323,11 +1323,11 @@ Using indicators like this lies at the heart of more advanced probability theory
 **** a.
 Interpret $\E{Y\given \1{A}}$ as a function of $\1{A}$. Then, what is $g(1)=\E{Y\given\1{A}=1}$?
 
-**** b. 
+**** b.
 The PMF of $X$  is the joint PMF of $Y\1{A}$. Hence, $\P{X=i} = \P{Y=i, \1{A}=1}$, when $i\neq 0$. What is $\P{X=0}$? By using the ideas of Ch 7 the rest follows.
 
-**** c. 
-Of course, $1=\1{A}+\1{A^{c}}$. Hence, $Y= Y\cdot 1 = \ldots$? Use linearity of expectations to split $\E Y$ into two parts. 
+**** c.
+Of course, $1=\1{A}+\1{A^{c}}$. Hence, $Y= Y\cdot 1 = \ldots$? Use linearity of expectations to split $\E Y$ into two parts.
 
 *** 9.24
 An interesting variation is like this. After $n$ throws, you observe $k$ tails. What can you say about the probability of having picked the coin with $p_1$?
@@ -1337,19 +1337,19 @@ Follow the hint, and use recursion. Kelly betting strategies are used at the sto
 *** 9.28
 **** a.
 The marginal second moment of $\theta$ is $\E{\theta^{2}}$. Recall, by the assumptions, we are given the joint distribution of $X$ and $\theta$. Thus, we can obtain (the moments of) $\theta$ (or $X$) by marginalizing out $X$ (or $\theta$). For the rest, follow the hint of the book. Expand the square, use linearity of conditional expectation, and use unbiasedness.
-**** b. 
+**** b.
 Use the hint and follow the same steps of a. Do the algebra, it may seem that you'll get the same answer of part a., but it is slightly different.
-**** c. 
+**** c.
 Note that $\E{(\hat \theta-\theta)2} \geq 0$. By a., if $\hat \theta$ is unbiased, then $\E{\hat \theta^{2}} \geq \E{\theta^{2}}$, while by b., if $\hat \theta$ is the Bayes procedure, $\E{\hat \theta^{2}} \leq \E{\theta^{2}}$. What are the consequences of these inequalities?
 
 *** 9.32
 The results of this exercise are (or should be) used by nearly all software packages to control inventory levels of companies.
 For sure, your supermarket uses this, Bol.com, and so.
 
-**** a. 
+**** a.
 Let $X$ be the amount purchased by the first customer that comes along. Let $P$ be the r.v. that is 1 if the customer does purchase, and 0 otherwise. What is $\E{P}$? What is $\E{X\given P}$? What is $\E{X^{2}\given P}$; for this, use the insights of Exercise 9.1.
 
-**** b. 
+**** b.
 Let $N\sim\Poi{8\lambda}$ be the number of customers that pass by. Given $N=n$, what is $\E{S\given N}$, where $S=\sum_{i=1}^N X_i$ is the total sales. Now use the law of total expectation. What is $\V{S\given N}$? Use Eve's law  to compute $\V S$. Bigger hint, read Example 9.6.1.
 
 *** 9.35
@@ -1372,15 +1372,15 @@ Bootstrapping is used in statistics to, for instance, construct confidence inter
 # I write $X^{*}$ for the common r.v.
 # of $X^{*}_j$.
 
-I prefer to write $Y_{j}= X_j^{*}$, as this writes (and types) easier. 
+I prefer to write $Y_{j}= X_j^{*}$, as this writes (and types) easier.
 
 Here are the solution; for the moment, I don't know a set of good hints to coach to the answer.
 If you do, tell me.
 It took me quite a bit of effort to get the details right.
 
-**** a. 
+**** a.
 
-# Here you should assume that the $X_i$ are not yet known. Thus, the expectation over $X_i$ is taken with respect to the CDF $F_X$. 
+# Here you should assume that the $X_i$ are not yet known. Thus, the expectation over $X_i$ is taken with respect to the CDF $F_X$.
 
 Suppose $S_{j}\sim \DUnif{\{1, \ldots, n\}}$ is the \(j\)th sample. Then, $Y_j = \sum_{i=1}^n X_i\1{S_j = i}$. And then, using the independence of $X_j$ and $S_j$, and $\1{S_j=i}\1{S_j=k} = 0$ if $i\neq k$,
 \begin{align*}
@@ -1392,23 +1392,23 @@ Suppose $S_{j}\sim \DUnif{\{1, \ldots, n\}}$ is the \(j\)th sample. Then, $Y_j =
 \end{align*}
 
 
-**** b. 
+**** b.
 
 Now we are given the outcomes (samples) $X_i=x_i$ of $n$ experiments.
 I prefer to write $\EE{D}{Y} = \E{Y\given X_{1},\ldots, X_{n}}$.
 It is shorter, and by labeling the expectation with the data $D=\{X_{1},\ldots, X_{n}\}$, I am reminded that the expectation is taken only with respect to the random variables $S_{j}$ (the data $D$ is considered fixed).
 
 \begin{align*}
-\EE{D}{\bar Y} &=  \EE{D}{\frac 1 n \sum_{j} Y_j} 
+\EE{D}{\bar Y} &=  \EE{D}{\frac 1 n \sum_{j} Y_j}
 =\frac 1 n \EE{D}{\sum_{j} \sum_{i} X_{i} \1{S_j=i}} \\
-& =\frac 1 n \sum_{i} X_{i} \sum_{j}\EE{D}{\1{S_j=i}}  
+& =\frac 1 n \sum_{i} X_{i} \sum_{j}\EE{D}{\1{S_j=i}}
  =\frac 1 n \sum_{i} X_{i} := \bar X.
 \end{align*}
 Given $D$, $X_i$ is just a number, hence can be taken out of expectation.
 This is not the same as $\mu$!.
 The conditional variance:
 \begin{align*}
-\VV{D}{\bar Y} &= 
+\VV{D}{\bar Y} &=
 \VV{D}{\frac 1 n \sum_{j} Y_{j}} \\
 &=  \frac 1 {n^{2}}\VV{D}{\sum_{j} Y_{j}}\\
 &= \frac 1 {n^{2}} \sum_{j}\VV{D}{ Y_{j}} & \text{by the hint}\\
@@ -1416,7 +1416,7 @@ The conditional variance:
 \end{align*}
 Let's guess what $\VV{D}{Y_{1}}$ is. We select arbitrarily an element of the data $D$. The variance must then be $\frac 1 n \sum_{j}(X_j^{2}-\bar X)^{2}$. We must be able to get this from our  definition $Y_1 = \sum_{i}X_i\1{S_1=i}$. Again using that  $\1{S_1=i}\1{S_1=j} = 0$ if $i\neq j$,
 \begin{align*}
-\VV{D}{Y_{1}} 
+\VV{D}{Y_{1}}
 &= \VV{D}{\sum_{i} X_{i}\1{S_1}=i} \\
 &= \sum_{i} \left(\VV{D}{X_{i}\1{S_1}=i} + \sum_{j\neq i} \cov{X_{i}\1{S_{1}=i},X_{j}\1{S_1=j}}\right)  \\
 &= \sum_{i} \left(X_i^{2}\VV{D}{\1{S_1}=i} + \sum_{j\neq i} X_{i}X_{j}\cov{\1{S_{1}=i},\1{S_1=j}}\right)  \\
@@ -1429,7 +1429,7 @@ Let's guess what $\VV{D}{Y_{1}}$ is. We select arbitrarily an element of the dat
 
 
 **** c.
-$\E{\bar Y}$ is simple, use linearity and Adam's law (i.e, the tower property). For the variance, use Eve's law. 
+$\E{\bar Y}$ is simple, use linearity and Adam's law (i.e, the tower property). For the variance, use Eve's law.
 
 \begin{align*}
 \E{\bar Y} = \E{\EE{D}{\bar Y}} = \E{\bar X} = \frac 1 n \sum_{i}\E{X_{i}} = \E X = \mu.
@@ -1444,7 +1444,7 @@ Here are the details for $\V{\bar Y}$.
 where we use  BH.Def 6.3.3 and BH.Th 6.3.4. The rest is simple.
 
 **** d.
-We add randomness twice, first we draw  samples to get $D$, and then we draw randomly from $D$. 
+We add randomness twice, first we draw  samples to get $D$, and then we draw randomly from $D$.
 
 
 **** Extra exercise.
@@ -1452,7 +1452,7 @@ How many different bootstrap samples are possible?
 
 Spoiler alert: here is the answer. Immediate from Example 1.4.22. We are not interested in the sequence of the bootstrap sample. BTW, the story that goes for me with this example is the `balls and bars story'. I have $n$ balls to distribute over $k$ boxes. Hence, there are $k-1$ bars to separate the boxes. For the bootstrap sample, I have to distribute $n$ bootstrap samples (the $X^*_{i}$) over $n$ boxes (the initial sample $X_i$.)
 
-If $n$ is small, say $n=4$. Does it make sense to take more than 1000 bootstrap samples? 
+If $n$ is small, say $n=4$. Does it make sense to take more than 1000 bootstrap samples?
 
 
 *** 9.39
@@ -1496,7 +1496,7 @@ I had to do all the work myself, because I read the book in a piece-meal way. In
 Adam and Eve. $\E{T|W=i} = 1/\lambda_{i}$, hence $\E{T|W} = \sum_{i=1}^2 1/\lambda_i \1{W=i}$.
 
 **** b.
-Write $S_i$ for the service time at server $i$. Then $X=\min{S_1, S_2}$. Since $S_1$ and $S_2$ are exponential, $X$ is also exponential. But then, $X$ is memoryless. So, whatever amount of time has been invested (here 24 hours), the expected time to finish remains the same. Kind of weird, not? The exponential distribution is natural, but some times strange too.
+Write $S_i$ for the service time at server $i$. Then $X=\min\{S_1, S_2\}$. Since $S_1$ and $S_2$ are exponential, $X$ is also exponential. But then, $X$ is memoryless. So, whatever amount of time has been invested (here 24 hours), the expected time to finish remains the same. Kind of weird, not? The exponential distribution is natural, but some times strange too.
 
 *** 9.55
 When I don't know how to proceed, I always try to make some simplifications.
@@ -1518,12 +1518,12 @@ Now that I know how to do 2, the structure is clear.
 *** 9.56
 This is good exercise to rehearse your knowledge on Beta distributions.
 
-I prefer to say that I model my uncertainty about the value of $p$ by means of a prior. 
+I prefer to say that I model my uncertainty about the value of $p$ by means of a prior.
 
-**** a. 
-Since we include then win, the number of games $T|p$ (since we assume $p$ given) must be $\sim\FS{p}$. 
+**** a.
+Since we include then win, the number of games $T|p$ (since we assume $p$ given) must be $\sim\FS{p}$.
 
-I use recursions, because I like using recursions. 
+I use recursions, because I like using recursions.
 \begin{align*}
 \E{T\given p} = 1 + q \E{T\given p} \implies \E{T\given p} = 1/p.
 \end{align*}
@@ -1552,7 +1552,7 @@ We should compare the expectation $\E{1/p}$ we computed in part a to $1+\E G$, w
 I must miss something here.
 The prior is $\Beta{a, b}$.
 Then Beta-Binomial conjugacy story, we assume that Vishy won $a-1$ games, and lost $b-1$ games.
-My guess for Vishy winning the next game would be $(a-1)/(a+b-2)$, not $a/(a+b-1)$. 
+My guess for Vishy winning the next game would be $(a-1)/(a+b-2)$, not $a/(a+b-1)$.
 But I make an error here. Check the BH problem 9.57. You'll see that we should indeed use $a/(a+b-1$!  Tricky!
 
 
@@ -1582,7 +1582,7 @@ For the variance, use EVE's law. Spoiler alert. Here is the VE  part of it.
 \begin{align*}
 \V{\E{S_{n}|p}} = \E{(\E{S_{n}|p})^{2}} - (\E{\E{S_{n}|p}})^2 = \int_0^{1} n^2 p^2 \d p  - (\int_0^1 n p \d p)^2 = n^2/12.
 \end{align*}
-With this, you can check the rest. 
+With this, you can check the rest.
 
 **** b.
 Use Beta-Binomial conjugacy.  BTW, I find it a really elegant relation!
@@ -1607,7 +1607,7 @@ Perhaps you find the following easier:
 \begin{align*}
 (\E X)2 = (\E{X \1{X>0} })^{2} \leq \E X^{2} \E{\1{X>0}} = \E X \P{X>0},
 \end{align*}
-because $1^2=1$. 
+because $1^2=1$.
 
 
 ** Theorem 10.1.5
@@ -1626,7 +1626,7 @@ However, if you do physics, mathematics or computer science, you'll come across 
 There is a body of interesting (advanced) probability around Chernoff's inequality, called /large deviations/. In fact, this inequality relates classical mechanics (formulated in terms of energy and the Euler-Lagrange equation) and probability theory. This is one of those unexpected relations that makes mathematics and physics fun.
 
 ** Example 10.3.7
-Note that $\E{\log Y_n} \sim -0.081 n$, i.e., has has negative drift, but $\log \E{Y_n} \sim n \log 1.1$. Check that this is not in conflict with Jensen's inequality. 
+Note that $\E{\log Y_n} \sim -0.081 n$, i.e., has has negative drift, but $\log \E{Y_n} \sim n \log 1.1$. Check that this is not in conflict with Jensen's inequality.
 
 ** Example 10.4.3
 Why is $n \bar Z_n^2\sim \chi_1^2$?
@@ -1693,7 +1693,7 @@ I did things a bit differently then in the book. Take $S_n=\sum_{i=1}^n X_i$ wit
 \P{S_n=k} = {n \choose k} p^k(1-p)^{n-k} \to e^{-\lambda} \lambda^k/k! = \P{N=k}, \quad\text{if } N\sim\Poi{\lambda},
 \end{align*}
 for $n\to \infty$, $p\to0$ but such that $p n = \lambda$.
-I also know from the CTL that $S_n\sim N(n p, n p(1-p))$ if $n$ becomes large. 
+I also know from the CTL that $S_n\sim N(n p, n p(1-p))$ if $n$ becomes large.
 But, $N(n p, n p(1-p)) \to N(\lambda, \lambda)$ in the above limit.
 Now take $\lambda=n$ to see that $\Poi{\lambda} \sim N(n,n)$.
 
@@ -1706,14 +1706,14 @@ Check the solution manual. Then, with $\mu=\sigma=\lambda=n$, and $n\gg 1$,
 &= \frac 1 {\sqrt{2\pi n }}\int_{-1/2}^{1/2} (1 - x^{2}/2n) \d x\\
 &= \frac 1 {\sqrt{2\pi n }} (1- 1/(24 n)).
 \end{align*}
-So, we found another term to approximate $n!$ yet better. 
+So, we found another term to approximate $n!$ yet better.
 *** 10.27
 If you don't want to check the on-line solution guide right away, here is a hint.
 **** a.
 \begin{align*}
 M_n(t) = \E{e^{s \bar X_n}} = E{e^{s/n \sum_{i=1}^{n} X_i}} = \left(E{e^{s/n X}} \right)^{n} = \left(M_X(s/n)\right)^{n},
 \end{align*}
-where $X\sim \Poi{\lambda}$. 
+where $X\sim \Poi{\lambda}$.
 **** b.
 Check Exercise 8.54 for some inspiration.
 
@@ -1737,9 +1737,9 @@ Use Taylor's expansion for $e^x$ to second order. Finally, what is $M_N(s)$ for 
 
 
 *** 10.29
-Apply the strong law to the r.v defined in the  hint. 
+Apply the strong law to the r.v defined in the  hint.
 
-The problem of the statistician is of course to find functions $L$ and $R$, such that $\P{\theta \in [L(X), R(X)]} \geq 0.95$. 
+The problem of the statistician is of course to find functions $L$ and $R$, such that $\P{\theta \in [L(X), R(X)]} \geq 0.95$.
 
 *** 10.30
 The problem demonstrates a simple investment strategy.
@@ -1760,7 +1760,7 @@ Let me first digress, and show you a useful dead-end. I stared at the above for 
 \begin{align*}
 1+\sum_{n=1}^{N} p_n \le \prod_{n=1}^{N} \left( 1 + p_n \right) \le \exp \left( \sum_{n=1}^{N}p_n \right), \end{align*} when $p_n\geq 0$.
 This is also useful for you as it relates compounding interests (e.g.
-monthly interest and other economic and finance ideas) to sums and exponentials. Perhaps I can use the left-most  inequality. If this goes to $\infty$ as $N\to\infty$, then I can conclude that $Y_n\to\infty$. 
+monthly interest and other economic and finance ideas) to sums and exponentials. Perhaps I can use the left-most  inequality. If this goes to $\infty$ as $N\to\infty$, then I can conclude that $Y_n\to\infty$.
 
 So, I want to find a $p_n$ such that
 \begin{align*}
@@ -1770,7 +1770,7 @@ A bit of algebra gives
 \begin{align*}
 p_n = ( (3.7)^{I_n}-2)/4.
 \end{align*}
-Hmm, this is disappointing: it is not true that $p_n\geq 0$ always, when $I_n=0$, $p_n<0$. I cannot use the inequalities. 
+Hmm, this is disappointing: it is not true that $p_n\geq 0$ always, when $I_n=0$, $p_n<0$. I cannot use the inequalities.
 
 
 What else can I think of? As a next step, let's try to convert my recursion for $Y_n$ to a form as in the example. If $I_n=1$, $Y_n=Y_{n-1} 2.7/2$, while if $I_n=0$, $Y_n=Y_{n-1} 1.5/2$. Hence, I can also write:
@@ -1780,34 +1780,26 @@ Y_n = Y_{n-1} (1.35)^{I_n} (0.75)^{1-I_n}.
 With this expression, the rest  is simple, just  follow  Example 10.3.7. It turns out that $Y_n\to\infty$ as $n\to\infty$.
 
 **** b.
-Just substitute $\alpha$ in the relevant formula of part a. For the maximum, take the derivative with respect to $\alpha$. 
+Just substitute $\alpha$ in the relevant formula of part a. For the maximum, take the derivative with respect to $\alpha$.
 
 *** 10.35
 Just keep your cool. It seems like a hard control problem, but it is very simple.  The problem can be generalized to multi-armed bandits, which are used to improve web sites, pricing plans, medicine. There is an entire book on it.
 
 **** a.
-Consider some corner cases. If $p=1$, what would you guess for the next throw of the coin? Or if $p=0$? In general, if the coin is loaded (biased), and you the bias, what do you do? 
+Consider some corner cases. If $p=1$, what would you guess for the next throw of the coin? Or if $p=0$? In general, if the coin is loaded (biased), and you the bias, what do you do?
 **** b.
-By the strong law, the fraction of  heads (1's) will converge to $p$. So, if $p>1/2$, what will you predict? And if $p<1/2$, then what do you predict? 
+By the strong law, the fraction of  heads (1's) will converge to $p$. So, if $p>1/2$, what will you predict? And if $p<1/2$, then what do you predict?
 **** c.
-If somebody knows your strategy, and this person can control the outcome of the game, would you play this game if you have to pay for every round? 
+If somebody knows your strategy, and this person can control the outcome of the game, would you play this game if you have to pay for every round?
 
 
 *** 10.39
 This is an easy exercise (finally).
 **** a.
- $\P{N=n} = \P{X_1 < 1, X_2<1, \cdots X_{n-1}<1, X_n>1}$. But, then $N$ must be related to the first success distribution. 
+ $\P{N=n} = \P{X_1 < 1, X_2<1, \cdots X_{n-1}<1, X_n>1}$. But, then $N$ must be related to the first success distribution.
 
 **** b.
-Let $X_i$ be the inter-arrival time between jobs $i-1$ and $i$. Then $S_n=\sum_i^n X_i$ is the arrival time of job $n$. We want that $S_{M-1} < 10 \leq S_M$. Since the $X_i$ are $\sim \Exp{\lambda}$, $S_n \sim \Poi{\lambda t}$. 
+Let $X_i$ be the inter-arrival time between jobs $i-1$ and $i$. Then $S_n=\sum_i^n X_i$ is the arrival time of job $n$. We want that $S_{M-1} < 10 \leq S_M$. Since the $X_i$ are $\sim \Exp{\lambda}$, $S_n \sim \Poi{\lambda t}$.
 
 **** c.
-Use the CLT. 
-
-
-
-
-
-
-
-
+Use the CLT.

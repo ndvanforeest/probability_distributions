@@ -166,7 +166,8 @@ Not checking is unacceptable, for you, for me, for anybody
 
 * Work load
 
-The estimated work load is as in the table.
+The estimated (!) work load is as in the table. The lectures of Blitzstein vary in length, hence the amount of hours spent on his lectures is just a rough estimate.
+
 
 | Activity               | Load           | Hours |
 |------------------------+----------------+-------|
