@@ -99,7 +99,7 @@ Let me  show I apply a general approach to find a conditional density, here $f_{
 My /guess/ for the conditional CDF is this. If $X=x$, then $T\leq t \iff Y \leq t-x$. Hence, $\P{T\leq t \given X=x} = \P{Y\leq t-x} = 1-e^{-\lambda (t-x)}$. BTW, this is the same as my earlier answer.
 
 Now the next step, /verification/.
-It is reasonable to /define/ the conditional CDF in terms of the conditional CDF, and the above approach gives me a recipe to compute the latter.
+It is reasonable to /define/ the conditional CDF in terms of the conditional PDF, and the above approach gives me a recipe to compute the latter.
 So, let's see how far I can get with this idea. Define the /conditional CDF/ like this:
 \begin{align*}
 \P{T\leq t \given X=x} = \int \1{0\leq v\leq t} f_{T|X}(v|x) \d v.
@@ -215,10 +215,13 @@ Use independence, and
 \begin{align*}
 \P{M\leq m} &= \P{U_1\leq m, U_2\leq m, U_3\leq m} = \ldots \\
 \P{M\leq m, L\leq l} &= \P{M\leq m} - \P{M\leq m, L>l} \\
-\P{M\leq m, L>l} &= \P{l< U_1\leq m, l< U_2\leq m, l< U_3\leq m} = \ldots
+\P{M\leq m, L>l} &= \P{l< U_1\leq m, l< U_2\leq m, l< U_3\leq m} = \ldots,
 \end{align*}
-**** b.
-Take partial derivatives $\partial_l\partial_{m}$.
+to determine the joint CDF. Take partial derivatives $\partial_l\partial_{m}$ to find the joint PDF.
+
+**** b. 
+Find the marginal PDF of $L$ and fill in the definition of the conditional PDF.
+
 
 *** 7.23
 **** a.
@@ -291,7 +294,7 @@ Take $I_j=1$ if person $j$ takes the slip with its own name. What is $\E{I_j}$? 
 *** 7.48
 
 Reread Example 5.7.4.
-Bigger hint: Write $I_j=\1{X_j=\max\{X_1,\ldots, X_j}$.
+Bigger hint: Write $I_j=\1{X_j=\max{X_1,\ldots, X_j}}$.
 Then, what is $\E{I_j} = \P{I_j=1}$?
 What is the meaning of $T=\sum_{j=1}^n I_j$?
 Why is $\cov{I_{i}, I_j} = 0$ when $i\neq j$?
@@ -314,11 +317,11 @@ For those of you that are interested in physics, the theory of random walk helps
 
 
 The notation of the book is a bit clumsy.
-Let $X_i$ be the movement along the \(x\)-axis at step $i$, and $Y_i$ along the \(y\)-axis.
-Then $S_n=\sum_{i=1}^n X_i$ and $T_n=\sum_{j=1}^n Y_{j}, and $R_n^2= S_n^2+T_n^2$. For your convenience, I'll stick to the notation of the book.
+Let $X_i$ be the movement along the $x$-axis at step $i$, and $Y_i$ along the $y$-axis.
+Then $S_n=\sum_{i=1}^n X_i$ and $T_n=\sum_{j=1}^n Y_{j}$, and $R_n^2= S_n^2+T_n^2$. For your convenience, I'll stick to the notation of the book.
 
 **** a.
-If you don't how to prove such a thing, it is always good to think about whether you can find a counter example.
+If you don't how to prove such a thing, it is always good to think about whether you can find a counterexample.
 Bigger hint: Is $\P{X_n=n, Y_n=n}>0$ or must it be 0?
 Is $\P{X_n=n}>0$?
 
@@ -349,7 +352,7 @@ Expand the brackets in the expression for the sample variance $r$ to see that
 \begin{align*}
 r = 1/n \sum_i x_i y_i - \bar x \bar y.
 \end{align*}
-Next, we choose with probability $n$ one the points $(x_i, y_{i}$.  Under this probability, $\E{X Y} = 1/n \sum_i x_i y_i$, $\E X = \bar x, \E Y = \bar y$. So, how do $\cov{X,Y}$ and $r$ relate?
+Next, we choose with probability $n$ one the points $(x_i, y_{i})$.  Under this probability, $\E{X Y} = 1/n \sum_i x_i y_i$, $\E X = \bar x, \E Y = \bar y$. So, how do $\cov{X,Y}$ and $r$ relate?
 
 **** b.
 Expand the brackets and use iid and linearity properties to show that the expected area spanned by two random points $(X,Y)$ and $(\tilde X, \tilde Y)$ satisfies
