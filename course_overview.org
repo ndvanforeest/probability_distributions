@@ -62,7 +62,9 @@ This serves two goals. You don't get stuck while reading the solutions and, more
 
 ** Assignments
 
-=assignments.pdf= contains the material for the assignments.
+- =assignments.pdf= contains the material for the assignments.
+- =sources/assignment-answer-template.tex= contains a handy template for you to fill in your answers in LaTeX.
+
 
 ** Discussion board
 =discussion_board_questions.pdf= contains the questions and answers posted on nestor.
@@ -86,9 +88,9 @@ However, use this at your own risk, I haven't checked it. If you find other usef
 |      |       2 | 7.2        |               - | 26,  ME.1--ME.4         |            |
 |------+---------+------------+-----------------+-------------------------+------------|
 |    2 |       3 | 7.3        |              21 | 33, 46, 48, 58, 64      |          1 |
-|      |       4 | 7.4, 7.5   |              22 | 65, 66, 73 77, 86       |            |
+|      |       4 | 7.4, 7.5   |              20 | 65, 66, 73 77, 86       |            |
 |------+---------+------------+-----------------+-------------------------+------------|
-|    3 |       5 | 8.1        |              22 | 1, 11, 12, 14, 16, ME.5 |          2 |
+|    3 |       5 | 8.1        |              22  | 1, 11, 12, 14, 16, ME.5 |          2 |
 |      |       6 | 8.2        |               - | 18, 22, 23, 27          |            |
 |------+---------+------------+-----------------+-------------------------+------------|
 |    4 |       7 | 8.3        |              23 | 33, 34, 36, 37          |          3 |
@@ -136,7 +138,7 @@ Here is a list of good, and important, advice when making the exercises.
 - For the general rules, read the general information in = assignments.pdf=
 - There are 6 assignments, see the table above.
 - You have to work another partner  every week. The reason behind this is to help all of you expand your network, which we find very important in the current situation. We realize this is perhaps not what all of you like, but this seems the best we can do to really help you get started and work with other students. You should also know that in professional life you will often have to work in different teams and with many different people. You'd better learn such skills early in your career.
-- The due dates are  simple: turn in the assignment for that week  before Friday 24h.
+- The due dates are  simple: turn in the assignment for that week  before Friday 23.59h (so just before Saturday).
 
 * Questions
 

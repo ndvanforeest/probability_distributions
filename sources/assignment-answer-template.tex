@@ -1,0 +1,77 @@
+\documentclass[a4paper,11pt]{article}
+
+\usepackage[english]{babel}
+\usepackage{mathtools,amsthm,amssymb,amsmath}
+\usepackage{a4wide}
+
+\usepackage{fouriernc}
+\usepackage{hyperref}
+\usepackage[capitalize]{cleveref}
+
+
+\usepackage{minted}
+\setminted[python]{linenos=true}
+\setminted[python]{frame=lines}
+\setminted[R]{linenos=true}
+\setminted[R]{frame=lines}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\DeclareMathOperator*{\argmin}{arg\,min}
+
+\newcommand{\abs}[1]{\left\vert#1\right\vert}
+\newcommand{\given}{\,\middle|\,}
+\newcommand{\Bern}[1]{\mathrm{Bern}(#1)}
+\newcommand{\Bin}[1]{\mathrm{Bin}(#1)}
+\newcommand{\Exp}[1]{\mathrm{Exp}(#1)}
+\newcommand{\FS}[1]{\mathrm{FS}(#1)}
+\newcommand{\Geo}[1]{\mathrm{Geo}(#1)}
+\newcommand{\Norm}[1]{\mathrm{Norm}(#1)}
+\newcommand{\Pois}[1]{\mathrm{Pois}(#1)}
+\newcommand{\Unif}[1]{\mathrm{Unif}(#1)}
+\renewcommand{\P}[1]{\,\mathsf{P}\left\{#1\right\}}
+\newcommand{\E}[1]{\,\mathsf{E}\left[#1\right]}
+\newcommand{\EE}[2]{\,\mathsf{E}_{#1}\left[#2\right]}
+\newcommand{\V}[1]{\,\mathsf{V}\left[#1\right]}
+\newcommand{\cov}[1]{\,\mathsf{Cov}\left[#1\right]}
+\renewcommand{\d}[1]{\,\textrm{d}#1}
+\newcommand{\1}[1]{\,I_{#1}} % indicator
+
+\author{Claire Gun (s123456) and Clark Rifle (s654321)}
+\date{\today}
+\title{Prob dist., assignment 1\\
+  2020-2021
+  }
+\begin{document}
+
+\maketitle
+
+Just to help you, read also the \verb|newcommands| above. Using such commands can make your life considerably easier.
+
+\section{Exercise/question/problem 1}
+
+In our understading, taking the product of two numbers comes down to repeating taking the sum of couple of times.
+
+\section{Problem 2}
+
+When we run the simulation, see the code and parameters below, we get the answer 50
+
+\begin{minted}[]{python}
+a = 10
+b = 5
+print(a*b)
+\end{minted}
+
+
+\begin{minted}[]{R}
+a <- 5
+b <- 10
+b*a
+\end{minted}
+
+\section{Exercise/question/problem 3}
+
+The graph is like this (check on \texttt{overleaf} (see the web), how to include graphs in \LaTeX).
+
+\end{document}
