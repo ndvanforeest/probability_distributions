@@ -46,7 +46,7 @@ Exercise 5.6 Write a program that simulates a baker who chooses n loaves from a 
 Let $X, Y$ iid $\sim \Unif{[0,1]}$.
 \begin{enumerate}
 \item What is the joint CDF of $X+Y, XY$?
-\item What is the joint PDF of $X+^Y XY$?
+\item What is the joint PDF of $X+Y XY$?
 \item Compute $\P{X+Y\leq 1, XY\leq 2/9}$.
 \end{enumerate}
 \end{exercise}
@@ -54,8 +54,10 @@ Let $X, Y$ iid $\sim \Unif{[0,1]}$.
 \subsection{Coding skills}
 \label{sec:coding-skills-1}
 
+\paragraph{Ping pong balls}
 
-\begin{exercise}\label{ex:2}
+
+
 How many ping pong balls fit into an Airbus Beluga?
 One way to answer this is as follows.
 According to this \href{https://en.wikipedia.org/wiki/Airbus\_Beluga}{wikipage} the cargo volume $V$ of this airplane is $1500 \m^{3}$.
@@ -79,20 +81,42 @@ What is now the mean of $N = V/v$ and its std?
 In fact, finding the closed form expression for the distribution of $N$ is not entirely simple.
 However, with simulation it's easy to get an estimate.
 
-\begin{enumerate}
-\item How does this exercise relate to BH.8.11 and BH.8.12? What is similar, what are crucial differences?
-\item Use the documentation of the \texttt{norm} (\texttt{rnorm})function of python (R) to explain we we set the scale as we do.
-  Relate this to location-scale discussion in BH.
-\item  Explain lines 8 and 11 of the python code or lines 5 and 8 of the R code. (If you are interested in both languages, also comment on the difference)
-\item Use the code below to provide these estimates.
-\item Contrary to BH.7.1.25 if you run the code below, you'll see that $\E N < \infty$, and, in fact, very near to the deterministic answer.
+\begin{exercise}\label{ex:2}
+ How does this exercise relate to BH.8.11 and BH.8.12? What is similar, what are crucial differences?
+\end{exercise}
+
+\begin{exercise}
+Use the documentation of the \texttt{norm} (\texttt{rnorm})function of python (R) to explain why we set the scale as we do.
+Relate this to location-scale discussion in BH.
+
+\begin{solution}
+\end{solution}
+\end{exercise}
+
+\begin{exercise}
+Explain lines 8 and 11 of the python code or lines 5 and 8 of the R code. (If you are interested in both languages, also comment on the difference)
+\begin{solution}
+\end{solution}
+\end{exercise}
+
+\begin{exercise}
+Use the code below to provide the estimates.
+\begin{solution}
+\end{solution}
+\end{exercise}
+
+\begin{exercise}
+Contrary to BH.7.1.25 if you run the code below, you'll see that $\E N < \infty$, and, in fact, very near to the deterministic answer.
 But isn't this strange?
 We divide two normal random variables, just like BH.7.1.25, but there the expectation is infinite.
 Comment on the difference.
-\end{enumerate}
+\begin{solution}
+\end{solution}
+\end{exercise}
 
 
-The numerical results suggest the interesting guess $\V N \approx \V V * \V v$, but  is this true more generally? In~\cref{ex:3} we research this problem in more detail.
+The numerical results suggest the interesting guess $\V N \approx \V V * \V v$, but is this true more generally?
+In~\cref{sec:challenges-1} we study this problem in more detail.
 
 \begin{minted}[]{python}
 import numpy as np
@@ -128,12 +152,14 @@ paste(mean(N), sd(N))
 2500/33.5
 sqrt(500*0.5)
 \end{minted}
-\end{exercise}
 
-\begin{exercise}
-We start from BH.8.27 (which you have to read now).  We are interested in the difference between the distribution of $X+Y+Z$ and the normal distribution.
 
-Let's first do a simulation.
+
+\paragraph{Sums of RVS}
+
+We start from BH.8.27 (which you have to read now).  We are interested in the difference between the distribution of $X+Y+Z$ and the normal distribution. But why the normal distribution? As it turns out, the central limit law, see BH.10, states that the distribution of sums of r.v.s converge to the normal distribution (in a specific sense)
+
+Here some code to simulate.
 
 \begin{minted}[]{python}
 import numpy as np
@@ -147,24 +173,46 @@ sns.set()
 np.random.seed(3)
 
 k = 3
-Z_exact = norm(loc=k / 2, scale=np.sqrt(k / 12))
+Zexact = norm(loc=k / 2, scale=np.sqrt(k / 12))
 X = np.arange(0, 3, 0.1)
 
 XYZ = np.random.uniform(size=(4000, k))
 # print(XYZ)  # if you want to see it.
 Z = XYZ.sum(axis=1)
 sns.distplot(Z)
-plt.plot(X, Z_exact.pdf(X))
+plt.plot(X, Zexact.pdf(X))
 plt.show()
 \end{minted}
 
 
-\begin{enumerate}
-\item What is shape of ~XYZ~ in the code below, i.e., how many rows and columns does it have? If you don't know, run the code, and print it.
-\item What is the shape of ~Z~?
-\item Explain the values for ~loc~ and ~shape~ in ~Z_exact~. (Read the documentation of ~scipy.stats.norm~ on the web is necessary.) To which definition in BH does this loc-scale transformation relate?
-\item Change the seed to your student id, or any other number you like, run the code, and include a graph. Explain what you see.
-\end{enumerate}
+\begin{exercise}
+What is the shape of \verb|XYZ| in the code above, i.e., how many rows and columns does it have? If you don't know, run the code, and print it.
+\begin{solution}
+\end{solution}
+\end{exercise}
+
+\begin{exercise}
+What is the shape (rows and colums) of \verb|Z|?
+\begin{solution}
+\end{solution}
+\end{exercise}
+
+\begin{exercise}
+Explain the values for \verb|loc|~ and \verb|shape| in \verb|Zexact|.
+  (Read the documentation of scipy.stats.norm on the web is necessary.)
+  To which definition in BH does this loc-scale transformation relate?
+\begin{solution}
+\end{solution}
+\end{exercise}
+
+
+\begin{exercise}
+Change the seed to your student id, or any other number you like, run the code, and include the graph produced by your simulation.
+Explain what you see.
+\begin{solution}
+\end{solution}
+\end{exercise}
+
 
 Now we do an exact computation.
 
@@ -179,46 +227,73 @@ sns.set()
 
 N = 200
 x = np.linspace(0, 2, 2 * N)
-f_x = np.ones(N) / N
-f_2 = np.convolve(f_x, f_x)
-f_3 = np.convolve(f_2, f_x)
+fx = np.ones(N) / N
+f2 = np.convolve(fx, fx)
+f3 = np.convolve(f2, fx)
 
 k = 3
 
-x = np.linspace(0, k, len(f_3))
-Z_exact = norm(loc=k / 2, scale=np.sqrt(k / 12))
+x = np.linspace(0, k, len(f3))
+Zexact = norm(loc=k / 2, scale=np.sqrt(k / 12))
 
 
-plt.plot(x, N * f_3, label="conv")
-plt.plot(x, Z_exact.pdf(x))
+plt.plot(x, N * f3, label="conv")
+plt.plot(x, Zexact.pdf(x))
 plt.legend()
 plt.show()
 \end{minted}
 
-\begin{enumerate}
-\item Read the documentation of ~np.convolve~. Why is it called like this?
-\item What is ~f_2~?
-\item What is ~f_3~?
-\item Why do we set ~k=3~?
-\item A bit harder, why do we plot ~N*f_3~, i.e., why do have to multiply with ~N~? Relate this to the meaning of $f(x)\d x$, where $f$ the density of some random variable.
-\item Yet a tiny bit harder, consider ~f_4 = np.convolve(f_3, f_x)~ and ~g_4 = np.convolve(f_2, f_2)~. Why are they, numerically speaking, the equal?
-\item An important problem is to deal with comparing floating point numbers): ~print(0 == 1e-40)~ gives as answer ~False~.
-  Ok.
-  But we know that floating point numbers in the computers are stored with less than 40 digits precision, so we want that ~0 == 1e-40~ is ~True~.
-  What would you do to realize this (hint, use ~np.isclose()~, explain what this does)?
-\end{enumerate}
+\begin{exercise}
+Read the documentation of ~np.convolve~. Why is it called like this?
+\begin{solution}
+\end{solution}
+\end{exercise}
 
+\begin{exercise}
+In the code, what is \texttt{f2}?
+\begin{solution}
+\end{solution}
+\end{exercise}
+
+\begin{exercise}
+What is \texttt{f3}?
+\begin{solution}
+\end{solution}
+\end{exercise}
+
+\begin{exercise}
+Why do we set \texttt{k=3}?
+\begin{solution}
+\end{solution}
+\end{exercise}
+
+\begin{exercise}
+A bit harder, why do we plot \texttt{N*f3}, i.e., why do have to multiply with \texttt{N}? Relate this to the meaning of $f(x)\d x$, where $f$ the density of some random variable.
+\begin{solution}
+\end{solution}
+\end{exercise}
+
+\begin{exercise}
+Yet a tiny bit harder, consider \texttt{f4 = np.convolve(f3, fx)} and \texttt{g4 = np.convolve(f2, f2)}. Why are they, numerically speaking,  equal?
+\begin{solution}
+\end{solution}
+\end{exercise}
+
+\begin{exercise}
+When you would compute the maximum of \texttt{np.abs(f4 -g4)} you would see that this is about $10^{-10}$, or so.
+Hence, a small number.
+This is not equal to 0, but we know that this is due to rounding effects.
+
+How can we use the function \texttt{np.isclose()} to get around this problem?
+(You should memorize from this question that you should take care when testing on whether floating point numbers are the same or not.)
+\begin{solution}
+\end{solution}
 \end{exercise}
 
 
 
-
-\end{document}
-
-
 \subsection{Challenges}
 \label{sec:challenges-1}
-
 
 
 \begin{exercise}\label{ex:3}
@@ -240,3 +315,5 @@ Overigens: de benadering zit hier in SCV(1/v) \approx SCV(v). Immers, SCV(V/v) =
 
 
 \end{exercise}
+
+\end{document}

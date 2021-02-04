@@ -637,7 +637,8 @@ Conclude that $M-L$ and $L$ are independent, and $M-L\sim Y$, hence $\E{M-L} = \
 I'll use the standard method, i.e., the fundamental bridge.
 In itself the idea is not difficult, but the technical details require attention, in particular the limits in the integrations.
 \begin{align}
-\P{L\leq x, M-L\leq y}
+F_{L, M-L}(x, y)
+&=\P{L\leq x, M-L\leq y}\\
 &= 2\P{X\leq x, Y-X \leq y, X \leq Y} \\
 &= 2\int_0^{\infty} \int_0^{\infty} \1{u\leq x, v-u\leq y, u \leq v} f_{X,Y}(u, v)  \d u \d v\\
 &= 2\int_0^{\infty} \int_0^{\infty} \1{u\leq x, v-u\leq y, u\leq v} \lambda^2e^{-\lambda u}e^{-\lambda v}\d u \d v\\
@@ -651,15 +652,14 @@ In itself the idea is not difficult, but the technical details require attention
 &= (1-e^{-\lambda y}) ( -e^{-2\lambda u}) \biggr|_0^{x} \\
 &= (1-e^{-\lambda y})(1- e^{-2\lambda x}).
 \end{align}
-
-Hence, $F_{L,M-L}(x,y) = F_Y(y) F_L(x)$. So the CDF factors as a function of $x$ only and a function of $y$ only. This implies that $L$ and $M-L$ are independent, and moreover that $F_{M-L}(y) =  F_Y(y)$, so $M-L \sim Y$. We can also see this from the joint PDF: 
-\begin{align} 
+Hence, $F_{L,M-L}(x,y) = F_Y(y) F_L(x)$. So the CDF factors as a function of $x$ only and a function of $y$ only. This implies that $L$ and $M-L$ are independent, and moreover that $F_{M-L}(y) =  F_Y(y)$, so $M-L \sim Y$. We can also see this from the joint PDF:
+\begin{align}
 f_{L, M-L}(x,y) &= \partial_x \partial_y (F_Y(y) F_L(x)) = f_Y(y) f_L(x),
 \end{align}
-so the joint PDF (of course) also factors. The independence now follows from BH 7.1.21. 
-%but it is also okay to conclude it directly from the CDF factoring as a function of $x$ only and a function of $y$ only. 
+so the joint PDF (of course) also factors. The independence now follows from BH 7.1.21.
+%but it is also okay to conclude it directly from the CDF factoring as a function of $x$ only and a function of $y$ only.
 Because $L$ and $M-L$ are independent, the conditional density equals the marginal density:
-\begin{align} 
+\begin{align}
 f_{M-L|L}(y|x) &= \frac{f_{L, M-L}(x, y)}{f_L(x)} = \frac{f_Y(y) f_L(x)}{f_L(x)} = f_Y(y).
 \end{align}
 \end{solution}
