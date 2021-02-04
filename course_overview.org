@@ -139,6 +139,7 @@ Here is a list of good, and important, advice when making the exercises.
 - There are 6 assignments, see the table above.
 - You have to work another partner  every week. The reason behind this is to help all of you expand your network, which we find very important in the current situation. We realize this is perhaps not what all of you like, but this seems the best we can do to really help you get started and work with other students. You should also know that in professional life you will often have to work in different teams and with many different people. You'd better learn such skills early in your career.
 - The due dates are  simple: turn in the assignment for that week  before Friday 23.59h (so just before Saturday).
+- We provide a document =sources/assignment-answer-template.tex= that you may find helpful; it provides a basic LaTeX document that you can use as starting point.
 
 * Questions
 
