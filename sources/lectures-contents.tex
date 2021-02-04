@@ -75,7 +75,7 @@ By the fundamental bridge,
 \end{solution}
 \end{exercise}
 
-Suppose $p_{X,Y}(i,j) = c \sum_{i,j} \1{i=j}\1{1\leq i \leq 4}$.
+Suppose $p_{X,Y}(i,j) = c \1{i=j}\1{1\leq i \leq 4}$.
 
 
 \begin{exercise}
@@ -86,7 +86,7 @@ $c=1/4$ because there are just four possible values for $i$ and $j$.
 \end{exercise}
 
 \begin{exercise}
-What is $F_{x}(i)$?
+What is $F_{X}(i)$?
 What is $F_{Y}(j)$?
 \begin{solution}
 Use marginalization:
@@ -104,7 +104,7 @@ F_Y(j) &= j/4.
 \begin{exercise}
 Are $X$ and $Y$ dependent?  If so, why, because $1=F_{X,Y}(4,4)= F_X(4)F_Y(4)$?
 \begin{solution}
-  The equality in the equation must hold for all $i,j$, not only for $i=j=4$.
+  The equality in the question must hold for all $i,j$, not only for $i=j=4$.
   If you take $i=j=1$, you'll see immediately that $F_{X,Y}(1,1)\neq F_X(1)F_Y(1)$:
   \begin{align}
     \label{eq:23}
@@ -181,7 +181,7 @@ What is the expected amount lost, i.e., $\E{ \max{X+Y - 5,0}}$?
 Here is yet another.
 Two patients arrive in to the first aid of a hospital.
 They need $X$ and $Y$ amounts of service, and there is one doctor.
-When both patients arrive at 2 pm, what is the probability that the doctor has work in overtime (after 5 pm)n, i.e., $\P{X+Y > 5- 2}$?
+When both patients arrive at 2 pm, what is the probability that the doctor has work in overtime (after 5 pm), i.e., $\P{X+Y > 5- 2}$?
 \end{enumerate}
 \end{remark}
 
