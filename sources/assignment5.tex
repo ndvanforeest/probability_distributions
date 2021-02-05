@@ -9,7 +9,7 @@
 
 \section{Bayes' Billiards}
 \label{sec:orgf93559e}
-Take \(n=100\) samples. 
+Take \(n=100\) samples.
 
 \subsection{One coin}
 \label{sec:org1e9a031}
@@ -35,6 +35,93 @@ Take \(n=100\) samples.
 \item Make the histogram \(\P{X=k} = \P{X=k|C = i}\P{C=i}\), where \(\P{C=i} = 1/5\).
 \end{enumerate}
 
+
+\subsection{Coding skills}
+\label{sec:coding-skills-1}
+
+\paragraph{The mystery box}
+
+We use  simulation to solve  BH.9.7.
+Read it now, i.e., before reading the text below, then read the code below.
+
+
+In the questions we ask you to explain what the code does.
+There are lots of print statements that have been commented out, but we left them in for you to include while experimenting with the code to see how the code works.
+(I often use print statements of intermediate results when writing a program, just to see whether I am still on track.
+Once I checked, I remove them, because they clutter the looks of the code.)
+
+\begin{minted}[]{python}
+
+\end{minted}
+
+
+\begin{minted}[]{python}
+import numpy as np
+from scipy.stats import uniform
+import matplotlib.pyplot as plt
+
+np.random.seed(3)
+
+
+N = 1000
+a, b = 0, 1000_000
+V = uniform(a, b).rvs(N)
+
+x_range = np.linspace(b / 5, b / 2, num=50)
+y = np.zeros_like(x_range)
+
+for i, b in enumerate(x_range):
+    payoff = (V - b) * (b >= V / 4)
+    y[i] = payoff.mean()
+
+
+plt.plot(x_range, y)
+plt.show()
+\end{minted}
+
+As an aside, this code is amazingly short, isn't it?
+
+\begin{exercise}
+Use the scipy documentation to explain why $V\sim\Unif{[0,10^{6}]}$.
+\begin{solution}
+\end{solution}
+\end{exercise}
+
+
+
+\begin{exercise}
+What are the smallest and the largest value of \verb|x_range|.
+\begin{solution}
+\end{solution}
+\end{exercise}
+
+
+\begin{exercise}
+Change the acceptance threshold from to $V/4$ to $V/5$ (or $V/6$, what ever you like), and make a graph of the pay offs. Include the graph in your report.
+\begin{solution}
+\end{solution}
+\end{exercise}
+
+\begin{exercise}
+or the payoff to e.g $\sqrt{V-b}$, or some other weird function like the sine, what is the influence on the mean and std of the payoff?
+\begin{solution}
+\end{solution}
+\end{exercise}
+
+
+
+\begin{exercise}
+For N small, e.g. N=10, you can get quite strange values. Why is that?
+\begin{solution}
+\end{solution}
+\end{exercise}
+
+
+\begin{exercise}
+Suppose after seeing the graph of the payoffs, and this graph would only increase, or decrease, how would you change \verb|x_range|?
+\begin{solution}
+\end{solution}
+\end{exercise}
 
 
 \end{document}
