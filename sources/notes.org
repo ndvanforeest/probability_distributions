@@ -123,7 +123,7 @@ where I use the independence of $X$ and $Y$. Here is the verification. The joint
 \end{align*}
 To compute this, /you/ should apply the fundamental bridge on the indicator $\1{u+v\leq t, u \leq x}$ (Once you read BH.7.2, you'll see that this is the same as 2D LOTUS applied to the function $g(u,v) =\1{u+v\leq t, u \leq x}$). Specifically,  /you/ should show that
 \begin{align*}
-\P{T\leq t, X\leq x} = \iint \1{u+v\leq t, u \leq x} f_{X,Y}(x,y) \d x \d y = 1 - e^{-\lambda x} - \lambda x e^{-\lambda t};
+\P{T\leq t, X\leq x} = \iint \1{u+v\leq t, u \leq x} f_{X,Y}(u,v) \d u \d v = 1 - e^{-\lambda \min\{t,x\}} - \lambda \min\{t,x\} e^{-\lambda t};
 \end{align*}
 recall, $f_{X,Y}(x,y)=\lambda^2e^{-\lambda(x+y)}$.  (If you find this hard, check =memoryless_excursions.pdf=.)
 Then,
