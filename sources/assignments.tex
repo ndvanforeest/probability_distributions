@@ -7,9 +7,23 @@
 \newcommand{\wk}[1]{\textbf{#1}}
 
 
-\usepackage[nosolutions]{optional}
+
+
+%\usepackage[nosolutions]{optional}
+\usepackage[justhints]{optional}
+%\usepackage[all-solutions-at-end]{optional}
 \usepackage{preamble}
 \usepackage{a4wide}
+
+\opt{justhints}{
+\Opensolutionfile{hint}
+}
+
+\opt{all-solutions-at-end}{
+\Opensolutionfile{hint}
+\Opensolutionfile{ans}
+}
+
 
 
 \author{Nicky D. van Foreest and student assistents}
@@ -67,13 +81,32 @@ The rules:
 \end{enumerate}
 
 \subfile{assignment1}
-\end{document}
+% \subfile{assignment2}
+% \subfile{assignment3}
+% \subfile{assignment4}
+% \subfile{assignment5}
+% \subfile{assignment6}
 
-\subfile{assignment2}
-\subfile{assignment3}
-\subfile{assignment4}
-\subfile{assignment5}
-\subfile{assignment6}
+
+\opt{justhints}{
+\Closesolutionfile{hint}
+\clearpage
+\section{Hints}
+\input{hint}
+}
+
+\opt{all-solutions-at-end}{
+\Closesolutionfile{hint}
+\Closesolutionfile{ans}
+\clearpage
+\section{Hints}
+\input{hint}
+\clearpage
+\section{Solutions}
+\input{ans}
+}
+
+
 \end{document}
 
 

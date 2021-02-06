@@ -47,6 +47,14 @@
 }
 
 
+\opt{justhints}{
+\usepackage{answers}
+\Newassociation{hint}{Hint}{hint}
+\renewcommand{\Hintlabel}[1]{\textbf{h.#1.}}
+\excludecomment{solution}
+}
+
+
 
 \opt{nosolutions}{
 \excludecomment{hint}

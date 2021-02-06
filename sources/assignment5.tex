@@ -43,16 +43,8 @@ Take \(n=100\) samples.
 
 We use  simulation to solve  BH.9.7.
 Read it now, i.e., before reading the text below, then read the code below.
+Note how short  this code is;  amazing, isn't it?
 
-
-In the questions we ask you to explain what the code does.
-There are lots of print statements that have been commented out, but we left them in for you to include while experimenting with the code to see how the code works.
-(I often use print statements of intermediate results when writing a program, just to see whether I am still on track.
-Once I checked, I remove them, because they clutter the looks of the code.)
-
-\begin{minted}[]{python}
-
-\end{minted}
 
 
 \begin{minted}[]{python}
@@ -79,7 +71,11 @@ plt.plot(x_range, y)
 plt.show()
 \end{minted}
 
-As an aside, this code is amazingly short, isn't it?
+
+\begin{minted}[]{R}
+
+\end{minted}
+
 
 \begin{exercise}
 Use the scipy documentation to explain why $V\sim\Unif{[0,10^{6}]}$.
@@ -90,23 +86,24 @@ Use the scipy documentation to explain why $V\sim\Unif{[0,10^{6}]}$.
 
 
 \begin{exercise}
-What are the smallest and the largest value of \verb|x_range|.
+What are the smallest and the largest value of \verb|x_range|?
+\begin{solution}
+\end{solution}
+\end{exercise}
+
+\begin{exercise}
+Run the code above and make a graph. Include the graph in your report, and explain what you see in the graph. For instance, is there a maximum? If so, can you explain where the maximum occurs? Can you explain how the maximum should be?
 \begin{solution}
 \end{solution}
 \end{exercise}
 
 
 \begin{exercise}
-Change the acceptance threshold from to $V/4$ to $V/5$ (or $V/6$, what ever you like), and make a graph of the pay offs. Include the graph in your report.
+Suppose after seeing the graph of the payoffs, and this graph would only increase, or decrease, how would you change \verb|x_range|? Do you expect to see a maximum?
 \begin{solution}
 \end{solution}
 \end{exercise}
 
-\begin{exercise}
-or the payoff to e.g $\sqrt{V-b}$, or some other weird function like the sine, what is the influence on the mean and std of the payoff?
-\begin{solution}
-\end{solution}
-\end{exercise}
 
 
 
@@ -118,10 +115,21 @@ For N small, e.g. N=10, you can get quite strange values. Why is that?
 
 
 \begin{exercise}
-Suppose after seeing the graph of the payoffs, and this graph would only increase, or decrease, how would you change \verb|x_range|?
+Change the acceptance threshold from to $V/4$ to $V/5$ (or $V/6$, or some other value you like), and make a graph of the payoffs.
+Include the graph in your report.
 \begin{solution}
 \end{solution}
 \end{exercise}
+
+\begin{exercise}
+Change the payoff function to e.g $\sqrt{V-b}$, or some weird function that you like particularly such as $\sin |V-b|$ (any non-trivial function goes).
+Make a graph of the  mean and std of the payoff. Can you explain your graph?
+\begin{solution}
+\end{solution}
+\end{exercise}
+
+\paragraph{Kelly makes bets}
+
 
 
 \end{document}

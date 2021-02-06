@@ -47,7 +47,7 @@ Let $X$ be uniformly distributed on the set $\{0,1,2\}$ and let $Y \sim \Bern{1/
 \begin{enumerate}
 \item Present a contingency table for the $X$ and $Y$.
 \item What is the interpretation of the column sums the table?
-\item What is the interpretation of the row sums of the table? 
+\item What is the interpretation of the row sums of the table?
 \item Suppose you change some of the entries in the table. Are $X$ and $Y$ still independent?
 \end{enumerate}
 \end{exercise}
@@ -74,7 +74,9 @@ Correct? We have two r.v.s $X$ and $Y$ on $\R^{+}$. It is given that $F_{X,Y}(x,
 I select a random guy from the street, his height $X\sim\Norm{1.8, 0.1}$, and I select a random woman from the street, her height is $Y\sim\Norm{1.7, 0.08}$.
 I claim that since I selected the man and the woman independently, their heights are independent.
 Briefly comment on this claim.
-(Hint, from this exercise you should memorize this: \textbf{independence is a property of the joint CDF, not of the rvs}.)
+\begin{hint}
+From this exercise you should memorize this: \textbf{independence is a property of the joint CDF, not of the rvs}.
+\end{hint}
 \end{exercise}
 
 
@@ -240,37 +242,67 @@ I
 
 You are free to chose one of these problems, but of course you can do both if you like.
 
-\subsubsection{A unique property of the Poisson distribution}
+\paragraph{A uniqueness property of the Poisson distribution}
 
-\begin{exercise} %wk
-Consider again the chicken-egg story (BH 7.1.9): A chicken lays a random number of eggs $N$ an each egg independently hatches with probability $p$ and fails to hatch with probability $q = 1-p$. Formally, $X|N\sim\Bin{N,p}$.
-For $N \sim \Pois{\lambda}$ it is shown in BH 7.1.9 that $X$ and $Y$ are independent.
-This exercise asks for the converse: showing that the independence of $X$ and $Y$ implies that $N \sim \Pois{\lambda}$ for some $\lambda$. 
-Hence, the Poisson distribution is quite special: it is the only distribution for which the number of hatched eggs doesn't tell you anything about the number of unhatched eggs.
+Let $0 < p < 1$. Let $N$ be an r.v. taking non-negative integer values with $P(N > 0) > 0$.
+Assume also that  $X|N\sim\Bin{N,p}$ and that $N-X$ is independent of $X$.
 
-Let $0 < p < 1$. Let $N$ be an r.v. taking non-negative integer values with $P(N > 0) > 0$. 
-Assume that  $X|N\sim\Bin(N,p)$ and that $N-X$ is independent of $X$.
+\begin{exercise}
+ Use the assumption that $\P{N>0}>0$ to prove that $N$ has support $\mathbb N$, i.e. $\P{N=n} > 0$ for all $n \in \mathbb N$. Note: $0 \in \mathbb N$.
+\begin{solution}
+\end{solution}
+\end{exercise}
 
-\begin{enumerate}
-\item Prove that $N$ has support $\mathbb N$, i.e. that $P(N=n) > 0$ for all $n \in \mathbb N$. Note: $0 \in \mathbb N$. 
-\item Write $Y = N-X$. Prove that
- $$P(X=x)P(Y=y) = \binom{x+y}{x} p^x (1-p)^y P(N=x+y).$$ 
-\item  Prove that $N$ is Poisson distributed. \\
-  \textit{Hint}: Use the relation of part 2 twice to express $P(N=n+1)$ in terms of $P(N=n)$.
-\end{enumerate}
+\begin{exercise}
+Write $Y = N-X$. Prove that
+\begin{equation}
+\label{eq:1}
+\P{X=x}\P{Y=y} = {x+y \choose x} p^x (1-p)^y \P{N=x+y}.
+\end{equation}
+\begin{solution}
+\end{solution}
 \end{exercise}
 
 
-\subsubsection{Improper integrals and the Cauchy distribution}
+\begin{exercise}
+Prove that $N$ is Poisson distributed.
+\begin{hint}
+Use the relation of the previous exercise to show that
+\begin{equation}
+  \label{eq:3}
+P(N=n+1) = \frac{\lambda}{1+x} = P(N=n).
+\end{equation}
+\textit{Bigger hint:} Fill in $y=0$ in the LHS and RHS of~\cref{eq:1}; call this expression 1. Then fill in $y=1$ to a obtain a second expression. Divide these two expressions and note that $\P{X=x}$ cancels. Finally,  define
+\begin{equation}
+\label{eq:2}
+\lambda = \frac{\P{Y=1}}{(1-p)\P{Y=0}}.
+\end{equation}
+\end{hint}
+\begin{solution}
+\end{solution}
+\end{exercise}
 
-\begin{exercise} %wk
-This problem challenges your integration skills and lets you think about the subtleties of integrating a function over an infinite domain. Such integrals are called improper integrals. 
 
-Assume that $X$ has the Cauchy distribution. Recall that $\E{X}$ does not exist.
-\begin{enumerate}
-\item Why does $\E{\frac{|X|}{X^2+1}}$ exist? Find its value.
-\item Explain why part 1 implies that $\E{\frac{X}{X^2+1}}$ exists. Then find its value.
-\end{enumerate}
+
+\paragraph{Improper integrals and the Cauchy distribution}
+
+This problem challenges your integration skills and lets you think about the subtleties of integrating a function over an infinite domain.
+(Such integrals are called improper integrals.)
+
+Assume that $X$ has the Cauchy distribution.
+Recall that $\E{X}$ does not exist (hence, it is not automatic that the expectation of a some arbitrary r.v.
+exists).
+\begin{exercise}
+Why does $\E{\frac{|X|}{X^2+1}}$ exist? Find its value.
+\begin{solution}
+\end{solution}
+\end{exercise}
+
+
+\begin{exercise}
+Explain why the previous exercise implies that $\E{\frac{X}{X^2+1}}$ exists. Then find its value.
+\begin{solution}
+\end{solution}
 \end{exercise}
 
 
