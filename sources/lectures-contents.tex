@@ -192,6 +192,126 @@ Read the problems of \verb|memoryless\_excursions.pdf|.
 All the problems in that document relate to topics discussed in Sections BH.7.1 and BH.7.2, and quite a lot of topics you have seen in the previous course on probability theory.
 
 
+\section{Lecture 3}
+
+\begin{exercise}
+We ask a married woman on the street her height $X$. What does this tell us about the height $Y$ of her spouse? We suspect that taller/smaller people choose  taller/smaller partners, so, given $X$, a simple estimator $\hat Y$ of $Y$ is given by
+\begin{equation*}
+  \hat Y = a X + b.
+\end{equation*}
+But how to determine $a$ and $b$? A common method to find $a$ and $b$ such that the function
+\begin{equation*}
+  f(a,b) = \E{(Y-\hat Y)^2}
+\end{equation*}
+is minimized. Show that the optimal values are such that
+\begin{align*}
+  \hat Y = \E Y + \rho \V Y (X - \E X),
+\end{align*}
+where $\rho$ is the correlation between $X$ and $Y$.
+
+\begin{solution}
+We take the partial derivatives of $f$ with respect to $a$ and $b$, and solve for $a$ and $b$.
+  \begin{align*}
+f(a,b) &= \E{(Y-\hat Y)^2} \\
+ &= \E{(Y-a X - b)^2} \\
+ &= \E{Y^{2}} - 2a\E{YX} - 2b\E Y + a^{2}\E{X^2} + 2 ab \E X + b^{2}\\
+\partial_{a} f &=-2 \E{YX} + 2a \E{X^2} + 2 b \E X = 0 \\
+&\implies a \E{X^2} =  \E{YX}  -  b \E X \\
+\partial_{b} f &=-2 \E{Y}  + 2 a \E X  + 2 b= 0 \\
+& \implies  b = \E Y - a \E{X}\\
+a \E{X^2} &=  \E{YX}  -  \E X (\E Y - a \E X) \\
+&\implies  a (\E{X^{2}} - \E X \E X)  = \E{YX} - \E X \E Y  \\
+&\implies a = \frac{\cov{X,Y}}{\V X} = \rho \V Y\\
+b &= \E Y - \rho \V Y \E X\\
+\hat Y &= a X + b \\
+&= \rho \V Y X + \E Y - \rho \V Y \E X \\
+&= \rho \V Y (X-\E X)  + \E Y.
+  \end{align*}
+What a neat formula! Memorize the derivation, at least the structure. You'll come across many more optimization problems.
+
+What if $\rho=0$?
+\end{solution}
+\end{exercise}
+
+
+\begin{exercise}
+$N$ people throw their hat in a box. After shuffling, each of them takes out a hat at random. How many people do you expect to take out their own hat (i.e., the hat they put in the box); what is the variance? In BH.7.46 you have to solve this analytically. In the exercise here you have to write a simulator for compute the expectation and variance.
+\begin{solution}
+Let us first do one run.
+\begin{pyblock}[][numbers=left,frame=lines]
+import numpy as np
+from numpy.random import uniform
+
+np.random.seed(3)
+
+N = 4
+X = np.arange(N)
+np.random.shuffle(X)
+print(X)
+print(np.arange(N))
+print((X == np.arange(N)))
+print((X == np.arange(N)).sum())
+\end{pyblock}
+Here are the results of the print statements: $X = \py{X}$. The matches are \py{(X == np.arange(N))}; we see that $X[1] = 1$ (recall, python arrays start at index 0, not at 1, so $X[1]$ is the second element of $X$, not the first), so that the second person picks his own hat. The number of matches is therefore 1 for this simulation.
+
+Now put the people to work, and let them pick hats for $50$ times.
+\begin{pyblock}[][numbers=left,frame=lines]
+import numpy as np
+from numpy.random import uniform
+
+np.random.seed(3)
+
+num_samples = 50
+N = 5
+
+res = np.zeros(num_samples)
+for i in range(num_samples):
+    X = np.arange(N)
+    np.random.shuffle(X)
+    res[i] = (X == np.arange(N)).sum()
+
+print(res.mean(), res.var())
+\end{pyblock}
+Here is the number of matches for each round: \py{res}
+The mean and variance are as follows: $\E X = \py{res.mean()}$ and $\V X = \py{res.var()}$.
+
+For your convenience, here's the R code
+\begin{minted}[]{R}
+# set seed such that results can be recreated
+set.seed(42)
+
+# number simulations and people
+numSamples <- 50
+N <- 5
+
+# initialize empty result vector
+res <- c()
+
+# for loop to simulate repeatedly
+for (i in 1:numSamples) {
+
+  # shuffle the N hats
+  x <- sample(1:N)
+
+  # number of people picking own hat (element by element the vectors x and
+  # 1:N are compared, which yields a vector of TRUE and FALSE, TRUE = 1 and
+  # FALSE = 0)
+  correctPicks <- sum(x == 1:N)
+
+  # append the result vector by the result of the current simulation
+  res <- append(res, correctPicks)
+}
+
+# printing of observed mean and variance
+print(mean(res))
+print(var(res))
+\end{minted}
+
+
+\end{solution}
+\end{exercise}
+
+
 
 \opt{all-solutions-at-end}{
 \clearpage
