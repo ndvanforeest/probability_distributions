@@ -143,7 +143,7 @@ The numbers are for you to compute.
 \end{exercise}
 
 
-Now take $X, Y$ iid $\sim\Unif{\{1,2,3,4\}}$ (so now no longer $p_{X,Y}(i,j) \neq \1{i=j}\1{1\leq i \leq 4}$).
+Now take $X, Y$ iid $\sim\Unif{\{1,2,3,4\}}$ (so now no longer $p_{X,Y}(i,j) = \1{i=j}\1{1\leq i \leq 4}$).
 
 \begin{exercise}
 What is $\P{Z=4}$?
@@ -205,12 +205,12 @@ But how to determine $a$ and $b$? A common method to find $a$ and $b$ such that 
 \end{equation*}
 is minimized. Show that the optimal values are such that
 \begin{align*}
-  \hat Y = \E Y + \rho \V Y (X - \E X),
+  \hat Y = \E Y + \rho \frac{\sigma_Y}{\sigma_X} (X - \E X),
 \end{align*}
-where $\rho$ is the correlation between $X$ and $Y$.
+where $\rho$ is the correlation between $X$ and $Y$ and where $\sigma_X$ and $\sigma_Y$ are the standard deviations of $X$ and $Y$ respectively.
 
 \begin{solution}
-We take the partial derivatives of $f$ with respect to $a$ and $b$, and solve for $a$ and $b$.
+We take the partial derivatives of $f$ with respect to $a$ and $b$, and solve for $a$ and $b$. In the derivation, we use that $\rho = \frac{\cov{X,Y}}{\sqrt{\V X \V Y}} = \frac{\cov{X,Y}}{\sigma_X \sigma_Y}$.
   \begin{align*}
 f(a,b) &= \E{(Y-\hat Y)^2} \\
  &= \E{(Y-a X - b)^2} \\
@@ -221,11 +221,11 @@ f(a,b) &= \E{(Y-\hat Y)^2} \\
 & \implies  b = \E Y - a \E{X}\\
 a \E{X^2} &=  \E{YX}  -  \E X (\E Y - a \E X) \\
 &\implies  a (\E{X^{2}} - \E X \E X)  = \E{YX} - \E X \E Y  \\
-&\implies a = \frac{\cov{X,Y}}{\V X} = \rho \V Y\\
-b &= \E Y - \rho \V Y \E X\\
+&\implies a = \frac{\cov{X,Y}}{\V X} = \rho \frac{\sigma_Y}{\sigma_X}\\
+b &= \E Y - \rho \frac{\sigma_Y}{\sigma_X}\E X\\
 \hat Y &= a X + b \\
-&= \rho \V Y X + \E Y - \rho \V Y \E X \\
-&= \rho \V Y (X-\E X)  + \E Y.
+&= \rho \frac{\sigma_Y}{\sigma_X} X + \E Y - \rho\frac{\sigma_Y}{\sigma_X} \E X \\
+&=  \E Y + \rho \frac{\sigma_Y}{\sigma_X} (X-\E X).
   \end{align*}
 What a neat formula! Memorize the derivation, at least the structure. You'll come across many more optimization problems.
 
