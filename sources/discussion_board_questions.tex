@@ -30,16 +30,111 @@ EBP038A05
 \section{Chapter 7}
 \label{sec:chapter-7}
 
+%\begin{exercise}
+%Here is an example question.
+%\begin{hint}
+%  And this is a hint.
+%\end{hint}
+%\begin{solution}
+%  Here is an example solution.
+%\end{solution}
+%\end{exercise}
+
 \begin{exercise}
-Here is an example question.
-\begin{hint}
-  And this is a hint.
-\end{hint}
+Can you elaborate on the solutions of Ex 1.4 and 1.5 of Lecture 1? 
+Specifically, suppose $p_{X,Y}(i,j) = c \1{i=j}\1{1\leq i \leq 4}$. 
+
+What is $c$? What is $F_{X}(i)$? What is $F_{Y}(j)$?
+
 \begin{solution}
-  Here is an example solution.
+Since the joint PMF should sum to 1 when the sum is taken over all possible values of $X$ and $Y$, we find the following equation: 
+\begin{equation}
+c \sum_i \sum_j \1{i=j}\1{1\leq i \leq 4}  = \sum_i \sum_j c \1{i=j}\1{1\leq i \leq 4} =   \sum_i \sum_j p_{X,Y}(i,j) = 1. \label{week1ex1eq1}
+\end{equation}
+The question is now what the  possible values of $X$ and $Y$ are. 
+
+The indicator $\1{1\leq i \leq 4}$ is equal to 0 if $i$ does not satisfy the inequality $1\leq i \leq 4$, so  $p_{X,Y}(i,j) = 0$ if  $i$ does not satisfy the inequality $1\leq i \leq 4$. Hence, the only possible values for $i$ are $1, 2, 3$ and $4$.
+
+The indicator $\1{i=j}$ is equal to 0 if $i$ and $j$ are not equal. Since $1\leq i \leq 4$, we must also have $1\leq j \leq 4$. So we can write \eqref{week1ex1eq1} as
+\begin{equation}
+c \sum_{i=1}^4 \left[\sum_{j=1}^4 \1{i=j}\1{1\leq i \leq 4}\right]  = 1.  \label{week1ex1eq2}
+\end{equation}
+Let us now look how this inner summation looks for a specific value of $i$, say $i=1$. So we take this summation and replace all occurences of $i$ by 1:
+\begin{align*}
+\sum_{j=1}^4 \1{1=j}\1{1\leq 1 \leq 4} &=  \sum_{j=1}^4 \1{1=j} \\
+&= \1{1=1} + \1{1=2} + \1{1=3}+ \1{1=4} \\
+&= 1 + 0 + 0 + 0 = 1.
+\end{align*}
+Here I first use that $\1{1\leq 1 \leq 4}  = 1$ because $1\leq 1 \leq 4$ is true, and then I write out the sum by considering the four possible values 
+for $j$. 
+
+We can do this in the same way for $i=2$. So we take this summation and replace all occurences of $i$ by 1:
+\begin{align*}
+\sum_{j=1}^4 \1{2=j}\1{1\leq 2 \leq 4} &=  \sum_{j=1}^4 \1{2=j} \\
+&= \1{2=1} + \1{2=2} + \1{2=3}+ \1{2=4} \\
+&= 0 + 1 + 0 + 0 = 1.
+\end{align*}
+
+In the same way, the sum will also equal 1 for $i=3$ and $i=4$. The reason is that, for a given $i$, there is exactly one value of $j$ for which the indicator $ \1{i=j}$ equals 1.
+
+This means that \eqref{week1ex1eq2} reduces to 
+\begin{equation}
+c \sum_{i=1}^4 1 = 1. 
+\end{equation}
+Hence, $4c = 1$, so $c=\tfrac14$. This answers Exercise 1.4.
+
+For Exercise 1.5, we have to compute $F_{X}(i)$, i.e. the marginal CDF of $X$.  The following solution was given in the solution file of the lectures: 
+\begin{align}
+F_X(k) &=  F_{X,Y}(k, \infty ) = \sum_{i\leq k} \sum_j p_{X,Y}(i,j) \\
+ &= \frac{1}{4}\sum_{i\leq k} \sum_j \1{i=j}\1{1\leq i \leq 4}\\
+ &= \frac{1}{4}\sum_{i\leq k} \1{1\leq i \leq 4} \\
+&=k/4.
+\end{align}
+I will now explain each of these steps in more detail. The first equality is a way of writing that we sum over all possible values of the second index $j$. We could also write it as $P(X \leq k) = P(X \leq k, Y \leq \infty)$, which is true since $Y \leq \infty$ always holds.
+
+For the second equality, note that $F_{X,Y}(k, \infty ) = P(X \leq k, Y \leq \infty)$, so we have to sum over all possible values of $X$ that are at most $k$ and all possible values of $Y$.
+
+In the third equality, we simply fill in the given joint PMF.
+
+In the fourth equality, we again use that for a given $i$, there is exactly one value of $j$ for which the indicator $ \1{i=j}$ equals 1. Hence,
+\begin{align*}
+\sum_j \1{i=j}\1{1\leq i \leq 4} &= \1{1\leq i \leq 4} \sum_j \1{i=j}  = \1{1\leq i \leq 4}.
+\end{align*}
+Note that we can take $\1{1\leq i \leq 4}$ out of this summation because it does not depend on $j$. If this is still confusing, take a specific value of $i$ and work it out, like I did above.
+
+In the fifth and final step, I count the number of $i \leq k$ that satisfy $1 \leq i \leq 4$. Assuming that $k \leq 4$, we see that $i \leq k$ already implies that $i \leq 4$, so we count the number of integers $i$ that satisfy $1 \leq i \leq k$. There are exactly $k$ such integers, so the sum equals $k$ and hence the final answer is $k/4$ (for $1 \leq k \leq 4$). 
+
+This answer was quite long, but I hope it helps. Working with indicators can be tricky at first, but it is a very useful tool once you get used to them.
 \end{solution}
 \end{exercise}
 
+\begin{exercise}
+How can the joint PDF of three random variables $X, Y, Z$ be expressed in terms of conditional distributions? 
+Specifically, assume that $Y$ and $Z$ are conditionally independent given $X$. How can we then simplify the result and calculate the joint PDF of $Y, Z$? 
+
+\begin{solution}
+In general we can write 
+\begin{align}
+f_{X, Y, Z}(x,y,z) &= f_{Y, Z|X}(y, z|x) f_{X}(x) \\ 
+&= f_{Y|Z, X}(y|z, x) f_{Z|X}(z|x) f_{X}(x).  \label{week1ex2eq1}
+\end{align}
+The first equality is similar to the case with two random variables. In the second equality, we use that $ f_{Y, Z|X}(y, z|x)$ lives in a world where we know $X = x$; therefore the conditioning on $X$ should remain in both densities in the next line. Essentially, we use that conditional densities \textit{are} densities, so this is just the rule $ f_{Y|Z}(y|z) f_{Z}(z)$, but then with conditioning on $X$ added.
+
+Note that here I chose to condition on $X$ first and then on $Z$, but this is not the only possibility. In general, it depends on the problem what will be the most convenient variable to condition on. Here is an example with first conditioning on $Z$ and then on $Y$:
+\begin{align*}
+f_{X, Y, Z}(x,y,z) = f_{X|Y, Z}(x|y, z) f_{Y|Z}(y|z) f_{Z}(z).
+\end{align*}
+
+If  $Y$ and $Z$ are conditionally independent given $X$, then knowing $Z$ does not give any information about $Y$ if we already know $X$. In formulas, this means that $ f_{Y|Z, X}(y|z, x) =  f_{Y|X}(y|x)$. Hence, \eqref{week1ex2eq1} reduces to
+\begin{equation}
+f_{X, Y, Z}(x,y,z) = f_{Y|X}(y|x) f_{Z|X}(z|x) f_{X}(x).  
+\end{equation}
+We can then fill in the given PDF of $X$ and the PDFs of $Y$ given $X$ and $Z$ given $X$. To determine the joint PDF of $Y, Z$ only, we have to marginalize out $X$ and compute the integral
+\begin{equation}
+f_{Y, Z}(y,z) = \int_{-\infty}^{\infty} f_{Y|X}(y|x) f_{Z|X}(z|x) f_{X}(x) \d x.  
+\end{equation}
+\end{solution}
+\end{exercise}
 
 
 \opt{all-solutions-at-end}{
