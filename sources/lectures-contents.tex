@@ -458,7 +458,7 @@ See solution manual.
 \begin{exercise}
 Suppose $(X,Y)$ are bivariate normal distributed with mean vector $\mu = (\mu_X, \mu_Y) = (0,0)$, standard deviations $\sigma_X = \sigma_Y = 1$ and correlation $\rho_{XY}$ between $X$ and $Y$. Specify the joint pdf of $X$ and $X + Y$.
 \begin{solution}
-Define $V := X$ and $W := Y$. Observe that for any $t_V, t_W$, we have
+Define $V := X$ and $W := X + Y$. Observe that for any $t_V, t_W$, we have
 \begin{align}
     t_V V + t_W W &= t_V X + t_W (X + Y) \\
     &= (t_V + t_W) X + t_W Y.
@@ -491,16 +491,15 @@ and hence,
 \begin{align}
     \rho_{VW} := \corrr(V,W) &= \frac{\covv(V,W)}{\sqrt{\V{V}\V{W}}} \\
     &= \frac{1 + \rho_{XY}}{\sqrt{1 \cdot 2(1 + \rho_{XY})}} \\
-    &= \sqrt{\frac{1 + \rho}{2}}.
+    &= \sqrt{\frac{1 + \rho_{XY}}{2}}.
 \end{align}
 We have now specified all parameters of the bivariate normal distribution. This yields the following joint pdf:
 \begin{align}
-%    f_{V,W}(v,w) &= \frac{1}{2\pi \tau_{VW}} \Eexp\left(-\frac{1}{2 \tau_{VW}^2}(x^2 + y^2 - 2 \rho_{VW}xy)\right),
-    f_{V,W}(v,w) &= \frac{1}{2\pi \tau_{VW}} \E{\exp\left(-\frac{1}{2 \tau_{VW}^2}(x^2 + y^2 - 2 \rho_{VW}xy) \right)},
+    f_{V,W}(v,w) &= \frac{1}{2\pi \sigma_V \sigma_W \tau_{VW}} \exp\left(-\frac{1}{2 \tau_{VW}^2}\left(\left(\frac{v}{\sigma_V}\right)^2 + \left(\frac{w}{\sigma_W}\right)^2 - 2 \frac{\rho_{VW}}{\sigma_V \sigma_W} vw\right) \right),
 \end{align}
-where $\tau_{VW} := \sqrt{1 - \rho_{VW}^2} = \sqrt{1 - \frac{1 + \rho_{XY}}{2}} = \sqrt{\frac{1 - \rho_{XY}}{2}}$. Hence,
+where $\tau_{VW} := \sqrt{1 - \rho_{VW}^2} = \sqrt{1 - \frac{1 + \rho_{XY}}{2}} = \sqrt{\frac{1 - \rho_{XY}}{2}}$ and $\sigma_V = \sqrt{\V{V}} = 1$ and $\sigma_W = \sqrt{\V{W}} = \sqrt{2(1 + \rho_{XY})}$. Hence,
 \begin{align}
-    f_{V,W}(v,w) &= \frac{1}{\pi \sqrt{2(1 - \rho_{XY})}} \E{\exp\left(-\frac{1}{1 - \rho_{XY}}(x^2 + y^2 - \sqrt{2(1 + \rho_{XY})}xy)\right)}.
+    f_{V,W}(v,w) &= \frac{1}{2\pi \sqrt{1 - (\rho_{XY})^2}} \E{\exp\left(-\frac{1}{1 - \rho_{XY}}\left(v^2 + \frac{w^2}{2(1 + \rho_{XY})}- \frac12 vw\right)\right)}.
 \end{align}
 
 \end{solution}
@@ -576,7 +575,7 @@ So John has a probability of $3.77\%$ of losing money with his investment.
 \end{solution}
 \end{exercise}
 
-John has a friend named Mary, who is a first-year EOR student. She has never invested money herself, but she is paying close attention duriong the course Probability Distributions. She tells her friend: ``John, your investment plan does not make a lot of sense. You can easily get a higher expected return at a lower level of risk!''
+John has a friend named Mary, who is a first-year EOR student. She has never invested money herself, but she is paying close attention during the course Probability Distributions. She tells her friend: ``John, your investment plan does not make a lot of sense. You can easily get a higher expected return at a lower level of risk!''
 
 \begin{exercise}
 Show that Mary is right. That is, make a portfolio with a higher expected return, but with a lower standard deviation. \\
