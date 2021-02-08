@@ -81,7 +81,7 @@ From this exercise you should memorize this: \textbf{independence is a property 
 
 
 \begin{exercise}
-Correct? For any two r.v.s $X$ and $Y$ on $\R^{+}$ with marginals $F_{X}$ and $F_{Y}$, it holds that $\P{X\leq x, Y\leq y} = F_{X}(x) F_{Y}(x)$.
+Correct? For any two r.v.s $X$ and $Y$ on $\R^{+}$ with marginals $F_{X}$ and $F_{Y}$, it holds that $\P{X\leq x, Y\leq y} = F_{X}(x) F_{Y}(y)$.
 \end{exercise}
 
 \begin{exercise}
@@ -270,7 +270,7 @@ Prove that $N$ is Poisson distributed.
 Use the relation of the previous exercise to show that
 \begin{equation}
   \label{eq:3}
-P(N=n+1) = \frac{\lambda}{1+x} = P(N=n).
+P(N=n+1) = \frac{\lambda}{1+n} P(N=n).
 \end{equation}
 \textit{Bigger hint:} Fill in $y=0$ in the LHS and RHS of~\cref{eq:1}; call this expression 1. Then fill in $y=1$ to a obtain a second expression. Divide these two expressions and note that $\P{X=x}$ cancels. Finally,  define
 \begin{equation}
