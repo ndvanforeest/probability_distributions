@@ -192,21 +192,18 @@ All the problems in that document relate to topics discussed in Sections BH.7.1 
 
 \section{Lecture 3}
 
-\begin{enumerate}
-\item Why don't you setup a github repo to collaborate on making  solutions of the book?
-\item There is a \LaTeX\/ template in the sources directory on github to help you get started with the assignment.
-\end{enumerate}
+% \begin{enumerate}
+% \item Why don't you setup a github repo to collaborate on making  solutions of the book?
+% \item There is a \LaTeX\/ template in the sources directory on github to help you get started with the assignment.
+% \end{enumerate}
 
-Three topics:
-\begin{enumerate}
-\item Prediction, and correlation
-\item Simulation
-\item Indicators
-\end{enumerate}
-
-
-
-\clearpage
+% Three topics:
+% \begin{enumerate}
+% \item Prediction, and correlation
+% \item Simulation
+% \item Indicators
+% \end{enumerate}
+% \clearpage
 
 
 \begin{exercise}
@@ -228,7 +225,12 @@ is minimized. Show that the optimal values are such that
 where $\rho$ is the correlation between $X$ and $Y$ and where $\sigma_X$ and $\sigma_Y$ are the standard deviations of $X$ and $Y$ respectively.
 
 \begin{solution}
-We take the partial derivatives of $f$ with respect to $a$ and $b$, and solve for $a$ and $b$. In the derivation, we use that $\rho = \frac{\cov{X,Y}}{\sqrt{\V X \V Y}} = \frac{\cov{X,Y}}{\sigma_X \sigma_Y}$.
+We take the partial derivatives of $f$ with respect to $a$ and $b$, and solve for $a$ and $b$. In the derivation, we use that
+\begin{align}
+  \label{eq:6}
+\rho = \frac{\cov{X,Y}}{\sqrt{\V X \V Y}} = \frac{\cov{X,Y}}{\sigma_X \sigma_Y} \implies  \rho \frac{\sigma_{Y}}{\sigma_{X}} = \frac{\cov{X,Y}}{\V X}.
+\end{align}
+Hence,
   \begin{align*}
 f(a,b) &= \E{(Y-\hat Y)^2} \\
  &= \E{(Y-a X - b)^2} \\
@@ -251,6 +253,21 @@ What if $\rho=0$?
 \end{solution}
 \end{exercise}
 
+\begin{exercise}
+Using scaling laws often can help to find errors. For instance,  the prediction $\hat Y$ should not change whether we measure the height in meters or centimetres.
+In view of this, explain that
+\begin{align*}
+  \hat Y = \E Y + \rho \frac{\V Y}{\sigma_X} (X - \E X)
+\end{align*}
+must be wrong.
+\begin{solution}
+  If we measure $X$ in centimetres instead of metres, then $X$, $\E X$ and $\sigma_X$ are all multiplied by 100, and the prediction $\hat Y$ should also be expressed in centimetres But $\V Y $ scales as length squared.
+  This messes up the units.
+\end{solution}
+\end{exercise}
+
+
+
 
 \begin{exercise}
 $N$ people throw their hat in a box. After shuffling, each of them takes out a hat at random. How many people do you expect to take out their own hat (i.e., the hat they put in the box); what is the variance? In BH.7.46 you have to solve this analytically. In the exercise here you have to write a simulator for compute the expectation and variance.
@@ -258,7 +275,6 @@ $N$ people throw their hat in a box. After shuffling, each of them takes out a h
 Let us first do one run.
 \begin{pyblock}[][numbers=left,frame=lines]
 import numpy as np
-from numpy.random import uniform
 
 np.random.seed(3)
 
@@ -275,7 +291,6 @@ Here are the results of the print statements: $X = \py{X}$. The matches are \py{
 Now put the people to work, and let them pick hats for $50$ times.
 \begin{pyblock}[][numbers=left,frame=lines]
 import numpy as np
-from numpy.random import uniform
 
 np.random.seed(3)
 
@@ -329,7 +344,7 @@ print(var(res))
 \end{exercise}
 
 
-Indicators are great functions, and I suspect you underestimated the importance of these functions.
+\paragraph{Indicators are great} functions, and I suspect you underestimated the importance of these functions.
 They help to keep your formulas clean.
 You can use them in computer code as logical conditions, or to help counting relevant events, something you need when numerically estimating multi-D integrals for machine learning for instance.
 And, even though I(=NvF) often prefer to use figures over algebra to understand something, when it comes to integration (and reversing the sequence of integration in multiple integrals) I find indicators easier to use.
@@ -346,6 +361,7 @@ Here are some more examples
 
 \begin{exercise}
 What is $\int_{-\infty}^{\infty} \1{0\leq x \leq 3} \d x$?
+\clearpage
 \begin{solution}
 \begin{align*}
 \int_{-\infty}^{\infty} \1{0\leq x \leq 3} \d x
@@ -402,7 +418,8 @@ Two solutions. First we integrate over $y$.
 \iint \1{0\leq x \leq 3} \1{0\leq y \leq 4}\1{x\leq y}\d x \d y
 &=\int \1{0\leq x \leq 3} \int \1{0\leq y \leq 4}\1{x\leq y}\d y \d x\\
 &=\int \1{0\leq x \leq 3} \int \1{\max\{x, 0\} \leq y \leq 4}\d y \d x\\
-&=\int \1{0\leq x \leq 3} \int_{\max\{x, 0\}}^{4}\d y \d x\\
+&=\int_{0}^{3} \int_{\max\{x, 0\}}^{4}\d y \d x\\
+&=\int_{0}^{3} y\biggr|_{\max\{x, 0\}}^{4} \d x\\
 &=\int_{0}^{3}  (4-\max\{x, 0\}) \d x\\
 &=12 - \int_{0}^{3} \max\{x, 0\} \d x\\
 &=12 - \int_{0}^{3} x  \d x\\
@@ -417,6 +434,7 @@ Let's now instead first integrate over $x$.
 &= \int_{0}^{4} \int \1{0\leq x \leq \min\{3, y\}}\d x \d y\\
 &= \int_{0}^{4} \int_{0}^{\min\{3, y\}} \d x \d y\\
 &= \int_{0}^{4} \min\{3, y\}\d y\\
+&= \int_{0}^{3} \min\{3, y\}\d y + \int_{3}^{4} \min\{3, y\}\d y\\
 &= \int_{0}^{3} y \d y + \int_{3}^{4}  3\d y\\
 &= 9/2 + 3.
 \end{align}
@@ -590,11 +608,12 @@ Moreover,
 \end{align}
 which corresponds to a standard deviation of
 \begin{align}
-    \sigma_Y = \sqrt{\V{Y} = \sqrt{0.23616} = 0.4860
+    \sigma_Y = \sqrt{\V Y} = \sqrt{0.23616} = 0.4860
 \end{align}
 So indeed, $\E{Y} > \E{X}$, while $\sigma_Y < \sigma_X$. Clearly, portfolio $Y$ is more desirable.
 \end{solution}
 \end{exercise}
+
 
 
 %%% Local Variables:
