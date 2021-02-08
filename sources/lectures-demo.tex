@@ -1,3 +1,5 @@
+% arara: clean: { files: [blg, idx, ilg, ind, log, out, pytxcode, rel, toc ]}
+% arara: clean: {files: [ ans.tex, hint.tex] }
 % arara: pdflatex: { shell: yes, interaction: nonstopmode }
 % arara: pythontex: {verbose: yes, rerun: modified }
 % arara: pdflatex: { shell: yes, interaction: nonstopmode }
@@ -21,3 +23,13 @@ Lecture demo
 }
 
 \input{lectures-contents.tex}
+
+
+\opt{all-solutions-at-end}{
+\clearpage
+\Closesolutionfile{ans}
+\section{Solutions}
+\input{ans}
+}
+
+\end{document}

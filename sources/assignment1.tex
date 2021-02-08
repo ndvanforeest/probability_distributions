@@ -244,6 +244,13 @@ You are free to chose one of these problems, but of course you can do both if yo
 
 \paragraph{A uniqueness property of the Poisson distribution}
 
+Consider again the chicken-egg story (BH 7.1.9): A chicken lays a random number of eggs $N$ an each egg independently hatches with probability $p$ and fails to hatch with probability $q = 1-p$.
+Formally, $X|N\sim\Bin{N,p}$.
+Assume also that $X|N\sim\Bin{N,p}$ and that $N-X$ is independent of $X$.
+For $N \sim \Pois{\lambda}$ it is shown in BH 7.1.9 that $X$ and $Y$ are independent.
+This exercise asks for the converse: showing that the independence of $X$ and $Y$ implies that $N \sim \Pois{\lambda}$ for some $\lambda$.
+Hence, the Poisson distribution is quite special: it is the only distribution for which the number of hatched eggs doesn't tell you anything about the number of unhatched eggs.
+
 Let $0 < p < 1$. Let $N$ be an r.v. taking non-negative integer values with $P(N > 0) > 0$.
 Assume also that  $X|N\sim\Bin{N,p}$ and that $N-X$ is independent of $X$.
 
@@ -267,6 +274,7 @@ Write $Y = N-X$. Prove that
 \begin{exercise}
 Prove that $N$ is Poisson distributed.
 \begin{hint}
+
 Use the relation of the previous exercise to show that
 \begin{equation}
   \label{eq:3}
