@@ -184,6 +184,26 @@ plt.plot(X, Zexact.pdf(X))
 plt.show()
 \end{minted}
 
+\begin{minted}[]{R}
+set.seed(3)
+
+k = 3
+X <- seq(0, 3, by = 0.1)
+Zexact <- dnorm(X, mean = k / 2, sd = sqrt(k / 12))
+
+
+XYZ <- matrix(NA, 4000, k)
+for (i in 1:k) {
+  XYZ[,i] <- runif(4000, min = 0, max = 1)
+}
+Z <- rowSums(XYZ)
+
+par()
+hist(Z, prob = TRUE, breaks = 31)
+lines(X, Zexact, type = "l", col = "orange")
+lines(density(Z), col = "blue")
+\end{minted}
+
 
 \begin{exercise}
 What is the shape of \verb|XYZ| in the code above, i.e., how many rows and columns does it have? If you don't know, run the code, and print it.
@@ -241,6 +261,25 @@ plt.plot(x, N * f3, label="conv")
 plt.plot(x, Zexact.pdf(x))
 plt.legend()
 plt.show()
+\end{minted}
+
+\begin{minted}[]{R}
+N = 200
+x = seq(0, 2, length.out = 2 * N)
+fx = rep(1, N) / N
+f2 = convolve(fx, fx, type = "open")
+f3 = convolve(f2, fx, type = "open")
+
+k = 3
+
+x = seq(0, k, length.out = length(f3))
+Zexact = dnorm(x, mean = k/2, sd = sqrt(k / 12))
+
+par()
+plot(x, N * f3, col = "blue", type = "l", ylim = c(0, 0.8))
+lines(x, Zexact, type = "l", col = "orange")
+legend("topright", legend = "conv", bty = "n",
+      lwd = 2, cex = 1.2, col = "blue", lty = 1)
 \end{minted}
 
 \begin{exercise}

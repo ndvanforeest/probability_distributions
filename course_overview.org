@@ -212,6 +212,8 @@ def compute_grade(a, e):
     return int(g + 0.5) # rounding
 #+end_src
 It is intentional that if you do a lousy job on the assignments, your final grade $g$ is most surely lower than your exam grade $e$.
+(To avoid all remaining unclarity:  you don't have to do the assignment for the regular exam, nor for the resit, but your grade will be most surely negatively affected.)
+
 
 * Contact info
 
