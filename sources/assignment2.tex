@@ -8,11 +8,11 @@
 
 
 \begin{exercise}
-What is the difference between 1D LOTUS and 2D LOTUS?
+Example 7.2.2. Write down the integral to compute $\E{(X-Y)^{2}}$. You don't have to solve the integral.
 \end{exercise}
 
 \begin{exercise}
-Example 7.2.2. Write down the integral to compute $\E{(X-Y)^{2}}$. You don't have to solve the integral.
+Give a brief example of a situation where it might be more convenient to employ the correlation instead of the covariance and explain why.
 \end{exercise}
 
 \begin{exercise}
@@ -20,59 +20,75 @@ In queueing theory  the concept of squared coefficient of variance $SCV$ of a rv
 \end{exercise}
 
 
+\begin{exercise}
+Using the definition of Covariance (Definition 7.3.1) derive the expression $\cov{X,Y}=\E{XY}-\E{X}\E{Y}$. Use this finding to show why independence of X and Y implies their uncorrelatedness (note that the converse does not hold).
+\end{exercise}
+
+\begin{exercise}
+Let X,Y be two r.v.s and let a,b be two arbitrary scalars. Express $\cov{a(U+V), b(U-V)}$ in terms of  $\V{U}$, $\V{U}$ and $\cov{U,V}$ (by using the expression obtained in the previous question).
+\end{exercise}
+
+\begin{exercise}
+Prove the key properties of covariance 1 to 5 on page 327 of the book (page 338 pdf).
+\end{exercise}
+
+\begin{exercise}
+Come up with a short illustrative example in which the random vector $\mathbf{X} = (X_1, \ldots, X_6)$ follows a Multinomial Distribution with parameters  $n=10$ and $\mathbf{p}=(\frac{1}{6}, ..., \frac{1}{6}) \in \R^{6}$.
+\end{exercise}
+
+\begin{exercise}
+Is the following claim correct? If the r.v.s $X, Y$ are both normally distributed, then $(X, Y)$ follows a Bivariate Normal distribution.
+\end{exercise}
+
+\begin{exercise}
+Let $(X,Y)$ follow a Bivariate Normal distribution, with $X$ and $Y$ marginally following $\mathcal{N}(\mu,\sigma^2)$ and with correlation $\rho$ between $X$ and $Y$.
+\begin{enumerate}
+\item Use the definition of a Multivariate Normal Distribution to show that $(X+Y, X-Y)$ is also Bivariate Normal.
+\item Find the marginal distributions of $X+Y$ and $X-Y$.
+\item Compute $\cov{X,Y}$. Then, write down the expression for the joint PDF of $(X+Y, X-Y)$.
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+Let $X, Y, Z$ be i.i.d. $\mathcal{N}(0,1).$ Determine whether or not the random vector
+\begin{align*}
+    \mathbf{W} = (X+2Y, 3X+4Z, 5Y+6Z, 2X-4Y+Z, X-9Z, 12X+\sqrt{3}Y -\pi Z)
+\end{align*}
+is Multivariate Normal. (Explain in words, don't do a lot of tedious math here!)
+\end{exercise}
+
+
 \subsection{Exercises at about exam level}
 \label{sec:exercises-at-about}
 
 
-\begin{exercise}
-Check first BH 7.2.3.
-When $X, Y$ iid $\sim \Norm{0, 1}$, then $X-Y\sim\Norm{0,2}$.
-However, when $X, Y$ iid $\sim \Pois{\lambda}$, then prove first that $X+Y\sim \Pois{2\lambda}$, but note that $X-Y$ is not $\sim\Pois{0}$.
-Explain this difference between the Poisson and normal distribution.
-\end{exercise}
+
 
 
 \begin{exercise}
-Derive the results of BH 7.3.6 without smart tricks. Thus, you have to use the fundamental bridge to show that
-\begin{align*}
-\E{M L} &= \E X \E Y = 1, & \E{M} &= 3/2, & \E L &= 1/2, \\
-\E{L^{2}} &=  1/4, & \E{M^{2}} &= 2\E{X^{2}} - \E{L^{2}} = 7/2 \\
-\V{M}&=\E{M^2} - (\E M)^{2}, & \V L &= \E{L^2}-(\E L)^2.
-\end{align*}
-You can use the document `Memoryless exercursions' to see how to solve these problems.
-\end{exercise}
-
-
-\begin{exercise}
-Take $X\sim\Unif{\{-2, -1, 1, 2\}}$ and $\eta = X^2$. What is the correlation coefficient of $X$ and $\eta$?
+Take $X\sim\Unif{\{-2, -1, 1, 2\}}$ and $Y= X^2$. What is the correlation coefficient of $X$ and $\eta$?
 If we would consider another distribution for $X$, would that change the correlation?
 \end{exercise}
 
-
-\begin{exercise}
-Let $X$ be the result of the throw of a coin.
-It is given that $\P{X=H} = p = 1-\P{X=T}$.
-When $X=H$, we choose a fair die with 4 sides with values $1,2,3,4$, when $X=T$ we choose a fair die with 6 sides with values $1,\ldots,6$.
-Let $Y_i$ be the value of the $i$th throw with the die.
-\begin{enumerate}
-\item What is the PMF of $X$ and $Y_1$?
-\item Marginalize  the answer of part a to show that $\P{X=H} = p$.
-\item What is $\P{Y_{1}=1}$?
-\item What is $\P{X=H \given Y_1=1}$?
-\item What is $\P{X=H \given Y_1=1, Y_2=2}$?
-\item What is $\P{X=H \given Y_1=Y_2=\cdots=Y_n = 1}$?
-\end{enumerate}
-\end{exercise}
 
 
 \begin{exercise}
 We have a machine that consists of two components. The machine works as long as not both components have failed. Let $X_i$ be the lifetime of component $i$.
 \begin{enumerate}
-\item What is the interpretation of $\min{X_1, X_{2}}$?
-\item What is the interpretation of $\max{X_1, X_{2}}$?
-\item If $X_1, X_2$ iid $\sim \Exp{10}$ (in hours), what is the expected time until the machine fails?
-\item If $X_1, X_2$ iid $\sim \Exp{10}$ (in hours), what is the probability that the machine is still `up' (i.e., not failed) at time $T=50$?
+\item What is the interpretation of $\min\{X_1, X_{2}\}$?
+\item If $X_1, X_2$ iid $\sim \Exp{10}$ (in hours), what is the probability that the machine is still `up' (i.e., not failed) at time $T$?
+\item Use the previous result to determine the distribution of $\min \{X_1, X_2\}$.
+\item What is the expected time until the machine fails?
 \end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+We have two r.v.s X and Y with the joint PDF $f_{X,Y}(x,y) = \frac{6}{7}(x+y)^2$ for $x, y \in (0,1)$ and 0 else. Also we consider the two r.v.s U and V with the joint PDF $f_{U,V}(u,v) = 2$ for $u, v \in [0,1], u+v \leq 1$ and 0 else.
+\begin{enumerate}
+\item Compute $\P{X+Y>1}$.
+\item Compute $\cov{U,V}$.
+\end{enumerate}
+(Hint: first draw the area over which you want to integrate, if this does not help check out the discussion board post on exercise 7.13a from the first Tutorial)
 \end{exercise}
 
 
@@ -80,20 +96,12 @@ We have a machine that consists of two components. The machine works as long as 
 \label{sec:progr-assignm}
 
 
+\paragraph{Verify the answers of BH.5.6.5}
+Read this example of BH first.
+We chop up the exercise in many small exercises..
 
-\begin{exercise}
-In this exercise we verify the answers of BH.5.6.5. Read this example first.
 
-For the python  code below, run it for a small number of sample;  here I choose  \texttt{samples=2} to enable to see the pattern.
-\begin{enumerate}
-\item In line 11 we print the value of \texttt{X} in line 10. What is the meaning of \texttt{X}?
-\item What is the meaning of \texttt{T} in line 12?
-\item What do we print in line 14?
-\item What is \texttt{expected}?
-\item What is the \texttt{cumsum} of \texttt{expected}?
-\item Now that you understand what is going on, rerun the simulation for a larger number of samples, e.g., 1000.
-\end{enumerate}
-
+For python code below, run it for a small number of samples; here I choose \texttt{samples=2}. Read the print statements, and use that to answer the questions below.
 
 \begin{minted}[]{python}
 import numpy as np
@@ -115,13 +123,49 @@ expected = np.array([labda / ((num - j)) for j in range(num)])
 print(expected)
 print(expected.cumsum())
 \end{minted}
+
+
+\begin{exercise}
+In line P.11\footnote{Line P.x refers to line x of the Python code.
+  Line R.x refers to line x of the R code.}
+we print the value of \texttt{X} in line 10.
+What is the meaning of \texttt{X}?
+\begin{solution}
+\end{solution}
+\end{exercise}
+
+\begin{exercise}
+What is the meaning of \texttt{T} in line P.12?
+\begin{solution}
+\end{solution}
 \end{exercise}
 
 
 \begin{exercise}
-Let's check  BH.7.48. Read and solve it first.
+What do we print in line P.14?
+\begin{solution}
+\end{solution}
+\end{exercise}
 
-For  the python code below, explain how the small function in lines 6 to 13 works. (You should know that \texttt{x += 1} is an extremely useful abbreviation of the code \texttt{x = x +1}). Then explain the code in lines 25 and 26.
+\begin{exercise}
+What is meaning of the variable \texttt{expected}?
+\begin{solution}
+\end{solution}
+\end{exercise}
+
+\begin{exercise}
+ What is the \texttt{cumsum} of \texttt{expected}?
+\begin{solution}
+\end{solution}
+\end{exercise}
+
+\begin{exercise}
+ Now that you understand what is going on, rerun the simulation for a larger number of samples, e.g., 1000, and discuss the results briefly.
+\begin{solution}
+\end{solution}
+\end{exercise}
+
+\paragraph{On   BH.7.48} Read this exercise first and solve it. Then consider the code below.
 
 \begin{minted}[]{python}
 import numpy as np
@@ -153,27 +197,30 @@ for i in range(samples):
 
 print(Y.mean(), Y.var(), Y.std())
 \end{minted}
-\end{exercise}
 
 
 \begin{exercise}
-Why is the Exponential Distribution so important? This exercise provides some motivation.
+Explain how the small function in lines P.6 to P.13 works.
+(You should know that \texttt{x += 1} is an extremely useful abbreviation of the code \texttt{x = x + 1}).
+\begin{solution}
+\end{solution}
+\end{exercise}
 
+\begin{exercise}
+Explain the code in lines P.25 and P.26.
+\begin{solution}
+\end{solution}
+\end{exercise}
 
-At the Paris metro, a  train arrives every  3  minutes on a platform. Suppose that 50 people arrive between the departure of a train and an arrival.
+\paragraph{Why is the Exponential Distribution so important?}
+
+At the Paris metro, a train arrives every 3 minutes on a platform.
+Suppose that 50 people arrive between the departure of a train and an arrival.
 It seems entirely reasonable to me to model the arrival times of the individual people as distributed on the interval \([0,3]\).
-What is the distribution of the inter-arrival times of these people? It turns out to be exponential!  Story BH.13.4.2 provides an explanation (It is not forbidden to read the book beyond what you have to do for this course!); here we use simulation to check this fact.
+What is the distribution of the inter-arrival times of these people?
+It turns out to be exponential!
+Story BH.13.4.2 provides an explanation (It is not forbidden to read the book beyond what you have to do for this course!); here we use simulation to check this fact.
 
-For the python code:
-\begin{enumerate}
-\item Explain the result of line 12.
-\item Compare the result of  line 12 and 13;  explain what is \texttt{A[1:]}.
-\item Compare the result of  line 12 and 14;  explain what is \texttt{A[:-1}.
-\item Explain what is \texttt{X}.
-\item Why do I compare $1/\lambda$ and \texttt{X.mean()}?
-\item Recall that when $X\sim \Exp{\lambda}$, that $\E X = \sigma (X)$. Hence, what do you expect to see for  \texttt{X.std()}?
-\item Run the code for a larger sample, e.g. 50, and discuss (very briefly) your results.
-\end{enumerate}
 
 
 \begin{minted}[]{python}
@@ -197,7 +244,50 @@ print(X)
 print(X.mean(), X.std())
 \end{minted}
 
+\begin{exercise}
+Explain the result of line P.12.
+\begin{solution}
+\end{solution}
 \end{exercise}
+
+\begin{exercise}
+Compare the result of  line P.12 and P.13;  explain what is \texttt{A[1:]}.
+\begin{solution}
+\end{solution}
+\end{exercise}
+
+\begin{exercise}
+Compare the result of  line P.12 and P.14;  explain what is \texttt{A[:-1}.
+\begin{solution}
+\end{solution}
+\end{exercise}
+
+\begin{exercise}
+ Explain what is \texttt{X} in P.16.
+\begin{solution}
+\end{solution}
+\end{exercise}
+
+\begin{exercise}
+Why do we compare $1/\lambda$ and \texttt{X.mean()}?
+\begin{solution}
+\end{solution}
+\end{exercise}
+
+\begin{exercise}
+Recall that $\E X = \sigma (X)$ when $X\sim \Exp{\lambda}$.
+Hence, what do you expect to see for \texttt{X.std()}?
+\begin{solution}
+\end{solution}
+\end{exercise}
+
+\begin{exercise}
+ Run the code for a larger sample, e.g. 50, and discuss (very briefly) your results.
+\begin{solution}
+\end{solution}
+\end{exercise}
+
+
 
 
 \subsection{Challenges}
@@ -215,9 +305,9 @@ The problem can be formulated as a linear program (LP):
 \end{align}
 For simplicity, we ignore the fact that $x$ should be integer-valued.
 
-\begin{enumerate}[(a)]
-    \item Determine the optimal value $x^*$ for $x$ and the corresponding objective value in case $d$ is deterministic.
-\end{enumerate}
+\begin{exercise}
+Determine the optimal value $x^*$ for $x$ and the corresponding objective value in case $d$ is deterministic.
+\end{exercise}
 
 Of course, in practice $d$ is not deterministic. Instead, $d$ is a random variable with some distribution. However, note that the LP above is ill-defined if $d$ is a random variable. We cannot guarantee that $x \geq d$ if we do not know the value of $d$.
 
@@ -260,7 +350,7 @@ To solve the model correctly, we need the true distribution of $d$. We learn the
 Mathematically, we've learned that $d = d_m + d_f$, with $(d_m, d_f) \sim \mathcal{N}(\mu, \Sigma)$, where $\mu = (\mu_m, \mu_f) = (10,10)$ and $\Sigma_{11} = \sigma_m^2 = \Sigma_{22}  = \sigma_f^2 = 5^2 = 25$. Finally, $\Sigma_{12} = \Sigma_{21} = Cov(d_m, d_f) = \rho \sigma_m \sigma_f = 25 \rho$. Also, we know that either $\rho \approx 1$ or $\rho \approx -1$.
 
 \begin{exercise}
- Calculate $x^*$ and the corresponding objective value for the case $\rho = -1$. (Do not read  $\rho=1$, this case is is not simple.)
+ Calculate $x^*$ and the corresponding objective value for the case $\rho = -1$. (Do not read  $\rho=1$, this case is not simple.)
 \end{exercise}
 
 \begin{exercise}
