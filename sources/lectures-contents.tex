@@ -450,6 +450,44 @@ Let's now instead first integrate over $x$.
 \end{solution}
 \end{exercise}
 
+
+Here is some extra material for you practice on 2D integration.
+\begin{exercise}
+Explain that for a continuous r.v. $X$ with CDF $F$ and $a$ and $b$ (so it might be that $a>b$),
+\begin{equation}
+  \label{eq:7}
+\P{a< X < b} = [F(b) - F(a)]^{+}.
+\end{equation}
+\begin{solution}
+\begin{align}
+a<b & \implies \P{a< X < b} = F(b) - F(a) = [F(b) - F(a)]^{+} \\
+a\geq b & \implies \P{a< X < b} =  0 = [F(b) - F(a)]^{+},
+\end{align}
+where the last equality follows from the fact that $F$ is increasing.
+\end{solution}
+\end{exercise}
+
+\begin{exercise}
+Take $X\sim\Unif{[1,3]}, Y\sim\Unif{[2,4]}$ and independent. Compute
+\begin{equation}
+  \label{eq:24}
+\P{Y\leq 2X}.
+\end{equation}
+\begin{solution}
+\begin{align}
+\P{Y\leq 2X}
+&= \int_{1}^{3}\int_{2}^{4} \1{y\leq 2x} \d y \d x \\
+&= \int_{1}^{3}\int_{2}^{\min\{4, 2x\}} \d y \d x\\
+&= \int_{1}^{3} [\min\{4, 2x\} -2]^{+} \d x
+\end{align}
+Now make a drawing of the function $[\min\{4, 2x\} - 2]^{+}$ on the interval $[1,3]$ to see that
+\begin{align}
+\int_{1}^{3} [\min\{4, 2x\} -2]^{+} \d x = \int_{1}^{3} (2x -2) \d x.
+\end{align}
+I leave the rest of the computation to you.
+\end{solution}
+\end{exercise}
+
 \section{Lecture 4}
 
 \newcommand{\corrr}{\text{Corr}}
@@ -650,9 +688,9 @@ The trick is to realize that $x = \int_0^{\infty} \1{y\leq x} \d y$. Using this,
 
 
 
+Here is a nice geometrical explanation of the origin of the normal distribution.
 
 \begin{exercise}\label{ex:1}
-Here is a nice geometrical explanation of the origin of the normal distribution.
 Suppose $z_0=(x_0,y_{0})$ is the target on a dart board at which Barney (our national darts hero) aims, but you can also interpret it as the true position of a star in the sky.
 Let $z$ be the actual position at which the dart of Barney lands on the board, or the measured position of the star.
 For ease, take $z_0$ as the origin, i.e., $z_0=(0,0)$.
@@ -723,8 +761,9 @@ It remains to find the normalization constant $a$; recall, $f$ must be a PDF.
 \end{solution}
 \end{exercise}
 
-\begin{exercise}
 We next find the normalizing constant of the normal distribution (and thereby offer an opportunity to practice with change of variables).
+
+\begin{exercise}
 For this purpose consider two circles in the plane: $C(N)$ with radius $N$ and $C(\sqrt 2 N)$ with radius $\sqrt 2 N$.
 It is obvious that the square $S(N) = [-N,N]\times[N,N]$ contains the first circle, and is contained in the second.
 Therefore,
@@ -734,7 +773,8 @@ Therefore,
   \iint_{S(N)}f_{X,Y}(x,y) \d x\d y \leq
   \iint_{C(\sqrt 2 N)}f_{X,Y}(x,y) \d x\d y.
 \end{equation}
-Now substitute the normal distribution in~\cref{ex:1}. Then use polar coordinates to solve the integrals over the circles, and derive the normalization constant.
+Now substitute the normal distribution of~\cref{ex:1}.
+Then use polar coordinates (See BH.8.1.9) to solve the integrals over the circles, and derive the normalization constant.
 \begin{solution}
 \begin{equation}
 \label{eq:14}
@@ -791,7 +831,7 @@ and therefore
 
 
 \begin{exercise}
-Let $X,Y$ be iid with density $f$ and support $[1,10)$. Find an expression for the density of $Z=X Y$. What is the (domain) support of $Z$? If $X,Y\sim\Unif{[1,10)}$, what is $f_{Z}$?
+Let $X,Y$ be iid with density $f$ and support $[1,10)$. Find an expression for the density of $Z=X Y$. What is the support (domain) of $Z$? If $X,Y\sim\Unif{[1,10)}$, what is $f_{Z}$?
 \begin{solution}
 Let's first find the density $f_{X,Z}$. Then, with marginalization $f_{Z}(z) = \int_{1}^{10} f_{X,Z}(x,z) \d x.$
 Let $g(x,y) = (x, z)$ with $z=x y$. Then we need to compute
@@ -875,6 +915,7 @@ It's easy to make some interesting variations:
   You can find the rest of the analysis in Section 5.5 of `The art of probability for scientists and engineers' by R.W.
   Hamming.
 \end{remark}
+
 
 
 

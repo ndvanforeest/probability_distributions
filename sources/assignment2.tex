@@ -119,30 +119,56 @@ T = np.sort(X, axis=1)
 print(T)
 print(T.mean(axis=0))
 
-expected = np.array([labda / ((num - j)) for j in range(num)])
+expected = np.array([labda / (num - j) for j in range(num)])
 print(expected)
 print(expected.cumsum())
 \end{minted}
 
 
+\begin{minted}[]{R}
+set.seed(10)
+
+labda = 4
+num = 3
+samples = 2
+
+X = matrix(rexp(samples * num, rate = 1 / labda), nrow = samples, ncol = num)
+print(X)
+bigT = X
+for (i in 1:samples) {
+  bigT[i,] = sort(bigT[i,])
+}
+print(bigT)
+print(colMeans(bigT))
+
+expected = rep(0, num)
+for (j in 1:num) {
+  expected[j] = labda / (num - (j - 1))
+}
+print(expected)
+print(cumsum(expected))
+\end{minted}
+
+
+
 \begin{exercise}
 In line P.11\footnote{Line P.x refers to line x of the Python code.
   Line R.x refers to line x of the R code.}
-we print the value of \texttt{X} in line 10.
+we print the value of \texttt{X} in line P.10, R.7 and R.8, respectively.
 What is the meaning of \texttt{X}?
 \begin{solution}
 \end{solution}
 \end{exercise}
 
 \begin{exercise}
-What is the meaning of \texttt{T} in line P.12?
+What is the meaning of \texttt{T} in line P.12 (R.11)?
 \begin{solution}
 \end{solution}
 \end{exercise}
 
 
 \begin{exercise}
-What do we print in line P.14?
+What do we print in line P.14, R.14?
 \begin{solution}
 \end{solution}
 \end{exercise}
@@ -199,15 +225,49 @@ print(Y.mean(), Y.var(), Y.std())
 \end{minted}
 
 
+\begin{minted}[]{R}
+set.seed(3)
+
+find_number_of_maxima = function(X) {
+  num_max = 0
+  M = -Inf
+  for (x in X) {
+    if(x > M) {
+      num_max = num_max + 1
+      M = x
+    }
+  }
+  return(num_max)
+}
+
+
+num = 10
+X = runif(num, min = 0, max = 1)
+print(X)
+
+print(find_number_of_maxima(X))
+
+samples = 100
+Y = rep(0, samples)
+for (i in 1:samples) {
+  X = runif(num, min = 0, max = 1)
+  Y[i] = find_number_of_maxima(X)
+}
+
+print(mean(Y))
+print(var(Y))
+print(sd(Y))
+\end{minted}
+
 \begin{exercise}
-Explain how the small function in lines P.6 to P.13 works.
+Explain how the small function in lines P.6 to P.13 (R.4-R.12) works.
 (You should know that \texttt{x += 1} is an extremely useful abbreviation of the code \texttt{x = x + 1}).
 \begin{solution}
 \end{solution}
 \end{exercise}
 
 \begin{exercise}
-Explain the code in lines P.25 and P.26.
+Explain the code in lines P.25 and P.26 (R.25, R.26).
 \begin{solution}
 \end{solution}
 \end{exercise}
@@ -237,33 +297,55 @@ print(1 / labda)
 A = np.sort(np.random.uniform(start, end, size=num))
 print(A)
 print(A[1:])
-print(A[:-1]
+print(A[:-1])
 X = A[1:] - A[:-1]
 print(X)
 
 print(X.mean(), X.std())
 \end{minted}
 
+
+\begin{minted}[]{R}
+set.seed(3)
+
+
+num = 5
+start = 0
+end = 3
+labda = num / (end - start)
+print(1 / labda)
+
+A = sort(runif(num, min = start, max = end))
+print(A)
+print(A[-1])
+print(A[-length(A)])
+X = A[-1] - A[-length(A)]
+print(X)
+
+print(mean(X))
+print(sd(X))
+\end{minted}
+
 \begin{exercise}
-Explain the result of line P.12.
+Explain the result of line P.12 (R.13)
 \begin{solution}
 \end{solution}
 \end{exercise}
 
 \begin{exercise}
-Compare the result of  line P.12 and P.13;  explain what is \texttt{A[1:]}.
+Compare the result of  line P.13 and P.14 (R.12, R.13);  explain what is \texttt{A[1:]} (\texttt{A[-1]})
 \begin{solution}
 \end{solution}
 \end{exercise}
 
 \begin{exercise}
-Compare the result of  line P.12 and P.14;  explain what is \texttt{A[:-1}.
+Compare the result of  line P.12 and P.14;  explain what is \texttt{A[:-1]} (\texttt{A[-length(A)]}).
 \begin{solution}
 \end{solution}
 \end{exercise}
 
 \begin{exercise}
- Explain what is \texttt{X} in P.16.
+ Explain what is \texttt{X} in P.15 (R.14)
 \begin{solution}
 \end{solution}
 \end{exercise}
