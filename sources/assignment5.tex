@@ -7,6 +7,103 @@
 
 \subsection{Have you read well?}
 
+
+\begin{exercise}
+Use Eve's law to show that $\V Y \geq \V{\E{Y\given X}}$.
+\end{exercise}
+
+
+\subsection{Exercises at about exam level}
+\label{sec:exercises-at-about-1}
+
+We derive Eve's law in a slightly different way then in BH.
+
+Define $hat X = \E{X\given Y}$ as an \emph{estimator} of $X$ and $\tilde X = X - \hat X$ as the estimation error.
+
+\begin{exercise}\label{ex:5}
+Show that $\E{\tilde X\given Y} = 0$.
+\begin{solution}
+\begin{align}
+\label{eq:4}
+\E{\tilde X \given Y} = \E{X - \hat X \given Y} &=
+\E{X\given Y}  - \E{ \E{X\given Y}\given Y}  \\
+&=\E{X\given Y}  -  \E{X\given Y}\E{1\given Y}  \\
+&=\E{X\given Y}  -  \E{X\given Y}1 = 0
+\end{align}
+\end{solution}
+\end{exercise}
+
+\begin{exercise}\label{ex:4}
+Prove that $\E{\tilde X} = 0$. What does it mean that $\E{\tilde X} =0$?
+\begin{hint}
+  Use~\cref{ex:5}
+\end{hint}
+\begin{solution}
+\begin{equation}
+\label{eq:5}
+\E{\tilde X} = \E{\E{\tilde X\given Y}} = \E{ 0 \given Y} =0.
+\end{equation}
+This means that the estimation error $\tilde X$ does not have bias.
+\end{solution}
+\end{exercise}
+
+\begin{exercise}
+Prove that $\E{\tilde X\hat X} = 0$.
+\begin{hint}
+  Use~\cref{ex:4} and the definitions.
+\end{hint}
+\begin{solution}
+\begin{align}
+\label{eq:6}
+\E{\tilde X\hat X} &= \E{\E{\tilde X \hat X \given Y}}  \\
+&= \E{\E{\tilde X \E{X\given Y} \given Y}}  \\
+&= \E{\E{X\given Y}\E{\tilde X \given Y}}  \\
+&= \E{\E{X\given Y} 0  \given Y}  = 0
+\end{align}
+\end{solution}
+\end{exercise}
+
+\begin{exercise}
+Show that $\cov{\hat X, \tilde X} = 0$. Conclude that
+\begin{equation}
+\label{eq:8}
+\V{X} = \V{\hat X + \tilde X} = \V{\hat X} + \V{\tilde X}.
+\end{equation}
+\begin{solution}
+Using the previous exercises,
+\begin{equation}
+\label{eq:7}
+\cov{\hat X, \tilde X} = \E{\hat X \tilde X} - \E{\hat X} \E{\tilde X} = 0 - \E{\hat X} 0 = 0.
+\end{equation}
+Next, from the definition of $\tilde X = X - \hat X \implies X = \tilde X + \hat X$.
+The variance of the sum is the sum of the variances since $\hat X$ and $\tilde X$ are uncorrelated.
+\end{solution}
+\end{exercise}
+
+\begin{exercise}
+Prove that $\V{\tilde X} = \E{\V{X\given Y}}$. Conclude Eve's law.
+\begin{solution}
+Since $\E{\tilde X} = 0$,
+\begin{align}
+\label{eq:9}
+\V{\tilde X} &= \E{\tilde X^{2}}  \\
+&= \E{\E{\tilde X^{2}\given Y}} \\
+&= \E{\E{(X - \hat X)^{2}\given Y}} \\
+&= \E{\E{(X - \E{X\given Y})^{2}\given Y}} \\
+&= \E{\V{X\given Y}},
+\end{align}
+where the last equation follows by the definition of $\V{X\given Y}$.
+
+For Eve's law, use the above and the previous exercise to see that
+\begin{equation}
+\label{eq:10}
+\V{X} = \V{\hat X} + \V{\tilde X} = \V{\E{X\given Y}} + \E{\V{X\given Y}}.
+\end{equation}
+\end{solution}
+\end{exercise}
+
+
+
 \section{Bayes' Billiards}
 \label{sec:orgf93559e}
 Take \(n=100\) samples.

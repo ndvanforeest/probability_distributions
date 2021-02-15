@@ -8,7 +8,8 @@
 
 %\usepackage[all-solutions-at-end]{optional}
 %\usepackage[check]{optional}
-\usepackage[nosolutions]{optional}
+%\usepackage[nosolutions]{optional}
+\usepackage[justhints]{optional}
 
 \usepackage{preamble}
 \usepackage{a4wide}
@@ -20,5 +21,13 @@ Lectures, questions only
 
 \input{lectures-contents.tex}
 
+
+
+\opt{justhints}{
+\clearpage
+\Closesolutionfile{hint}
+\section{Hints}
+\input{hint}
+}
 
 \end{document}
