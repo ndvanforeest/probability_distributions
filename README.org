@@ -9,6 +9,7 @@
 - ~lectures-questions-solutions.pdf~: The exercises and the solutions we discuss during the lectures. The updates become available  after the lecture.
 - ~memoryless_excursions.pdf~: exercises on joint probability distributions and  exponential and geometric r.v.s.
 - ~assignments.pdf~: the assignments.
+- ~assignments_solutions.pdf~: the solutions to the assignments.
 - ~notes.pdf~: A set of notes on Blitzstein and Hwang, and hints (and some solutions) for the exercises in BH
 - ~discussion_board_questions.pdf~: questions (and answers) posted on the discussion board on blackboard.
 - =sources/assignment-answer-template.tex=:  a  basic LaTeX  document that you can use as a template for your assignments.
