@@ -70,7 +70,7 @@ This is good exercise to straighten things out about conditional probability. In
 Perhaps I missed it, but the conditional CDF seems not to be formally defined in the book.
 
 
-Spoiler alert: here is the answer, in two different ways. But before answering the problem, I want to discuss the problem. Note beforehand that I do not expect that you could have  come with these answers, but you should definitely study them.
+Spoiler alert: here is the answer, in two different ways. But before answering the problem, I want to discuss the problem. Note beforehand that I do not expect that you could have  come up with these answers, but you should definitely study them.
 
 *The problem.*  Let's tackle the problem first from a purely intuitive point of view. I am interested in $\P{T\leq t\given X=x}$. Then, applying Bayes' rule in a  naive way:
 \begin{align*}

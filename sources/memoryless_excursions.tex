@@ -34,7 +34,7 @@ Notes on joint distributions }
 \section{A confusing problem}
 \label{sec:confusing-problem}
 
-Write $M=\max{X,Y}$ and $L=\min{X,Y}$ for given r.v.s $X$ and $Y$.
+Write $M=\max\{X,Y\}$ and $L=\min\{X,Y\}$ for given r.v.s $X$ and $Y$.
 It is simple to see that when $X$ and $Y$  have the same distribution,
 \begin{equation}
 \E L + \E M = \E{L+M}=\E{X+Y} = 2\E X.
@@ -52,7 +52,7 @@ Next, when $X$ and $Y$ are memoryless and iid, it is  tempting to think that
 because of  the following interpretation.
 There are two machines, each working on a job in parallel.
 Let $X$ and $Y$ be the production times at either machine.
-Then, we first wait until the first job finishes; this time is evidently $L=\min{X, Y}$.
+Then, we first wait until the first job finishes; this time is evidently $L=\min\{X, Y\}$.
 Then, due to memorylessness, the service time of the remaining job `restarts'; this takes an expected time $\E X$ to complete.
 
 Using~\cref{eq:6} and \cref{eq:7}  we can solve for $\E M$ and $\E L$.
@@ -200,7 +200,7 @@ Show that $\P{L\geq i}=q^{2i}$ and conclude that $L\sim\Geo{1-q^{2}}$. Just to k
   \begin{align}
     \label{eq:12}
 \P{L\geq k}
-&= \sum_{ij} \1{\min{i,j}\geq k} \P{X=i, Y=j}\\
+&= \sum_{ij} \1{\min\{i,\j}\geq k} \P{X=i, Y=j}\\
 &= \sum_{i\geq k} \sum_{j\geq k} \P{X=i}\P{Y=j}\\
 &=  \P{X\geq k}\P{Y\geq k} = q^{k} q^{k} = q^{2k}.
   \end{align}
@@ -280,14 +280,14 @@ p_M(k) &= \P{M=k} = 2 pq^{k}(1-q^{k}) + p^2q^{2k} \\
 \end{align}
 Then use this to show~\cref{eq:10}.
 \begin{hint}
-  Use 2D LOTUS on $g(x,y) = \1{\max{x, y} = k}$.
+  Use 2D LOTUS on $g(x,y) = \1{\max\{x, y\} = k}$.
 \end{hint}
 \begin{solution}
   \begin{align}
     \label{eq:14}
 \P{M=k}
-&= \P{\max{X, Y} = k} \\
-&=p^{2}\sum_{ij}\1{\max{i,j} =k} q^i q^j\\
+&= \P{\max\{X, Y\} = k} \\
+&=p^{2}\sum_{ij}\1{\max\{i,\j} =k} q^i q^j\\
 &=2 p^{2}\sum_{ij}\1{i=k}\1{j < k} q^i q^j + p^{2}\sum_{ij}\1{i=j=k} q^{i} q^j \\
 &=2 p^{2}q^{k}\sum_{j < k} q^j + p^{2}q^{2k}\\
 &=2 p^{2}q^{k}\frac{1-q^{k}}{1-q} +  p^{2}q^{2k}\\
@@ -398,7 +398,7 @@ and simplify this. Then find an expression for $\P{M>L}$ in three different ways
     \label{eq:61}
 \P{M>L}  = \P{X>Y} + \P{Y > X}.
   \end{equation}
-\item Apply  2D LOTUS to $g(x,y) = \1{\max{x,y}>\min{x,y}}$.
+\item Apply  2D LOTUS to $g(x,y) = \1{\max\{x,y\}>\min\{x,y\}}$.
 \item Work out the summation in $\P{M>L} = \sum_{i} \P{L=i, M>L}$.
 \end{enumerate}
 All three answers should match of course. Finally, substitute your expressions in the conditional probability in~\cref{eq:59}.
@@ -427,10 +427,10 @@ I use three (related) ways to compute $\P{M>L}$. In the first I convert the even
 In the second,  I rewrite the event $\{M>L\}$ as a function of $X$ and $Y$, and then use  the formula of the hint:
 \begin{align}
   \label{eq:4}
-\P{M>L}  &= \P{\max{X, Y} > \min{X,Y}} \\
-&=p^2\sum_{ij}\1{\max{i, j} > \min{i, j}} p_{XY}(i,j) \\
-&=p^2\sum_{ij}\1{\max{i, j} > \min{i, j}} p_{X}(i)p_{Y}(j) \\
-&=p^2\sum_{ij}\1{\max{i, j} > \min{i, j}} q^i q^j \\
+\P{M>L}  &= \P{\max\{X, Y\} > \min\{X,Y\}} \\
+&=p^2\sum_{ij}\1{\max\{i, j\} > \min\{i, j\}} p_{X Y}(i,j) \\
+&=p^2\sum_{ij}\1{\max\{i, j\} > \min\{i, j\}} p_{X}(i)p_{Y}(j) \\
+&=p^2\sum_{ij}\1{\max\{i, j\} > \min\{i, j\}} q^i q^j \\
 &=2p^2\sum_{i}\sum_{j>i} q^i q^j \\
 &=2p^2\sum_{i}q^i \sum_{j>i} q^j \\
 &=2p^2\sum_{i}q^i \sum_{j=0}^\infty q^{i+1+j} \\
@@ -917,12 +917,12 @@ Find a function $g$ that maps $X,Y$ to $L,M$. Then compute $f_{L,M}$ by using ch
 \begin{solution}
 We need $g$ first, and then we compute the Jacobian.
 \begin{align}
-(u,v) = g(x, y) = (\min{x,y}, \max{x,y}).
+(u,v) = g(x, y) = (\min\{x,y\}, \max\{x,y\}).
 \end{align}
 Hence, $g^{-1}(u,v) = \{(u,v), (v, u)\}$; note that this occurs because $g$ is not one-to-one.
 However, this is not a real problem because we can easily keep track of `each branch' of $g^{-1}$.
 
-Next, noting that $\partial_{x}\min{x,y} = \1{x\leq y}$,
+Next, noting that $\partial_{x}\min\{x,y\} = \1{x\leq y}$,
 \begin{align}
 \frac{\partial (u,v)}{\partial(x,y)} =
   \begin{vmatrix}
@@ -972,7 +972,7 @@ f_{L, M-L}(u,v)
 Now two exercises just to practice with the method.
 
 \begin{exercise}
-Compute $f_{L^2}(l)$, where $L=\min{X,Y}$ and $X, Y$ iid $\sim \Exp{\lambda}$.
+Compute $f_{L^2}(l)$, where $L=\min\{X,Y\}$ and $X, Y$ iid $\sim \Exp{\lambda}$.
 \begin{solution}
 With $l = x^{2}, x\leq y$
 \begin{align*}
@@ -988,7 +988,7 @@ f_{L^2}(l)  = 2f_{X}(\sqrt{l}) G_{Y}(\sqrt l ) \d x / \d l = f_{X}(\sqrt{l}) G_{
 
 
 \begin{exercise}
-We have three r.v.s, $X, Y, Z$, iid. Let $L=\min{X, Y, Z}$ and $M=\max{X, Y, Z}$. Find $f_{L,M}(u,v)$.
+We have three r.v.s, $X, Y, Z$, iid. Let $L=\min\{X, Y, Z\}$ and $M=\max\{X, Y, Z\}$. Find $f_{L,M}(u,v)$.
 \begin{solution}
 There are $3!$ ways to order $X, Y, Z$. Therefore, with $u=x \leq y \leq z = v$,
 \begin{align*}

@@ -10,21 +10,18 @@
 
 
 %\usepackage[nosolutions]{optional}
-%\usepackage[justhints]{optional}
-\usepackage[check]{optional}
+\usepackage[justhints]{optional}
+%\usepackage[check]{optional}
 %\usepackage[all-solutions-at-end]{optional}
 \usepackage{preamble}
 \usepackage{a4wide}
 
-\opt{justhints}{
-\Opensolutionfile{hint}
-}
 
-\opt{all-solutions-at-end}{
+
+\opt{justhints}{
 \Opensolutionfile{hint}
 \Opensolutionfile{ans}
 }
-
 
 
 \author{Nicky D. van Foreest and student assistents}
@@ -37,53 +34,11 @@ Assignments}
 \tableofcontents
 
 
-\section*{General information}
-\label{sec:orgb865fed}
 
-Here we just provide the exercises of the assignments.  For information with respect to grading we refer to the  course manual.
-
-
-Each assignment contains several sections.
-The first section is meant to help you read the book well and become familiar with definitions and concepts of probability theory.
-These questions are mostly simple checks, not at exam level, but lower.
-The second section contains some exercises at about the exam level to get you started.
-Here you have to derive and explain a solution, in mathematical notation.
-Most of the selected exercises of the book are also at about (or just a bit above) exam level.
-The third section is about coding skills.
-We explain the rationale presently.
-The final section with challenges is for those students that like a challenge; the problems are above exam level.
-
-
-You have to get used to programming and checking your work with computers, for instance by using simulation.
-The coding exercises address this skill.
-You should know that much of programming is `monkey see, monkey do'.
-This means that you take code of others, try to understand it, and then adapt it to your needs.
-For this reason we include the code to answer the question.
-The idea is that you copy the code, you  run it and include the numerical results in your report. You should be able to explain how the code works. For this reason we include questions in which you have explain how the most salient parts of the code works.
-
-We include python and R code, and leave the choice to you what to use.
-In the exam we will also include both languages in the same problem, so you can stay with the language you like.
-You should know, however, that many of you will need to learn multiple languages later in life.
-For instance, when you have to access databases to obtain data about customers, patients, clients, suppliers, inventory, demand, lifetimes (whatever), you often have to use \texttt{sql}.
-Once you have the raw data, you process it with \texttt{R} or python to do statistics or make plots.
-(While I (= NvF) worked at a bank, I used Fortran for numerical work, AWK for string parsing and making tables, excel, SAS to access the database, and matlab for other numerical work, all next to each other.
-I got tired of this, so I went to using python as it did all of this stuff, but then within one language.)
-For your interest, based on the statistics \href{https://www.tiobe.com/tiobe-index/}{here} or \href{https://www.northeastern.edu/graduate/blog/most-popular-programming-languages/}{here}, python scores (much) higher than R in popularity; if you opt for a business career, the probability you have to use python is simply higher than to have to use R.
-
-You should become familiar with look up documentation on coding on the web, no matter your programming language of choice. Invest time in understanding the, at times, rather technical and terse, explanations.  Once you are used to it, the core documentation is faster to read, i.e., less clutter. In the long run, it pays off.
-
-
-
-The rules:
-\begin{enumerate}
-\item For each assigment you have to turn in a pdf document typeset in \LaTeX{}. Include a title, group number, student names and ids, and date.
-\item We expect brief answers, just a sentence or so, or a number plus some short explanation. The idea of the assignment is to help you studying, not to turn you in a writer.
-\item When you have to turn in a graph, provide decent labels and a legend, ensure the axes have labels too.
-\end{enumerate}
-
+\subfile{assignment-intro.tex}
 \subfile{assignment1}
 \subfile{assignment2}
-% \subfile{assignment3}
+%\subfile{assignment3}
 % \subfile{assignment4}
 % \subfile{assignment5}
 % \subfile{assignment6}
@@ -95,18 +50,6 @@ The rules:
 \section{Hints}
 \input{hint}
 }
-
-\opt{all-solutions-at-end}{
-\Closesolutionfile{hint}
-\Closesolutionfile{ans}
-\clearpage
-\section{Hints}
-\input{hint}
-\clearpage
-\section{Solutions}
-\input{ans}
-}
-
 
 \end{document}
 
