@@ -20,6 +20,7 @@
 
 \usepackage{comment}
 \usepackage{enumerate}
+\usepackage{xr}
 
 \usepackage{titlesec}
 %\newcommand{\sectionbreak}{\clearpage}
@@ -43,10 +44,9 @@
 \Newassociation{hint}{Hint}{hint}
 \renewcommand{\Hintlabel}[1]{\textbf{h.#1.}}
 \renewcommand{\Solutionlabel}[1]{\textbf{s.#1.}}
-%\AtEndEnvironment{exercise}{\clearpage} %  each exercise on a new page
+\AtEndEnvironment{exercise}{\clearpage} %  each exercise on a new page
 %\AtBeginEnvironment{solution}{\clearpage} %  each exercise on a new page
 }
-
 
 \opt{justhints}{
 \usepackage{answers}
