@@ -8,6 +8,33 @@
 
 \subsection{Have you read well?}
 
+\begin{exercise}
+This is an exercise about your general insight into probability; you don't need the specific tools discussed during this week of the course.
+
+Henri Poincar\'{e} was a French mathematician who taught at the Sorbonne around 1900.
+The following anecdote about him is probably fabricated, but it makes an interesting probability problem.
+
+Supposedly Poincar\'{e}  suspected that his local bakery was selling loaves of bread that were lighter than the advertised weight of 1 kg, so every day for a year he bought a loaf of bread, brought it home and weighed it.
+At the end of the year, he plotted the distribution of his measurements and showed that it fit a normal distribution with mean 950 g and standard deviation 50 g.
+He brought this evidence to the bread police, who gave the baker a warning.
+
+For the next year, Poincar\'{e}  continued the practice of weighing his bread every day.
+At the end of the year, he found that the average weight was 1000 g, just as it should be, but again he complained to the bread police, and this time they fined the baker.
+Why?
+
+\begin{solution}
+Because the shape of the distribution was asymmetric. Unlike the normal distribution, it was skewed to the right, which is consistent with the hypothesis that the baker was still making 950 g loaves, but deliberately giving Poincar\'{e}  the heavier ones.
+
+You might like (don't feel obliged though, it's just for fun) to write a program that simulates a baker who chooses $n$ loaves from a distribution with mean 950 g and standard deviation 50 g, and gives the heaviest one to Poincar\'{e} .
+What value of $n$ yields a distribution with mean 1000 g?
+What is the standard deviation?
+
+% wk: this is very nice, but I don't think anyone will come up with this solution.
+% Maybe some people will think of saying that Poincar\'{e} got on purpose the heavier ones.
+
+\end{solution}
+\end{exercise}
+
 
 \subsection{Coding skills}
 \label{sec:coding-skills-1}
