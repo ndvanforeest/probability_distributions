@@ -574,7 +574,7 @@ We have now specified all parameters of the bivariate normal distribution. This 
 \end{align}
 where $\tau_{VW} := \sqrt{1 - \rho_{VW}^2} = \sqrt{1 - \frac{1 + \rho_{XY}}{2}} = \sqrt{\frac{1 - \rho_{XY}}{2}}$ and $\sigma_V = \sqrt{\V{V}} = 1$ and $\sigma_W = \sqrt{\V{W}} = \sqrt{2(1 + \rho_{XY})}$. Hence,
 \begin{align}
-    f_{V,W}(v,w) &= \frac{1}{2\pi \sqrt{1 - (\rho_{XY})^2}} \E{\exp\left(-\frac{1}{1 - \rho_{XY}}\left(v^2 + \frac{w^2}{2(1 + \rho_{XY})}- \frac12 vw\right)\right)}.
+    f_{V,W}(v,w) &= \frac{1}{2\pi \sqrt{1 - (\rho_{XY})^2}} \exp\left(-\frac{1}{1 - \rho_{XY}}\left(v^2 + \frac{w^2}{2(1 + \rho_{XY})}-vw\right)\right).
 \end{align}
 
 \end{solution}
@@ -712,7 +712,7 @@ So indeed, $\E{Y} > \E{X}$, while $\sigma_Y < \sigma_X$. Clearly, portfolio $Y$ 
 
 % \clearpage
 
-\textsc{Here is a nice} geometrical explanation of ow the normal distribution originates.
+\textsc{Here is a nice} geometrical explanation of how the normal distribution originates.
 
 \begin{exercise}\label{ex:1}
 Suppose $z_0=(x_0,y_{0})$ is the target on a dart board at which Barney (our national darts hero) aims, but you can also interpret it as the true position of a star in the sky.
@@ -720,20 +720,21 @@ Let $z$ be the actual position at which the dart of Barney lands on the board, o
 For ease, take $z_0$ as the origin, i.e., $z_0=(0,0)$.
 Then make the following assumptions:
 \begin{enumerate}
-\item The disturbance $(x,y)$ has the same distribution in the $x$ and the $y$ direction.
+\item The disturbance $(x,y)$ has the same distribution in any direction.
 \item The disturbance $(x,y)$ along the $x$ direction and the $y$ direction are independent.
 \item Large disturbances are less likely than small disturbances.
 \end{enumerate}
-Show that the disturbance along the $x$-axis (hence $y$-axis) is normally distributed. You can use BH.8.19 as a source of inspiration. (This is perhaps a hard exercise, but  the solution is easy to understand and very useful to memorize.)
+Show that the disturbance along the $x$-axis (hence $y$-axis) is normally distributed. You can use BH.8.17 as a source of inspiration. (This is perhaps a hard exercise, but  the solution is easy to understand and very useful to memorize.)
 
 \begin{solution}
-From properties 1 and 2 we conclude that the joint PDF of the disturbance $(x,y)$ must satisfy
+Since the disturbance $(x,y)$ has the same distribution in any direction, it has in particular the same distribution in the $x$ and $y$ direction.
+From this and property 2 we conclude that the joint PDF of the disturbance $(x,y)$ must satisfy
 \begin{equation}
   \label{eq:1}
   f_{X,Y}(x,y) = f_X(x)f_Y(x) =: f(x)f(y),
 \end{equation}
 where we use property 2 first and then property 1, and we write $f(x)$ for ease.
-Since the disturbance has the same distribution in the $x$ and $y$ direction, the density $f$ can only depend on the distance $r$ from the origin but not on the angle. Therefore, the probability that the dart lands on some square $\d x\d y$ must be such that
+Since the disturbance has the same distribution in \textit{any} direction, the density $f$ can only depend on the distance $r$ from the origin but not on the angle. Therefore, the probability that the dart lands on some square $\d x\d y$ must be such that
 \begin{equation}
   \label{eq:4}
   f(x)f(y) \d x \d y = g(r) \d x \d y,
@@ -794,7 +795,7 @@ We next find the normalizing constant of the normal distribution (and thereby of
 
 \begin{exercise}
 For this purpose consider two circles in the plane: $C(N)$ with radius $N$ and $C(\sqrt 2 N)$ with radius $\sqrt 2 N$.
-It is obvious that the square $S(N) = [-N,N]\times[N,N]$ contains the first circle, and is contained in the second.
+It is obvious that the square $S(N) = [-N,N]\times[-N,N]$ contains the first circle, and is contained in the second.
 Therefore,
 \begin{equation}
   \label{eq:13}
@@ -1084,7 +1085,7 @@ To see, reason like this.
 There are $w$ ways to choose one of the white balls as the pivot.
 (I initially forgot this factor.)
 Then, given $p$, $k$ black balls lie to the left of the pivot; the rest lies to the right.
-Then, of the $w-1$ remaining white balls, $r-1$ also have to lie the left of the pivot, and the others to the right (observe that $w-1 - (r-1) = w -1$, hence $(1-p)^{w-r}$.)
+Then, of the $w-1$ remaining white balls, $r-1$ also have to lie the left of the pivot, and the others to the right (observe that $w-1 - (r-1) = w -r$, hence $(1-p)^{w-r}$.)
 
 With the definition of the the $\beta$ function, we can simplify to this:
 \begin{align}
@@ -1123,7 +1124,7 @@ The next real exercise is about recursion applied to the negative hypergeometric
 \begin{exercise}
 We have a chocolate bar consisting of $n$ small squares.
 The bar is in any shape you like, square, rectangular, whatever.
-What is the number of times you have to break the bar such that you end up with the $n$ singe pieces?
+What is the number of times you have to break the bar such that you end up with the $n$ single pieces?
 %Recursive arguments are very powerful, and I often find them very insightful (and I also like this type of reasoning).
 \begin{solution}
   Write $T(n)$ for the number of times you have to break the bar when there are $n$ squares.
@@ -1164,8 +1165,8 @@ When $w, b \geq 1$ two things can happen.
 (You should realize that we use conditioning here. First we condition on picking a white ball, and then we analyze what happens under this condition. Then we condition on drawing a black ball, and we analyze what will happen under the assumption that is true.)
 
 Now we need a real tiny bit of inspiration.
-Let's \texttt{guess} that $N(w,b)\sim \alpha b$ for some $\alpha>0$.
-Guessing is always allowed; if it works, we are done.
+Let's \texttt{guess} that $N(w,b)=\alpha b$ for some $\alpha>0$.
+Guessing is always allowed; if it works, we are done (since the recursion, together with the boundary condition, has a unique solution: just repeatedly applying it allows us to calculate all values).
 In general, you can make any guess whatsoever, but mind that only the good guesses work. So, trying this form, we have that
 \begin{equation*}
 \alpha b = \frac{b}{w+b} (1+ \alpha (b-1)) \stackrel{\textrm{\tiny algebra}}{\implies} \alpha = \frac{b}{w+1}.
@@ -1174,7 +1175,7 @@ So,
 \begin{equation*}
   N(w, b) = \frac{b }{w+1}.
 \end{equation*}
-This is consistent with $N(w,0)=0$, but there one tiny detail about $N(w,0)$.
+This is consistent with $N(w,0)=0$, but there one tiny detail about $N(0, b)$.
 In the present form, this is not 0, while it should according to the boundary condition.
 The reason that we don't keep track of $r$ in our notation; we repair that in the next exercise.
 Recall, we implicitly assumed that $r=1$ in $N(w,b)$.
