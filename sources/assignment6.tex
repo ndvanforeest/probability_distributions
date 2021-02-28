@@ -21,16 +21,16 @@ Here is (what I find) a simpler proof of the Cauchy-Schwartz inequality.  Define
 \item Write $f(t) = \E{(Y-tX)^2}$ as a polynomial of the second degree, i.e., in the form $f(t) = a t^2 + b t + c$ (Hint, see BH).
 \item Since $f(t) \geq 0$, how many (real) roots can it have at most?
 \item What are the implications of this for the discriminant $D=b^2-4ac$?
-\item Show that the Cauchy-Schwartz inequality directly follows.
+\item Show that the Cauchy-Schwartz inequality directly follows from this restriction on $D$.
 \end{enumerate}
 \end{exercise}
 
 \begin{exercise}
-And here is inequality from which all inequalities in BH 10.1.3 immediately follow.
-Take any rv $X$ and a function $f$ that is positive (non-negative) and  increasing (non-decreasing).
+Here is inequality from which all inequalities in BH 10.1.3 immediately follow. It's worth memorizing.
+Take any r.v. $X$ and a function $f$ that is non-negative and non-decreasing.
 \begin{enumerate}
 \item Why is this true for any $a$: $f(a) \1{X\geq a} \leq f(X) \1{X\geq a} \leq f(X)$?
-\item Take expectations and use the fundamental bridge to show that $\P{X\geq a} \leq \E{f(X)}/f(a)$.
+\item Take expectations in the inequality of the previous step and use the fundamental bridge to show that $\P{X\geq a} \leq \E{f(X)}/f(a)$.
 \item What part of the proof goes wrong if  $f$ can also be negative?
 \item Show that Markov's inequality follows by taking $Y=|X|$ and  $f(x)=x$. Why don't we take $f(x) = |x|$?
 \item Show that Chebyshev's inequality follows by taking $Y=|X-\mu|$ and $f(x)=x^2$.
