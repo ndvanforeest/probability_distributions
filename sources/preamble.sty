@@ -9,14 +9,15 @@
 
 \usepackage{subfiles}
 
-\usepackage{minted}
-\setminted[python]{linenos=true}
-\setminted[python]{frame=lines}
-\setminted[R]{linenos=true}
-\setminted[R]{frame=lines}
 
 \theoremstyle{definition}
+
 \usepackage{pythontex}
+\setpythontexfv[]{numbers=left, frame=lines, label=\fbox{Python Code}, xleftmargin=5mm}
+
+\usepackage{minted}
+\setminted[python]{numbers=left, frame=lines, label=\fbox{Python Code}, xleftmargin=5mm}
+\setminted[R]{numbers=left, frame=lines, label=\fbox{R Code}, xleftmargin=5mm}
 
 \usepackage{comment}
 \usepackage{enumerate}

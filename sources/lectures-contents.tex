@@ -26,10 +26,10 @@
 
 \begin{exercise}
 Consider 12 football players on a football field.
-Eleven of them are players of FC Barcelone, the other one is an arbiter.
+Eleven of them are players of F.C. Barcelona, the other one is an arbiter.
 We select a random player, uniform.
 This player must take a penalty.
-The probability that a player of Barcelone scores is 70\%, for the arbiter it is 50\%.
+The probability that a player of Barcelona scores is 70\%, for the arbiter it is 50\%.
 Let $P\in \{A, B\}$ be r.v that corresponds to the selected player, and $S\in\{0,1\}$ be the score.
 \begin{enumerate}
 \item What is the PMF? In other words, determine $\P{P = B, S=1}$ and so on for all possibilities.
@@ -482,7 +482,7 @@ Here is the number of matches for each round: \py{res}
 The mean and variance are as follows: $\E X = \py{res.mean()}$ and $\V X = \py{res.var()}$.
 
 For your convenience, here's the R code
-\begin{minted}[]{R}
+\begin{minted}{R}
 # set seed such that results can be recreated
 set.seed(42)
 
@@ -1463,6 +1463,7 @@ If you are interested,  push the result a bit further: approximate $T_{0}$ for $
 Write code to compute $\E T$ for $N=45$.
 \begin{solution}
 Here is the python code.
+
 \begin{pyblock}
 N = 45
 
@@ -1475,6 +1476,19 @@ def T(n):
 # print(T(44))
 # print(T(0))
 \end{pyblock}
+\begin{minted}{R}
+N = 45
+
+bigT = function(n) {
+  if(n >= N) {
+    return(0)
+  }
+  return(N / (N - n) + bigT(n + 1))
+}
+
+#print(bigT(44))
+#print(bigT(0))
+\end{minted}
 Here are the results $T(44) = \py{T(44)}$ (check!) and $T(0) = \py{T(0)}$.
 \end{solution}
 \end{exercise}
@@ -1532,6 +1546,18 @@ def S(n, N):
 for N in range(1, 25):
     print(S(0, N))
 \end{pyblock}
+\begin{minted}{R}
+S = function(n, N) {
+  if(n >= N) {
+    return(0)
+  }
+  return(1 + S(n + 1, N) + S(n + 2, N))
+}
+
+for (N in 1:24) {
+  print(S(0, N))
+}
+\end{minted}
 The result is this: \printpythontex.
 Apparently, the number of functions called grows very rapidly.
 When we want to compute for 6 balls and $N=45$ the situation must be much, much worse.
@@ -1556,6 +1582,20 @@ def S(n, N):
 
 S(0, 5)
 \end{pyblock}
+\begin{minted}{R}
+library("memoise")
+
+S = function(n, N) {
+  if(n >= N) {
+    return(0)
+  }
+  cat("Called for n =", n, "\n")
+  return(1 + S(n + 1, N) + S(n + 2, N))
+}
+S = memoise(S)
+
+S(0, 5)
+\end{minted}
 Now the result is this:
 \begin{center}
 \printpythontex
@@ -1573,6 +1613,17 @@ def S(n, N):
 
 S(0, 5)
 \end{pyblock}
+\begin{minted}{R}
+S = function(n, N) {
+  if(n >= N) {
+    return(0)
+  }
+  cat("Called for n =", n, "\n")
+  return(1 + S(n + 1, N) + S(n + 2, N))
+}
+
+S(0, 5)
+\end{minted}
 This is the result:
 \begin{center}
 \printpythontex
@@ -1590,6 +1641,8 @@ I build a general function $T(n,m)$ for the situation in which we have seen $n$ 
 Like this, I can check with the earlier case in which we picked just one ball by computing $T(n, 1)$.
 (Hopefully you learn from this that you should also test your code.)
 
+
+%\begin{pyblock}[][numbers=left]
 \begin{pyblock}
 from math import comb
 from functools import lru_cache
@@ -1609,6 +1662,28 @@ def T(n, m):
     return res / (comb(N, m) - comb(n, m))
 
 \end{pyblock}
+\begin{minted}{R}
+library("memoise")
+
+N = 45
+
+bigT = function(n, m) {
+  if(n >= N) {
+    return(0)
+  }
+  res = choose(N, m)
+  for (k in 1:min(m, N - n)) {
+    P = choose(n, m - k)
+    P = P * choose(N - n, k)
+    res = res + P * bigT(n + k, m)
+  }
+  return(res / (choose(N, m) - choose(n, m)))
+}
+bigT = memoise(bigT)
+
+bigT(0, 1)
+bigT(0, 6)
+\end{minted}
 Here is the check: $T(0, 1) = \py{T(0, 1)}$, which is the same as our earlier computation.
 
 Next, $T(0, 6) = \py{T(0,6)}$.
@@ -1741,6 +1816,117 @@ Solve for the constants $a$ and $b$ in terms of $\E{X}$, $\E{Y}$, $\cov{X,Y}$, a
 See the book.
 \end{solution}
 \end{exercise}
+
+\section{Lecture 11}
+\label{sec:lecture-11}
+
+
+\begin{exercise}
+As a continuation of BH.9.2.4, we now ask you to use Eve's law to compute $\V Y$, the variance of the second break point.
+\begin{solution}
+Recall that $\V X = 1/12$. More generally, if the stick has length $l$, then $\V X = l^{2}/12$. With this idea and using the solution of BH.9.2.4,
+\begin{align}
+  \label{}
+\V{Y\given X} &= X^{2}/12, \\
+\E{\V{Y\given X}} &= \E{X^2}/12 = \frac{1}{12} \int_0^1x^2 \d x = \frac{1}{12\cdot 3}\\
+\E{Y\given X} &= X/2,\\
+\V{\E{Y\given X}} &= \V{X/2} = \frac{1}{4\cdot12}, \\
+\V Y &= \E{\V{Y\given X}} + \V{\E{Y\given X}}.
+\end{align}
+\end{solution}
+\end{exercise}
+
+\begin{exercise}
+We have a continuous r.v. $X$ with PDF
+\begin{align}
+  \label{eq:23}
+  f(x) =
+  \begin{cases}
+    1/2, & 0\leq x \leq 1, \\
+    1/4, & 1\leq x \leq 3,
+  \end{cases}
+\end{align}
+and $0$ elsewhere. Define the r.v. $Y$ such that $Y=\1{X< 1} + 2\1{x\geq 1}$. Explain what it means that $Y=1$ or $Y=2$.
+Compute $\E X$ and $\V X$. Then use conditioning on $Y$ and Adam's and Eve's laws to recompute $\E X$ and $\V X$.
+\begin{solution}
+When $Y=1$, then necessarily $X<1$, and similar for $Y=2$.
+
+Using the properties of the uniform distribution,
+\begin{align}
+  \label{}
+\E X &= \frac{1}{2} \int_0^1 x \d x + \frac{1}{4} \int_1^3 x \d x = \frac{1}{4} + \frac{9-1}{8} = \frac{5}{4} \\
+\E{X^2} &=  \frac{1}{2}\int_0^{1} x^{2}\d x + \frac{1}{4}\int_1^{3} x^{2}\d x = \frac{1}{6} + \frac{27-1}{12} = \frac{7}{3} \\
+\V X &=  \frac{7}{3} - \frac{25}{16} = \frac{37}{48}.
+\end{align}
+
+\begin{align}
+  \label{}
+\P{Y=1} &= \E{\1{Y=1}} = \E{\1{X<1}} = \frac{1}{2} \\
+\P{Y=2} &= \E{\1{Y=2}} = \E{\1{X\geq 1}} = \frac{1}{2} \\
+\E{X \given Y} &= \frac{1}{2} \1{Y=1} + 2 \1{Y=2} \\
+\E{X} &= \E{\E{X\given Y}} = \E{\frac{1}{2} \1{Y=1} + 2 \1{Y=2}} = \frac{1}{2} \frac{1}{2} + 2 \frac{1}{2} = \frac{5}{4},\\
+\V{X\given Y} &= \V{X\given Y=1}\1{Y=1} + \V{X\given Y=2}\1{Y=2} = \frac{1}{12} \1{Y=1} + \frac{4}{12} \1{Y=2}, \\
+\E{\V{X\given Y}} &= \frac{1}{12} \frac{1}{2} + \frac{4}{12} \frac{1}{2} = \frac{5}{24}, \\
+\V{\E{X \given Y}} &= \frac{1}{4}\V{\1{Y=1}} + 4\V{\1{Y=2}} + 2\cov{\frac{1}{2}\1{Y=1}, 2\1{Y=2}} \\
+\V{\1{Y=1}} &= \V{\1{Y=2}}  = \frac{1}{4}, \\
+2\cov{\frac{1}{2}\1{Y=1}, 2\1{Y=2}} &= 2\cov{\1{Y=1}, \1{Y=2}}=-2\E{\1{Y=1}}\E{\1{Y=2}} = -\frac{1}{2}\\
+\V{\E{X \given Y}} &= \frac{1}{16} + 1 - \frac{1}{2} = \frac{9}{16}\\
+\V X &= \E{\V{X\given Y}} + \V{\E{X\given Y}} = \frac{5}{24} + \frac{9}{16}.
+\end{align}
+I forgot the covariance at first :-(
+\end{solution}
+\end{exercise}
+
+
+\begin{exercise}
+A server (e.g., a machine, a mechanic, a doctor) spends a random amount $T$ on a job.
+While the server works on the job, it gets interrupted to do other tasks $\{R_{i}\}$.
+Such tasks can be failures of the machine, and they need to be repaired before the machine can continue working again.
+(In the case of a mechanic, interruptions occur when the mechanic has to check some other machine or help other mechanics.)
+It is clear that such interruptions can only occur when the server is working.
+Assume that the interruptions arrive according to a Poisson process with rate $\lambda$, i.e., the number of failures $N| T \sim\Pois{\lambda T}$.
+The interruptions $\{R_{i}\}$ are independent of $T$ and form an iid sequence with common mean $\E R$ and variance $\V R$.
+(Typically, we get estimates for $\E T$ and $\V T$ from measurements.)
+
+Use Adam and Eve's laws to express the expectation and variance of the total time $S$ to complete a job in terms of $\E T$ and $\V R$.
+\begin{solution}
+Use the properties of the Poisson distribution.
+\begin{align}
+\E{N\given T} &= \lambda T \\
+\V{N\given T} &= \lambda T \\
+\E N &= \E{\E{N\given T}} = \lambda \E{T}\\
+\E{\V{N\given T}} &= \lambda \E{T} \\
+\V{\E{N\given T}} &= \V{\lambda T} = \lambda^{2} \V T \\
+\V N &= \lambda \E T + \lambda^{2} \V T.
+\end{align}
+
+The  duration $S$ of a job  is its own service time $T$ plus all interruptions, hence,
+\begin{align}
+  \label{}
+\E S
+&= \E{T + \sum_{i=1}^{N} R_{i}} \\
+&= \E T + \E{\sum_{i=1}^{N} R_{i}} \\
+&= \E T + \E{\E{\sum_{i=1}^{N} R_{i}\given N}} \\
+&= \E{T} + \E {N \E R} \\
+&= \E T + \lambda \E T \E R \\
+&= (1+\lambda \E R)\E T.
+\end{align}
+For the variance,
+\begin{align}
+\V S
+&= \V{T + \sum_{i=1}^{N} R_{i}} \\
+&= \V{T} + \V{\sum_{i=1}^{N} R_{i}}, \quad \textrm{use Eve's law},\\
+&= \V{T} + \E{\V{\sum_{i=1}^{N} R_{i}\given N}} + \V{\E{\sum_{i=1}^N R_{i}\given N}}\\
+&= \V{T} + \E{N \V R} + \V{N \E R} \\
+&= \V{T} + \lambda \E T \V R + (\E R)^{2} \V N \\
+&= \V{T} + \lambda \E T \V R + (\E R)^{2} (\lambda \E T + \lambda^{2}\V T)
+\end{align}
+
+
+
+\end{solution}
+\end{exercise}
+
 
 
 %%% Local Variables:
