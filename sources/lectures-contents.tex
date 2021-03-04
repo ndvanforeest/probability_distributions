@@ -284,7 +284,7 @@ When we do an integral over a 2D surface we can first integrate over the $x$ and
 What is
 \begin{equation}
 \label{eq:5}
-\iint xy \1{0\leq x \leq 3}\1{0\leq y \leq 4} \d x \d y?
+\iint x y \1{0\leq x \leq 3}\1{0\leq y \leq 4} \d x \d y?
 \end{equation}
 \begin{solution}
 \begin{align*}
@@ -427,14 +427,14 @@ What if $\rho=0$?
 \end{exercise}
 
 \begin{exercise}
-Using scaling laws often can help to find errors. For instance,  the prediction $\hat Y$ should not change whether we measure the height in meters or centimetres.
+Using scaling laws often can help to find errors. For instance,  the prediction $\hat Y$ should not change whether we measure the height in meters or centimeters.
 In view of this, explain that
 \begin{align*}
   \hat Y = \E Y + \rho \frac{\V Y}{\sigma_X} (X - \E X)
 \end{align*}
 must be wrong.
 \begin{solution}
-  If we measure $X$ in centimetres instead of metres, then $X$, $\E X$ and $\sigma_X$ are all multiplied by 100, and the prediction $\hat Y$ should also be expressed in centimetres But $\V Y $ scales as length squared.
+  If we measure $X$ in centimeters instead of meters, then $X$, $\E X$ and $\sigma_X$ are all multiplied by 100, and the prediction $\hat Y$ should also be expressed in centimeters But $\V Y $ scales as length squared.
   This messes up the units.
 \end{solution}
 \end{exercise}
@@ -534,14 +534,14 @@ See solution manual.
 
 
 \begin{exercise}
-Suppose $(X,Y)$ are bivariate normal distributed with mean vector $\mu = (\mu_X, \mu_Y) = (0,0)$, standard deviations $\sigma_X = \sigma_Y = 1$ and correlation $\rho_{XY}$ between $X$ and $Y$. Specify the joint pdf of $X$ and $X + Y$.
+Suppose $(X,Y)$ are bi-variate normal distributed with mean vector $\mu = (\mu_X, \mu_Y) = (0,0)$, standard deviations $\sigma_X = \sigma_Y = 1$ and correlation $\rho_{X Y}$ between $X$ and $Y$. Specify the joint pdf of $X$ and $X + Y$.
 \begin{solution}
 Define $V := X$ and $W := X + Y$. Observe that for any $t_V, t_W$, we have
 \begin{align}
     t_V V + t_W W &= t_V X + t_W (X + Y) \\
     &= (t_V + t_W) X + t_W Y.
 \end{align}
-Hence, any linear combination of $V$ and $W$ is a linear combination of $X$ and $Y$. Since $(X,Y)$ is bivariate normal, every linear combination of $X$ and $Y$ is normally distributed. Hence, every linear combination of $V$ and $W$ is normally distributed. Hence, by definition, $(V,W)$ is bivariate normally distributed.
+Hence, any linear combination of $V$ and $W$ is a linear combination of $X$ and $Y$. Since $(X,Y)$ is bi-variate normal, every linear combination of $X$ and $Y$ is normally distributed. Hence, every linear combination of $V$ and $W$ is normally distributed. Hence, by definition, $(V,W)$ is bi-variate normally distributed.
 
 We need to compute the mean vector and covariance matrix of $(V,W)$. We have
 \begin{align}
@@ -571,7 +571,7 @@ and hence,
     &= \frac{1 + \rho_{XY}}{\sqrt{1 \cdot 2(1 + \rho_{XY})}} \\
     &= \sqrt{\frac{1 + \rho_{XY}}{2}}.
 \end{align}
-We have now specified all parameters of the bivariate normal distribution. This yields the following joint pdf:
+We have now specified all parameters of the bi-variate normal distribution. This yields the following joint pdf:
 \begin{align}
     f_{V,W}(v,w) &= \frac{1}{2\pi \sigma_V \sigma_W \tau_{VW}} \exp\left(-\frac{1}{2 \tau_{VW}^2}\left(\left(\frac{v}{\sigma_V}\right)^2 + \left(\frac{w}{\sigma_W}\right)^2 - 2 \frac{\rho_{VW}}{\sigma_V \sigma_W} vw\right) \right),
 \end{align}
@@ -584,7 +584,7 @@ where $\tau_{VW} := \sqrt{1 - \rho_{VW}^2} = \sqrt{1 - \frac{1 + \rho_{XY}}{2}} 
 \end{exercise}
 
 
-The following exercises will show how probability theory can be used in finance. We will look at the tradeoff between risk and return in a financial portfolio.
+The following exercises will show how probability theory can be used in finance. We will look at the trade off between risk and return in a financial portfolio.
 
 John is an investor who has $\$ 10,000$ to invest.
 There are three stocks he can choose from.
@@ -961,7 +961,7 @@ Use the Binomial theorem:
 \begin{align}
     (a + b)^n = \sum_{k=0}^n {n \choose k}a^k b^{n-k},
 \end{align}
-\textit{for any nonnegative integer $n$.}
+\textit{for any non negative integer $n$.}
 \end{hint}
 
 \begin{solution}
@@ -1349,7 +1349,7 @@ we get
 &= \int t f(t) \d t \\
 &= \frac{1}{1-e^{-\lambda \tau}}\int_{0}^{\tau} \lambda t e^{-\lambda t} \d t.
 \end{align}
-Simplyfing,
+Simplifying,
 \begin{align}
 \label{eq:26}
 \int_0^{\tau} \lambda t e^{-\lambda t} \d t
@@ -1564,7 +1564,7 @@ When we want to compute for 6 balls and $N=45$ the situation must be much, much 
 
 The way out is to \emph{store} intermediate results rather than computing them time and again.
 For this we use the concept \emph{memoization}.
-You should memorize this concept when dealing with the compuation of recursions.
+You should memorize this concept when dealing with the computation of recursions.
 In short, this means that we check whether we computed the value of a function earlier.
 If so, get the value from memory, otherwise, do the computation, and store it for later purposes.
 
