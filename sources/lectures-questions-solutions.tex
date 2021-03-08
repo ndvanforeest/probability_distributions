@@ -7,8 +7,6 @@
 \documentclass[a4paper,11pt]{article}
 
 \usepackage[all-solutions-at-end]{optional}
-%\usepackage[check]{optional}
-%\usepackage[nosolutions]{optional}
 
 \usepackage{preamble}
 \usepackage{a4wide}
@@ -17,9 +15,33 @@
 Lectures, questions and solutions
 }
 
+\author{Nicky van Foreest and Ruben van Beesten}
 
 
-\input{lectures-contents.tex}
+
+\opt{all-solutions-at-end}{
+\Opensolutionfile{hint}
+\Opensolutionfile{ans}
+}
+
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\input{lecture01.tex}
+\input{lecture02.tex}
+\input{lecture03.tex}
+\input{lecture04.tex}
+\input{lecture05.tex}
+\input{lecture06.tex}
+\input{lecture07.tex}
+\input{lecture08.tex}
+\input{lecture09.tex}
+\input{lecture10.tex}
+%\input{lecture11.tex}
+%\input{lecture12.tex}
+
 
 
 \opt{all-solutions-at-end}{
