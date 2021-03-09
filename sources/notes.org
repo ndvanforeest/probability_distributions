@@ -848,6 +848,11 @@ Hence,
 \begin{align*}
 f_{U,V}(u,v) = f_{X,Y}(x,y) \frac{\partial(x,y)}{\partial(u,v)} = f_{X,Y}(x,y)/2 = f_X(x) f_Y(y)/2 = \frac{u+v}2\frac{u-v}2 \frac 1 2 = \frac{u^2-v^2}8.
 \end{align*}
+The difficulty is in the domain, however. Note that $x$ and $y$ satisfy $0 \leq x \leq 1$, $0 \leq y \leq 1$. 
+So $0 \leq (u+v)/2 \leq 1$ and $0 \leq (u-v)/2 \leq 1$, which simplifies to $-v \leq u \leq 2-v$ and $v \leq u \leq 2+v$, which can also be written as $|v| \leq u \leq 2-|v|$. Hence, 
+\begin{align*} 
+f_{U,V}(u,v) = \frac 12 \1{|v| \leq u \leq 2-|v|}. 
+\end{align*}
 
 **** Example
 Let $X$ and $Y$ be independent, and take $g(x,y) = (\min\{x,y\}, \max\{x,y\})$. Determine $f_{U,V}$, with $(U,V) = g(X,Y)$. Simplify for the case $X, Y$ iid.
