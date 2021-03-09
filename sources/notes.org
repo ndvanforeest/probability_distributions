@@ -882,8 +882,10 @@ You can skip this. But there are interesting examples. During WWII, order statis
 ** Hints and remarks on exercises
 
 *** 8.1
-Take $g(x)=e^{-x}$.
-Then, $\P{Y \leq y} = \P{X \leq -g^{-1}(y)} = 1 - \exp{g^{-1}(y)}$.
+Take $g(x)=e^{-x}$. Since $g$ is decreasing, so is $g^{-1}$. Then, $Y = g(X)$, so 
+\begin{equation*} 
+\P{Y \leq y} = \P{g(X) \leq y} = \P{X \geq g^{-1}(y)} = 1 - \P{X \leq g^{-1}(y)} = 1 - (1 - exp{-g^{-1}(y)}) = exp{-g^{-1}(y)}. 
+\end{equation*} 
 What is $g^{-1}(y)$?
 Is the condition on $g$ of the change of variables theorem satisfied?
 Note that I follow the proof, which I find that easy to memorize, of this theorem.
@@ -989,7 +991,7 @@ Take the absolute value of the determinant of this. Then, use this, or its inver
 **** b.
 Here is the answer.
 \begin{align*}
-f_{T} = \frac 1{t^2} \int_0^{\infty} f_X(x) f_Y(t x)\d x.
+f_{T} = \frac 1{t^2} \int_0^{\infty} x f_X(x) f_Y(x/t)\d x.
 \end{align*}
 Weird that probabilistic arithmetic is so hard, isn't it?
 
