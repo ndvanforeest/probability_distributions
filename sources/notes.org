@@ -846,7 +846,7 @@ Solution: $(u,v) = g(x,y)  = (x+y, x-y)$. Hence $x=(u+v)/2$, $y=(u-v)/2$, and
 \end{align*}
 Hence,
 \begin{align*}
-f_{U,V}(u,v) = f_{X,Y}(x,y) \frac{\partial(x,y)}{\partial(u,v)} = f_{X,Y}(x,y)/2 = f_X(x) f_Y(y)/2 = \frac{u+v}2\frac{u-v}2 \frac 1 2 = \frac{u^2-v^2}8.
+f_{U,V}(u,v) = f_{X,Y}(x,y) \frac{\partial(x,y)}{\partial(u,v)} = f_{X,Y}(x,y)/2 = f_X(x) f_Y(y)/2 = \frac 1 2.
 \end{align*}
 The difficulty is in the domain, however. Note that $x$ and $y$ satisfy $0 \leq x \leq 1$, $0 \leq y \leq 1$. 
 So $0 \leq (u+v)/2 \leq 1$ and $0 \leq (u-v)/2 \leq 1$, which simplifies to $-v \leq u \leq 2-v$ and $v \leq u \leq 2+v$, which can also be written as $|v| \leq u \leq 2-|v|$. Hence, 
