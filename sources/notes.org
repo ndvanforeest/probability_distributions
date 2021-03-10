@@ -1387,8 +1387,8 @@ Suppose $S_{j}\sim \DUnif{\{1, \ldots, n\}}$ is the \(j\)th sample. Then, $Y_j =
 \E{Y_j}&= \sum_i \E{X_i}\E{\1{S_{j}=i}} = \mu, \\
 \V{Y_j}&= \E{(\sum_{i} X_{i}\1{S_j=i})^{2}} - (\E{X_{j}})^{2} \\
 &=\E{\sum_{i} X_{i}^{2} \1{S_{j}=1} + \sum_i\sum_{k\neq i} X_i X_k \1{S_j=i}\1{S_j=k}} - \mu^{2} \\
-&= \sum_{i} \E{X^2_{i}}\E{\1{S_j}=1} - \mu^2 \\
-&= \frac 1 n \sum_{i} \E{X^2_{j}} - \mu^2  = \sigma^{2.}
+&= \sum_{i} \E{X^2_{i}}\E{\1{S_{j}=1}} - \mu^2 \\
+&= \frac 1 n \sum_{i} \E{X^2_{j}} - \mu^2  = \sigma^{2}.
 \end{align*}
 
 
@@ -1414,16 +1414,16 @@ The conditional variance:
 &= \frac 1 {n^{2}} \sum_{j}\VV{D}{ Y_{j}} & \text{by the hint}\\
 &= \frac 1 {n} \VV{D}{ Y_{1}} & \text{$Y_{j}$ are iid.}
 \end{align*}
-Let's guess what $\VV{D}{Y_{1}}$ is. We select arbitrarily an element of the data $D$. The variance must then be $\frac 1 n \sum_{j}(X_j^{2}-\bar X)^{2}$. We must be able to get this from our  definition $Y_1 = \sum_{i}X_i\1{S_1=i}$. Again using that  $\1{S_1=i}\1{S_1=j} = 0$ if $i\neq j$,
+Let's guess what $\VV{D}{Y_{1}}$ is. We select arbitrarily an element of the data $D$. The variance must then be $\frac 1 n \sum_{j}(X_j-\bar X)^{2}$. We must be able to get this from our  definition $Y_1 = \sum_{i}X_i\1{S_1=i}$. Again using that  $\1{S_1=i}\1{S_1=j} = 0$ if $i\neq j$,
 \begin{align*}
 \VV{D}{Y_{1}}
-&= \VV{D}{\sum_{i} X_{i}\1{S_1}=i} \\
-&= \sum_{i} \left(\VV{D}{X_{i}\1{S_1}=i} + \sum_{j\neq i} \cov{X_{i}\1{S_{1}=i},X_{j}\1{S_1=j}}\right)  \\
-&= \sum_{i} \left(X_i^{2}\VV{D}{\1{S_1}=i} + \sum_{j\neq i} X_{i}X_{j}\cov{\1{S_{1}=i},\1{S_1=j}}\right)  \\
+&= \VV{D}{\sum_{i} X_{i}\1{S_1=i}} \\
+&= \sum_{i} \left(\VV{D}{X_{i}\1{S_1=i}} + \sum_{j\neq i} \cov{X_{i}\1{S_{1}=i},X_{j}\1{S_1=j}}\right)  \\
+&= \sum_{i} \left(X_i^{2}\VV{D}{\1{S_1=i}} + \sum_{j\neq i} X_{i}X_{j}\cov{\1{S_{1}=i},\1{S_1=j}}\right)  \\
 &= \sum_{i} \left(X_i^{2} \frac{n-1}{n^{2}} - \sum_{j\neq i} X_{i}X_{j}\EE{D}{\1{S_{1}=i}}\EE{D}{\1{S_1=j}}\right)\\
 &=  \frac{n-1}{n^{2}} \sum_{i} X_i^{2} - \frac 1 {n^{2}}\sum_{i}\sum_{j\neq i} X_{i}X_{j}\\
 &=  \frac 1 n  \sum_{i} X_i^{2} - \frac 1 {n^{2}}\sum_{i} X_i^{2}- \frac 1 {n^{2}}\sum_{i}\sum_{j\neq i} X_{i}X_{j}\\
-&=  \frac 1 n  \sum_{i} X_i^{2} - (\bar X)^{2} = \sum_{i}(X_{i}-\bar X)^{2}.
+&=  \frac 1 n  \sum_{i} X_i^{2} - (\bar X)^{2} = \frac1{n} \sum_{i}(X_{i}-\bar X)^{2}.
 \end{align*}
 
 
@@ -1439,9 +1439,9 @@ $\E{\bar Y}$ is simple, use linearity and Adam's law (i.e, the tower property). 
 Here are the details for $\V{\bar Y}$.
 \begin{align*}
 \V{\EE{D}{\bar Y}} &= \V{\bar X}= \frac 1{n^{2}} \sum_{i} \V{X_{i}} = \frac 1 n \sigma^{2},\\
-\E{\VV{D}{\bar Y}} &=  \E{\frac 1 n \sum_{i=1}^n (X_i-\bar X)^2} = \frac{n-1}n \E{\frac 1 {n-1}  \sum_{i=1}^n (X_i-\bar X)^2} = \frac{n-1}n \E{S_{n}^{2}},
+\E{\VV{D}{\bar Y}} &=  \E{\frac 1 {n^2} \sum_{i=1}^n (X_i-\bar X)^2} = \frac{n-1}{n^2} \E{\frac 1 {n-1}  \sum_{i=1}^n (X_i-\bar X)^2} = \frac{n-1}{n^2} \E{S_{n}^{2}},
 \end{align*}
-where we use  BH.Def 6.3.3 and BH.Th 6.3.4. The rest is simple.
+where we use  BH.Def 6.3.3 and BH.Th 6.3.4. Note that $S_{n}^2$ is now the sample variance, so we do not use the notation from part a. and b. anymore. The rest is simple.
 
 **** d.
 We add randomness twice, first we draw  samples to get $D$, and then we draw randomly from $D$.
@@ -1552,8 +1552,8 @@ We should compare the expectation $\E{1/p}$ we computed in part a to $1+\E G$, w
 I must miss something here.
 The prior is $\Beta{a, b}$.
 Then Beta-Binomial conjugacy story, we assume that Vishy won $a-1$ games, and lost $b-1$ games.
-My guess for Vishy winning the next game would be $(a-1)/(a+b-2)$, not $a/(a+b-1)$.
-But I make an error here. Check the BH problem 9.57. You'll see that we should indeed use $a/(a+b-1$!  Tricky!
+My guess for Vishy winning the next game would be $(a-1)/(a+b-2)$, not $a/(a+b)$.
+But I make an error here. Check the BH problem 9.57. You'll see that we should indeed use $a/(a+b)$!  Tricky!
 
 
 **** c.
