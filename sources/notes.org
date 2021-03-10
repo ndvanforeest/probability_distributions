@@ -1605,7 +1605,7 @@ There is an interesting method to get probability distribution based on informat
 
 Perhaps you find the following easier:
 \begin{align*}
-(\E X)2 = (\E{X \1{X>0} })^{2} \leq \E X^{2} \E{\1{X>0}} = \E X \P{X>0},
+(\E X)^{2} = (\E{X \1{X>0} })^{2} \leq \E{X^{2}} \E{\1{X>0}} = \E{X^{2}} \P{X>0},
 \end{align*}
 because $1^2=1$.
 
@@ -1632,7 +1632,7 @@ Note that $\E{\log Y_n} \sim -0.081 n$, i.e., has has negative drift, but $\log 
 Why is $n \bar Z_n^2\sim \chi_1^2$?
 Here is the reason.
 $\bar Z_n$ is the sum of $n$ normal r.v.s $Z_j$, hence normal itself.
-As each of these $Z_j$ is standard normal, $\E{\bar Z_n}=0$, and $\V{Z_n}=n^{-2}\sum_{j} \V{Z_{j}}=1/n$, by independence.
+As each of these $Z_j$ is standard normal, $\E{\bar Z_n}=0$, and $\V{\bar Z_n}=n^{-2}\sum_{j} \V{Z_{j}}=1/n$, by independence.
 Therefore, $\sqrt{n} \bar Z_{n} \sim N(0,1) \implies (\sqrt{n}\bar Z_n)^2 \sim \chi_1^2$, where we use Definition 10.4.1 and Theorem 10.4.2 in the last step.
 
 
@@ -1641,11 +1641,11 @@ Therefore, $\sqrt{n} \bar Z_{n} \sim N(0,1) \implies (\sqrt{n}\bar Z_n)^2 \sim \
 *** 10.2
 Write $X_j\in\{0,1\}$ for whether person $j$ in the sample supports the policy or not.
 Then $\hat p = \sum_{j=1}^n X_{j}/n$ is a r.v.
-Apply Chebyshev's inequality to $\P{|\hat p -|>2 \sigma}$.
-Here $\sigma^2 = \V X_j$.
+Apply Chebyshev's inequality to $\P{|\hat p - p|>2 \sigma}$.
+Here $\sigma^2 = \V{X_j}$.
 Then, why is $\E{\hat p} = p$?
 With this, realize that the RHS of Chebyshev's inequality becomes $\V{\hat p}/(4\sigma^2)$.
-Use iid to simplify $\V{\hat p}$.
+Use iid to simplify $\V{\hat p}$. This proves the inequality for $c=1$. 
 
 *** 10.3
 This is just a funny exercise.
@@ -1711,7 +1711,7 @@ So, we found another term to approximate $n!$ yet better.
 If you don't want to check the on-line solution guide right away, here is a hint.
 **** a.
 \begin{align*}
-M_n(t) = \E{e^{s \bar X_n}} = E{e^{s/n \sum_{i=1}^{n} X_i}} = \left(E{e^{s/n X}} \right)^{n} = \left(M_X(s/n)\right)^{n},
+M_n(t) = \E{e^{s \bar X_n}} = \E{e^{s/n \sum_{i=1}^{n} X_i}} = \left(\E{e^{s/n X}} \right)^{n} = \left(M_X(s/n)\right)^{n},
 \end{align*}
 where $X\sim \Poi{\lambda}$.
 **** b.
@@ -1743,7 +1743,7 @@ The problem of the statistician is of course to find functions $L$ and $R$, such
 
 *** 10.30
 The problem demonstrates a simple investment strategy.
-If you plan to work as a quant in finance or as an actuary, of  you play poker, or, some similar game, such strategies should interest you naturally.
+If you plan to work as a quant in finance or as an actuary, or if you play poker, or some similar game, such strategies should interest you naturally.
 
 **** a.
 Define $I_n$ as the success indicator: it is 1 if I win, and 0 if I loose.  Use recursion to see that
@@ -1756,7 +1756,7 @@ Simplify this to get:
 Y_n = \frac{Y_{n-1}} 2 (1  + 0.5 (3.4)^{I_{n}}) = Y_{0} 2^{-n} \Pi_{i=1}^{n} (1+0.5 (3.4)^{I_{i}}).
 \end{align*}
 
-Let me first digress, and show you a useful dead-end. I stared at the above for a while, wondering how to make progress with this. The form is different from the one in  Example 10.3.7, so it appear that I am stuck. But suddenly I recalled that I once saw (in a book on complex function theory) the inequality
+Let me first digress, and show you a useful dead-end. I stared at the above for a while, wondering how to make progress with this. The form is different from the one in  Example 10.3.7, so it appears that I am stuck. But suddenly I recalled that I once saw (in a book on complex function theory) the inequality
 \begin{align*}
 1+\sum_{n=1}^{N} p_n \le \prod_{n=1}^{N} \left( 1 + p_n \right) \le \exp \left( \sum_{n=1}^{N}p_n \right), \end{align*} when $p_n\geq 0$.
 This is also useful for you as it relates compounding interests (e.g.
