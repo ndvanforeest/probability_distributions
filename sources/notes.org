@@ -1321,7 +1321,7 @@ My guess was that in the relation $X=d Y + W$,  $d=1/a$. Why is this wrong; that
 
 **** b.
 
-Take $V=Y-c X$. We know from Ch 8 that $V$ is normally distributed. Therefore, when $\cov{X,V} = 0$, $X$ and $V$ are independent.
+Take $V=Y-c X$. We are given that $(X,Y)$ has the bivariate normal distribution, so $(X, V)$ has the bivariate normal distribution.  Therefore, when $\cov{X,V} = 0$, $X$ and $V$ are independent.
 
 *** 9.21
 Using indicators like this lies at the heart of more advanced probability theory and measure theory. For instance, the proof of LOTUS is based on indicators.
