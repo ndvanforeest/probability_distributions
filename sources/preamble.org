@@ -26,6 +26,7 @@
 #+LaTeX_HEADER: \newcommand{\DUnif}[1]{\mathrm{DUnif}(#1)}
 #+LaTeX_HEADER: \newcommand{\Geo}[1]{\mathrm{Geo}(#1)}
 #+LaTeX_HEADER: \newcommand{\NBin}[1]{\mathrm{NBin}(#1)}
+#+LaTeX_HEADER: \newcommand{\Norm}[1]{\mathrm{Norm}(#1)}
 #+LaTeX_HEADER: \newcommand{\Poi}[1]{\mathrm{Poi}(#1)}
 #+LaTeX_HEADER: \newcommand{\R}{\mathbb{R}}
 #+LaTeX_HEADER: \renewcommand{\d}[1]{\,\textrm{d}#1}

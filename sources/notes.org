@@ -814,7 +814,7 @@ Now, to relate $Y$ to $X$, remark that $\P{X, Y\in A} = \P{U, V \in B}$, i.e.,
 \end{align*}
 But the integral at the RHS over $B$ can be rewritten as an integral over $A$ by the above theorem,
 \begin{align*}
-\iint_{A} f_{X,Y}(x,y)\dx \d y = \iint_{A}f_{U,V}(g(x,y)) \frac{\partial (u,v)}{\partial (x,y)} \d x \d y.
+\iint_{A} f_{X,Y}(x,y)\d x \d y = \iint_{A}f_{U,V}(g(x,y)) \frac{\partial (u,v)}{\partial (x,y)} \d x \d y.
 \end{align*}
 As this holds for any (reasonable) set $A$,
 \begin{align*}
@@ -848,10 +848,10 @@ Hence,
 \begin{align*}
 f_{U,V}(u,v) = f_{X,Y}(x,y) \frac{\partial(x,y)}{\partial(u,v)} = f_{X,Y}(x,y)/2 = f_X(x) f_Y(y)/2 = \frac 1 2.
 \end{align*}
-The difficulty is in the domain, however. Note that $x$ and $y$ satisfy $0 \leq x \leq 1$, $0 \leq y \leq 1$. 
-So $0 \leq (u+v)/2 \leq 1$ and $0 \leq (u-v)/2 \leq 1$, which simplifies to $-v \leq u \leq 2-v$ and $v \leq u \leq 2+v$, which can also be written as $|v| \leq u \leq 2-|v|$. Hence, 
-\begin{align*} 
-f_{U,V}(u,v) = \frac 12 \1{|v| \leq u \leq 2-|v|}. 
+The difficulty is in the domain, however. Note that $x$ and $y$ satisfy $0 \leq x \leq 1$, $0 \leq y \leq 1$.
+So $0 \leq (u+v)/2 \leq 1$ and $0 \leq (u-v)/2 \leq 1$, which simplifies to $-v \leq u \leq 2-v$ and $v \leq u \leq 2+v$, which can also be written as $|v| \leq u \leq 2-|v|$. Hence,
+\begin{align*}
+f_{U,V}(u,v) = \frac 12 \1{|v| \leq u \leq 2-|v|}.
 \end{align*}
 
 **** Example
@@ -887,10 +887,10 @@ You can skip this. But there are interesting examples. During WWII, order statis
 ** Hints and remarks on exercises
 
 *** 8.1
-Take $g(x)=e^{-x}$. Since $g$ is decreasing, so is $g^{-1}$. Then, $Y = g(X)$, so 
-\begin{equation*} 
-\P{Y \leq y} = \P{g(X) \leq y} = \P{X \geq g^{-1}(y)} = 1 - \P{X \leq g^{-1}(y)} = 1 - (1 - exp{-g^{-1}(y)}) = exp{-g^{-1}(y)}. 
-\end{equation*} 
+Take $g(x)=e^{-x}$. Since $g$ is decreasing, so is $g^{-1}$. Then, $Y = g(X)$, so
+\begin{equation*}
+\P{Y \leq y} = \P{g(X) \leq y} = \P{X \geq g^{-1}(y)} = 1 - \P{X \leq g^{-1}(y)} = 1 - (1 - exp{-g^{-1}(y)}) = exp{-g^{-1}(y)}.
+\end{equation*}
 What is $g^{-1}(y)$?
 Is the condition on $g$ of the change of variables theorem satisfied?
 Note that I follow the proof, which I find that easy to memorize, of this theorem.
@@ -1651,7 +1651,7 @@ Apply Chebyshev's inequality to $\P{|\hat p - p|>2 \sigma}$.
 Here $\sigma^2 = \V{X_j}$.
 Then, why is $\E{\hat p} = p$?
 With this, realize that the RHS of Chebyshev's inequality becomes $\V{\hat p}/(4\sigma^2)$.
-Use iid to simplify $\V{\hat p}$. This proves the inequality for $c=1$. 
+Use iid to simplify $\V{\hat p}$. This proves the inequality for $c=1$.
 
 *** 10.3
 This is just a funny exercise.
