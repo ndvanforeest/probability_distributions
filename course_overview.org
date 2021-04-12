@@ -195,13 +195,26 @@ Each assignment will be graded as a `real bad', `insufficient', `sufficient', `g
 If you skip the challenges, the highest grade you can get is a `good'.
 For an `excellent' you have to do all parts of the assignment (and have the right answers).
 If you don't turn in an assignment, the grade will default to 1.
+Then round $\sum_{i=1}^6 a_{i}/6$ where $a_i$ is the grade of your  \(i\)th assignment to one decimal, and let this be $a$.
 
+For the exam grade, we add up all the points you earned at the exam and divide that by the total amount of points you could receive. Then round this to one decimal and let this be $e$.
 
-Let $a=\sum_{i=1}^6 a_{i}/6$ where $a_i$ is the grade of your  \(i\)th assignment.
-Let $e$ be your grade for the exam or the resit.
 Then we compute your final grade $g$ with the code:
 #+begin_src python
-def compute_grade(a, e):
+from sigfig import round
+
+tot = 25
+
+
+# test case
+# g = 3.499999
+# print(int(g + 0.5), round(g, 1))
+
+
+def grade(a, e):
+    a = round(sum(a) / 6, sigfigs=2)
+    e = round(10 * e / tot, sigfigs=2)
+    # print(a, e)
     if e < 5:
         g = e
     elif a >= 6:
@@ -209,7 +222,10 @@ def compute_grade(a, e):
     else:
         g = 0.75 * e + 0.25 * a
 
-    return int(g + 0.5) # rounding
+    return round(g, sigfigs=1)
+
+
+print(grade(a=[8, 8, 8, 8, 10, 1], e=12))
 #+end_src
 It is intentional that if you do a lousy job on the assignments, your final grade $g$ is most surely lower than your exam grade $e$.
 (To avoid all remaining unclarity:  you don't have to do the assignment for the regular exam, nor for the resit, but your grade will be most surely negatively affected.)
