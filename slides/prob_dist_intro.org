@@ -1,0 +1,95 @@
+#+title: Probability distribution intro
+#+author: Nicky van Foreest
+#+date: \today
+#+email: n.d.van.foreest@rug.nl
+
+#+options: H:2 email:t num:t tex:t toc:t LaTeX:t
+#+language: en
+#+creator: Emacs 27.1 (Org mode 9.4)
+#+startup: beamer
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [bigger]
+# +beamer_theme: Copenhagen
+#+beamer_theme: metropolis
+
+
+# #+REVEAL_ROOT: https://cdn.jsdelivr.net/npm/reveal.js
+# #+REVEAL_THEME: black
+# #+OPTIONS: toc:nil num:nil reveal_mathjax:t
+# #+REVEAL_TRANS: linear
+# #+REVEAL_HEAD_PREAMBLE: <meta name="description" content="Org-Reveal Introduction.">
+# #+REVEAL_POSTAMBLE: <p> Created by Nicky. </p>
+# # Die notes lijken niet te werken
+# #+REVEAL_PLUGINS: (notes)
+
+
+* Overview
+
+** General info
+- This presentation is just a short overview.
+- All  information is  on github on the [[https://github.com/ndvanforeest/probability_distributions][course page]].
+- All info is available on github.
+- Read the intro's of the  documents we put on github; they contain important information. (It will cost you lots of time if you don't.)
+- In case of confusion (or conflict) consult the =course_overview.pdf=, as that document prevails.
+
+** Material
+
+- The book is the same as for Probability theory.
+- =notes.pdf=
+- =memoryless_excursions.pdf=
+- =assignments.pdf=
+- Two documents with exercises we deal with during the lectures: one with just questions (before the lecture), the other with questions (after the lecture)
+- Questions plus answers posted on the discussion board.
+
+
+
+* Lectures and Tutorials
+** General lectures:
+    - See the online lectures of Blitzstein for general overview and background
+    - I am sure you can find the  lectures that relate to the course material.
+
+** Our lectures:
+   - Roughly one  hour, first hour on the schedule.
+   - We show how to solve  problems that are at exam level.
+   - The problems will be  made available on line, before the lecture. Solutions will become available after the lecture.
+
+** Tutorials
+
+ As the attendance for tutorials  proves to be very low, we found another form.
+ - Post questions on the discussion board on nestor. We discuss those problems and the solutions during the tutorial.
+ - The material will be available in =discussion_board_questions.pdf=.
+ - There will be one tutorial hour per week, see the  [[https://github.com/ndvanforeest/probability_distributions][course page]] for which one and when.
+
+
+* Assignments
+
+**  General structure
+
+Four parts.
+- simple questions to help  you /read/ the book.
+- one (or two) exam level question. There is already plenty of material at this level: the exercises in the book, the exercises we discuss in the lectures, and the exercises in =memoryless_excursions.pdf=
+- coding skills
+- challenges, (very) hard.
+
+For the grading, check the course overview.
+
+
+** Coding
+- Code language: choose python and or R. Just what you like
+- We provide the code (both in python and R). You have to run it, and sometimes apply minor changes, such as change some parameters and make a graph.
+- You have to /understand/ the code. In the exam we will ask you to explain code examples. These examples will be in python and R.
+
+
+** Aim of the assignments
+
+- The simple questions should help you understand how to read the book, and formulate concepts in your own works, and briefly (just a few lines). That's all; we don't want to turn you into a writer.
+- Learn to write in LaTeX and run code, make grahps.
+- You work on a document in pairs (of two). In case the total of students is odd, we form one group with 3 students.
+- Every week you have to work with another person. Just ask (mail) around for other people to collaborate with. Expand your network.
+
+
+* Grading
+
+** All grades
+
+See the [[https://github.com/ndvanforeest/probability_distributions][course page]] for the details.

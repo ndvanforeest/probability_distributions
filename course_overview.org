@@ -216,7 +216,7 @@ def grade(a, e):
     e = round(10 * e / tot, sigfigs=2)
     # print(a, e)
     if e < 5:
-        g = e
+        g = max(e, 1)
     elif a >= 6:
         g = max(0.75 * e + 0.25 * a, e)
     else:
