@@ -7,8 +7,6 @@
 \usepackage{mathpazo}
 \usepackage{preamble}
 %\usepackage{refcheck}
-\renewcommand{\max}[1]{\mathrm{max}\{#1\}}
-\renewcommand{\min}[1]{\mathrm{min}\{#1\}}
 
 \opt{check}{
 %\AtBeginEnvironment{exercise}{\clearpage}
@@ -200,7 +198,7 @@ Show that $\P{L\geq i}=q^{2i}$ and conclude that $L\sim\Geo{1-q^{2}}$. Just to k
   \begin{align}
     \label{eq:12}
 \P{L\geq k}
-&= \sum_{ij} \1{\min\{i,\j}\geq k} \P{X=i, Y=j}\\
+&= \sum_{ij} \1{\min\{i,j\}\geq k} \P{X=i, Y=j}\\
 &= \sum_{i\geq k} \sum_{j\geq k} \P{X=i}\P{Y=j}\\
 &=  \P{X\geq k}\P{Y\geq k} = q^{k} q^{k} = q^{2k}.
   \end{align}
@@ -287,7 +285,7 @@ Then use this to show~\cref{eq:10}.
     \label{eq:14}
 \P{M=k}
 &= \P{\max\{X, Y\} = k} \\
-&=p^{2}\sum_{ij}\1{\max\{i,\j} =k} q^i q^j\\
+&=p^{2}\sum_{ij}\1{\max\{i,j\} =k} q^i q^j\\
 &=2 p^{2}\sum_{ij}\1{i=k}\1{j < k} q^i q^j + p^{2}\sum_{ij}\1{i=j=k} q^{i} q^j \\
 &=2 p^{2}q^{k}\sum_{j < k} q^j + p^{2}q^{2k}\\
 &=2 p^{2}q^{k}\frac{1-q^{k}}{1-q} +  p^{2}q^{2k}\\
