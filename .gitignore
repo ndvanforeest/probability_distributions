@@ -13,6 +13,7 @@ auto/
 *.rel
 *.toc
 *.pytxcode
+*.xlsx
 _minted*/
 pythontex*
 notes.tex
@@ -20,4 +21,3 @@ notes.tex
 planning*
 ans.tex
 hint.tex
-
