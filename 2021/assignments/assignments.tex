@@ -1,0 +1,143 @@
+% arara: pdflatex: { shell: yes }
+% arara: pythontex: {verbose: yes, rerun: modified }
+% arara: pdflatex: { shell: yes }
+
+
+\documentclass[a4paper,12pt]{article}
+\newcommand{\wk}[1]{\textbf{#1}}
+
+
+
+
+%\usepackage[nosolutions]{optional}
+\usepackage[justhints]{optional}
+%\usepackage[check]{optional}
+%\usepackage[all-solutions-at-end]{optional}
+\usepackage{../../sources/preamble}
+\usepackage{a4wide}
+
+
+
+\opt{justhints}{
+\Opensolutionfile{hint}
+\Opensolutionfile{ans}
+}
+
+
+\author{Nicky D. van Foreest, Ruben van Beesten \\
+  Joost Doornbos, Wietze Koops, Mikael Makonnen, Zexuan Yuan
+}
+\date{\today}
+\title{Probability distributions EBP038A05: 2020-2021\\
+Assignments}
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+
+
+\subfile{assignment-intro.tex}
+\subfile{assignment1}
+\subfile{assignment2}
+\subfile{assignment3}
+\subfile{assignment4}
+\subfile{assignment5}
+\subfile{assignment6}
+
+
+\opt{justhints}{
+\Closesolutionfile{hint}
+\clearpage
+\section{Hints}
+\input{hint}
+}
+
+\end{document}
+
+
+
+
+
+
+\section{Lots of  ideas, very messy currently}
+\label{sec:lots-ideas-very}
+
+
+
+\subsection{Exercise rock, scissors, paper with multiple players.}
+\label{sec:org351adb7}
+
+
+
+
+\section{A/B testing}
+\label{sec:org180b96a}
+\subsubsection{Introduction}
+\label{sec:org41a02a9}
+
+In an A/B test the problem is to find out which of two alternatives is the better, in that it yields higher profit (webpages), cures more patients (medicine), and so on. In this assignment you have to study different policies to find out the better of two alternatives.
+
+A/B testing is a very interesting topic, and lies at the heart of \emph{reinforcement learning}, see wikipedia for background, in particular with respect to machine learning, automatic car driving, and so on.
+
+
+\subsubsection{{\bfseries\sffamily TODO} Use beta priors}
+\label{sec:org9297a86}
+
+\subsubsection{{\bfseries\sffamily TODO} Interesting to link this to the game of Alice and Bob in Van der Plas}
+\label{sec:orgafbfbd0}
+\url{http://jakevdp.github.io/blog/2014/06/06/frequentism-and-bayesianism-2-when-results-differ/}
+
+\subsection{Estimating the number of tanks}
+\label{sec:org0700c8f}
+
+
+\subsection{Koffiedingen van Douwe Egberts}
+\label{sec:orgbe91c90}
+
+\subsection{Batchgewijs testen door samen te voegen}
+\label{sec:org7f21ad2}
+
+
+
+\subsection{Sport uitslagen}
+\label{sec:org9a46c5b}
+
+Som 7.48 gaat over hoeveel maxima optreden. Wat is de verdeling van de maxima? Wat is de toename? Relatie met extreme waarde verdelingen.
+
+\subsection{Random variable code en die van Niels}
+\label{sec:org57ced54}
+
+
+
+\subsubsection{code}
+\label{sec:orga01964c}
+
+
+\begin{minted}[]{python}
+import numpy as np
+
+np.random.seed(3)
+
+sample_no = 300
+rvs_no = 2
+
+#a = np.random.uniform(size=[sample_no, rvs_no])
+labda = 2
+a = np.random.exponential(scale=labda, size=[sample_no, rvs_no])
+a.sort(axis=1)
+#a
+a.mean(axis=0), a.std(axis=0)
+\end{minted}
+
+\begin{minted}[]{python}
+labda/2, 3*labda/2
+\end{minted}
+
+
+
+\section{Bootstrapping example}
+\label{sec:org6006a3a}
+
+
+\end{document}

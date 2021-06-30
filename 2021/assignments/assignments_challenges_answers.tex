@@ -1,0 +1,139 @@
+\documentclass[12pt]{article}
+\setlength{\parindent}{0pt}
+\usepackage[top=3cm, bottom=3.5cm,left=2.8cm,right=2.8cm]{geometry}
+\usepackage{amssymb, amsmath}
+\usepackage{color}
+\usepackage{enumitem}
+\setlength{\parskip}{\baselineskip}
+\setlength{\parindent}{0pt}
+\setlist[itemize,enumerate]{itemsep=2pt,topsep=-4pt}
+
+\renewcommand{\baselinestretch}{1.42}
+\pagenumbering{gobble}
+
+
+\newcommand{\Bin}{\mathop{\mathgroup\symoperators Bin}\nolimits}
+\newcommand{\Pois}{\mathop{\mathgroup\symoperators Pois}\nolimits}
+
+\begin{document}
+
+\textbf{Week 1, Challenge 1.} \\
+Let $0 < p < 1$. Let $N$ be an r.v. taking non-negative integer values with $P(N > 0) > 0$. \\
+Assume that  $X|N\sim\Bin(N,p)$ and that $N-X$ is independent of $X$.
+
+1. Prove that $N$ has support $\mathbb N$, i.e. that $P(N=n) > 0$ for all $n \in \mathbb N$. Note: $0 \in \mathbb N$. \\
+2. Write $Y = N-X$. Prove that
+ $$P(X=x)P(Y=y) = \binom{x+y}{x} p^x (1-p)^y P(N=x+y)$$
+3. Prove that $N$ is Poisson distributed. \\
+ \textit{Hint}: Use the relation of part 2 twice to express $P(N=n+1)$ in terms of $P(N=n)$. \\
+
+\textit{Solution part 1.} We first prove that $N$ is not bounded. For the sake of contradiction, let $n\in \mathbb N$ be the smallest $n$ such that $P(N \leq n) = 1$. Then $P(N=n) > 0$ and hence also $P(X=n) > 0$, but $X=n$ implies $N=n$ and hence $N-X=0$. So $$P(N-X=0|X=n) = 1.$$
+On the other hand, $P(N-X=0|X=0) = 1 - P(N-X>0|X=0) =  1- P(N>0|X=0) < 1$, which violates the independence of $N-X$ and $X$.
+
+Now we prove that $P(N=n) > 0$ for all $n \in \mathbb N$. \\
+Assume the contrary and let $n\in \mathbb N$ be such that $P(N=n) = 0$.
+Then $$P(N-X=0|X=n) = P(N=n|X=n) = 0.$$
+On the other hand, since $N$ is not bounded there is an $m > n$ with $P(N=m)>0$ and hence also $P(X=m)>0$. Then, by Bayes' rule: $$P(N-X=0|X=m) = P(N=m|X=m) = \frac{P(X=m|N=m)P(N=m)}{P(X=m)} > 0,$$
+again a violation of the independence of $N-X$ and $X$.
+
+\textit{Remark}. Other solutions are possible: for example one can first prove that $P(X=x) > 0$ for all $x$. In addition, it would be possible to
+
+\newpage
+
+\textit{Solution part 2.} \\
+Write $Y = N-X$. The independence of $X$ and $Y$ implies that $$P(X=x)P(Y=y) = P(X=x, Y=y).$$
+We also want to use the distribution of $X$ conditional on $N$:
+$$P(X=x, Y=y) = P(X=x, Y=y|N=x+y)P(N=x+y).$$
+Note that we have just proven that
+Note that $$P(X=x, Y=y|N=x+y) = P(X=x|N=x+y) = \binom{x+y}{x} p^x (1-p)^y,$$
+since $X=x$ already implies $Y=y$, and using that  $X|N\sim\Bin(N,p)$.
+
+Combining all of this, we obtain:
+ $$P(X=x)P(Y=y) = \binom{x+y}{x} p^x (1-p)^y P(N=x+y).$$
+
+
+
+ \newpage
+
+ \textit{Solution part 3.} \\
+ Plugging in $y=0$ yields $P(X=x)P(Y=0) = p^x P(N=x)$. \\
+ Plugging in $y=1$ yields $P(X=x)P(Y=1) = (x+1)p^x (1-p) P(N=x+1)$. \\
+ Dividing the second expression by the first implies $$\frac{P(Y=1)}{P(Y=0)} =  (x+1)(1-p) \frac{P(N=x+1)}{P(N=x)}.$$
+ Let $\lambda = \dfrac{P(Y=1)}{(1-p)  P(Y=0)} $. Note that $1-p > 0$ and $P(Y=0) > 0$, as shown earlier.
+
+
+ Then this equation implies $P(N=x+1) = \dfrac{\lambda}{(x+1)} P(N=x)$. By induction it follows that $$P(N = n) = \frac{\lambda^n}{n!} P(N=0).$$
+ Now summing yields $$1 = \sum_{n=0}^\infty P(N=n) = \sum_{n=0}^\infty \frac{\lambda^n}{n!} P(N = 0) = e^{\lambda} P(N=0),$$
+and hence we conclude that $P(N=0) = e^{-\lambda}$, so
+$$P(N = n) = \frac{e^{-\lambda}\lambda^n}{n!},$$
+so $N \sim \Pois(\lambda)$.
+
+\newpage
+
+\textbf{Week 1, Challenge 2.} \\
+This problem challenges your integration skills and lets you think about the subtleties of integrating a function over an infinite domain. Such integrals are called improper integrals.
+
+Assume that $X$ has the Cauchy distribution. Recall that $E[X]$ does not exist.
+\begin{enumerate}
+\item Why does $E \left[\frac{|X|}{X^2+1}\right]$ exist? Find its value.
+\item Explain why part 1 implies that $E \left[\frac{X}{X^2+1}\right]$ exists. Then find its value. \\ \\
+\end{enumerate}
+
+
+\textit{Solution part 1.} Note that by LOTUS we have $$E \left[\frac{|X|}{X^2+1}\right] = \int_{-\infty}^\infty \frac{|x|}{x^2+1} \frac{1}{\pi(x^2+1)} \mathrm{d}x = \int_{-\infty}^\infty \frac{|x|}{\pi(x^2+1)^2} \mathrm{d}x.$$ To prove that the integral exists, we have to find an upper bound for the integral of the absolute value of the integrand. One way to do this is to note that $(|x|-1)^2 \geq 0$ implies $x^2+1 \geq 2|x|$. Hence, it actually follows that the integral is at most $\tfrac12$. \\
+Using the substitution $u = x^2+1$, we find:
+ \begin{align*} E \left[\frac{|X|}{X^2+1}\right] = \int_{-\infty}^\infty \frac{|x|}{\pi(x^2+1)^2} \mathrm{d}x = 2\int_{0}^\infty \frac{x}{\pi(x^2+1)^2} \mathrm{d}x = \int_{1}^\infty \frac{1}{\pi u^2} \mathrm{d}u = \left[ -\frac{1}{\pi u} \right]_1^\infty = \frac1\pi. \end{align*}
+ This is indeed smaller than $\tfrac12$. \\
+
+
+\textit{Solution part 2.} In part 1. we have shown that the integral of the absolute value of the integrand exists. Hence, the expectation $E \left[\frac{X}{X^2+1}\right]$ also exists.
+Because we know that the integral exists, we can use symmetry to conclude that  $E \left[\frac{X}{X^2+1}\right] = 0$. Specifically,
+$$E \left[\frac{X}{X^2+1}\right] = \int_{-\infty}^\infty \frac{x}{x^2+1} \frac{1}{\pi(x^2+1)} \mathrm{d}x = \int_{-\infty}^\infty \frac{x}{\pi(x^2+1)^2} \mathrm{d}x = 0,$$
+because the function $f : \mathbb R \rightarrow \mathbb R$ defined by $f(x) =   \dfrac{x}{\pi(x^2+1)^2}$ is an odd function: $f(-x) = -f(x)$, and odd functions integrate to 0 over a symmetric interval. \\ One can use the substitution $u = -x$ to prove this fact about odd functions.
+
+
+\end{document}
+
+
+\section{Week 2, Challenge 2.}
+Consider two
+iid r.v.s $X, Y$ such that $X+Y$ and $X-Y$ are independent. In BH 7.5.8, it is claimed that this implies that $X$ and $Y$ are normally distributed.
+
+This challenge asks to give a proof of this claim. Throughout this problem, you may assume that $X$ and $Y$ have a MGF that is defined for all $t \in \mathbb R$.\footnote{This may seem like a big restriction, but this argument can easily be adapted to work with the \textit{characteristic function} instead of the MGF, and the characteristic function does always exist. You will learn the characteristic function in the second year courses Statistical Inference and Linear Models in Statistics.} You may also use without proof the fact that MGFs that are defined everywhere are infinitely often continuously differentiable.
+
+\begin{enumerate}
+\item Let $M_X$ be the MGF of $X$ (and hence of $Y$). Prove that $M_X(2t) = (M_X(t))^3(M_X(-t))$.
+\item Define $f(t) = \log M_X(t)$. Prove that $8f'''(2t) = 3f'''(t) - f'''(-t)$.
+\item Let $R > 0$ be arbitrary. Use Weierstrass' theorem to prove that $f'''$ attains a minimum $m$ and a maximum $M$ on the interval $[-R, R]$, and then prove that $m = M = 0$.
+\item Prove that $X$ is normally distributed.
+\end{enumerate}
+
+\newpage
+
+\textit{Solution part 1}:
+\begin{align*}
+M_X(2t) &= E[e^{2tX}] = E[e^{t(X-Y)} e^{t(X+Y)}] = E[e^{t(X-Y)}] E[e^{t(X+Y)}] \\ &= E[e^{tX}e^{-tY}] E[e^{tX}e^{tY}]  = E[e^{tX}]E[e^{-tY}] E[e^{tX}]E[e^{tY}] \\ &= M_X(t) M_Y(-t) M_X(t) M_Y(t) = (M_X(t))^3(M_X(-t)).
+\end{align*}
+\textit{Solution part 2}: Taking the logarithm of the equation derived in part 1 yields $$f(2t) = 3 f(t) + f(-t).$$
+Differentiating three times, and using the chain rule yields:
+\begin{align*}
+2f'(2t) &= 3 f'(t) - f'(-t) \\
+4f''(2t) &= 3 f''(t) + f''(-t) \\
+8f'''(2t) &= 3 f'''(t) - f'''(-t).
+\end{align*}
+\textit{Solution part 3}: The MGF is of  class $C^\infty$, so in particular of class $C^3$. Hence, $f$ is also of class $C^3$ and hence $f'''$ is continuous. Moreover, the interval $[-R, R]$ is compact. So Weierstrass' theorem implies that  $f'''$ attains a minimum $m$ and a maximum $M$ on  $[-R, R]$. Let $t_m$ and $t_M$ be the values where they are attained, respectively. Plugging $t = \tfrac12t_m$ and $t = \tfrac12t_M$ into the equation of part 2 yields
+\begin{align*}
+8M &= 8f'''(t_M) = 3f'''\left(\tfrac12t_M\right) - f'''\left(-\tfrac12t_M\right) \leq 3M - m \\
+8m &= 8f'''(t_m) = 3f'''\left(\tfrac12t_m\right) - f'''\left(-\tfrac12t_m\right) \geq 3m - M.
+\end{align*}
+Subtracting the second equation from the first yields $8(M-m) \leq 4(M-m)$, which implies $m=M$. The first equation then implies $8M \leq 2M$, so $M \leq 0$. The second implies $8m \geq 2m$, so $m \geq 0$. Hence, $m=M=0$.
+
+\textit{Solution part 4}: Since $R$ can be taken arbitrarily large, part 3. implies $f'''(t) = 0$ for all $t$.\\
+Integrating three times yields $f(t) = a+bt + ct^2$ for some constants $a, b, c \in \mathbb R$. \\ Since $f(0) = \log M_X(0) = \log 1 = 0$, we get $a=0$. So $f(t) = bt+ct^2$, so $M_X(t) = e^{bt+ct^2}$. \\
+To prove that this is the MGF of a normal distribution it remains to prove that $c \geq 0$. Note that $M'_X(t) = (b+2ct)e^{bt+ct^2}$ and $M''_X(t) = (2c+(b+2ct)^2)e^{bt+ct^2}$. Hence $E[X] = M'_X(0) = b$ and $E[X^2] = M''_X(0) = 2c + b^2$. Hence $2c =  E[X^2] - E[X]^2 = \text{Var}[X] \geq 0$.
+So the MGF of $X$ coincides with the MGF of a normal distribution, and since the MGF uniquely characterizes the distribution we conclude that  $X$ is normally distributed.
+\end{document}
+
+
+
+\end{document}

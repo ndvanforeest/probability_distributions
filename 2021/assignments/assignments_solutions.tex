@@ -1,0 +1,59 @@
+% arara: pdflatex: { shell: yes }
+% arara: pythontex: {verbose: yes, rerun: modified }
+% arara: pdflatex: { shell: yes }
+
+
+\documentclass[a4paper,12pt]{article}
+
+
+%\usepackage[nosolutions]{optional}
+%\usepackage[justhints]{optional}
+%\usepackage[check]{optional}
+\usepackage[all-solutions-at-end]{optional}
+\usepackage{preamble}
+\usepackage{a4wide}
+
+\opt{all-solutions-at-end}{
+\Opensolutionfile{hint}
+\Opensolutionfile{ans}
+}
+
+
+
+
+\author{Nicky D. van Foreest, Ruben van Beesten \\
+  Joost Doornbos, Wietze Koops, Mikael Makonnen, Zexuan Yuan
+}
+\date{\today}
+\title{Probability distributions EBP038A05: 2020-2021\\
+Assignments plus solutions}
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\subfile{assignment-intro.tex}
+\subfile{assignment1}
+\subfile{assignment2}
+\subfile{assignment3}
+\subfile{assignment4}
+\subfile{assignment5}
+\subfile{assignment6}
+
+
+
+\opt{all-solutions-at-end}{
+\Closesolutionfile{hint}
+\Closesolutionfile{ans}
+\clearpage
+\section{Hints}
+\input{hint}
+\clearpage
+\section{Solutions}
+Compare  your answers very carefully against ours. You should spend time thinking about the definition and notation we use. For instance, there is conceptual huge difference between $X$ and $x$. More generally, good notation and good understanding correlate (positively).
+
+\input{ans}
+}
+
+
+\end{document}

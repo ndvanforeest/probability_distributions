@@ -1,0 +1,660 @@
+\documentclass[assignments]{subfiles}
+
+%New commands that weren't in the preamble:
+
+\begin{document}
+
+
+\setcounter{section}{3}
+\section{Assignment 4}
+
+
+\subsection{Have you read well?}
+
+
+\begin{exercise}
+Correct? Let $T$ be the sum of two i.i.d. $\Unif{0,1}$ r.v.s.
+Then there exist $a, b$ such that $T \sim \Beta{a,b}$. (You don't need to derive the distribution of $T$.)
+\begin{solution}
+Incorrect: The support of $T$ is $(0,2)$ whereas the support of any beta distribution is $(0,1)$. Hence, $T$ does not have a beta distribution for some $a,b$.\\
+Also see page 378 of the book for the distribution of the sum of two uniform distributions. This might help your intuition for this solution.
+\end{solution}
+\end{exercise}
+
+\begin{exercise}
+Show that $\beta(1, b) = 1/b$ by integrating the PDF of the beta distribution for $a=1$. (Do not use the results of BH 8.5 for this exercise.)
+\begin{solution}
+We use that the PDF integrates to 1:
+$$1 = \int_0^1 \frac1{\beta(1,b)} (1-x)^{b-1} \d x =  \frac1{\beta(1,b)}  \left[-\frac{1}{b}(1-x)^{b}\right]_0^1 =  \frac{1}{\beta(1,b) b}.$$
+Hence, $\beta(1, b) = \frac1b$.
+\end{solution}
+\end{exercise}
+
+\begin{exercise}
+Let $a, b > 1$. Show that the PDF of the beta distribution attains a maximum at $x = \frac{a-1}{a+b-2}$. Explicitly indicate where the assumption that  $a, b > 1$ is used.
+\begin{solution}
+The scaling factor $\beta(a, b)$ is a positive constant, so we may as well leave it out and maximize $x^{a-1}(1-x)^{b-1}$. Note that its derivative (to $x$) is given by
+\begin{align*}
+\frac{d}{dx} x^{a-1}(1-x)^{b-1} &= ((a-1)(1-x) -(b-1)x)x^{a-2}(1-x)^{b-2} \\ &= ((a-1) - (a+b-2)x) x^{a-2}(1-x)^{b-2}.
+\end{align*}
+Setting this to zero yields $x = \frac{a-1}{a+b-2}$ as the only candidate for an interior optimum. Since $a, b > 1$, we have $0 < x < 1$. If  $a, b > 1$, then the PDF converges to 0 as $x \to 0$ or $x \to 1$, so then we conclude that $x = \frac{a-1}{a+b-2}$ indeed yields a maximum. \textbf{Think about this last sentence; most groups did not use the information that $a,b>1$ correctly.}
+\end{solution}
+\end{exercise}
+
+
+\begin{exercise}
+Explain in your own words:
+\begin{enumerate}
+\item What is a prior?
+\item What is a conjugate prior?
+\end{enumerate}
+\begin{solution}
+A prior is a distribution reflecting one's information or belief about a parameter before updating it with information. \textbf{Note: almost nobody had a completely satisfactory answer here. Compare your solution to the definition above. If they are different, try to understand how exactly your solution was different and determine which definition is better.}\\
+A conjugate prior is a prior distribution such that the posterior distribution is in the same family of distributions.
+\end{solution}
+\end{exercise}
+
+
+\begin{exercise} \phantom{ }
+\begin{enumerate}
+\item Look up on the web: what is the conjugate prior of the multinomial distribution? Give a name and a formula.
+\item Explain why the Beta distribution is a special case of this distribution.
+\end{enumerate}
+\begin{solution}
+Dirichlet distribution. The Beta distribution is a special case of the Dirichlet distribution, because binomial is a special case of multinomial. Of course, this can also be shown directly using the formula.
+\end{solution}
+\end{exercise}
+
+
+
+\begin{exercise}
+You make a test with $n$ multiple choice questions and you give the correct answer to each question independently with probability $p$. The teacher's prior belief about $p$ is reflected by a uniform distribution: $p \sim \Unif{0,1}$.
+Let $X$ be the number of correct answers you give.
+What is the teacher's posterior distribution $p|X=k$? (You don't have to do a lot of math here; simply use a result from the book.)
+\begin{solution}
+The prior is $p \sim \text{Beta}(1,1)$. The posterior is $p|X=k \sim \text{Beta}(1+k,1+n-k)$.
+\end{solution}
+\end{exercise}
+
+\begin{exercise}
+You find a coin on the street. Initially, you are rather confident that this should be (approximately) a fair coin. This is reflected in your prior belief of the probability $p$ of heads: $p \sim \Beta{10,10}$. Your friend is a bit more skeptical and assumes a uniform prior: $p \sim \Unif{0,1}$.  You toss the coin 1000 times, and it comes up heads 900 times.
+
+\begin{enumerate}
+\item Determine your posterior distribution. (Again, use  a result from the book)
+\item Determine your friend's posterior distribution.
+\item Compare the means of your posterior distribution and your friend's posterior distribution. Comment on the effect of the prior distribution if you have a lot of data.
+\end{enumerate}
+
+\begin{solution}
+Let $X$ denote the number of heads.
+\begin{enumerate}
+    \item Your posterior is $p|X=900 \sim \text{Beta}(910,110)$.
+    \item Your friend's posterior is $p|X=900 \sim \text{Beta}(901,101)$.
+    \item The mean of your posterior is $\frac{910}{910+110} = \frac{91}{102} \approx 0.892$; the mean of your friend's posterior is  $\frac{901}{901+101} = \frac{901}{1002} \approx 0.899$. The difference is small, so the  effect of the prior distribution is small if you have a lot of data. This effect is known as \textit{washing out the prior}.
+\end{enumerate}
+\end{solution}
+
+\end{exercise}
+
+\begin{exercise}
+Consider the chi-square distribution from BH Example 8.1.4.
+
+Starting from the expression $f_Y(y) = \varphi \left(\sqrt{y}\right) y^{-1/2}$ in this example, show that this  chi-square distribution is a special case of the Gamma distribution and specify the corresponding values of the parameters $a$ and $\lambda$.
+
+\begin{solution} We fill in $\varphi(x) = \frac{1}{\sqrt{2\pi}} e^{-x^2/2}$ to find
+\begin{equation*} f_Y(y) = \varphi \left(\sqrt{y}\right) y^{-1/2} = \frac{1}{\sqrt{2\pi}} y^{-1/2} e^{-(\sqrt{y})^2/2} = \frac{1}{\sqrt{2\pi}} y^{-1/2} e^{-y/2}, \end{equation*} so $a = \tfrac12$ and $\lambda = \tfrac12$.
+\end{solution}
+\end{exercise}
+
+\begin{exercise}
+Correct? The sum of any two Gamma distributions is again Gamma.
+\begin{solution}
+Incorrect: the scale parameters $\lambda$ need to be the same \textbf{and} both random variables need to be independent.
+\end{solution}
+\end{exercise}
+
+% \begin{exercise}
+% Show that $\Gamma(a+1)=a\Gamma(a)$ for all $a>0,$ where $\Gamma$ denotes the \textit{gamma function.}
+
+% \begin{solution}
+% Use integration by parts. For the details, see BH Section 8.4.
+% \end{solution}
+
+% \end{exercise}
+
+\begin{exercise}
+Prove by induction that $\Gamma(n)=(n-1)!$ if $n$ is a positive integer.
+
+\begin{solution}
+The base case is $n=1$. We have $\Gamma(1) = \int_0^\infty e^{-x} \d x = 1 = 0!$, so the statement holds for $n=1$. Now let $k \in \mathbb N$ be arbitrary and assume that the statement holds for $n=k$, i.e. that $\Gamma(k) = (k-1)!$. Then \begin{equation}\Gamma(k+1) = k\Gamma(k) = k (k-1)! = k! = ((k+1)-1)!,
+\end{equation}
+so the statement also holds for $n=k+1$. By mathematical induction, we conclude that  $\Gamma(n)=(n-1)!$ for all positive integers $n$.
+\end{solution}
+\end{exercise}
+
+\begin{exercise}
+Correct? The Poisson distribution is the conjugate prior of the Gamma.
+\begin{solution}
+Incorrect: It is the other way around, the Gamma distribution is the conjugate prior of the Poisson distribution. This statement doesn't make much sense, for example one would need to say for which parameter of the Gamma distribution it is the prior. In addition, the parameters of the Gamma distribution can be any positive real number, so the conjugate prior of (either parameter) of the Gamma distribution is a continuous distribution, so in particular not the Poisson distribution.
+\end{solution}
+\end{exercise}
+
+\begin{exercise}
+Let $X \sim \Gamm{4,2}$ and $Y \sim \Gamm{7,2}$ be independent r.v.s. What is the distribution of $X+Y$? What is the distribution of $\frac{X}{X+Y}$?
+
+\begin{solution}
+$X+Y \sim \text{Gamm}(11,2)$ and $\frac{X}{X+Y} \sim \text{Beta}(4,7)$.
+\end{solution}
+\end{exercise}
+
+
+
+
+
+\begin{exercise}
+(This question is about Section~8.6 (order statistics). If you can answer this question, then you basically know everything you need to know about order statistics for the purpose of this course.)\\
+Let $X_1,X_2,\ldots,X_9$ be a collection of random variables. Fill in the gaps (with just one word each time):
+\begin{enumerate}
+    \item $X_{(1)}$ denotes the ... of $X_1,X_2,\ldots,X_9$.
+    \item $X_{(9)}$ denotes the ... of $X_1,X_2,\ldots,X_9$.
+    \item $X_{(5)}$ denotes the ... of $X_1,X_2,\ldots,X_9$.
+\end{enumerate}
+\begin{solution}
+\begin{enumerate}
+    \item Minimum
+    \item Maximum
+    \item Median
+\end{enumerate}
+\end{solution}
+\end{exercise}
+
+\subsection{Exercises at about exam level}
+\label{sec:exercises-at-about}
+
+
+You walk into a bar and you find two people, Amy and Bob, playing a game of darts. Their game consists of several rounds, called \textit{legs}, and the first person to win 7 legs wins the match. You have never seen Amy or Bob play before, so you don't know their strength. Denoting by $p$ the probability that Amy wins a leg, your prior belief can be modeled by a uniform distribution: $p \sim \Unif{0,1}$.  (Note: we assume that $p$ remains constant during the entire match; even though your \textit{beliefs} about $p$ might change.)
+
+Denoting by $A$ a leg won by Amy and by $B$ a leg won by Bob, the result of the first 10 legs is: $AAABBAABAB$. Your friend Charles is very confident that Amy will win the match and he offers you a bet: if Amy wins the match, you must pay €10 to Charles; if Bob wins the match, he must pay you €300. You are tempted to take the bet, but you want to do some calculations first.
+\begin{exercise}
+Is the order in which Amy and Bob won their respective legs relevant for your posterior probability that Bob will win the match?
+\begin{solution}
+No. The only relevant information is the amount of legs won by each player.
+\end{solution}
+\end{exercise}
+
+\begin{exercise}
+Let $A_n$ denote the number of legs that Amy won out of a total of $n$ legs. Express the result of the first 10 legs in terms of $A_n$
+\begin{solution}
+Our current information can be represented as: $A_{10} = 6$.
+\end{solution}
+\end{exercise}
+
+\begin{exercise}
+What is the distribution of $A_n | p$ (i.e., the distribution of $A_n$ given the value of $p$)?
+\begin{solution}
+We have $A_n \sim \Bin{n,p}$.
+\end{solution}
+\end{exercise}
+
+\begin{exercise}
+Find the posterior distribution of $p$ after observing $A_n = k$.
+\begin{solution}
+Let $f_0$ denote the prior distribution of $p$. Then for the posterior pdf we find by Bayes' theorem:
+\begin{align}
+    f_1(p|A_n = k) &= \frac{\P{A_n = k \ | p} f_0(p)}{\P{A_n = k}} \\
+    &= \frac{{n \choose k} p^k (1-p)^{n-k} \cdot 1}{\P{A_n = k}} \\
+    &\propto p^k (1-p)^{n-k},
+\end{align}
+in which we recognize the pdf of a $\text{Beta}(k+1,n-k+1)$ distribution (up to a normalizing constant). Hence, $p |A_n = k \sim \text{Beta}(k+1,n-k+1)$.
+\end{solution}
+\end{exercise}
+
+\begin{exercise}
+According to your posterior belief about $p$, what is the probability that Bob wins the match? Express your answer in terms of beta functions. (Hint: Use the law of total probability.)
+\begin{solution}
+\textbf{Important: we have already observed 10 legs with an outcome, with which we have updated our belief. Hence, we should use the \textit{posterior} distribution given $A_{10} = 6$ in this exercise! (Most groups did this incorrectly.) Think about it. Suppose instead we had observed 1000 legs and Amy had won 990 of them (i.e., $A_{1000} = 990$). Wouldn't we use this information if someone offered us a bet?}\\
+Note that Bob should wins the match if and only if he wins the next three legs. Let $W_k$ be short-hand notation for the event ``Bob wins the $k$th leg''. Then, observing that $W_{11},W_{12},W_{13}$ are independent, and using the LOTP in the fourth step, we obtain
+\begin{align}
+    \P{ \text{Bob wins the match} \ | \ A_{10} = 6 } &= \P{ W_{11} \cap W_{12} \cap W_{13} \ | \ A_{10} = 6 } \\
+    &= \P{ W_{11} \ | \ A_{10} = 6} \P{ W_{12} \ | \ A_{10} = 6} \P{ W_{13} \ | \ A_{10} = 6} \\
+    &= \P{ W_{11} \ | \ A_{10} = 6}^3 \\
+    &= \int_{0}^1 \P{ I_{11} \ | \ p,  A_{10} = 6}^3 f_1(p | A_{10} = 6) dp \\
+    &= \int_{0}^1 (1-p)^3 \cdot \frac{p^6(1-p)^{4}}{\beta(7,5)}  dp \\
+    &= \frac{\beta(7,8)}{\beta(7,5)} \int_{0}^1 \frac{p^6(1-p)^{7}}{\beta(7,8)}  dp \\
+    &= \frac{\beta(7,8)}{\beta(7,5)}.
+\end{align}
+(Note that we very explicitly do all the steps here. It might be more intuitively clear if you skip the first few steps and write
+\begin{align}
+    \P{ \text{Bob wins the match} \ | \ A_{10} = 6 } &= \int_{0}^1 (1-p)^3 f_1(p | A_{10} = 6) dp,
+\end{align}
+and work from there).
+\end{solution}
+\end{exercise}
+
+\begin{exercise}
+Using the expression
+\begin{align}
+    \beta(a,b) = \frac{(a-1)!(b-1)!}{(a+b-1)!}
+\end{align}
+for every positive integers $a,b$, compute the probabilty from the previous question as a number.
+\begin{solution}
+We have
+\begin{align}
+    \P{ \text{Bob wins the match} \ | \ A_{10} = 6 } &= \frac{\beta(7,8)}{\beta(7,5)} \\
+    &= \left(\frac{6!7!}{14!}\right)/\left(\frac{6!4!}{11!}\right) \\
+    &= \frac{7!/4!}{14!/11!} \\
+    &= \frac{7\cdot 6 \cdot 5}{14 \cdot 13 \cdot 12} \\
+    &= 5/52 \\
+    &= 0.0962.
+\end{align}
+\end{solution}
+\end{exercise}
+
+\begin{exercise}
+Assuming that you want to maximize your expected outcome, should you take the bet?
+\begin{solution}
+Our expected profit when taking the bet is
+\begin{align}
+    &300 \cdot \P{ \text{Bob wins the match} \ | \ A_{10} = 6 } - 10 \cdot \P{ \text{Amy wins the match} \ | \ A_{10} = 6 } \\
+    &\qquad= 300 \cdot \frac{5}{52} - 10 \cdot (1 - \frac{5}{52}) \\
+    &\qquad= 19.808.
+\end{align}
+So we expect to make a profit of €19.81. Hence, you should take the bet.
+\end{solution}
+\end{exercise}
+
+
+
+
+
+\subsection{Coding skills}
+\label{sec:coding-skills-1}
+
+We simulate the post office part of BH.8.36.
+Read it now, i.e., before reading the text below.
+Then read the code below.
+In the questions we ask you to explain what the code does.
+There are lots of print statements that have been commented out, but we left them in for you to include while experimenting with the code to see how the code works.
+(I often use print statements of intermediate results when writing a program, just to see whether I am still on track.
+Once I checked, I remove them, because they clutter the looks of the code.)
+
+\begin{minted}[]{python}
+import numpy as np
+from scipy.stats import expon
+
+np.random.seed(3)
+
+labdas = np.array([3, 4])
+
+N = 10
+
+T1 = expon(scale=1 / labdas[0]).rvs(N)
+# print(T1.mean())
+T2 = expon(scale=1 / labdas[1]).rvs(N)
+T = np.zeros([2, N])
+T[0, :] = T1
+T[1, :] = T2
+# print(T)
+server = np.argmin(T, axis=0)
+# print(server)
+
+# BH.8.36.b
+print((server == 1).mean())
+
+# BH.8.36.c
+# print(labdas[server])
+S = expon(scale=1).rvs(N) / labdas[server]
+# print(S)
+
+D = np.min(T, axis=0) + S
+# print(D)
+
+print(D.mean(), D.std())
+\end{minted}
+
+\begin{minted}[]{R}
+set.seed(3)
+
+labdas = 3:4
+
+N = 10
+
+T1 = rexp(N, rate = labdas[1])
+T2 = rexp(N, rate = labdas[2])
+
+
+bigT = matrix(0, nrow = 2, ncol = N)
+bigT[1,] = T1
+bigT[2,] = T2
+
+server = rep(0, ncol(bigT))
+
+for (i in 1:ncol(bigT)) {
+  server[i] = which.min(bigT[,i])
+}
+
+print(mean((server == 1)))
+
+S = rexp(N, rate = 1) / labdas[server]
+print(S)
+
+D = apply(bigT, MARGIN = 2, FUN = min) + S
+
+print(mean(D))
+print(sd(D))
+\end{minted}
+
+\begin{exercise}
+Explain why  \texttt{T1} corresponds to a number of service times of the first server.
+\end{exercise}
+
+\begin{exercise}
+To what do the rows of \texttt{T} (\texttt{bigT}) correspond?
+\end{exercise}
+
+\begin{exercise}
+What is the content of \texttt{server}? Why do we compute this?
+\end{exercise}
+
+\begin{exercise}
+Explain how we use the fundamental bridge in line P.21 (R.21) to answer BH.8.36.b.
+\end{exercise}
+
+
+\begin{exercise}
+Alice is taken into service by the server that finishes first.
+We need to simulate the service time that Alice needs at that server.
+Explain how we do this in line P.25 (R.23). Hint, reread BH.5.5 on the exponential. BTW, this is a good time to reread BH.5.3.
+\end{exercise}
+
+\begin{exercise}
+Why is \texttt{np.min(T, axis=0)} in the python code (\texttt{apply(bigT, MARGIN=2, FUN=min)} in  R) the time Alice spends waiting in queue, i.e., the time Alice spends in the post office before her service starts?
+\end{exercise}
+
+
+\begin{exercise}
+Why is \texttt{D} the departure time of Alice, i.e., the time Alice spends in the post office?
+\end{exercise}
+
+
+\begin{exercise}
+Set \texttt{N} to 1000 or so, or any other large number to your liking, but not so large that your computer will keep simulating for a month\ldots Compare the values of the simulation to the theoretical result that you have to compute in BH.8.36.c.
+\end{exercise}
+
+
+\begin{exercise}
+Run the code for $\lambda_{1}=1$ fixed, and take $\lambda_{2}$ equal to $0.5, 1, 1.5$ and $2$ successively. Compute the mean time waiting time and mean sojourn time of Alice, and put your results in a table. Compare the results of the simulation to the theoretical values.
+\end{exercise}
+
+There is an important lesson to learn here.
+With simulation it is, often, reasonably simple to get numerical answers, but it requires many simulations to see a pattern in the numbers.
+For patterns we can better use theory, as theory gives us formulas that show how the output of some model depends on the input.
+
+
+\subsection{Challenges}
+\label{subsec:challenges}
+
+In this exercise, we discuss Benford's law. Recall that the first step towards this law was taken in Lecture 5, Exercise 3. In this exercise, we showed that if $X,Y$ are i.i.d. uniform on $[1, 10)$, that then the density of $Z = XY$ is given by $$f_Z(z) = \frac{\log(\min\{10,z\}) - \log(\max\{1, z/10\})}{81} I_{1 \leq z \leq 100}.$$
+Note that $\log$ denotes the natural logarithm. \\
+Benford's law is a statement about the distribution of the first digit of the product of sufficiently many variables that are i.i.d. uniform on $[1, 10)$. We first consider the first digit of the product of two such variables, i.e. the first digit of $Z$.
+
+
+\begin{exercise}
+Let $K$ be the first digit of $Z$. Show that the PMF of $K$ is given by
+$$P(K = k)  = \frac{9k\log(k) - 9(k+1)\log(k+1) + 9+ 10 \log(10)}{81}$$
+for $k \in \{1, 2, \ldots, 9\}$.
+
+\opt{check}{
+\begin{solution} We consider the cases $1 \leq z < 10$ and $10 \leq z < 100$ and add:
+\begin{align*} P(K = k) &= \int_{k}^{k+1} f_Z(z) \d z + \int_{10k}^{10(k+1)} f_Z(z) \d z \\ &=\int_{k}^{k+1} \frac{\log(\min\{10,z\}) - \log(\max\{1, z/10\})}{81} I_{1 \leq z \leq 100} \d z \\&\qquad + \int_{10k}^{10(k+1)}  \frac{\log(\min\{10,z\}) - \log(\max\{1, z/10\})}{81} I_{1 \leq z \leq 100} \d z \\
+&=\int_{k}^{k+1} \frac{\log(z)}{81} \d z + \int_{10k}^{10(k+1)}  \frac{\log(10) - \log(z/10)}{81}\d z \\
+&= \left[ \frac{z\log(z)-z}{81} \right]_{k}^{k+1} + \left[\frac{\log(10)}{81} - \frac{z \log(z/10) - z}{81} \right]_{10k}^{10(k+1)}  \\
+&= \frac{(k+1)\log(k+1) - k\log(k)-1}{81}   \\&\qquad + \frac{10 \log(10)}{81} - \frac{10(k+1) \log(k+1) - 10 k \log(k) - 10}{81} \\
+&=  \frac{9k\log(k) - 9(k+1)\log(k+1) + 9+ 10 \log(10)}{81}.
+\end{align*}
+for $k \in \{1, 2, \ldots, 9\}$.
+\end{solution}
+}
+\end{exercise}
+
+
+\begin{exercise}
+Check that $\sum_{k=1}^9 P(K = k) = 1$. This can be done nicely by recognizing a \textit{telescoping sum}: many terms cancel because they appear once with a minus and once with a plus.
+
+\opt{check}{
+\begin{solution}
+All terms of the form $9k\log(k)$ cancel, except the first $9 \log(1) = 0$ and the last $-90 \log(10)$. So the sum is $\frac1{81} \left(-90 \log(10) + 9 \cdot \left(9+ 10 \log(10)\right) \right) = 1$.
+\end{solution}
+}
+\end{exercise}
+
+
+Another way to derive the first digit of $Z$ is to first divide $Z$ by 10 if $Z \geq 10$. This yields a random variable $W$ with support $[1, 10)$. Clearly, the division doesn't affect the first digit.  The next exercise asks to derive the resulting density. This can be a bit tricky; you should check your answer by verifying that the distribution of the first digit of $W$ matches the distribution of the first digit of $Z$.
+
+\begin{exercise}
+Let $W = Z$ if $1 \leq Z < 10$ and $W = \tfrac{Z}{10}$ if $10 \leq Z < 100$. Derive the density of $W$.
+
+\opt{check}{
+\begin{solution}
+Note that $Z$ is continuous so we have to multiply the density by the inverse Jacobian $10$ when dividing by 10. We get the following density:
+$$f_W(w) = \frac{\log(w) + 10\left(\log(10) - \log(w)\right)}{81} I_{1 \leq w < 10} = \frac{10 \log(10) - 9 \log(w)}{81} I_{1 \leq w < 10}.$$
+Check: $ \int_{k}^{k+1} f_W(w) \d w  =  \left[ \dfrac{10 \log(10)  -9w\log(w) + 9w}{81} \right]_{k}^{k+1} = P(K=k)$.
+\end{solution}
+}
+\end{exercise}
+
+
+We now turn to the product of more than two (independent) random variables. It would be very tedious to do this analytically, so we will instead use some code. However, to do this we have to approximate the continuous uniform variable by a discrete random variable. We use the discrete uniform distribution on $\{1+ 0.5 \cdot \frac{9}{s}, 1 + 1.5 \cdot \frac{9}{s}, 1 + 2.5 \cdot \frac{9}{s}, \ldots, 1 + (s-0.5) \cdot \frac{9}{s}\}$; in total this set has $s$ elements. However, a product of two elements from this set may not again be an element of this set. To solve this, we identify all elements of the interval $\left(1+ k \cdot \frac{9}{s}, 1+ (k+1)\cdot \frac{9}{s}\right)$ with $1+ (k+0.5)\cdot \frac{9}{s}$. We now use a loop to approximate the distribution of the product of $p+1$ random variables by looking at  all possible values of the product of $p$ random variables and one additional uniformly distributed random variable. Note that in the code, $s$ is called \texttt{steps} and $p$ is  called \verb|p_idx|.
+
+Executing the code may take a while. If it takes more than 1 minute, you may decrease \texttt{steps}, but please do note that you did so.
+
+\begin{minted}[]{python}
+import math
+
+steps = 900
+products = 15
+p_unif = [1.0/steps] * steps
+p_mat = [p_unif]
+
+for p_idx in range(1, products):
+    p_vec = [0] * steps
+        for s1 in range(steps):
+            for s2 in range(steps):
+                product = (1 + (s1 + 0.5)*9/steps) * (1 + (s2 + 0.5)*9/steps)
+                prod_probability = p_mat[p_idx - 1][s1] * 1/steps
+
+                if product > 10:
+                    product = product/10
+
+                prod_idx = math.floor((product-1)/9 * steps)
+                p_vec[prod_idx] += prod_probability
+
+    p_mat.append(p_vec)
+
+
+p_digits = []
+for p_idx in range(products):
+    vec = []
+    for digit in range(1, 10):
+        pd = sum(p_mat[p_idx][((digit-1)*steps//9):(digit*steps//9)])
+        vec.append(round(pd, 6))
+    p_digits.append(vec)
+
+print(p_digits)
+\end{minted}
+
+
+\begin{minted}[]{R}
+steps <- 900
+products <- 15
+p_unif <- rep(1/steps, steps)
+p_mat <- matrix(0, nrow = steps, ncol = products)
+p_mat[, 1] <- p_unif
+
+for (p_idx in 2:products) {
+  p_vec <- rep(0, steps)
+  for (s1 in 1:steps) {
+    for (s2 in 1:steps) {
+      product <- (1 + (s1 - 0.5)*9/steps) * (1 + (s2 - 0.5)*9/steps)
+      prod_probability <- p_mat[s1, p_idx - 1] *  1/steps
+
+      if (product > 10) {
+        product <- product/10
+      }
+
+      prod_idx <- ceiling((product-1)/9 * steps)
+      p_vec[prod_idx] <- p_vec[prod_idx] + prod_probability
+    }
+  }
+  p_mat[, p_idx] = p_vec
+}
+
+p_digits <- matrix(0, nrow = 9, ncol = products)
+for (p_idx in 1:products) {
+  for (digit in 1:9) {
+    pd = sum(p_mat[((digit-1)*(steps/9)+1):(digit*(steps/9)), p_idx])
+    p_digits[digit, p_idx] = round(pd, 6)
+  }
+}
+p_digits
+\end{minted}
+
+\vspace{5pt}
+
+\begin{exercise}
+Explain line P.13 (R.12) of the code.
+
+\opt{check}{
+\begin{solution}
+In line  P.13 (R.12), the probability of drawing the \texttt{s1}th value from the $p$th product distribution is multiplied with the probability of drawing a value from the uniform distribution. (Explanation about the indices, etc. is fine, but the essential thing is that it is realized that the \texttt{1/steps} is from the (discrete) uniform distribution.)
+\end{solution}
+}
+\end{exercise}
+
+\begin{exercise}
+Briefly comment on the results for $p=2$ compared the exact result derived in the first exercise. Why is it important to make this comparison?
+
+\opt{check}{
+\begin{solution}
+The approximation seems to work well. For \texttt{steps = 900}, the absolute error is nowhere larger than $3 \cdot 10^{-5}$, the relative error is nowhere larger than 0.06\%, the first three digits of the probabilities are correct, etc (one of these is sufficient).
+
+We do this comparison to check our code and the approximation approach.
+\end{solution}
+}
+\end{exercise}
+
+When looking at the results for larger $p$, it seems that the probabilities converge. The limit random variable $B$ then satisfies the property that the first digit of $B$ and the first digit of $BU$ (where $U \sim \Unif{1,10}$) are identically distributed.  Proving this is quite challenging (even for the challenge). In addition, we first need to know what the distribution of $B$ is.
+
+To guess the  distribution of the first digit of $B$, we look at the results of our code and try some transformations to see if this yields familiar numbers. It turns out that the first digit $M$ of $B$ has the following distribution:
+\begin{equation*}
+P(M=k) = \log_{10}\left(\frac{k+1}{k}\right),
+\end{equation*}
+for $k \in \{1,2,\ldots, 9\}$.
+
+\begin{exercise}
+Briefly comment on these exact values of $P(M=k)$ compared to the values for $p=15$ that result from the code. Give two reasons why the code results are not exact. Which reason do you think is the most important?
+
+\opt{check}{
+\begin{solution}
+The approximation seems to work well. For \texttt{steps = 900}, the absolute error is nowhere larger than $5 \cdot 10^{-5}$, the relative error is nowhere larger than 0.09\%, the first three digits of the probabilities are correct, etc (one of these is sufficient).
+
+The two reasons that the code results do not exactly correspond to the values are (i) that we approximate the continuous uniform distribution by a discrete uniform distribution and (ii) that we use $p=15$ as approximation for the limit $p\to\infty$. Actually, the results do not change anymore when going from $p=14$ to $p=15$ for \texttt{steps = 900}; so increasing $p$ would not help. Reason (i) is more important.
+\end{solution}
+\end{exercise}
+
+\begin{exercise}
+Check that $\sum_{k=1}^9 P(M = k) = 1$. You can again use a telescoping sum.
+\begin{solution}
+We can write $\log_{10}\left(\frac{k+1}{k}\right) = \log_{10}(k+1) - \log_{10}(k)$, so it is again a telescoping sum. All terms cancel except for the first $\log_{10}(10)$ and the final $\log_{10}(1)$, so the sum is $\log_{10}(10) - \log_{10}(1) = 1$ as required.
+\end{solution}
+}
+\end{exercise}
+
+
+Besides the theoretical aspects covered in this challenge, Benford's law states that the first digit of numbers of naturally occurring sets that span several orders of magnitude, such as  vote counts by county (or municipality), transaction sizes, etc., approximately follow this distribution. Initially this was just seen as an interesting curiosity of no practical value, but recently it has been used in fraud detection. If you're interested, you might check out this YouTube video by Numberphile: \url{https://www.youtube.com/watch?v=XXjlR2OK1kM&ab_channel=Numberphile}
+
+
+\end{document}
+
+
+\begin{exercise}
+This is an exercise about your general insight into probability; you don't need the specific tools discussed during this week of the course.
+
+Henri Poincar\'{e} was a French mathematician who taught at the Sorbonne around 1900.
+The following anecdote about him is probably fabricated, but it makes an interesting probability problem.
+
+Supposedly Poincar\'{e}  suspected that his local bakery was selling loaves of bread that were lighter than the advertised weight of 1 kg, so every day for a year he bought a loaf of bread, brought it home and weighed it.
+At the end of the year, he plotted the distribution of his measurements and showed that it fit a normal distribution with mean 950 g and standard deviation 50 g.
+He brought this evidence to the bread police, who gave the baker a warning.
+
+For the next year, Poincar\'{e}  continued the practice of weighing his bread every day.
+At the end of the year, he found that the average weight was 1000 g, just as it should be, but again he complained to the bread police, and this time they fined the baker.
+Why?
+
+\begin{solution}
+Because the shape of the distribution was asymmetric. Unlike the normal distribution, it was skewed to the right, which is consistent with the hypothesis that the baker was still making 950 g loaves, but deliberately giving Poincar\'{e}  the heavier ones.
+
+You might like (don't feel obliged though, it's just for fun) to write a program that simulates a baker who chooses $n$ loaves from a distribution with mean 950 g and standard deviation 50 g, and gives the heaviest one to Poincar\'{e} .
+What value of $n$ yields a distribution with mean 1000 g?
+What is the standard deviation?
+
+% wk: this is very nice, but I don't think anyone will come up with this solution.
+% Maybe some people will think of saying that Poincar\'{e} got on purpose the heavier ones.
+
+\end{solution}
+\end{exercise}
+
+
+\begin{exercise}
+Use the pmf of the Beta-Binomial distribution to prove the following identity:
+\begin{equation*}
+   \sum_{k=0}^n \frac{\binom{n}{k}\binom{a+b-2}{a-1}  (a+b-1) }{\binom{a+b+n-2}{a+k-1}(a+b+n-1)} = 1.
+\end{equation*}
+for all positive integers $a, b, n$.
+\begin{solution}
+This  states that the PMF of the Beta-Binomial distribution, $$P(X=k) = \binom{n}{k} \frac{\beta(a+k,b+n-k)}{\beta(a,b)},$$ sums to 1. To see this, we have to rewrite the beta functions in terms of binomial coefficients:
+\begin{align*}
+   \frac{1}{\beta(a,b)} = \frac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)} = \frac{(a+b-1)!}{(a-1)! (b-1)!} = (a+b-1) \binom{a+b-2}{a-1}, \\
+   \frac{1}{\beta(a+k,b+n-k)}  = (a+b+n-1) \binom{a+b+n-2}{a+k-1}.
+\end{align*}
+Plugging this in gives the result.
+\end{solution}
+\end{exercise}
+
+\subsubsection{Bayesian priors, Testing for rare deceases, Making the plot of Exercise 7.86}
+
+In line with Exercise 8.33, we are now going to analyze the effect on \(\P{D\given T}\) when the sensitivity is not known exactly.
+So, why is this interesting?
+In Example 2.3.9 the sensitivity is given, but in fact, in `real' experiments, this is not always known as accurately as assumed in this example.
+For example, in this paper: \href{https://www.thelancet.com/journals/lanres/article/PIIS2213-2600(20)30453-7/fulltext}{False-positive COVID-19 results: hidden problems and costs} it is claimed that `The current rate of operational false-positive swab tests in the UK is unknown; preliminary estimates show it could be somewhere between 0·8$\backslash$% and 4·0$\backslash$%.'.
+Hence, even though it is claimed that PCR tests `have analytical sensitivity and specificity of greater than 95$\backslash$%', it may be 4$\backslash$% lower.
+Simply put, the specificity and sensitivity are not precisely known, hence this must affect \(\P{D\given T}\).
+
+To help you, we show how to make one graph. Then we ask you to make a few on your own, and comment on them.
+
+
+
+
+\label{sec:orgb704f64}
+
+\subsubsection{Redoing the  computation of the  Example 2.3.9}
+\label{sec:orge3a48cf}
+
+I write \texttt{p\_D\_g\_T\$} for \(\P{D\given T}\). Here is how this can be implemented in python.
+
+\begin{minted}[]{python}
+sensitivity = 0.95
+specificity = 0.95
+p_D = 0.01
+
+p_T = sensitivity * p_D + (1-specificity)*(1-p_D)
+p_D_g_T  = sensitivity * p_D/p_T
+p_D_g_T
+\end{minted}
+
+\begin{enumerate}
+\item Make a plot of \(\P{D\given T}\) in which you vary the sensitivity from 0.9 to 0.99. Explain what you see.
+\item Make a plot of \(\P{D\given T}\) in which you vary the specificity from 0.9 to 0.99.
+\item Make a plot of \(\P{D\given T}\) in which you vary \(\P{D}\) from 0.01 to 0.5. Explain what you see.
+\item
+\end{enumerate}

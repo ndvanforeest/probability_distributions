@@ -1,0 +1,597 @@
+\documentclass[assignments]{subfiles}
+
+%New commands that weren't in the preamble:
+
+\begin{document}
+
+
+\setcounter{section}{5}
+\section{Assignment 6}
+
+
+\subsection{Have you read well?}
+
+\begin{exercise}
+Use Eve's law to show that $\V Y \geq \V{\E{Y\given X}}$.
+\begin{solution}
+By Eve's law,
+\begin{align}
+    \V Y = \E{\V{Y\given X}} + \V{\E{Y\given X}} \geq \V{\E{Y\given X}},
+\end{align}
+since $\V{Y\given X} \geq 0$ for all $X$, which implies that $\E{\V{Y\given X}} \geq 0$.
+\end{solution}
+\end{exercise}
+
+
+\begin{exercise}
+Let $Z\sim \mathcal{N}(\mu, \sigma^2)$ and $Y=\sqrt{Z}+Z^2.$ Find $\V{Y|Z}$.
+\begin{solution}
+Conditional on $Z$, $Y$ is a constant, and the variance of a constant is 0. Hence, $\V{Y|Z} = 0$.
+\end{solution}
+\end{exercise}
+
+
+\begin{exercise}
+Correct? $\V{Y}=\V{Y|A}\P{A}+\V{Y|A^c}\P{A^c}$ for any random variable $Y$ and event $A$.
+
+\begin{solution}
+Incorrect. Counterexample: Let $Y\sim$ Bern(1/2) and $A$ be the event $Y=0$. then Var($Y|A$) and Var($Y|A^c$) are both 0, but Var($Y$)=1/4.
+\end{solution}
+\end{exercise}
+
+
+\begin{exercise}
+Let $X, Y$ be random variables. Explain the difference between $\V{Y|X}$ and $\V{Y|X=x}$.
+
+\begin{solution}
+$\V{Y|X}$ is a random variable, but $\V{Y|X=x}$ is a constant.
+\end{solution}
+\end{exercise}
+
+
+\begin{exercise}
+Show that $\E{(Y - \E{Y |X})^2|X} = \E{Y^2|X} - (\E{Y |X})^2$.
+
+\begin{solution}
+Define $g(X) = \E{Y|X}$. Then,
+\begin{align}
+    \E{(Y - \E{Y |X})^2|X}&= \E{(Y - g(X))^2|X}\\
+    &=\E{Y^2-2Yg(X)+g(X)^2|X}\\
+    &=\E{Y^2|X}-2\E{Yg(X)|X}+\E{g(X)^2|X}\\
+    &=\E{Y^2|X}-2g(X)\E{Y|X}+g(X)^2\\
+    &=\E{Y^2|X}-2g(X)^2+g(X)^2\\
+    &=\E{Y^2|X}-(\E{Y |X})^2
+\end{align}
+\end{solution}
+\end{exercise}
+
+
+\begin{exercise}
+Let $X\sim \mathcal{N}(\mu,\sigma^2)$ and $W|X \sim \mathcal{N}(0,X^2)$. Find $\V{W}.$
+
+\begin{solution}
+Using Eve's Law we have
+\begin{align}
+    \V{W} = \V{\E{W|X}}+\E{\V{W|X}} =\V{0} + \E{X^2} = 0+  \mu^2 + \sigma^2 = \mu^2 + \sigma^2.
+\end{align}
+
+\end{solution}
+\end{exercise}
+
+
+
+
+
+\begin{exercise}
+In Jensen's inequality, when does equality hold? Can you explain (in terms of convexity and concavity) why equality holds for only this type of functions?
+
+\begin{solution}
+Equality holds for functions that are both convex and concave. The only functions that are both convex and concave are affine functions, i.e., functions of the type $g(x)=a x+b$.\\
+Assuming that $g$ is twice differentiable, we can show this as follows. Convexity is  equivalent to $g''(x)\geq 0$ and concavity is equivalent to $g''(x)\leq 0$. This means $g''(x)=0$ and the only functions for which this holds are affine functions.
+
+If you like maths, consider generalizing the condition.
+Is it necessary to assume that $g$ is twice differentiable?
+For instance, it is not hard to prove that a convex function is continuous.
+Consider now a point at which $g$ is convex and concave at the same time, does it follow that $g$ is twice differentiable at such a point?
+\end{solution}
+\end{exercise}
+
+
+\begin{exercise}
+Which of the following are equivalent to Chebyshev's inequality? Show why or why not.
+\begin{enumerate}
+    \item $P(\left|X-E\left(X\right)\right| \geq a) \leq \frac{V(X)}{a^2}$ for all $a>0$
+    \item $P(\left|X-E\left(X\right)\right| < a) > \frac{V(X)}{a^2}$ for all $a>0$
+    \item $P(\left|X-E\left(X\right)\right| < a) \geq 1-\frac{V(X)}{a^2}$ for all $a>0$
+    \item $P(\left|X-E\left(X\right)\right| \geq c\sigma_X) \leq \frac{1}{c^2}$ for all $c>0$
+\end{enumerate}
+
+\begin{solution}
+By definition, equation (1) is Chebyshev's inequality. Letting $a=c\sigma_X$ we get (4). Equation (3) follows from multiplying (1) by $-1$, adding 1 and using the complement rule. Equation (2) is not equivalent to any of the others, as this is not how reversing inequalities works.
+\end{solution}
+\end{exercise}
+
+\begin{exercise}
+Why is Chebyshev's inequality of no use if we try to plug in values for $0<a\leq \sqrt{\V{X}}$?
+
+\begin{solution}
+This will result in the trivial bound $\P{|X - \mu| \geq a}\leq B$, for some $B\geq 1$. But we already know that every probability is at most one. So the bound does not tell us anything interesting.
+\end{solution}
+\end{exercise}
+
+
+
+
+
+\begin{exercise}
+BH.10.1.13 show that Chernoff's inequality is a very strict bound.
+Is Chernoff's inequality always the tightest bound (out of the ones you know)?
+What about the case where $X$ is defined as follows
+% Let $X$ be a r.v.
+% on the set $\{0,2\}$ taking on values in this set with probabilities
+\begin{align*}
+    &\P{X=0} = \frac{3}{4}, & \P{X=2} = \frac{1}{4}.
+\end{align*}
+
+\begin{hint}
+  Consider $\P{X\geq2}$ and compare Chernoff's inequality to Markov's inequality.
+\end{hint}
+
+\begin{solution}
+In this (pathological) example we get from Markov's inequality that $P(X\geq 2) \leq \frac{E(X)}{2}=\frac{1}{4}$. This means the Markov bound is tight, as it is equal to the probability that $X$ exceeds 2. From Chernoff's bound we get
+\begin{align*}
+    P(X\geq 2)\leq \frac{E(e^{t  X})}{e^{2t}} = \frac{3+e^{2t}}{4 e^{2t}} = \frac{1}{4}\left(1+\frac{3}{e^{2t}}\right) > \frac{1}{4}\quad\forall t>0.
+\end{align*} Hence here the Markov bound is tighter. We use the facts from probability theory that $E(X)=\frac12$ and that $E(e^{t X})=\frac34+e^{2 t}\frac14$ in this example.
+\end{solution}
+\end{exercise}
+
+
+
+\subsection{Exercises at about exam level}
+\label{sec:exercises-at-about-1}
+
+Chebyshev's inequality is useful in proving notions of convergence in probability, which you will see repeatedly in later courses. We say $X_n$ converges in probability to the random variable $Z$ if
+\begin{align*}
+    \lim_{n\rightarrow\infty}P(\left|X_n-Z\right| \geq \varepsilon) = 0\quad\forall\varepsilon>0
+\end{align*}\\
+Note that in the above definition setting $Z=a$ for some constant $a$ would still be valid, as technically the constant $a$ is a random variable.
+
+\begin{exercise}
+Let $Y_n$ denote the number of heads obtained from throwing a fair coin $n$ times. Then $\frac{Y_n}{n}$ clearly is the proportion of heads in the sample. Find the expectation of this proportion, and show that it converges in probability to its mean. This is denoted as $\frac{Y_n}{n}\xrightarrow{p}\E{\frac{Y_n}{n}}$ and is known as the weak law of large numbers.\\
+\begin{hint}
+Use Chebyshev's inequality;  then take the limit on both sides.
+\end{hint}
+\begin{solution}
+From Probability Theory we know $E\left(\frac{Y_n}{n}\right)=\frac12$ and $V\left(\frac{Y_n}{n}\right) = \frac{1}{4 n}$. Then by Chebyshev,
+\begin{align*}
+    \lim_{n\rightarrow\infty}P\left(\left|\frac{Y_n}{n}-\frac12\right| \geq \varepsilon\right) \leq  \lim_{n\rightarrow\infty}\frac{V\left(\frac{Y_n}{n}\right)}{\varepsilon^2} =  \lim_{n\rightarrow\infty}\frac{1}{4n\varepsilon^2} = 0\quad\forall\varepsilon>0.
+\end{align*}
+\end{solution}
+\end{exercise}
+
+\begin{exercise}
+Where would this proof break down if we try to apply it to e.g. the Cauchy distribution?
+\begin{solution}
+The Cauchy distribution has no mean to converge to.
+\end{solution}
+\end{exercise}
+
+
+\begin{exercise}
+Here is (what I find) a simpler proof of the Cauchy-Schwarz inequality.  Define  $f(t) = \E{(Y-tX)^2}$.
+\begin{enumerate}
+\item Explain that $f(t)\geq 0$.
+\item Write $f(t) = \E{(Y-tX)^2}$ as a polynomial of the second degree, i.e., in the form $f(t) = a t^2 + b t + c$ (Hint, see BH).
+\item Since $f(t) \geq 0$, how many (real) roots can it have at most?
+\item What are the implications of this for the discriminant $D=b^2-4ac$?
+\item Show that the Cauchy-Schwarz inequality directly follows from this restriction on $D$.
+\end{enumerate}
+\begin{solution}
+$f$ is the expectation of something non-negative. Then, work out the square and apply linearity of the expectation. As $f\geq 0$, it can have most one root, hence $D\leq 0$. But $D=4\E{XY} - 4\E{X^{2}}\E{Y^{2}}$.
+\end{solution}
+\end{exercise}
+
+
+
+\subsection{Coding skills}
+
+\paragraph{Let us try to understand} the weak law of large numbers by means of simulation. An easy example is to take $X_{i}\sim\Unif{0,1}$, so that is what we do here.
+
+\begin{minted}[]{python}
+import numpy as np
+from numpy.random import uniform
+
+np.random.seed(3)
+
+n = 10
+N = 50 # num samples
+
+mu = 1 / 2
+var = 1 / 12
+eps = 0.1
+
+X = uniform(size=[num_samples, n])
+
+Y = X.mean(axis=1)
+
+larger = np.abs(Y - mu) > eps
+count = larger.sum()
+P = count / N
+RHS = var / (n * eps * eps)
+print(P, RHS)
+\end{minted}
+
+\begin{minted}[]{R}
+set.seed(3)
+
+n = 10
+N = 50
+
+mu = 1 / 2
+var = 1 / 12
+eps = 0.1
+
+X = matrix(runif(N * n), N, n)
+
+Y = rowMeans(X)
+
+larger = abs(Y - mu) > eps
+count = sum(larger)
+P = count / N
+RHS = var / (n * eps * eps)
+print(P)
+print(RHS)
+\end{minted}
+
+
+\begin{exercise}
+Explain \texttt{mu} and \texttt{var}.
+\end{exercise}
+
+\begin{exercise}
+What is \texttt{Y}? What is the symbol that BH use for this?
+\end{exercise}
+
+\begin{exercise}
+What are the meanings of \texttt{larger} and \texttt{count}?
+\end{exercise}
+
+\begin{exercise}
+What is \texttt{RHS} in the notation of BH?
+\end{exercise}
+
+\begin{exercise}
+What inequality of BH do we check by printing \texttt{RHS}  and \texttt{P}?
+\end{exercise}
+
+\begin{exercise}
+Choose some different values for $n$ and the sample size $N$. Is the inequality always true?
+\end{exercise}
+
+
+\paragraph{Hitting times} BH.10.39.a asks about the first time such that some exponential r.v.
+exceeds a certain threshold.
+Part b is about when the sum of a number of r.v.s exceed a threshold.
+Such problems are called \emph{hitting times}.
+
+\begin{minted}{python}
+import numpy as np
+from scipy.stats import expon
+
+np.random.seed(3)
+
+X = expon(scale=1)
+
+# part a
+
+N = 10
+res = np.zeros(N)
+for i in range(N):
+    n = 0
+    while X.rvs() < 1:
+        n += 1
+    res[i] = n
+
+print(res.mean(), res.std())
+
+# part b
+
+N = 100
+res = np.zeros(N)
+for i in range(N):
+    M = X.rvs()
+    n = 1
+    while M < 10:
+        M += X.rvs()
+        n += 1
+    res[i] = n
+
+print(res.mean(), res.std())
+\end{minted}
+
+\begin{minted}[]{R}
+set.seed(3)
+
+# part a
+
+N = 10
+res = rep(0, N)
+for (i in 1:N) {
+  n = 0
+  while (rexp(1, rate = 1) < 1) {
+    n = n + 1
+    res[i] = n
+  }
+}
+
+print(mean(res))
+print(sd(res))
+
+# part b
+
+N = 100
+res = rep(0, N)
+for (i in 1:N) {
+  M = rexp(1, rate = 1)
+  n = 1
+  while(M < 10) {
+    M = M + rexp(1, rate = 1)
+    n = n + 1
+    res[i] = n
+  }
+}
+
+print(mean(res))
+print(sd(res))
+\end{minted}
+
+
+By now you have so much experience with reading code that you must be able to explain all without intermediate steps to guide you.
+\begin{exercise}
+Explain why the first part of the code simulates BH.10.39.a.
+\end{exercise}
+
+\begin{exercise}
+Explain why the second part of the code simulates BH.10.39.b.
+\end{exercise}
+
+
+
+\subsection{Challenges}
+
+In BH.7.48 you looked at the number of records in high jumping.
+Let $X_j$ be how high the $j$th jumper jumped.
+As in that exercise, we assume that $X_1, X_2, \ldots$ are i.i.d.
+with a continuous distribution and say that the $j$th jumper sets a record if $X_j$ is larger than $X_i$ for all $1\leq i \leq j-1$.
+Let $X_i^*$ denote the $i$th record, i.e., the height of highest jump for the first $i$ jumps.
+We write $f_X$ and $F_X$ for the PDF and CDF of the (i.i.d.)
+jumping heights, and $X$ for a random variable with density $f_X$.
+Finally, we write $G_X$ for the survivor function of $X$, i.e.
+$G_X(x) = 1-F_X(x)$.
+
+It is not necessary to know the solution of BH.7.48 to do the challenge. In the challenge, we instead look at the distribution of the $i$th record, the expectation of the $i$th record and the expected improvement of the record: $\E{X_{n+1}^* - X_n^*}$.
+
+
+\begin{exercise}
+Let $f_{X_{i+1}^*, X_i^*}$ be the joint PDF of the $(i+1)$th and the $i$th record.
+Prove that $$f_{X_{i+1}^*, X_i^*}(u,v) = \frac{f_X(u)}{G_X(v)} f_{X_i^*}(v) \1{u >v}.$$
+
+\opt{check}{
+\begin{solution}
+We first note that $f_{X_{i+1}^*, X_i^*}(u,v) =  f_{X_{i+1}^*|X_i^*}(u|v)  f_{X_i^*}(v)$. For the conditional density, we note that since the jumping heights are independent, the only information that $X_i^*$ provides about $X_{i+1}^*$ is that $X_{i+1}^* \geq X_i^*$. Hence, $$f_{X_{i+1}^*|X_i^*}(u|v)  = \frac{f_X(u)}{P(X \geq v)} \1{u >v} = \frac{f_X(u)}{G_X(v)} \1{u >v},$$
+which yields the result.
+\end{solution}
+}
+\end{exercise}
+
+Note that $X_1^* = X_1$. We now derive the density of $X_2^*$, and then proceed with the general case. These are challenging problems, be sure to check out the hints if you are stuck.
+
+\begin{exercise}
+Prove that $$f_{X_2^*}(u) = - f_X(u) \log(G_X(u)).$$
+\begin{hint}
+Use a substitution. What is the derivative of the survivor function?
+\end{hint}
+
+\opt{check}{
+\begin{solution}
+\begin{align*}
+  f_{X_2^*}(u) &= \int_{-\infty}^{\infty}  \frac{f_X(u)}{G_X(v)} f_{X}(v) \1{u >v} \d v
+= f_X(u) \int_{-\infty}^{u}  \frac{f_{X}(v)}{G_X(v)} \d v
+n\intertext{Now substituting $t = G_X(v)$, $\d t = -f_X(v) \d v$, }
+& =   f_X(u)  \int_{0}^{G_X(u)}  \frac{-1}{t} \d t = - f_X(u)\log(G_X(u)),\end{align*}
+which is the required result.
+\end{solution}
+}
+\end{exercise}
+
+\begin{exercise}
+Prove that $$f_{X_n^*}(u) = f_X(u) \cdot \frac{(-\log(G_X(u)))^{n-1}}{\Gamma(n)}.$$
+\begin{hint}
+If you need to prove something for all natural numbers $n$, it is always good to try using mathematical induction, especially since we already know something relating $X_{n+1}^*$ and $X_n^*$.
+Note that you can again use the same substitution as in the previous exercise. After that, you need another substitution.
+\end{hint}
+
+
+\opt{check}{
+\begin{solution}
+The induction basis has already been done. We can take either $n=1$ or $n=2$ as the base case. We proceed immediately with the induction step.
+
+ Let $n \in \mathbb N$ be given and assume that
+$$f_{X_n^*}(u) = f_X(u) \cdot \frac{(-\log(G_X(u)))^{n-1}}{\Gamma(n)}.$$
+Substitute $t = G_X(v)$, $\d t = -f_X(v) \d v$ and then $s = -\log t$, $\d s = -\frac1t \d t$. Then we get
+\begin{align*} f_{X_{n+1}^*}(u) &= \int_{-\infty}^{\infty}  \frac{f_X(u)}{G_X(v)} f_{X_n^*}(v) \1{u >v} \d v = f_X(u) \int_{-\infty}^{u}  \frac{f_{X}(v)}{G_X(v)} \frac{(-\log(G_X(u)))^{n-1}}{\Gamma(n)} \d v \\ & =   f_X(u)  \int_{0}^{G_X(u)}  \frac{-1}{t} \frac{(-\log(t))^{n-1}}{\Gamma(n)} \d t =   f_X(u)  \int_{0}^{-\log(G_X(u))} \frac{s^{n-1}}{\Gamma(n)} \d s
+\\ & = f_X(u) \cdot \frac{(-\log(G_X(u)))^{n}}{n \Gamma(n)} = f_X(u) \cdot \frac{(-\log(G_X(u)))^{(n+1)-1}}{\Gamma(n+1)},\end{align*}
+which completes the induction step and hence the proof.
+\end{solution}
+}
+\end{exercise}
+
+In general case, it is hard to compute the integral of $u f_{X_n^*}(u)$ which is required to compute $\E{X_n^*}$.
+For the exponential distribution however, it is still possible to find the result analytically.
+
+\begin{exercise}
+Assume that $X \sim \Exp{\lambda}$. Determine $\E{X_n^*}$, and hence the expected improvement of the record: $\E{X_{n+1}^* - X_n^*}$, using the PDF from the previous exercise.
+\begin{hint}
+Do you recognize the PDF of $X_n^*$ for $X \sim \Exp{\lambda}$?
+\end{hint}
+
+
+\opt{check}{
+\begin{solution}
+We find $f_{X_n^*}(u) = \lambda e^{-\lambda u} \cdot \dfrac{(\lambda u)^{n-1}}{\Gamma(n)}$, which is the PDF of the Gamma distribution with parameters $n$ and $\lambda$, so $\E{X_n^*} = n/\lambda$ and $\E{X_{n+1}^* - X_n^*} = 1/\lambda$ for all $n$.
+\end{solution}
+}
+\end{exercise}
+
+
+When $X$ is exponentially distributed, we can also use directly use the properties of the exponential distribution to determine  $\E{X_{n+1}^* - X_n^*}$.
+
+\begin{exercise}
+In Exercise 6 of Assignment 5 you found an expression for $\E{X \given X \geq a}$ if $X \sim \Exp{\lambda}$. Use this expression and Adam's law to determine  $\E{X_{n+1}^* - X_n^*}$  if $X \sim \Exp{\lambda}$.
+
+\opt{check}{
+\begin{solution}
+If $X \sim \Exp{\lambda}$, then $\E{X \given X \geq a} = \E{X} + a$. So
+\begin{align*}
+\E{X_{n+1}^*} &= \E{\E{X_{n+1}^* \given X_n^*}} = \E{\E{X\given X_n^*, \{X \geq X_n^*\}}} \\ &=  \E{\E{X} + X_n^*} = \E{X} + \E{ X_n^*}.
+\end{align*}
+Note that we condition on an event and a r.v., which makes it a bit complicated. Adam's law is used for the r.v.
+We conclude that $\E{X_{n+1}^* - X_n^*} = 1/\lambda$ for all $n$.
+\end{solution}
+}
+\end{exercise}
+
+\begin{exercise}
+Is the exponential distribution a realistic model for record improvements? Why (not)? If not, why is it still good to look at this case? Explain briefly.
+
+
+\opt{check}{
+\begin{solution}
+Constant improvements are not realistic, but it is a useful case for checking since previous exercise provides a way of checking the work  independent of the PDF.
+\end{solution}
+}
+\end{exercise}
+
+We now consider this model for other distributions as well. Although for many distributions finding analytical results is very difficult or impossible, it can still be interesting to make a plot for the record improvements for other distributions.
+
+
+
+
+\begin{exercise}
+Assume that $X$ has PDF $f_X(x) = 2xe^{-x^2}$ for $x>0$, and $f_X(x) = 0$ otherwise. Plot $\E{X_{n+1}^* - X_n^*}$ as a function of $n$. You may use code for computing the survival function and the expectation, although it is possible (but not recommended) to do it analytically.
+
+
+\opt{check}{
+\begin{solution}
+The analytical result is
+\begin{equation}
+  \label{eq:23}
+\E{X_{n+1}^* - X_n^*} = \dfrac{\Gamma(n+3/2)}{\Gamma(n+1)} - \dfrac{\Gamma(n+1/2)}{\Gamma(n)}  = \dfrac{\Gamma(n+1/2)}{2\Gamma(n)}.
+\end{equation}
+
+The survival function is $G_X(x) = 2xe^{-x^2}$. Example code is given by the following:
+
+There is some R code, but for some reason this does not compile within the opt check environment. See the latex source if necessary; I've put it in a comment.
+
+
+% \begin{minted}[]{R}
+% xf_Xn <- function(x, n) {
+%   2*x^2*exp(-x^2) * (x^2)^(n-1) / gamma(n)
+% }
+
+% E_Xn <- function(n) {
+%   integrate(xf_Xn, 0, Inf, n = n)
+% }
+
+% x = 1:30
+% y = unlist(sapply(x, E_Xn)["value", ])
+% plot(x[-length(x)], diff(y), ylim = c(0, 0.25), xlab = "n",
+%      ylab = "expected record improvement",
+%      main = "Expected record improvements")
+
+%      # analytical result
+% gamma(x+1/2)/(gamma(x))
+% \end{minted}
+
+
+\includegraphics[width=\textwidth]{Ex7plot.pdf}
+
+
+For this distribution, the expected improvement is decreasing in $n$.
+\end{solution}
+}
+
+\end{exercise}
+
+
+
+\end{document}
+
+%%%%%%%% DELETED EXERCISES:
+
+\begin{comment}
+% NICE EXAM QUESTION:
+\begin{exercise}
+A fair coin is tossed 100 times. We are interested in the probability that the number of heads that turn up is at most 40. What is the tightest upper bound on this probability that we can find by using Chebyshev's inequality? Hint: use a symmetry argument.
+\begin{solution}
+Let $X$ be the r.v. corresponding to the number of heads. Then $X\sim \text{Binomial}\left(100,\frac12\right)$, which has moments $\E{X} = 100 \cdot \frac{1}{2} = 50$ and $\V{X} = 100 \cdot \frac{1}{2} \cdot \frac{1}{2} = 25$. By symmetry of the $\text{Binomial}\left(100,\frac12\right)$ distribution,
+\begin{align}
+    \P{ X \leq 40} = \P{ X \geq 60 }.
+\end{align}
+Hence, using Chebyshev's inequality,
+\begin{align}
+    \P{ X \leq 40} &= \frac{1}{2}  \P{ |X - 50| \geq 10 } \\
+    &= \frac{1}{2} \P{ |X - 50| \geq 10 } \\
+    &\leq \frac{1}{2} \frac{\V{X}}{10^2} \\
+    &= \frac{1}{2} \frac{25}{100} = \frac{1}{8}.
+\end{align}
+Hence,
+\begin{align}
+    \P{ X \leq 40} &\leq \frac{1}{8}.
+\end{align}
+\end{solution}
+\end{exercise}
+
+
+\begin{exercise}
+Here is inequality from which all inequalities in BH 10.1.3 immediately follow. It's worth memorizing.
+Take any r.v. $X$ and a function $f$ that is non-negative and non-decreasing.
+\begin{enumerate}
+\item Why is this true for any $a$: $f(a) \1{X\geq a} \leq f(X) \1{X\geq a} \leq f(X)$?
+\item Take expectations in the inequality of the previous step and use the fundamental bridge to show that $\P{X\geq a} \leq \E{f(X)}/f(a)$.
+\item What part of the proof goes wrong if  $f$ can also be negative?
+\item Show that Markov's inequality follows by taking $Y=|X|$ and  $f(x)=x$. Why don't we take $f(x) = |x|$?
+\item Show that Chebyshev's inequality follows by taking $Y=|X-\mu|$ and $f(x)=x^2$.
+\item Show that Chernoff's inequality follows by taking $f(x)=e^{x}$.
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}\label{ex:13-1}
+Let the set of r.v.s $\{X_{k}, k\geq 1\}$ be the outcomes of throws of a biased coin. We take $X_{j}=1$ if the outcome is heads, and $X_{j}=0$ if tails. Suppose $\E{X_{k}} = \mu$ and $\V{X_{k}} = \sigma^{2}$.
+Let $Y_{j} = \sum_{i=n j + 1}^{(n+1)j} X_{i}/n$, i.e., $Y_{j}$ is the sample mean of the $j$ batch of throws. Since $\{Y_{j}, j\geq 1\}$ are iid, take $Y$ as the common r.v., i.e., $Y_{j} \sim Y$.
+What is a (frequentist) explanation of the statement $\P{|Y-\mu|>\epsilon} \leq \sigma^{2}/n \epsilon$?
+\begin{solution}
+  We assemble $m$ observations of $Y_{j}$ (hence, we throw the coin $n m$ times).
+  Suppose we see $M$ times that $|Y_{j} - \mu|> \epsilon$. Then we expect that $M/m < \sigma^{2}/n\epsilon$.
+
+Thus,  Chebyshev's inequality makes a statement about sample means of size $n$, say.
+\end{solution}
+\end{exercise}
+
+\begin{exercise}
+Interpret the WLLN in terms of the previous exercise.
+\begin{solution}
+  First fix some $\epsilon>0$.
+  Now take some $n$ and determine the fraction of outliers, that is, count how many of the sample means $Y_{1}=\sum_{i=1}^{n} X_{i}/n, Y_{2}=\sum_{i=n+1}^{2n} X_{i}/n, \ldots$ lie outside the interval $[\mu-\epsilon, \mu + \epsilon]$ and divide by the number of samples taken.
+  The WLLN says this: If the sample averages $Y_{1}, Y_{2}$ are taken over larger sets of the $X_{j}$, i.e., $n$ is larger so that we put more throws in a batch, then the fraction of outliers become smaller.
+\end{solution}
+\end{exercise}
+
+
+\begin{exercise}
+In the setting of~\cref{ex:13-1}, the probability of a sequence of outcomes like this: $H, T, H, T, H, T,\ldots$, i.e., a sequence in which the heads and tails alternate, has probability zero. However, $\sum_{i=1}^{n}\1{X_{i}=H}/n \to 1/2$. So, we have a sequence that occurs with probability zero, but still the average along the sequence has the proper limit. Doesn't this violate the SLLN?
+\begin{solution}
+The SLLN says nothing about individual sample paths, i.e.,  strings of outcomes like $H, T, H, T, \ldots$. In fact, the probability of obtaining any particular sample path has zero probability. Instead, the SLLN makes a statement about sets of sample paths. For the coin it says that it is virtually impossible to pick a path from the set of paths whose  long-run fraction of heads is not equal to $1/2$.
+\end{solution}
+\end{exercise}
+\end{comment}

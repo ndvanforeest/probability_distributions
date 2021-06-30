@@ -1,0 +1,335 @@
+\section{Lecture 1}
+
+
+
+\begin{exercise}
+Consider 12 football players on a football field.
+Eleven of them are players of F.C. Barcelona, the other one is an arbiter.
+We select a random player, uniform.
+This player must take a penalty.
+The probability that a player of Barcelona scores is 70\%, for the arbiter it is 50\%.
+Let $P\in \{A, B\}$ be r.v that corresponds to the selected player, and $S\in\{0,1\}$ be the score.
+\begin{enumerate}
+\item What is the PMF? In other words, determine $\P{P = B, S=1}$ and so on for all possibilities.
+\item What is $\P{S=1}$? What is $\P{P=B}$?
+\item Show that $S$ and $P$ are dependent.
+\end{enumerate}
+\begin{solution}
+Here is the joint PMF:
+\begin{align}
+  \label{}
+\P{P=A, S=1} &= \frac{1}{12}0.5 & \P{P=A, S=0} &= \frac{1}{12}0.5 \\
+\P{P=B, S=1} &= \frac{11}{12}0.7 & \P{P=B, S=0} &= \frac{11}{12}0.3.
+\end{align}
+Now the marginal PMFs
+\begin{align*}
+\P{S=1}  &= \P{P=A, S=1} + \P{P=B, S=1} = 0.042 + 0.64 = 0.683 = 1-\P{S=0}\\
+\P{P=B}  &= \frac{11}{12} = 1-\P{P=A}.
+\end{align*}
+For independence we take the definition.
+In general, for all outcomes $x,y$ we must have that $\P{X=x, Y=y} = \P{X=x}\P{Y=y}$.
+For our present example, let's check for  a particular outcome:
+\begin{align*}
+\P{P=B, S=1} &= \frac{11}{12}\cdot0.7 \neq \P{P=B}\P{S=1} = \frac{11}{12} \cdot 0.683
+\end{align*}
+The joint PMF is obviously not the same as the product of the marginals, which implies that $P$ and $S$ are not independent.
+\end{solution}
+\end{exercise}
+
+
+
+An insurance company receives on a certain day two claims $X, Y \geq 0$.
+We will find the PMF of the loss $Z=X+Y$ under different assumptions.
+
+The joint CDF $F_{X,Y}$ and joint PMF $p_{X,Y}$ are assumed known.
+
+\begin{exercise}
+Why is it not interesting to consider the case $\{X=0, Y=0\}$?
+\begin{solution}
+When the claim sizes are $0$, then the insurance company does not receive a claim.
+\end{solution}
+\end{exercise}
+
+
+\begin{exercise}
+Find an expression for the PMF of $Z=X+Y$.
+\begin{solution}
+By the fundamental bridge,
+\begin{align}
+  \label{}
+\P{Z=k}
+&= \sum_{i,j} \1{i+j=k} p_{X,Y}(i,j) \\
+&= \sum_{i,j} \1{i, j \geq 0} \1{j=k-i} p_{X,Y}(i,j) \\
+&= \sum_{i=0}^{k} p_{X,Y}(i,k-i).
+\end{align}
+\end{solution}
+\end{exercise}
+
+Suppose $p_{X,Y}(i,j) = c \1{i=j}\1{1\leq i \leq 4}$.
+
+
+\begin{exercise}
+What is $c$?
+\begin{solution}
+$c=1/4$ because there are just four possible values for $i$ and $j$.
+\end{solution}
+\end{exercise}
+
+\begin{exercise}
+What is $F_{X}(i)$?
+What is $F_{Y}(j)$?
+\begin{solution}
+Use marginalization:
+\begin{align}
+F_X(k) &=  F_{X,Y}(k, \infty ) = \sum_{i\leq k} \sum_j p_{X,Y}(i,j) \\
+ &= \frac{1}{4}\sum_{i\leq k} \sum_j \1{i=j}\1{1\leq i \leq 4}\\
+ &= \frac{1}{4}\sum_{i\leq k} \1{1\leq i \leq 4} \\
+&=k/4,\\
+F_Y(j) &= j/4.
+\end{align}
+\end{solution}
+\end{exercise}
+
+
+\begin{exercise}
+Are $X$ and $Y$ dependent?  If so, why, because $1=F_{X,Y}(4,4)= F_X(4)F_Y(4)$?
+\begin{solution}
+  The equality in the question must hold for all $i,j$, not only for $i=j=4$.
+  If you take $i=j=1$, you'll see immediately that $F_{X,Y}(1,1)\neq F_X(1)F_Y(1)$:
+  \begin{align}
+    \label{eq:23}
+    \frac{1}{4} = F_{X,Y}(1,1) \neq F_{X}(1) F_Y(1) = \frac{1}{4}\frac{1}{4}.
+  \end{align}
+\end{solution}
+\end{exercise}
+
+\begin{exercise}
+What is $\P{Z=k}$?
+\begin{solution}
+$\P{Z=2} = \P{X=1, Y=1} = 1/4 = \P{Z=4}$, etc.
+$\P{Z=k} = 0$ for $k\not \in \{2, 4, 6, 8\}$.
+\end{solution}
+\end{exercise}
+
+
+\begin{exercise}
+What is $\V Z$?
+\begin{solution}
+Here is one approach
+\begin{align}
+\label{eq:3}
+\V Z &= \E{Z^2} - (\E Z)^{2}\\
+\E{Z^2} &= \E{(X+Y)^{2}} = \E{X^{2}} + 2\E{XY} + \E{Y^{2}} \\
+(E{Z})^{2} &= (\E X + \E Y)^{2} \\
+ &= (\E X)^2 + 2\E X \E Y + (\E Y)^{2} \\
+&\implies \\
+\V Z &= \E{Z^2} - (\E Z)^{2}\\
+ &= \V X + \V Y + 2 (\E{XY} - (\E X \E Y))\\
+\E{XY} &= \sum_{ij} ijp_{X,Y}(i,j) = \frac 1 4 (1 + 4 + 9 + 16) = \ldots \\
+\E{X^{2}} &= \ldots
+\end{align}
+The numbers are for you to compute.
+\end{solution}
+\end{exercise}
+
+Now take $X, Y$ iid $\sim\Unif{\{1,2,3,4\}}$ (so now no longer $p_{X,Y}(i,j) = \1{i=j}\1{1\leq i \leq 4}$).
+
+\begin{exercise}
+What is $\P{Z=4}$?
+\begin{solution}
+\begin{align}
+\label{eq:2}
+\P{Z=4}
+&= \sum_{i, j} \1{i+j=4} p_{X,Y}(i,j) \\
+&= \sum_{i=1}^4 \sum_{j=1}^{4} \1{j=4-i} \frac{1}{16} \\
+&= \sum_{i=1}^3  \frac{1}{16} \\
+&= \frac{3}{16}.
+\end{align}
+\end{solution}
+\end{exercise}
+
+\begin{remark}
+We can  make lots of variations on this theme.
+\begin{enumerate}
+\item Let $X\in \{1,2,3\}$ and $Y\in \{1,2,3,4\}$.
+\item Take $X\sim\Pois{\lambda}$ and $Y\sim\Pois{\mu}$. (Use the chicken-egg story)
+\item We can make $X$ and $Y$ such that they are (both) continuous, i.e., have densities.
+  The conceptual ideas\footnote{Unless you start digging deeper.
+    Then things change drastically, but we skip this technical stuff.}
+  don't change much, except that the summations become integrals.
+\item Why do people often/sometimes (?)
+  model the claim sizes as iid $\sim\Norm{\mu, \sigma^{2}}$?
+  There is a slight problem with this model (can real claim sizes be negative?), but what is the way out?
+\item The example is more versatile than you might think. Here is another interpretation.
+
+A supermarket has 5 packets of rice on the shelf.
+Two customers buy rice, with amounts $X$ and $Y$.
+What is the probability of a lost sale, i.e., $\P{X+Y>5}$?
+What is the expected amount lost, i.e., $\E{ \max\{X+Y - 5,0\}}$?
+
+Here is yet another.
+Two patients arrive in to the first aid of a hospital.
+They need $X$ and $Y$ amounts of service, and there is one doctor.
+When both patients arrive at 2 pm, what is the probability that the doctor has work in overtime (after 5 pm), i.e., $\P{X+Y > 5- 2}$?
+\end{enumerate}
+\end{remark}
+
+
+
+\textsc{Here is some} extra material for you practice on 2D integration.
+
+\begin{exercise}
+We have a continuous r.v. $X\geq 0$ with finite expectation. Use 2D integration and indicators to prove that
+\begin{align}
+\E X = \int_{0}^{\infty} x f(x) \d x = \int_{0} G(x) \d x,
+\end{align}
+where $G(x)$ is the survival function.
+\begin{hint}
+  Check the proof of BH.4.4.8
+\end{hint}
+\begin{solution}
+The trick is to realize that $x = \int_0^{\infty} \1{y\leq x} \d y$. Using this,
+\begin{align}
+\E X
+&= \int_{0}^{\infty} x f(x) \d x \\
+&= \int_{0}^{\infty} \int_{0}^{\infty} \1{y \leq x} f(x) \d y \d x \\
+&= \int_{0}^{\infty} \int_{0}^{\infty} \1{y \leq x} f(x) \d x \d y \\
+&= \int_{0}^{\infty} \int_{0}^{\infty} \1{x \geq y} f(x) \d x \d y \\
+&= \int_{0}^{\infty} \int_{y}^{\infty} f(x) \d x \d y \\
+&= \int_{0}^{\infty} G(y) \d y.
+\end{align}
+\end{solution}
+\end{exercise}
+
+
+\begin{exercise}
+Explain that for a continuous r.v. $X$ with CDF $F$ and $a$ and $b$ (so it might be that $a>b$),
+\begin{equation}
+  \label{eq:7}
+\P{a< X < b} = [F(b) - F(a)]^{+}.
+\end{equation}
+\begin{hint}
+  Recall that $F\in [0, 1]$.
+\end{hint}
+\begin{solution}
+\begin{align}
+a<b & \implies \P{a< X < b} = F(b) - F(a) = [F(b) - F(a)]^{+} \\
+a\geq b & \implies \P{a< X < b} =  0 = [F(b) - F(a)]^{+},
+\end{align}
+where the last equality follows from the fact that $F$ is increasing.
+\end{solution}
+\end{exercise}
+
+\textsc{Indicators are great} functions, and I suspect you underestimated the importance of these functions.
+They help to keep your formulas clean.
+You can use them in computer code as logical conditions, or to help counting relevant events, something you need when numerically estimating multi-D integrals for machine learning for instance.
+And, even though I(=NvF) often prefer to use figures over algebra to understand something, when it comes to integration (and reversing the sequence of integration in multiple integrals) I find indicators easier to use.
+
+Moreover, you should know that in fact, \emph{expectation} is the fundamental concept in probability theory, and the \emph{probability of an event is defined} as
+\begin{equation}
+  \label{eq:4}
+  \P{A} := \E{\1{A}}.
+\end{equation}
+Thus, the fundamental bridge is actually an application of LOTUS to indicator functions. REREAD BH.4.4!
+
+
+\begin{exercise}
+What is $\int_{-\infty}^{\infty} \1{0\leq x \leq 3} \d x$?
+\begin{solution}
+\begin{align*}
+\int_{-\infty}^{\infty} \1{0\leq x \leq 3} \d x =\int_{0}^{3}  \d x  = 3.
+\end{align*}
+\end{solution}
+\end{exercise}
+
+\begin{exercise}
+What is
+\begin{equation}
+\label{eq:5}
+\int x \1{0\leq x \leq 4} \d x?
+\end{equation}
+\begin{solution}
+\begin{align*}
+\int x \1{0\leq x \leq 4} \d x  = \int_{0}^{4} x \d x = 16/2 = 8.
+\end{align*}
+\end{solution}
+\end{exercise}
+
+When we do an integral over a 2D surface we can first integrate over the $x$ and then over the $y$, or the other way around, whatever is the most convenient.
+(There are conditions about how to handle multi-D integral, but for this course these are irrelevant.)
+
+\begin{exercise}
+What is
+\begin{equation}
+\label{eq:5}
+\iint x y \1{0\leq x \leq 3}\1{0\leq y \leq 4} \d x \d y?
+\end{equation}
+\begin{solution}
+\begin{align*}
+\iint xy \1{0\leq x \leq 3}\1{0\leq y \leq 4} \d x \d y
+&=\int_{0}^{3} x \int_{0}^{4} y \d y \d x\\
+&=\int_{0}^{3} x \frac{y^{2}} 2 \biggr|_{0}^{4} \d x\\
+&= \int_{0}^{3} x\cdot 8 \d x = 8\cdot 9/2 = 4\cdot 9.
+\end{align*}
+\end{solution}
+\end{exercise}
+
+\begin{exercise}
+What is
+\begin{align}
+\label{eq:5}
+\iint \1{0\leq x \leq 3} \1{0\leq y \leq 4}\1{x\leq y}\d x \d y?
+\end{align}
+\begin{solution}
+Two solutions. First we integrate over $y$.
+\begin{align}
+\label{eq:5}
+\iint \1{0\leq x \leq 3} \1{0\leq y \leq 4}\1{x\leq y}\d x \d y
+&=\int \1{0\leq x \leq 3} \int \1{0\leq y \leq 4}\1{x\leq y}\d y \d x\\
+&=\int \1{0\leq x \leq 3} \int \1{\max\{x, 0\} \leq y \leq 4}\d y \d x\\
+&=\int_{0}^{3} \int_{\max\{x, 0\}}^{4}\d y \d x\\
+&=\int_{0}^{3} y\biggr|_{\max\{x, 0\}}^{4} \d x\\
+&=\int_{0}^{3}  (4-\max\{x, 0\}) \d x\\
+&=12 - \int_{0}^{3} \max\{x, 0\} \d x\\
+&=12 - \int_{0}^{3} x  \d x\\
+&=12 - 9/2.
+\end{align}
+
+Let's now instead first integrate over $x$.
+\begin{align}
+\label{eq:5}
+\iint \1{0\leq x \leq 3} \1{0\leq y \leq 4}\1{x\leq y}\d x \d y
+&= \int \1{0\leq y \leq 4} \int \1{0\leq x \leq 3} \1{x\leq y}\d x \d y\\
+&= \int_{0}^{4} \int \1{0\leq x \leq \min\{3, y\}}\d x \d y\\
+&= \int_{0}^{4} \int_{0}^{\min\{3, y\}} \d x \d y\\
+&= \int_{0}^{4} \min\{3, y\}\d y\\
+&= \int_{0}^{3} \min\{3, y\}\d y + \int_{3}^{4} \min\{3, y\}\d y\\
+&= \int_{0}^{3} y \d y + \int_{3}^{4}  3\d y\\
+&= 9/2 + 3.
+\end{align}
+\end{solution}
+\end{exercise}
+
+
+\begin{exercise}\label{ex:2}
+Take $X\sim\Unif{[1,3]}, Y\sim\Unif{[2,4]}$ and independent. Compute
+\begin{equation}
+  \label{eq:24}
+\P{Y\leq 2X}.
+\end{equation}
+\begin{solution}
+Take $c$ the normalization constant (why is $c=1/4$), then using the previous exercise
+\begin{align}
+\P{Y\leq 2X}
+&=\E{\1{Y\leq 2X}} \\
+&=c \int_{1}^{3}\int_{2}^{4} \1{y\leq 2x} \d y \d x \\
+&=c \int_{1}^{3}\int \1{2\leq y\leq \min\{4,2x\}}  \d y \d x \\
+&=c \int_{1}^{3} [\min\{4, 2x\} -2]^{+} \d x
+\end{align}
+Now make a drawing of the function $[\min\{4, 2x\} - 2]^{+}$ on the interval $[1,3]$ to see that
+\begin{equation}
+\int_{1}^{3} [\min\{4, 2x\} -2]^{+} \d x = \int_{1}^{2} (2x -2) \d x + \int_{2}^{3} (4 -2) \d x.
+\end{equation}
+I leave the rest of the computation to you.
+\end{solution}
+\end{exercise}

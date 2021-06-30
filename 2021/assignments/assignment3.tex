@@ -1,0 +1,860 @@
+% arara: pdflatex
+% arara: clean: { extensions: [ aux, blg, idx, ilg, ind, log, out, pytxcode, rel, toc ] }
+% !arara: clean: { files: [ ans.tex, hint.tex] }
+
+\documentclass[assignments]{subfiles}
+\externaldocument{assignments}
+
+%\usepackage[all-solutions-at-end]{optional}
+
+\opt{check}{
+\Opensolutionfile{hint}
+\Opensolutionfile{ans}
+}
+
+
+\begin{document}
+
+\section{Assignment 3}
+\label{sec:assignment-3}
+
+
+\subsection{Have you read well?}
+\label{sec:have-you-read-1}
+
+
+\begin{exercise}
+Let $X$ have the discrete uniform distribution on the set $\{0, 1, 2, 3, 4, 5\}$. Derive the PMF and the CDF of $Z=3X$. Explicitly specify the domain.
+\begin{solution}
+  \begin{align}
+    \label{eq:17}
+    X &\in \{0, \ldots, 5\} \implies Z \in \{0, 3, 6, 9, 12, 15\}, \quad \text{and not in } \{0, \ldots, 15\},\\
+z &= g(x) = 3x,\\
+p_{Z}(z) &= \sum_{x: g(x) =z } p_{X}(x) = \frac{1}{6} \1{z \in \{0, 3, 6, 9, 12, 15\}}, \\
+F_{Z}(z) &=\frac{1}{6} \sum_{x=0}^{z} \1{x \in \{0, 3, 6, 9, 12, 15\}}.
+  \end{align}
+\end{solution}
+\end{exercise}
+
+
+\begin{exercise}
+Let $X \sim \Unif{0, 5}$. Using the one dimensional change of variables theorem (BH.8.1.1),  derive the PDF and the CDF of $Z=3X$. Explicitly specify the domain.
+\begin{solution}
+  \begin{align}
+X &\in [0, 5]  \implies Z \in [0, 15],\\
+z &= 3x = g(x) \implies x = z/3, \\
+f_{Z}(z) &= f_{X}(x) \frac{\d x}{\d z},\\
+\frac{\d z}{\d x} &= 3,\\
+f_{Z}(z) &= f_{X}(z/3) \frac{1}{3}.
+  \end{align}
+$F_{Z}(u) = 1$ for $u\geq 15$ and $F_{Z}(u) = 0$ for $u\leq 0$. When $0\leq u \leq 15$,
+  \begin{align}
+  F_{Z}(u) &= \int_{0}^{u} f_{X}(z/3) \frac{1}{3} \d z = \frac{1}{5}\int_{0}^{u} \1{0\leq  z/3\leq 5}  \frac{1}{3} \d z \\
+&= \frac{1}{5}\int_{0}^{u} \1{0\leq z\leq 15}  \frac{1}{3} \d z = \frac{u}{15}.
+  \end{align}
+\end{solution}
+
+
+% wk: Z = 3X, not X^3. The point is to see the difference between the previous exercise and this one.
+%\begin{solution}
+%  \begin{align}
+%X &\in [0, 5]  \implies Z \in [0, 125],\\
+%z &= x^{3} = g(x) \implies x = z^{1/3}, \\
+%f_{Z}(z) &= f_{X}(x) \frac{\d x}{\d z},\\
+%\frac{\d z}{\d x} &= 3 x^{2} = 3 z^{2/3},\\
+%f_{Z}(z) &= f_{X}(z^{1/3}) \frac{1}{3z^{2/3}}.
+%  \end{align}
+%When $F_{Z}(u) = 1$ for $u\leq 125$ and $F_{Z}(u) = 0$ for $u\leq 0$. When $0\leq u \leq 125$,
+%  \begin{align}
+%  F_{Z}(u) &= \int_{0}^{u} f_{X}(z^{1/3}) \frac{1}{3z^{2/3}} \d z = \frac{1}{5}\int_{0}^{u} \1{0\leq  z^{1/3}\leq 5}  \frac{1}{3z^{2/3}} \d z \\
+%&= \frac{1}{5}\int_{0}^{u} \1{0\leq z\leq 125}  \frac{1}{3z^{2/3}} \d z \\
+%&= \frac{1}{5}\int_{0}^{u}  \frac{1}{3z^{2/3}} \d z =  \frac{1}{5}z^{1/3}\biggr|_{0}^{u} = u^{1/3}/5.
+%  \end{align}
+%\end{solution}
+\end{exercise}
+
+\begin{exercise}
+Let $X \sim \Norm{\mu,\sigma^2}$. Using the one dimensional change of variables theorem  BH.8.1.1, show that $Z = \frac{X-\mu}{\sigma}$ follows the standard normal distribution.
+\begin{solution}
+  \begin{align}
+    \label{eq:18}
+    z &= g(x) = (x-\mu)/\sigma, \implies x = \sigma z + \mu\\
+f_{Z}(z) &= f_{X}(x) \frac{\d x}{\d z}, \\
+\frac{\d z}{\d x } &= \frac{1}{\sigma}, \\
+f_{Z}(z) &= f_{X}(x) \sigma = \sigma f_{X}(\sigma z + \mu) \\
+\intertext{and now using the density of $X\sim \Norm{\mu, \sigma$},}
+f_{Z}(z) &=\frac1{\sqrt{2\pi} \sigma } e^{-(\sigma z + \mu -\mu)^{2}/2\sigma^{2}} \sigma = \frac1{\sqrt{2\pi}} e^{-z^{2}/2}.
+  \end{align}
+\end{solution}
+\end{exercise}
+
+\begin{exercise}
+Let $X \sim \Exp{1}$. Derive the PDF of $e^{-X}$.
+\begin{solution}
+  \begin{align}
+z &= g(x) = e^{-x} \implies x = - \log z,\\
+x &\in (0, \infty) \implies z \in (0, 1),\\
+f_{Z}(z) &= f_{X}(x) \frac{\d x}{\d z}, \\
+\frac{\d z}{\d x } &= - e^{-x}, \quad \text{Don't forget to take the abs value next}, \\
+f_{Z}(z) &= f_{X}(x) e^{x} = e^{-x} e^{x} = 1 \1{0< z < 1},
+  \end{align}
+where we include the domain of $Z$ in the last equality.
+\end{solution}
+\end{exercise}
+
+\begin{exercise}
+Let $X, Y$ be i.i.d. standard normal. Using the $n$-dimensional change of variables theorem, derive the joint PDF of $(X+Y, X-Y)$.
+
+Check your final answer using BH.7.5.8.
+\begin{solution}
+\begin{align}
+(u,v) &= (x+y, x-y) = g(x,y) \implies (x,y) = ((u+v)/2, (u-v)/2), \\
+\frac{\partial (u,v)}{\partial (x, y)} &=
+  \begin{vmatrix}
+    1 & 1 \\
+1 & -1
+  \end{vmatrix} = -2 \implies |-2| = 2,\\
+f_{U,V}(u,v) &= f_{X,Y}(x,y) \frac{\partial(x,y)}{\partial(u,v)} = f_{X,Y}((u+v)/2, (u-v)/2) /2 \\
+&= \frac{1}{4\pi} e^{-((u+v)/2)^{2}/2} e^{-((u-v)/2)^{2}/2} \\
+&= \frac{1}{4\pi} e^{-u^{2}/4-v^{2}/4},
+\end{align}
+where we work out the squares and simplify.
+Hence, $U$ and $V$ are independent and normally distributed with mean 0 and $\sigma=\sqrt 2$.
+This is in line with our earlier definition of a multi-variate normal distribution.
+\end{solution}
+
+\end{exercise}
+
+
+\begin{exercise}
+Specify the domain of the new random variable for the following transformations; this important aspect of the change of variables is often overlooked.
+Let $U$, $V$, $W$, $X$, $X_1$, $X_2$, $Y$ and $Z$ be r.v.s and let $a$, $b$ and $c$ be arbitrary constants.
+\begin{enumerate}
+    \item $Z = Y^{4}$ for $Y \in (-\infty,\infty)$;
+    \item $Y = X^{3}+a$ for $X \in (0,1)$;
+    \item $U = |V|+b$ for $V \in (-\infty,\infty)$;
+    \item $Y = e^{X^3}$ for $X \in (-\infty,\infty)$;
+    \item $V = U \1{U \leq c}$ for $U \in (-\infty,\infty)$;
+    \item $Y = \sin(X)$ for $X \in (-\infty,\infty)$;
+    \item $Y = \frac{X_1}{X_1+X_2}$ for $X_1 \in (0,\infty)$ and $X_2 \in (0,\infty)$;
+    \item $Z = \log(UV)$ for $U \in (0,\infty)$ and $V \in (0,\infty)$. \\
+\end{enumerate}
+\begin{solution}
+\begin{enumerate}
+    \item $Z = Y^{4} \in [0, \infty)$ for $Y \in (-\infty,\infty)$;
+    \item $Y = X^{3}+a \in (a, a+1)$ for $X \in (0,1)$;
+    \item $U = |V|+b \in [b, \infty)$ for $V \in (-\infty,\infty)$;
+    \item $Y = e^{X^3} \in (0, \infty)$ for $X \in (-\infty,\infty)$;
+    \item $V = U \1{U \leq c} \in (-\infty, c]$ for $U \in (-\infty,\infty)$;
+    \item $Y = \sin(X) \in [-1, 1]$ for $X \in (-\infty,\infty)$;
+    \item $Y = \frac{X_1}{X_1+X_2} \in (0, 1)$ for $X_1 \in (0,\infty)$ and $X_2 \in (0,\infty)$;
+    \item $Z = \log(UV) \in (-\infty, \infty)$ for $U \in (0,\infty)$ and $V \in (0,\infty)$. \\
+\end{enumerate}
+\end{solution}
+
+\end{exercise}
+
+
+
+\begin{exercise}
+To find the distribution of a convolution through the change of variables formula, we seem to need to add a `redundant' equality?
+But why is that?
+What would be the problem if we do not add this?
+Explain in your own words.
+\begin{solution}
+If we would not add this extra variable, we cannot use the change of variables theorem. We also need a function to deal with the scaling. In the change of variables theorem, this is the Jacobian.
+
+There is also another problem.
+Consider the function $g(x, y)$ that maps $\R^{2}$ to $\R$.
+The inverse set $\{ (x,y) : g(x,y) =z \}$ can be quite complicated, while the set $\{y : g(x, y) = z\}$ for a fixed $x$ is hopefully just one point.
+Hence, the mapping $(x, y) \to (x, g(x,y))$ is, at least locally, one-to-one.
+
+It is possible to deal with the more general problem, but this requires much more theory than we need for this course.
+\end{solution}
+\end{exercise}
+
+\begin{exercise}
+When adding a different equality, we need to be careful to not create a functional relationship between our two new variables $U,V$, for example $U=X+Y$ and $V=\sin(X+Y)$, or $U=\frac X Y$ and $V = \frac Y X$ for conforming $X,Y$.
+What would happen to the determinant of the Jacobian matrix if we did?
+Why would this happen?
+Explain in your own words.
+\begin{solution}
+  When the variables become dependent, the Jacobian becomes zero. For instance,  in the latter case,
+\begin{align}
+\frac{\partial (u,v)}{\partial (x, y)} =
+  \begin{vmatrix}
+    1/y & -x/y^{2} \\
+-y/x^{2} & 1/x
+  \end{vmatrix} = \frac{1}{x y} - \frac{x}{y^2}\frac{y}{x^{2}} = 0.
+\end{align}
+Moreover, the function $g$ is not locally one-to-one.
+
+\end{solution}
+\end{exercise}
+
+\begin{exercise}
+In this exercise, we combine what we learned in BH.8.1.4 and  BH.8.1.9.  Let $S$ be the sum of two i.i.d. chi-square distributed variables. Using just these two examples, show that $S \sim \Exp{1/2}$.
+
+\begin{hint}
+Let $X, Y$ be i.i.d. standard normal. Since the square of a standard normal r.v. is chi-square distributed, we can write $S$ as $S=X^2+Y^2$ (here we use  BH.8.1.4).
+\end{hint}
+\begin{solution}
+  From BH.8.1.4: $Z$ chi-square $\implies X=\sqrt{Z} \sim \Norm{0,1}$.
+  Then, from BH.8.1.9,
+\begin{equation}
+X^{2}+Y^2 = (\sqrt{2T} \cos U)^2 + (\sqrt{2T} \sin U)^2 = 2T \left(\cos^2 U+\sin^2 U\right) = 2T \sim \Exp{1/2},
+\end{equation}
+ when $X, Y\sim \Norm{0,1}$.
+\end{solution}
+\end{exercise}
+
+
+
+\begin{exercise}
+A student has obtained an i.i.d.
+random sample of size 2 from a Cauchy distribution. Let the r.v.s $X$ and $Y$ model the  values of the first and second sample.
+Since s/he does not know what the mean of a Cauchy distribution is, s/he wants to average the sample to obtain what she thinks is a good estimate of the true mean.
+
+To find the distribution of this sample mean, we need to find an expression for $f_W(w)$, where $W=\frac{X+Y}2$.
+
+\begin{enumerate}
+\item Find an expression for $f_W(w)$ in the form of an integral, but do not solve it.
+\item It turns out that if we solve the integral, we get that $f_W(w) = f_X(w)$. The distribution of our sample mean is still Cauchy; we did not obtain a better estimate of the Cauchy mean by calculating the sample mean!
+
+Explain (in your own words) why this makes sense.
+\end{enumerate}
+\begin{solution}
+ Take $g(x,y) = (x, w) = (x, (x+y)/2)$. Then, $y=2w -x$.
+\begin{align}
+\frac{\partial (x,w)}{\partial (x, y)} &=
+  \begin{vmatrix}
+    1 & 0 \\
+1/2 & 1/2
+  \end{vmatrix} = 1/2,\\
+f_{X,W}(x,w) &= f_{X,Y}(x,y) \frac{\partial(x,y)}{\partial(x,w)} = \frac{1}{\pi(1+x^{2})}\frac{1}{\pi(1+(2w-x)^{2})} 2,\\
+f_{W}(w) &= \int_{-\infty}^{\infty} f_{X,W}(x,w) \d x = \frac{2}{\pi^{2}} \int_{-\infty}^{\infty} \frac{1}{1+x^{2}}\frac{1}{1+(2w-x)^{2}} \d x.
+\end{align}
+
+The expectation of a Cauchy distributed r.v. $X$ is not well-defined because $\E{|X|} = \infty$. As a consequence, taking the average of some outcomes (i.e. a sample) will also not give a sensible answer.
+\end{solution}
+\end{exercise}
+
+
+
+
+
+
+\subsection{About exam level}
+\label{sec:chapter-8}
+
+\begin{exercise}
+Let $X, Y$ iid $\sim \Unif{[0,1]}$.
+\begin{enumerate}
+% \item What is the joint CDF of $X+Y, XY$?
+% \item What is the joint PDF of $X+Y, XY$?
+\item Write a computer program in python or R to  estimate $\P{X+Y\leq 1, X Y\leq 2/9}$.
+\end{enumerate}
+\begin{solution}
+  The idea is this.
+  We generate a bunch of uniform random deviates (simulated values).
+  Then we count how often the set $\{x+y\leq 1, xy \leq 2/9\}$ is hit.
+
+Here is the code.
+\begin{minted}{python}
+import numpy as np
+
+np.random.seed(3)
+
+num = 100
+
+X = np.random.uniform(0, 1, num)
+Y = np.random.uniform(0, 1, num)
+U = X + Y
+V = X * Y
+success = (U <= 1) * (V <= 2 / 9)
+print(sum(success) / num)
+\end{minted}
+\end{solution}
+\end{exercise}
+
+\begin{exercise}
+Let $X, Y$ be continuous r.v.s with CDF $F_{X,Y}(x,y) = (x-1)^{2}(y-2)/8$ for $x \in (1, 3)$.
+\begin{enumerate}[a.]
+\item Explain that $y\in (2,4)$ for  $F$ to be a proper CDF.
+\item What is $F(3,7)$?
+\item Determine the PDF.
+\item Compute $\P{2< X < 3}$
+\item Compute $\P{2< X < 3, 2<Y<3}$.
+\item Compute $\P{Y< 2X}$.
+\item Compute $\P{Y\leq  2X}$.
+\item Compute $\P{Y< 2X, Y+2X > 6}$.
+\end{enumerate}
+\begin{solution}
+a.
+\begin{align}
+\label{eq:11}
+F \geq 0 &\implies 2<y\\
+F \leq 1 &\implies F(3, y)\leq 1 \implies F(3,4)=1
+\end{align}
+
+b. $F(3,7) = 1$.
+
+c. $f(x,y) = \partial_{x} \partial_{y} F(x,y) = (x-1)/4$ for $x\in(1,3), y\in(2,4)$ and $0$ elsewhere.
+
+d.
+\begin{align}
+  \label{}
+\P{2 < X < 3}
+&= F_{X}(3) - F_{X}(2) \\
+&= F_{X,Y}(3, 4) - F_{X,Y}(2,4) = 1 - 1\cdot 2/8 = 3/4.
+\end{align}
+
+e.
+Make a drawing of the rectangle $[2,3]\times[2,4]$. Then check what parts of this are covered by $F_{X,Y}$.
+\begin{align}
+  \label{}
+\P{2 < X < 3, 2 < Y < 3}
+&= F_{X,Y}(3, 3) - F_{X,Y}(2,3)  - F_{X,Y}(3, 2) + F_{X,Y}(2,2).
+\end{align}
+The rest is just number plugging.
+
+
+f.
+Use the fundamental bridge and c.
+\begin{align}
+\P{Y< 2 X}
+&= \E{\1{Y < 2 X}} \\
+&= \iint \1{y < 2 x} f_{X,Y}(x,y) \d x \d y\\
+&= \frac{1}{4}\iint \1{y < 2 x} \1{2< y <4} \1{1<x<3} (x-1) \d x \d y\\
+&= \frac{1}{4}\int_{1}^{3} (x-1) \int \1{2<y < \min\{2 x,4\}}  \d y \d x \\
+&= \frac{1}{4}\int_{1}^{3} (x-1) (\min\{2 x,4\}-2) \d x \\
+&= \frac{1}{4}\int_{1}^{2} (x-1) (2 x-2) \d x
++ \frac{1}{4}\int_{2}^{3} (x-1) (4-2) \d x.
+\end{align}
+Finishing the computation must be easy for you now (and if not, practice real hard).
+
+g. As $X, Y$ continuous, the answer is equal to that of f.
+
+h. Similar to f. but a bit more involved.
+\begin{align}
+  \P{Y< 2 X, Y + 2X > 6}
+  &= \E{\1{Y < 2 X, Y > 6 - 2X}} \\
+  &= \iint \1{y < 2 x, y> 6-2x} f_{X,Y}(x,y) \d x \d y\\
+  &= \frac{1}{4}\iint \1{y < 2 x, y>6-2x} \1{2< y <4} \1{1<x<3} (x-1) \d x \d y\\
+  &= \frac{1}{4}\int_{1}^{3}(x-1) \int \1{\max\{2, 6 -2x\} < y < \min\{2 x, 4\}} \d y \d x\\
+  &= \frac{1}{4}\int_{1}^{3}(x-1) [\min\{2x, 4\} - \max\{2, 6 -2x\}]^{+} \d x,
+    \intertext{where we need the $[\cdot]^{+}$  to ensure the positivity of $\min\{2x, 4\} - \max\{2, 6 -2x\}$. To see this, make a graph of  the function $\min\{2x, 4\} - \max\{2, 6 -2x\}$. Also, from this graph,}
+  &= \frac{1}{4}\int_{3/2}^{2}(x-1) (2x - 6 + 2x)  \d x + \frac{1}{4}\int_{2}^{3}(x-1) (4-2) \d x.
+\end{align}
+The rest is for you.
+\end{solution}
+\end{exercise}
+
+
+
+\begin{exercise}
+Consider the general case where we are given the relationship $U = V^4$ between the random variables $U$ and $V$ for $V \in (-3,2)$.
+
+Explain why we cannot simply invoke the change of variables theorem.
+
+Now imagine $V$ following a uniform distribution on the given interval. Consider the given transformation on the intervals $(-3,0)$ and $(0,2)$ separately. Explain why this allows you to employ the change of variables theorem and find the distribution of $U$ on these intervals. Finally combine these results (using indicator functions) and state the PDF of $U$ (remember to adjust the domain for the indicator functions according to the transformations).
+\begin{hint}
+What is the domain of $V$ on each of the intervals $(-3,0)$ and $[0,2)$? For the final part, combining the results into one PDF: Use LOTP, conditioning on $U \geq 0$.
+\end{hint}
+\begin{solution}
+  The function $g(x)=x^{4}$ is not one-to-one on $\R$.
+  It is, however, locally, one-to-one, around the roots of $U$.
+  (In this course we don't deal with complex numbers, for your interest, it can be proven that the equation $x^{4}-y$ has, in general, four roots in the complex plane.)
+
+  We need to be bit careful with applying the change of variables formula, but we are OK if we apply it locally around the roots $U^{1/4}$ and $- U^{1/4}$.
+  However, mind that we also should take care of the domain of $V$, so it might be that these roots don't lie in the domain of $V$.
+
+With all this, let's first tackle the Jacobian, and then get the domain right with indicators.
+\begin{align}
+u &= g(v) = v^{4} \implies v = \pm u^{1/4},\\
+f_{U}(u) \d u &= f_{V}(v) \d v \implies  f_{U}(u) = f_{V}(v) \frac{\d v}{\d u},\\
+\frac{\d u}{\d v} &= 4 v^{3} = 4 u^{3/4}\1{v\geq 0} - 4u^{3/4}\1{v<0},\\
+f_{U}(u) &= \frac{f_{V}(-u^{1/4})}{4 (-u)^{3/4}} \1{-u^{1/4}\in (-3, 0)} + \frac{f_{V}(u^{1/4})}{4 (u)^{3/4}} \1{u^{1/4}\in [0,2)} \\
+&= \frac{f_{V}(-u^{1/4})}{4 (-u)^{3/4}} \1{u\in (0, 81)} + \frac{f_{V}(u^{1/4})}{4 (u)^{3/4}} \1{u \in [0,16)}.
+\intertext{If $V$ has the uniform distribution, then $f_V(v) = \tfrac15$ for $v \in (-3, 2)$, so}
+f_{U}(u) &= \frac{1}{20 (-u)^{3/4}} \1{u\in (0, 81)} + \frac{1}{20 (u)^{3/4}} \1{u \in [0,16)}.
+\end{align}
+\end{solution}
+
+\end{exercise}
+
+\begin{exercise}
+Let $U \sim  \Unif{0, \pi}$.
+Use  BH.8.1.9 to show that $X = \tan(U)$ has the Cauchy distribution. Compare this exercise to BH.8.1.5.
+\begin{solution}
+Here is a direct approach.
+  \begin{align}
+    \label{eq:20}
+x&=\tan u = g(u) \implies u = \arctan x\\
+\frac{\d x}{\d u } &= \frac{1}{\cos^{2} u} = \frac{\sin^{2}u + \cos^{2}u }{\cos^{2}u} = \tan^{2} u + 1 = x^{2} + 1,\\
+f_{X}(x) &= f_{U}(u) \frac{\d u}{\d x} = \frac{1}{\pi}\1{u\in (0, \pi)} \frac{1}{1+x^{2}} \\
+&=\frac{1}{\pi(1+x^{2})}\1{\arctan x \in (0, \pi)} =\frac{1}{\pi(1+x^{2})}.
+  \end{align}
+  In the last equation we just shifted the $\tan$ from $(-\pi/2, \pi/2]$ to the interval $(0, \pi)$.
+  The $\tan$ has also a proper inverse in $(0,\pi)$ (make a drawing of $\tan$ to see this), hence all is well-defined.
+\end{solution}
+\end{exercise}
+
+
+
+\subsection{Coding skills}
+\label{sec:coding-skills-1}
+
+\paragraph{Ping pong balls}
+
+
+
+How many ping pong balls fit into an Airbus Beluga?
+One way to answer this is as follows.
+According to this \href{https://en.wikipedia.org/wiki/Airbus\_Beluga}{wiki-page} the cargo volume $V$ of this airplane is $1500 \m^{3}$.
+But this number is based on the physical dimensions that is available to store containers, tanks, and so on.
+So, I estimate the volume as about twice that amount, i.e., $V = 2500 \m^{3}$.
+The volume of a ping pong ball is $v = 4 \pi r^3/3  = \py{4*3.14*8/3} \cm^{3}$ with $r=2$ cm.
+A plain division gives \py{2500/33.5} ping pong balls.
+Note, I left out the $10^{6}$ conversion from meters to cm, and I do not take into the sphere packing factor.
+Besides that, I hope you agree with me that providing an result with the precision as given here is plain ridiculous.
+(But from reason incomprehensible to me, even professional econometricians like to report results with 10 digits or more, without questioning the precision.)
+
+
+However, I know that the volumes of an air plane and a ping pong ball is an estimate, rather than a precise number as assumed above.
+It seems to be better to approximate $V$ and $v$ as rvs.
+Let's assume that
+   \begin{align*}
+V & \sim N(2500, 500^{2}), & v  & \sim N(33.5, 0.5^{2}),
+\end{align*}
+where the variances express my trust in my guess work.
+What is now the mean of $N = V/v$ and its std?
+In fact, finding the closed form expression for the distribution of $N$ is not entirely simple.
+However, with simulation it's easy to get an estimate.
+
+\begin{exercise}\label{ex:2}
+ How does this exercise relate to BH.8.11 and BH.8.12? What is similar, what are crucial differences?
+\end{exercise}
+
+\begin{exercise}
+Use the documentation of the \texttt{norm} (\texttt{rnorm}) function of python (R) to explain why we set the scale as we do.
+Relate this to location-scale discussion in BH.
+\end{exercise}
+
+\begin{exercise}
+Explain lines 8 and 13 of the python code or lines 5 and 8 of the R code. (Optional: There is a conceptual difference between the two languages here. If you are interested in both languages, also comment on the difference)
+\end{exercise}
+
+\begin{exercise}
+Use the code below to provide the estimates.
+\end{exercise}
+
+\begin{exercise}
+Contrary to BH.7.1.25 if you run the code below, you'll see that $\E N < \infty$, and, in fact, very near to the deterministic answer.
+But isn't this strange?
+We divide two normal random variables, just like BH.7.1.25, but there the expectation is infinite.
+Comment on the difference.
+
+\begin{solution}
+  If we divide two $\sim \Norm{0,1}$ r.v.s we obtain a Cauchy distributed r.v.
+  But in our Beluga case, the normally distributed r.v.s have positive expectation.
+\end{solution}
+
+\end{exercise}
+
+
+The numerical results suggest the interesting guess $\V N \approx \V V * \V v$, but is this true more generally?
+In~\cref{sec:challenges-1} we study this problem in more detail.
+
+\begin{minted}[]{python}
+import numpy as np
+from scipy.stats import norm
+
+num = 500
+
+np.random.seed(3)
+
+V = norm(loc=2500, scale=500)
+v = norm(loc=33.5, scale=0.5)
+
+print(V.mean(), V.std()) # just a check
+
+N = V.rvs(num) / v.rvs(num)
+print(N.mean(), N.std())
+
+print(2500/33.5)
+print(np.sqrt(500*0.5))
+\end{minted}
+
+\begin{minted}[]{R}
+num <- 500
+
+set.seed(3)
+
+V = rnorm(num, 2500, 500)
+v = rnorm(num, 33.5, 0.5)
+
+N = V / v
+paste(mean(N), sd(N))
+
+2500/33.5
+sqrt(500*0.5)
+\end{minted}
+
+
+
+\paragraph{Sums of RVS}
+
+We start from BH.8.27 (which you have to read now).  We are interested in the difference between the distribution of $X+Y+Z$ and the normal distribution. But why the normal distribution? As it turns out, the central limit law, see BH.10, states that the distribution of sums of r.v.s converge to the normal distribution (in a specific sense)
+
+Here some code to simulate.
+
+\begin{minted}[]{python}
+import numpy as np
+from scipy.stats import norm
+
+import matplotlib.pylab as plt
+import seaborn as sns
+
+sns.set()
+
+np.random.seed(3)
+
+k = 3
+Zexact = norm(loc=k / 2, scale=np.sqrt(k / 12))
+X = np.arange(0, 3, 0.1)
+
+XYZ = np.random.uniform(size=(4000, k))
+# print(XYZ)  # if you want to see it.
+Z = XYZ.sum(axis=1)
+sns.distplot(Z)
+plt.plot(X, Zexact.pdf(X))
+plt.show()
+\end{minted}
+
+\begin{minted}[]{R}
+set.seed(3)
+
+k = 3
+X <- seq(0, 3, by = 0.1)
+Zexact <- dnorm(X, mean = k / 2, sd = sqrt(k / 12))
+
+
+XYZ <- matrix(NA, 4000, k)
+for (i in 1:k) {
+  XYZ[,i] <- runif(4000, min = 0, max = 1)
+}
+Z <- rowSums(XYZ)
+
+par()
+hist(Z, prob = TRUE, breaks = 31)
+lines(X, Zexact, type = "l", col = "orange")
+lines(density(Z), col = "blue")
+\end{minted}
+
+
+\begin{exercise}
+What is the shape of \verb|XYZ| in the code above, i.e., how many rows and columns does it have? If you don't know, run the code, and print it.
+\end{exercise}
+
+\begin{exercise}
+What is the shape (rows and columns) of \verb|Z|?
+\end{exercise}
+
+\begin{exercise}
+Explain the values for \verb|loc|~ and \verb|shape| in \verb|Zexact|.
+  (Read the documentation of scipy.stats.norm on the web is necessary.)
+  To which definition in BH does this loc-scale transformation relate?
+\end{exercise}
+
+
+\begin{exercise}
+Change the seed to your student id, or any other number you like, run the code, and include the graph produced by your simulation.
+Explain what you see.
+\end{exercise}
+
+
+Now we do an exact computation.
+
+\begin{minted}[]{python}
+import numpy as np
+from scipy.stats import norm
+
+import matplotlib.pylab as plt
+import seaborn as sns
+
+sns.set()
+
+N = 200
+x = np.linspace(0, 2, 2 * N)
+fx = np.ones(N) / N
+f2 = np.convolve(fx, fx)
+f3 = np.convolve(f2, fx)
+
+k = 3
+
+x = np.linspace(0, k, len(f3))
+Zexact = norm(loc=k / 2, scale=np.sqrt(k / 12))
+
+
+plt.plot(x, N * f3, label="conv")
+plt.plot(x, Zexact.pdf(x))
+plt.legend()
+plt.show()
+\end{minted}
+
+\begin{minted}[]{R}
+N = 200
+x = seq(0, 2, length.out = 2 * N)
+fx = rep(1, N) / N
+f2 = convolve(fx, fx, type = "open")
+f3 = convolve(f2, fx, type = "open")
+
+k = 3
+
+x = seq(0, k, length.out = length(f3))
+Zexact = dnorm(x, mean = k/2, sd = sqrt(k / 12))
+
+par()
+plot(x, N * f3, col = "blue", type = "l", ylim = c(0, 0.8))
+lines(x, Zexact, type = "l", col = "orange")
+legend("topright", legend = "conv", bty = "n",
+      lwd = 2, cex = 1.2, col = "blue", lty = 1)
+\end{minted}
+
+\begin{exercise}
+Read the documentation of ~np.convolve~. Why is it called like this?
+\end{exercise}
+
+\begin{exercise}
+In the code, what is \texttt{f2}?
+\end{exercise}
+
+\begin{exercise}
+What is \texttt{f3}?
+\end{exercise}
+
+\begin{exercise}
+Why do we set \texttt{k=3}?
+\end{exercise}
+
+\begin{exercise}
+A bit harder, why do we plot \texttt{N*f3}, i.e., why do have to multiply with \texttt{N}? Relate this to the meaning of $f(x)\d x$, where $f$ the density of some random variable.
+(To understand why is very important. Think hard, and read the solution when it becomes available.)
+\begin{solution}
+  Suppose we chop up the area under some arbitrary  function $g$ in blocks of height $g(x)$ and length $\Delta x$.
+  Then the area of such a block is $g(x) \Delta x$.
+
+
+  In our case, we chop up the interval in parts with length $\Delta x = 1/N$.
+  The elements of $f3$ are such that $f3[i] = f_{3}(x_{i}) \Delta x$, where $x_{i}$ lies in the $i$th interval and $f_{3}$ is the density of the sum of the three r.v.s. But then, $f_{3}(x_{i}) = f3[i]/\Delta x = N f3[i]$.
+
+  Forgetting to scale with $\Delta x = 1/N$ is a common error when dealing with densities.
+  Hence, recall that, notationally, $f(x) \d x$ means a block of height $f(x)$ and length $\d x$. Don't forget to deal with the $\d x$!
+\end{solution}
+\end{exercise}
+
+\begin{exercise}
+Yet a tiny bit harder, consider \texttt{f4 = np.convolve(f3, fx)} and \texttt{g4 = np.convolve(f2, f2)}. Why are they, numerically speaking,  equal?
+\begin{solution}
+Take four r.v.s $U, V, X, Y$. Then
+  \begin{equation}
+    \label{eq:15}
+(U+V+X) + Y = (U+V) + (X+Y).
+  \end{equation}
+Thus the density of $(U+V+X) + Y$ must be the same as the density of $(U+V) + (X+Y)$.
+\end{solution}
+\end{exercise}
+
+
+\begin{exercise}
+When you would compute the maximum of \texttt{np.abs(f4 -g4)} you would see that this is about $10^{-10}$, or so.
+Hence, a small number.
+This is not equal to 0, but we know that this is due to rounding effects.
+
+How can we use the function \texttt{np.isclose()} to get around this problem?
+(You should memorize from this question that you should take care when testing on whether floating point numbers are the same or not.)
+\end{exercise}
+
+
+
+\subsection{Challenges}
+\label{sec:challenges-1}
+
+This challenge is a continuation of the Beluga case of~\cref{sec:coding-skills-1}, and we discuss some ways to check whether $\V {N} \approx \V V \V v$ holds in general, and then we try to find a better approximation. We chopped up the challenge into many exercises, to help you organize the ideas.
+
+
+Recall that in~\cref{sec:coding-skills-1} we have been a bit sloppy about the units, measuring the volumes of the airplane in $\m^{3}$ and a ping pong ball in $\cm^{3}$, so actually $N$ is in millions of ping pong balls.
+Note that using different units can easily lead to  confusion; as a take-away , choose one unit.
+
+One way to check the correctness of $\V N \approx \V V \V v$ is to change the scale. In fact, memorize that changing scale is an easy way to check laws.
+
+\begin{exercise}
+Suppose we instead measure the size of a ping pong ball in meters and the size of the airplane in hectometers.
+Explain that $N$ is still in millions of ping pong balls.
+What happens to $\V{N}$ and what happens to $\V V \V v$ (theoretically)?
+\opt{check}{
+\begin{solution}
+$N$ does not change, so $\V N$ also does not change. On the other hand, $V$ and $v$ become 100 times as small, so their variances become $100^2$ times as small, so $\V V \V v$ becomes $10^8$ times as small.
+\end{solution}
+}
+\end{exercise}
+
+
+Another way to check a statement is to consider some extreme cases.
+
+\begin{exercise} Suppose that we would know the size of a ping pong ball very accurately, i.e.  we consider the extreme case where $\V v \rightarrow 0$. Explain that the approximation is not a good approximation in this limit.
+\opt{check}{
+\begin{solution}
+The approximation would predict that $\V N \to 0$ as well, but this is not correct, since there is also variability in $V$. In fact $\V N \approx \V V / (\E v)^2$, and the left hand side is not 0.
+\end{solution}
+}
+\end{exercise}
+
+
+\begin{exercise}
+Which of these two checks convinces you most that something is wrong with this approximation, and why?
+\opt{check}{
+\begin{solution}
+A theorem should hold for all cases, including the extreme cases. However, for an approximation it may be acceptable to fail in extreme cases, so this may not be the best check for an approximation. The first check shows better that we can be way off even in a real-life situation. \\
+\end{solution}
+}
+\end{exercise}
+
+We now turn to the task of trying to find a good approximation.
+
+\begin{exercise} Assume that $X$ and $Y$ are independent. Show that
+\begin{equation*}
+\V {X Y} = \V {X} \V {Y} + \V{X} \E {Y}^2 + \E {X}^2 \V{Y}.
+\end{equation*}
+\opt{check}{
+\begin{solution}
+By independence, we can split $ \E {(X Y)^2}$ and $\E {X Y}^2$. Hence, we find that
+\begin{align*}
+\V {XY} &= \E {(XY)^2} - \E {XY}^2 \\ &=  \E {X^2} \E {Y^2}  - \E {X}^2 \E {Y}^2
+\\ &=  \E {X^2} \E {Y^2}  - \E {X}^2 \E {Y^2} + \E {X}^2 \E {Y^2} - \E {X}^2 \E {Y}^2
+\\ &= \V {X} \E {Y^2} + \E {X}^2 \V{Y}
+\\ &= \V {X} \V {Y} + \V{X} \E {Y}^2 + \E {X}^2 \V{Y}.
+\end{align*}
+\end{solution}
+}
+\end{exercise}
+
+\begin{exercise} \label{ex:beluga5}
+Assume in addition that we know at least one of $X$ and $Y$ quite precisely. Argue that the following is then a good approximation:
+\begin{equation*}
+\V {X Y} \approx \V{X} \E {Y}^2 + \E {X}^2 \V{Y}.
+\end{equation*}
+\opt{check}{
+\begin{solution}
+If we know $X$ well, then $\V X \ll \E {X}^2$, so then  $\V X \V{Y} \ll  \E {X}^2 \V{Y}$. Similarly, if we know $Y$ well, then $\V Y \ll \E {Y}^2$, so then  $\V X \V{Y} \ll  \E {Y}^2 \V{X}$.
+\end{solution}
+}
+\end{exercise}
+
+
+So far we have only considered the variance of a product, but we would like to know the variance of a ratio.
+%In \textbf{Mathematics II} you learned about Taylor expansions, which can be used to make accurate approximations.
+For this we can use Taylor expansions to  make accurate approximations.
+
+\begin{exercise}  \label{ex:beluga6}
+Find the first order Taylor expansion of $\frac{1}{Z}$ around $a=  \E {Z}$. By taking the expectation and the variance of this expansion, show that
+\begin{align*}
+\E{\frac{1}{Z}} &\approx \frac{1}{\E{Z}}, & \V{\frac{1}{Z}} &\approx \frac{\V{Z}}{\E{Z}^4}.
+\end{align*}
+\opt{check}{
+\begin{solution}
+The first order Taylor expansion of $\frac{1}{Z}$ around $\E {Z}$ is given by $$\frac{1}{Z} = \frac{1}{\E {Z}} -  \frac{Z-\E Z}{\E {Z}^2} =  \frac{2}{\E {Z}} -  \frac{Z}{\E {Z}^2}.$$ Hence,
+\begin{align*}
+\E{\frac{1}{Z}} &\approx \E{\frac{2}{\E {Z}} -  \frac{Z}{\E {Z}^2}} = \frac{2}{\E{Z}}  -  \frac{\E{Z}}{\E {Z}^2}  = \frac{1}{\E{Z}} \\
+\V{\frac{1}{Z}} &\approx \V{\frac{2}{\E {Z}} -  \frac{Z}{\E {Z}^2}} =  \V{-  \frac{Z}{\E {Z}^2}} = \frac{\V{Z}}{\E{Z}^4}.
+\end{align*}
+For the variance, note that adding a constant doesn't change the variance.
+\end{solution}
+}
+\end{exercise}
+
+\begin{exercise}
+Combine all of the above to derive the following approximation for the variance of the ratio of two independent random variables $X$ and $Z$:
+\begin{equation*}
+\V {\frac{X}{Z}} \approx \frac{\V{X}}{\E{Z}^2} + \E {X}^2\frac{\V{Z}}{\E{Z}^4}.
+\end{equation*}
+\opt{check}{
+\begin{solution}
+Just plugging in $Y = \frac{1}{Z}$ to the result~\cref{ex:beluga5} and  using the results of \cref{ex:beluga6} yields the result.
+\end{solution}
+}
+\end{exercise}
+
+
+\begin{exercise}
+Check this approximation in the ways of the first two exercises.
+\opt{check}{
+\begin{solution}
+Multiplying both $X$ and $Z$ by a constant $c$ (e.g. 100) leaves the approximation invariant. In the limit $\V Z \rightarrow 0$, we obtain the exact answer (i.e. we get what we would if $Z$ would be a constant). In the limit $\V X \rightarrow 0$, we do not obtain the exact answer but also not something that is completely wrong (e.g. 0). \\
+\end{solution}
+}
+\end{exercise}
+
+
+
+After doing all this work, we would of course like to know how well this approximation does.
+When comparing the approximation to the sample standard deviation found in~\cref{ex:2} for \texttt{num=500}, the result may be a bit disappointing.
+However, this is just because the sample standard deviation is also an estimate of the actual standard deviation of $N$, so by chance the result may be closer to $\V V \V v$ than to our new approximation.
+
+ In Chapter 10, you will learn something about the distribution of the sample variance. For now, just increase  \texttt{num}. We know this decreases the variance of the sample mean and it also decreases the variance of the sample variance, so we get a more accurate estimate.
+
+\begin{exercise} Use the result of the previous exercise to compute an approximation for $\V {N}  = \V {V/v}$. Also use the code with a (much) higher value of \texttt{num}, to show that the approximation $\V {N}  \approx \V V \V v$ is likely to be worse, even in the setting of~\cref{ex:2} where it was quite good.
+\opt{check}{
+\begin{solution}
+  For the Beluga setting, the computed approximation of the standard deviation is 14.97 (more digits: 14.96688). To say with some confidence that the approximation of exercise 7 is much better, one should take \texttt{num} to be at least 10000, although taking \texttt{num} to be at least 1000000 really shows that our hard work paid off.
+\end{solution}
+}
+\end{exercise}
+
+The following two exercises are really optional, but I found them very neat and insightful.
+
+
+
+\begin{exercise}
+Recall that for a non-negative random variable $X$ with finite variance, we define the squared coefficient of variation as $ \mathrm{SCV}(X) = \V {X} /\E {X}^2$.
+Using the SCV, show that the approximations of~\cref{ex:beluga5} and~\cref{ex:beluga6} can be rewritten in the following neat way:
+\begin{align*}
+\mathrm{SCV}(XY) &\approx \mathrm{SCV}(X) + \mathrm{SCV}(Y). \\
+\mathrm{SCV}\left(1/Z \right) &\approx \mathrm{SCV}(Z). \\
+\end{align*}
+\opt{check}{
+\begin{solution}
+It is just algebra, but the result is nice.
+\end{solution}
+}
+\end{exercise}
+
+
+In BH.10, you will learn Jensen's inequality, which implies that $\E{\frac{1}{Z}} \geq \frac{1}{\E{Z}}$ for all positive random variables $Z$. In the following exercise, we reflect on this by finding a more accurate approximation based on the second order Taylor expansion.
+
+\begin{exercise} Find the second order Taylor expansion of $\frac{1}{Z}$ around $a=  \E {Z}$.
+By taking the expectation, show that
+\begin{align*}
+\E{\frac{1}{Z}} \approx \frac{1}{\E{Z}} + \frac{2\V{Z}}{\E{Z}^3}.
+\end{align*}
+Note that this is always at least $\dfrac{1}{\E{Z}}$.
+\opt{check}{
+\begin{solution}
+The second order Taylor expansion of $\frac{1}{Z}$ around $\E {Z}$ is given by \begin{align*} \frac{1}{Z} &= \frac{1}{\E {Z}} -  \frac{Z-\E Z}{\E {Z}^2} + \frac{2(Z-\E Z)^2}{\E {Z}^3} \\ &=  \frac{2}{\E {Z}} -  \frac{Z}{\E {Z}^2} + \frac{2(Z-\E Z)^2}{\E {Z}^3}.\end{align*} Hence, by linearity of expectation we conclude that
+\begin{align*}
+\E{\frac{1}{Z}} &\approx \E{\frac{2}{\E {Z}} -  \frac{Z}{\E {Z}^2} + \frac{2(Z-\E Z)^2}{\E {Z}^3}} \\ &= \frac{2}{\E{Z}}  -  \frac{\E{Z}}{\E {Z}^2} + \frac{2\E{(Z-\E Z)^2}}{\E {Z}^3}  = \frac{1}{\E{Z}} + \frac{2\V{Z}}{\E {Z}^3}.
+\end{align*}
+\end{solution}
+}
+\end{exercise}
+
+
+% \opt{check}{
+% \Closesolutionfile{hint}
+% \Closesolutionfile{ans}
+% \input{hint}
+% \input{ans}
+% }
+
+\end{document}

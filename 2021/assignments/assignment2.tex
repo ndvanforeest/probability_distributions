@@ -1,0 +1,730 @@
+\documentclass[assignments]{subfiles}
+
+\begin{document}
+
+\setcounter{section}{1}
+\section{Assignment 2}
+
+
+\subsection{Have you read well?}
+
+
+\begin{exercise}
+Example 7.2.2. Write down the integral to compute $\E{(X-Y)^{2}}$. You don't have to solve the integral.
+\begin{solution}
+We have
+\begin{align}
+    \E{(X-Y)^2} &= \int_{-\infty}^\infty \int_{-\infty}^\infty (x - y)^2 f_{X,Y}(x,y) dx dy \\
+    &=\int_0^1 \int_0^1 (x - y)^2 dx dy
+\end{align}
+\end{solution}
+\end{exercise}
+
+\begin{exercise}
+Give a brief example of a situation where it might be more convenient to employ the correlation instead of the covariance and explain why.
+\begin{solution}
+Any situation in which the units of measurement might be distracting. Correlation is usually easier to interpret.
+\end{solution}
+\end{exercise}
+
+\begin{exercise}
+In queueing theory  the concept of squared coefficient of variance $SCV$ of a rv $X$ is very important. It is defined as $C = \V{X}/(\E X)^{2}$. Is the SCV of $X$ equal to $\text{Corr}(X,X)$? Can it happen that $C>1$?
+\begin{solution}
+Answers: no and yes.
+
+We have
+\begin{align}
+    C = \frac{\V{X}}{(\E{X})^2},
+\end{align}
+which does not equal
+\begin{align}
+    \text{Corr}(X,X) = \frac{\cov{X,X}}{\sqrt{\V{X}\V{X}}} = 1
+\end{align}
+in general (for instance, consider a degenerate random variable $X \equiv 1$). Next, consider a $N(1,100)$ random variable. Then,
+\begin{align}
+    C = 100/(1^2) = 100 > 1.
+\end{align}
+\end{solution}
+\end{exercise}
+
+
+\begin{exercise}
+Using the definition of Covariance (Definition 7.3.1) derive the expression $\cov{X,Y}=\E{XY}-\E{X}\E{Y}$. Use this finding to show why independence of X and Y implies their uncorrelatedness (note that the converse does not hold).
+\begin{solution}
+We have
+\begin{align}
+    \cov{X,Y} &= \E{(X - \E{X})(Y - \E{Y})} \\
+    &= \E{XY - X\E{Y} - Y\E{X} + \E{X}\E{Y}} \\
+    &= \E{XY} - \E{X}\E{Y} - \E{Y} \E{X} + \E{X}\E{Y}\\
+    &= \E{XY}-\E{X}\E{Y}.
+\end{align}
+
+\end{solution}
+\end{exercise}
+
+\begin{exercise}
+Let $U, V$ be two r.v.s and let $a,b\in \R$.
+Express $\cov{a(U+V), b(U-V)}$ in terms of $\V{U}$, $\V{V}$ and $\cov{U,V}$ (by using the expression obtained in the previous question).
+\begin{solution}
+By linearity of the covariance wea have
+\begin{align}
+    \cov{a(U+V), b(U-V)} &= a \Big( \cov{U, b(U-V)} + \cov{V, b(U-V)} \Big) \\
+    &= a \Big( b\big( \cov{U, U} - \cov{U, V} \big)  + b\big( \cov{V, U} - \cov{V,V} \Big) \\
+    &= a \Big( b\big( \cov{U, U} - \cov{U, V} \big)  + b\big( \cov{V, U} - \cov{V,V} \Big) \\
+    &= a b \Big( \V{U} - \cov{U, V} + \cov{V, U} - \V{V} \Big) \\
+    &= a b \Big( \V{U} - \V{V} \Big).
+\end{align}
+\end{solution}
+\end{exercise}
+
+\begin{exercise}
+Prove the key properties of covariance 1 to 5 on page 327 of the book (page 338 pdf).
+\begin{solution}
+\begin{enumerate}
+    \item We have
+    \begin{align}
+        \cov{X,X} = \E{XX} - \E{X}\E{X} = \E{X^2} - \E{X}^2 = \V{X}.
+    \end{align}
+    \item We have
+    \begin{align}
+        \cov{X,Y} = \E{XY} - \E{X}\E{Y} = \E{YX} - \E{Y} \E{X} = \cov{Y, X}.
+    \end{align}
+    \item We have
+    \begin{align}
+        \cov{X,c} = \E{Xc} - \E{X}\E{c} = c\E{X} - c\E{X} = 0.
+    \end{align}
+    \item We have
+    \begin{align}
+        \cov{aX,Y} = \E{aXY} - \E{aX}\E{Y} = a\big(\E{XY} - \E{X}\E{Y}\big) = a\cov{X,Y}.
+    \end{align}
+    \item We have
+    \begin{align}
+        \cov{X+Y, Z} &= \E{(X + Y)Z} - \E{X+Y}\E{Z} \\
+        &= \E{XZ + YZ} - \big(\E{X} + \E{Y}\big) \E{Z}\\
+        &= \E{XZ} - \E{X}\E{Z} + \E{YZ} - \E{Y}\E{Z} \\
+        &= \cov{X,Z} + \cov{Y,Z}.
+    \end{align}
+\end{enumerate}
+\end{solution}
+\end{exercise}
+
+\begin{exercise}
+Come up with a short illustrative example in which the random vector $\mathbf{X} = (X_1, \ldots, X_6)$ follows a Multinomial Distribution with parameters  $n=10$ and $\mathbf{p}=(\frac{1}{6}, ..., \frac{1}{6}) \in \R^{6}$.
+\begin{solution}
+We throw 10 fair dice. $X_i$ denotes the number of dice that show the number $i$, $i=1,\ldots,6$.
+\end{solution}
+\end{exercise}
+
+\begin{exercise}
+Is the following claim correct? If the r.v.s $X, Y$ are both normally distributed, then $(X, Y)$ follows a Bivariate Normal distribution.
+\begin{solution}
+No, this does not always hold. It does hold when $X$ and $Y$ are independent, though.
+\end{solution}
+\end{exercise}
+
+\begin{exercise}
+Let $(X,Y)$ follow a Bivariate Normal distribution, with $X$ and $Y$ marginally following $\mathcal{N}(\mu,\sigma^2)$ and with correlation $\rho$ between $X$ and $Y$.
+\begin{enumerate}
+\item Use the definition of a Multivariate Normal Distribution to show that $(X+Y, X-Y)$ is also Bivariate Normal.
+\item Find the marginal distributions of $X+Y$ and $X-Y$.
+\item Compute $\cov{X+Y,X-Y}$ \textcolor{red}{there was a typo here}. Then, write down the expression for the joint PDF of $(X+Y, X-Y)$.
+\end{enumerate}
+\begin{solution}
+In hindsight, this question was more an exam-level question.
+\begin{enumerate}
+    \item Since $(X,Y)$ are bivariate normally distributed, every linear combination of $X$ and $Y$ is normally distributed. Note that every linear combination of $(X+Y)$ and $(X-Y)$ can be written as a linear combination of $X$ and $Y$. Hence, every linear combination of $(X+Y)$ and $(X-Y)$ is normally distributed. Hence, $(X+Y, X-Y)$ is bivariate normally distributed.
+    \item By the story above, both $X$ and $Y$ are normally distributed. We have
+    \begin{align}
+        \E{X+Y} = \E{X} + \E{Y} = \mu + \mu = 2\mu,
+    \end{align}
+    and
+    \begin{align}
+        \E{X-Y} = \E{X} - \E{Y} = \mu - \mu = 0.
+    \end{align}
+    Moreover,
+    \begin{align}
+        \V{X+Y} = \V{X} + \V{Y} + 2\cov{X,Y} = 2\sigma^2 + 2\rho\sigma^2 = 2(1+\rho)\sigma^2.
+    \end{align}
+    Simlarly,
+    \begin{align}
+        \V{X-Y} &= \V{X} + \V{-Y} + 2\cov{X,-Y} = \V{X} + \V{Y} - 2\cov{X,Y} \\
+&= 2\sigma^2 -2\rho\sigma^2 = 2(1-\rho)\sigma^2.
+    \end{align}
+    So we have found that $X+Y \sim N(2\mu,2(1+\rho)\sigma^2)$ and $X-Y \sim N(0, 2(1-\rho)\sigma^2$.
+    \item We have
+    \begin{align}
+        \cov{X+Y,X-Y} &= \cov{X,X} - \cov{X,Y} + \cov{Y,X} - \cov{Y,Y} \\
+&= \V{X} - \V{Y} = \sigma^2 - \sigma^2 = 0.
+    \end{align}
+    Write $U = X+Y$, $V = X - Y$. Plugging all the parameters into the formula for the joint pdf of a bivariate normal distribution (see \url{https://en.wikipedia.org/wiki/Multivariate_normal_distribution#Bivariate_case}), we obtain
+    \begin{align}
+        f_{U,V}(u,v) = \frac{1}{2\pi\sqrt{2(1+\rho)\sigma^2 2(1-\rho)\sigma^2} } \text{exp}\left(-\frac{1}{2}\left[\frac{(u - 2\mu)^2}{2(1+\rho)\sigma^2} + \frac{v^2}{2(1-\rho)\sigma^2} \right]\right).
+    \end{align}
+\end{enumerate}
+\end{solution}
+\end{exercise}
+
+\begin{exercise}
+Let $X, Y, Z$ be i.i.d. $\mathcal{N}(0,1).$ Determine whether or not the random vector
+\begin{align*}
+    \mathbf{W} = (X+2Y, 3X+4Z, 5Y+6Z, 2X-4Y+Z, X-9Z, 12X+\sqrt{3}Y -\pi Z)
+\end{align*}
+is Multivariate Normal. (Explain in words, don't do a lot of tedious math here!)
+\begin{solution}
+Since $X,Y,Z$ are independent normally distributed variables, $(X,Y,Z)$ is multivariate normally distributed. Hence, every linear combination of $X,Y,Z$ is normally distributed. Note that every linear combination of the elements of $W$ can be written as a linear combination of $X,Y,Z$. Hence, every linear combination of the elements of $W$ is normally distributed. Hence, $W$ is multivariate normally distributed.
+\end{solution}
+\end{exercise}
+
+
+\subsection{Exercises at about exam level}
+\label{sec:exercises-at-about}
+
+
+
+
+
+\begin{exercise}
+Take $X\sim\Unif{\{-2, -1, 1, 2\}}$ and $Y= X^2$. What is the correlation coefficient of $X$ and $Y$?
+If we would consider another distribution for $X$, would that change the correlation?
+\begin{solution}
+We have
+\begin{align}
+    \cov{X,Y} = \cov{X,X^2} = \E{XX^2} - \E{X}\E{X^2} = 0 - 0\cdot 2.5 = 0.
+\end{align}
+Hence, $\text{Corr}(X,Y) = 0$. \\
+Yes, for instance, take $X \sim \Unif{\{0,1\}}$. Then,
+\begin{align}
+    \cov{X,Y} = \E{XX^2} - \E{X}\E{X^2} = 0.5 - 0.5\cdot 0.5 = 0.25.
+\end{align}
+\end{solution}
+\end{exercise}
+
+
+
+\begin{exercise}
+We have a machine that consists of two components.
+The machine works as long as both components have not failed (in other words, the machine fails when one of the two components fails).
+Let $X_i$ be the lifetime of component $i$.
+\begin{enumerate}
+\item What is the interpretation of $\min\{X_1, X_{2}\}$?
+\item If $X_1, X_2$ iid $\sim \Exp{10}$ (in hours), what is the probability that the machine is still `up' (i.e., not failed) at time $T$?
+\item Use the previous result to determine the distribution of $\min \{X_1, X_2\}$.
+\item What is the expected time until the machine fails?
+\end{enumerate}
+\begin{solution}
+\begin{enumerate}
+    \item The interpretation is: the time until the first component fails. That is, the time until the machine stops working.
+    \item Let $\lambda = 10$. We have
+    \begin{align}
+        \P{\text{machine not failed at time $T$}} &= \P{\min\{X_1, X_2\} > T} \\
+        &= \P{X_1 > T, X_2 > T} \\
+        &= \P{X_1 > T}\P{X_2 > T} \\
+        &= e^{-\lambda T} \cdot e^{-\lambda T} \\
+        &= e^{-(2\lambda)T} \\
+        &= e^{-20T} \\
+    \end{align}
+    \item Note that
+    \begin{align}
+        \P{\min\{X_1, X_2\} \leq T} = 1 - \P{\min\{X_1, X_2\} > T} = 1 - e^{-20T}.
+    \end{align}
+    Note that this is the cdf of an exponential distribution with parameter $20$. Hence, $\min\{X_1, X_2\} \sim \text{exp}(20)$.
+    \item The expected time until the machine fails is
+    \begin{align}
+        \E{\min\{X_1, X_2\}} = 1/20,
+    \end{align}
+    i.e., 3 minutes. Apparently, the machine is not very robust.
+\end{enumerate}
+\end{solution}
+\end{exercise}
+
+\begin{exercise}
+We have two r.v.s X and Y with the joint PDF $f_{X,Y}(x,y) = \frac{6}{7}(x+y)^2$ for $x, y \in (0,1)$ and 0 else. Also we consider the two r.v.s U and V with the joint PDF $f_{U,V}(u,v) = 2$ for $u, v \in [0,1], u+v \leq 1$ and 0 else.
+\begin{enumerate}
+\item Compute $\P{X+Y>1}$.
+\item Compute $\cov{U,V}$.
+\end{enumerate}
+(Hint: first draw the area over which you want to integrate, if this does not help check out the discussion board post on exercise 7.13a from the first Tutorial)
+\begin{solution}
+\begin{enumerate}
+    \item We have
+    \begin{align}
+        \P{X+Y>1} &= \int_{-\infty}^\infty \int_{-\infty}^\infty I_{X + Y > 1} f_{X,Y}(x,y) dy dx \\
+        &= \int_{0}^1 \int_{1-x}^1  \frac{6}{7}(x+y)^2 dy dx \\
+        &=\frac{6}{7} \int_{0}^1 \Big[\frac{1}{3} (x+y)^3 \Big]_{y=1-x}^1 dx \\
+        &=\frac{2}{7} \int_{0}^1 \Big( (x+1)^3 - (x + 1 - x)^3 \Big) dx \\
+        &=\frac{2}{7} \int_{0}^1 \Big( (x+1)^3 - 1 \Big) dx \\
+        &=\frac{2}{7} \Big[ \frac{1}{4}(x+1)^4 - x \Big]_{x=0}^1 \\
+        &=\frac{1}{14}\Big[ (x+1)^4 - 4x \Big]_{x=0}^1 \\
+        &=\frac{1}{14} \Big( \big( (1+1)^4 - 4\big) - \big((0+1)^4 - 0 \big) \Big) \\
+        &=\frac{1}{14} \Big( 16 - 4 - 1 \Big) \\
+        &= \frac{11}{14}.
+    \end{align}
+    \item We have
+    \begin{align}
+        \cov{U,V} &= \E{UV} - \E{U}\E{V}.
+    \end{align}
+    First, we compute
+    \begin{align}
+        \E{UV} &= \int_0^1 \int_0^{1-u} 2 uv dv du \\
+        &= \int_0^1 [uv^2]_{v=0}^{1-u} du \\
+        &= \int_0^1 \big( u(1-u)^2 - 0\big) du \\
+        &= \int_0^1 u(1 - 2u + u^2) du \\
+        &= \int_0^1 (u - 2u^2 + u^3) du \\
+        &= \Big[ \frac{1}{2}u^2 - \frac{2}{3}u^3 + \frac{1}{4}u^4 \Big]_{u=0}^1 \\
+        &= \frac{1}{2} - \frac{2}{3} + \frac{1}{4} \\
+        &= \frac{1}{12}.
+    \end{align}
+    Next,
+    \begin{align}
+        \E{U} &= \int_0^1 \int_0^{1-u} 2 u dv du \\
+        &= \int_0^1 2 u \int_0^{1-u} 1 dv du \\
+        &= \int_0^1 2 u(1-u) du \\
+        &= 2 \int_0^1 (u - u^2) du \\
+        &= 2  \Big[\frac{1}{2}u^2 - \frac{1}{3}u^3\Big]_{u=0}^1 \\
+        &= 2 \Big(\frac{1}{2} - \frac{1}{3}\Big) \\
+        &= \frac{1}{3}
+    \end{align}
+    By symmetry, $\E{V} = \frac{1}{3}$. Hence,
+    \begin{align}
+        \cov{U,V} &= \E{UV} - \E{U}\E{V} \\
+        &= \frac{1}{12} - \frac{1}{3}\frac{1}{3}\\
+        &= \frac{1}{12} - \frac{1}{9} \\
+        &= -\frac{1}{36}.
+    \end{align}
+\end{enumerate}
+\end{solution}
+\end{exercise}
+
+
+\subsection{Coding skills}
+\label{sec:progr-assignm}
+
+
+\paragraph{Verify the answers of BH.5.6.5}
+Read this example of BH first.
+We chop up the exercise in many small exercises..
+
+
+For the python code below, run it for a small number of samples; here I choose \texttt{samples=2}. Read the print statements, and use that to answer the questions below.
+
+\begin{minted}[]{python}
+import numpy as np
+from scipy.stats import expon
+
+np.random.seed(10)
+
+labda = 6
+num = 3
+samples = 2
+
+X = expon(scale=labda).rvs((samples, num))
+print(X)
+T = np.sort(X, axis=1)
+print(T)
+print(T.mean(axis=0))
+
+expected = np.array([labda / (num - j) for j in range(num)])
+print(expected)
+print(expected.cumsum())
+\end{minted}
+
+
+\begin{minted}[]{R}
+set.seed(10)
+
+labda = 6
+num = 3
+samples = 2
+
+X = matrix(rexp(samples * num, rate = 1 / labda), nrow = samples, ncol = num)
+print(X)
+bigT = X
+for (i in 1:samples) {
+  bigT[i,] = sort(bigT[i,])
+}
+print(bigT)
+print(colMeans(bigT))
+
+expected = rep(0, num)
+for (j in 1:num) {
+  expected[j] = labda / (num - (j - 1))
+}
+print(expected)
+print(cumsum(expected))
+\end{minted}
+
+
+
+\begin{exercise}
+In line P.11\footnote{Line P.x refers to line x of the Python code.
+  Line R.x refers to line x of the R code.}
+we print the value of \texttt{X} in line P.10, R.7 and R.8, respectively.
+What is the meaning of \texttt{X}?
+\begin{solution}
+$X$ is a matrix of i.i.d. draws from an exponential distribution with parameter $\lambda$.
+\end{solution}
+\end{exercise}
+
+\begin{exercise}
+What is the meaning of \texttt{T} in line P.12 (R.11)?
+\begin{solution}
+$T$ is a sorted version of $X$, where we sort each row increasingly.
+\end{solution}
+\end{exercise}
+
+
+\begin{exercise}
+What do we print in line P.14, R.14?
+\begin{solution}
+We print the mean value of each column of $T$.
+\end{solution}
+\end{exercise}
+
+\begin{exercise}
+What is meaning of the variable \texttt{expected}?
+\begin{solution}
+This is an array with expected values of the $i$th order statistic $X_{(i)}$ (see B.H.5.6.5 afor a proof of this result).
+\end{solution}
+\end{exercise}
+
+\begin{exercise}
+ What is the \texttt{cumsum} of \texttt{expected}?
+\begin{solution}
+The cumsum is the cumulative sum up to and including the current index. So the final entry indicates the expected value of the sum of all three entries of \verb|expected|.
+\end{solution}
+\end{exercise}
+
+\begin{exercise}
+ Now that you understand what is going on, rerun the simulation for a larger number of samples, e.g., 1000, and discuss the results briefly.
+\begin{solution}
+The result of \verb|print(T.mean(axis=0))| should be close to that of \verb|print(expected.cumsum())|.
+\end{solution}
+\end{exercise}
+
+\paragraph{On   BH.7.48} Read this exercise first and solve it. Then consider the code below.
+
+\begin{minted}[]{python}
+import numpy as np
+
+np.random.seed(3)
+
+
+def find_number_of_maxima(X):
+    num_max = 0
+    M = -np.infty
+    for x in X:
+        if x > M:
+            num_max += 1
+            M = x
+    return num_max
+
+
+num = 10
+X = np.random.uniform(size=num)
+print(X)
+
+print(find_number_of_maxima(X))
+
+samples = 100
+Y = np.zeros(samples)
+for i in range(samples):
+    X = np.random.uniform(size=num)
+    Y[i] = find_number_of_maxima(X)
+
+print(Y.mean(), Y.var(), Y.std())
+\end{minted}
+
+
+\begin{minted}[]{R}
+set.seed(3)
+
+find_number_of_maxima = function(X) {
+  num_max = 0
+  M = -Inf
+  for (x in X) {
+    if(x > M) {
+      num_max = num_max + 1
+      M = x
+    }
+  }
+  return(num_max)
+}
+
+
+num = 10
+X = runif(num, min = 0, max = 1)
+print(X)
+
+print(find_number_of_maxima(X))
+
+samples = 100
+Y = rep(0, samples)
+for (i in 1:samples) {
+  X = runif(num, min = 0, max = 1)
+  Y[i] = find_number_of_maxima(X)
+}
+
+print(mean(Y))
+print(var(Y))
+print(sd(Y))
+\end{minted}
+
+\begin{exercise}
+Explain how the small function in lines P.6 to P.13 (R.4-R.12) works.
+(You should know that \texttt{x += 1} is an extremely useful abbreviation of the code \texttt{x = x + 1}).
+\begin{solution}
+It iterates through the elements of $X$ and checks how often the current value is larger than any of the previous values.
+\end{solution}
+\end{exercise}
+
+\begin{exercise}
+Explain the code in lines P.25 and P.26 (R.25, R.26).
+\begin{solution}
+We draw a sample of a $U[0,1]$ distribution of size \verb|num| and compute the corresponding number of maxima (or ``records'').
+\end{solution}
+\end{exercise}
+
+\paragraph{Why is the Exponential Distribution so important?}
+
+At the Paris metro, a train arrives every 3 minutes on a platform.
+Suppose that 50 people arrive between the departure of a train and an arrival.
+It seems entirely reasonable to me to model the arrival times of the individual people as distributed on the interval \([0,3]\).
+What is the distribution of the inter-arrival times of these people?
+It turns out to be exponential!
+
+You might want to compare your final result to Figure BH.13.1 (It is not forbidden to read the book beyond what you have to do for this course!).
+In this exercise we use simulation to see that clustering of arrival times.
+
+
+\begin{minted}[]{python}
+import numpy as np
+
+np.random.seed(3)
+
+
+num = 5 # small sample at first, for checking.
+start, end = 0, 3
+labda = num / (end - start)  # per minute
+print(1 / labda)
+
+A = np.sort(np.random.uniform(start, end, size=num))
+print(A)
+print(A[1:])
+print(A[:-1])
+X = A[1:] - A[:-1]
+print(X)
+
+print(X.mean(), X.std())
+\end{minted}
+
+
+\begin{minted}[]{R}
+set.seed(3)
+
+
+num = 5
+start = 0
+end = 3
+labda = num / (end - start)
+print(1 / labda)
+
+A = sort(runif(num, min = start, max = end))
+print(A)
+print(A[-1])
+print(A[-length(A)])
+X = A[-1] - A[-length(A)]
+print(X)
+
+print(mean(X))
+print(sd(X))
+\end{minted}
+
+\begin{exercise}
+Explain the result of line P.12 (R.13)
+\begin{solution}
+This are the arrival times of 5 passengers within the time interval of 3 minutes (sorted increasingly).
+\end{solution}
+\end{exercise}
+
+\begin{exercise}
+Compare the result of  line P.13 and P.14 (R.12, R.13);  explain what is \texttt{A[1:]} (\texttt{A[-1]})
+\begin{solution}
+\verb|A[1:]| is an array of all elements of \verb|A| except the first one.
+\end{solution}
+\end{exercise}
+
+\begin{exercise}
+Compare the result of  line P.12 and P.14 (R.11 and R.13);  explain what is \texttt{A[:-1]} (\texttt{A[-length(A)]}).
+\begin{solution}
+\verb|A[:-1]| is an array of all elements of \verb|A| except the last one.
+\end{solution}
+\end{exercise}
+
+\begin{exercise}
+ Explain what is \texttt{X} in P.15 (R.14)
+\begin{solution}
+\verb|X| consists of the interarrival times.
+\end{solution}
+\end{exercise}
+
+\begin{exercise}
+Why do we compare $1/\lambda$ and \texttt{X.mean()}?
+\begin{solution}
+$1/\lambda$ is the expected interarrival time. $\verb|X.mean()|$ is the sample average of the interarrival times.
+\end{solution}
+\end{exercise}
+
+\begin{exercise}
+Recall that $\E X = \sigma (X)$ when $X\sim \Exp{\lambda}$.
+Hence, what do you expect to see for \texttt{X.std()}?
+\begin{solution}
+For \verb|X.std()| we expect to see $1/\lambda = 0.6$ too (if $X$ is indeed exponentially distributed with parameter $\lambda$).
+\end{solution}
+\end{exercise}
+
+\begin{exercise}
+ Run the code for a larger sample, e.g. 50, and discuss (very briefly) your results.
+\begin{solution}
+For a sample of size 50, we expect an average interarrival time of $0.06$ and an equal standard deviation if the distribution of the interarrival times is indeed exponential. We indeed observe a sample mean and sample average that are very close to this value.
+\end{solution}
+\end{exercise}
+
+
+
+
+\subsection{Challenges}
+\label{sec:challenges}
+
+This exercise will given an example of how probability theory can pop up in OR problems, in particular in linear programs. It introduces you to the concept of \textit{recourse models}, which you will learn about in the master course Optimization Under Uncertainty. Disclaimer: the story is quite lengthy, but the concepts introduced and questions asked are in fact not very hard. We just added the story to make things more intuitive.
+
+\textsc{We consider a} pastry shop that only sells one product: chocolate muffins. Every morning at 5:00 a.m., the shop owner bakes a stock of fresh muffins, which he sells during the rest of the day. Making one muffin comes at a cost of $c = \$ 1$ per unit. Any leftover muffins must be discarded at the end of the day, so every morning he starts with an empty stock of muffins.
+
+The owner has one question for you: determine the amount $x$ of muffins that he should make in the morning to minimize his production cost. Note that the owner never wants to disappoint any customer, i.e., he requires that $x \geq d$, where $d$ is the daily demand for muffins.
+
+The problem can be formulated as a linear program (LP):
+\begin{align}
+    \min_{x \geq 0} \{ cx \ : \ x \geq d \}.
+\end{align}
+For simplicity, we ignore the fact that $x$ should be integer-valued.
+
+\begin{exercise}
+Determine the optimal value $x^*$ for $x$ and the corresponding objective value in case $d$ is deterministic.
+\begin{solution}
+If $d$ is deterministic and known then $x^* = d$, since cost in increasing in $x$.
+\end{solution}
+\end{exercise}
+
+Of course, in practice $d$ is not deterministic. Instead, $d$ is a random variable with some distribution. However, note that the LP above is ill-defined if $d$ is a random variable. We cannot guarantee that $x \geq d$ if we do not know the value of $d$.
+
+You explained the issue to the shop owner and he replies: ``Of course, you're right! You know, whenever I've run out of muffins and a customer asks for one, I make one on the spot. I never disappoint a customer, you know! It does cost me $50 \%$ more money to produce them on the spot, though, you know.''
+
+Mathematically speaking, the shop owner just gave you all the (mathematical) ingredients to build a so-called \textit{recourse model}. We introduce a \textit{recourse variable} $y$ in our model, representing the amount of muffins produced on the spot. Production comes at a unit cost of $q = 1.5 c = \$ 1.5$. Assuming that we know the distribution of $d$, we can then minimize the \textit{expected total cost}:
+
+\begin{align}
+    \min_{x \geq 0} \big\{ cx + \E{v(d,x)} \big\},
+\end{align}
+where $v(d,x)$ is the optimal value of another LP, namely the \textit{recourse problem}:
+\begin{align}
+    v(d,x) := \min_{y \geq 0} \{ qy \ : \ x + y \geq d \},
+\end{align}
+for given values of $d$ and $x$. The recourse problem can easily be solved explicitly: we get $y=d-x$ if $d \geq x$ and $y=0$ if $d < x$. So we obtain
+\begin{align}
+    v(d,x) = q (d - x)^+,
+\end{align}
+where the operator $(\cdot)^+$ represents the \textit{positive value} operator, defined as
+\begin{equation}
+    (s)^+ = \begin{cases}
+    s &\text{if } s \geq 0,\\
+    0 &\text{if } s < 0.
+    \end{cases}
+\end{equation}
+
+\begin{exercise}
+To get some more insight into the model, suppose (for now) that $d \sim U\{10, 20\}$.
+Solve the model, i.e., find the optimal amount $x^*$.
+\textit{Hint: First, compute the value of $\E{v(d,x)}$ as a function of $x$. Then find the optimal value of $x$.}
+\begin{solution}
+We know that at least 10 muffins will be needed so we stock at least 10 muffins. If we stock less, then we know for sure that we need to bake an additional muffin on the spot which increases cost. Also, we never need more than 20 muffins. So $10 \leq x^* \leq 20$. Note that
+ \begin{align*} E\left[v(d,x)\right] &= E\left[q(d-x)^+\right] = q \int_{10}^{20} (d-x)^+ \tfrac{1}{10} \mathrm{d}d  = q \int_{x}^{20} (d-x) \tfrac{1}{10} \mathrm{d}d \\ &= \tfrac{q}{10}\left[\tfrac12(d-x) ^2 \right]_{x}^{20} = \tfrac{q}{20}(20-x)^2. \end{align*}
+ Hence, $cx + E\left[v(d,x)\right] = cx + \tfrac{q}{20}(20-x)^2 = x + 0.075(20-x)^2 = 30 - 2x + 0.075x^2$. \\
+ Setting the derivative $-2 + 0.15x$ to 0 yields $x^* = \frac{2}{0.15} = \frac{40}{3}$.
+\end{solution}
+\end{exercise}
+
+\begin{exercise}
+ What is the expected recourse cost (expected cost of on-the-spot production) at the optimal solution $x^*$, i.e., compute $\E{v(d,x^*)}$?
+ \begin{solution}
+ $E\left[v(d,x^*)\right] = \tfrac{q}{20}(20-x^*)^2 = \frac{\$1.5}{20}\left(\frac{20}{3}\right)^2 = \$\frac{10}3$.
+ \end{solution}
+\end{exercise}
+
+To solve the model correctly, we need the true distribution of $d$. We learn the following from the shop owner: ``My granddaughter, who's always running around in my shop, is a bit data-crazy, you know, so she's been collecting some data. I remember her saying that `the demand from male and female customers are both approximately normally distributed, with mean values both equal to $10$ and standard deviations of $5$'. She also mentioned something about correlation, but I don't remember exactly, you know. It was either almost $1$ or almost $-1$. I hope this helps!''
+
+Mathematically, we've learned that $d = d_m + d_f$, with $(d_m, d_f) \sim \mathcal{N}(\mu, \Sigma)$, where $\mu = (\mu_m, \mu_f) = (10,10)$ and $\Sigma_{11} = \sigma_m^2 = \Sigma_{22}  = \sigma_f^2 = 5^2 = 25$. Finally, $\Sigma_{12} = \Sigma_{21} = \cov{d_m, d_f} = \rho \sigma_m \sigma_f = 25 \rho$. Also, we know that either $\rho \approx 1$ or $\rho \approx -1$.
+
+\begin{exercise}
+ Calculate $x^*$ and the corresponding objective value for the case $\rho = -1$. (Do not read  $\rho=1$, this case is not simple.)
+ \begin{solution}
+The sum  $d_m+d_f$ is again normally distributed with mean $\E{d_m + d_f} = \E{d_m} + \E{d_f} = 20$ and variance $\V{d_m + d_f} = \V{d_m} + 2\cov{d_m, d_f} + \V{d_f} = 25(2+2\rho) = 0$.  \\ \medskip
+So actually, demand is deterministic; so $x^* = 20$, with cost $cx^*+0 = \$20$.
+\end{solution}
+\end{exercise}
+
+\begin{exercise}
+Consider the two extreme cases $\rho = 1$ and $\rho = -1$.
+In which case will the shop owner have lower expected total costs?
+Provide a short, intuitive explanation.
+\textit{Hint: you don't have to compute $x^*$ for the case where $\rho = 1$ (this is not easy!)}.
+\begin{solution}
+For $\rho = -1$, the expected total cost will be lower, since in this case $d$ is actually deterministic and hence in the optimal policy, all muffins will be produced at cost \$1. \\ For $\rho = 1$, the expected number of muffins is still the same but either some muffins will be wasted or some muffins will be produced at cost \$1.5 instead.
+\end{solution}
+\end{exercise}
+
+\end{document}
+
+
+%BELOW IS FOR NEXT YEAR
+
+\subsection{Measuring inter arrival-times}
+\label{sec:orgf820334}
+
+We have a device to measure the time between two arrivals, of jobs for instance, or customers in a shop, or particles in radio-active decay.
+After a measurement, the device has to recharge so it cannot measure arrivals that occur within 10 seconds from each other.
+Also, if there is no arrival within 50, it resets itself.
+Hence, the device cannot easily measure inter-arrival times longer than 1 minute. Assume that the inter-arrival times are exponentially distributed with some unknown \(\lambda\). Let \(\bar x = \sum_{n=1}^N x_{n} /N\) be the sample mean of \(N\) measured inter-arrival times.
+
+\begin{enumerate}
+\item Explain that, if \(\lambda \ll 1\) minute,  \(\hat \lambda = \bar x - 10\) is a reasonable estimator for \(\lambda\).
+\item How would you obtain a reasonable estimate of \(\lambda\) when \(\lambda\) \(\gg\) 1 minute?
+\end{enumerate}
+
+
+
+\begin{todo}
+Let $X\sim\Exp{\lambda}$ and $Y \sim N(\mu, \sigma)$, independent of $X$.
+So, draw $X$ first and let the outcome be $x$; then draw $Y\sim N(x, \sigma)$.
+Take $\lambda=4$, $\mu = 5$, $\sigma=3$.
+\begin{enumerate}
+\item Make a 3D plot of $F_{X,Y}$.
+\item Make a 3D plot of $f_{X,Y}$.
+\item Plot $f_{X}$, i.e., plot $\mu e^{-\mu t}$.
+  Then use simulation to marginalize out $Y$ from $f_{X,Y}$ to obtain $\hat f_X$; we write $\hat f_X$ because it has been obtained from simulation.
+  Plot $\hat f_X$ in the same figure as $f_X$, and compare the result.
+\item Use simulation to estimate $f_{X|Y}$. Plot this in the same graph for various values of $X=x$.
+\item Make a 3D plot of $f$
+\end{enumerate}
+\end{todo}
+
+\begin{todo}
+Let $X\sim\Exp{\lambda}$ and $Y| X \sim N(X, \sigma)$. So,  draw $X$ first and let the outcome be $x$;  then draw $Y\sim N(x, \sigma)$. Take $\lambda = 5$, $\sigma=3$.
+\begin{enumerate}
+\item Use simulation to estimate $\E Y$.
+\item Make a 3D plot of $F_{X,Y}$.
+\item Make a 3D plot of $f_{X,Y}$.
+\item Plot $f_{X}$, i.e., plot $\lambda e^{-\lambda t}$.
+  Then use simulation to marginalize out $Y$ from $f_{X,Y}$ to obtain $\hat f_X$.
+  Plot $\hat f_X$ in the same figure as $f_X$, and compare the result.
+\item Use simulation to estimate $f_{X|Y}$. Plot this in the same graph for various values of $X=x$.
+\item Make a 3D plot of $f$
+\end{enumerate}
+\end{todo}

@@ -1,0 +1,674 @@
+\documentclass[assignments]{subfiles}
+\externaldocument{assignments}
+
+
+\opt{check}{
+\Opensolutionfile{hint}
+\Opensolutionfile{ans}
+}
+
+
+\begin{document}
+
+\section{Assignment 5}
+
+\subsection{Have you read well?}
+
+\begin{exercise}
+Compute the expected outcome of a die throw (with a 6-sided die), given that the outcome is even. Introduce proper notation for random variables and events.
+\begin{solution}
+Let $X$ be the outcome of the die throw (note that $X$ is a random variable) and let $A$ be the event that the outcome is even. Then
+\begin{equation*}
+\E{X\given A} = 2 \P{X=2|A} + 4 \P{X=4|A} + 6 \P{X=6|A} = \tfrac13 \cdot (2+4+6)  = 4.
+\end{equation*}
+We conclude that $\E{X\given A} = 4$.
+\end{solution}
+\end{exercise}
+
+
+\begin{exercise}
+Consider a casino where, for any $a>0$, it is possible to pay $a$ euro and get a chance of $\tfrac15$ on receiving $4a$ euro and a chance of $\tfrac45$ of receiving nothing.
+Adam enters the casino with $b$ euros, and bets half of his money on this gamble.
+Let $X$ be the amount of money he has after the gamble.
+After that, he again bets half of the money he then has (i.e.
+half of $X$) on this gamble.
+Let $Y$ be the amount of money he has after the second gamble.
+\begin{enumerate}
+\item Compute $\E{X}$.
+\item Compute $\E{Y|X}$.
+\item Compute $\E{Y}$.
+\end{enumerate}
+Explicitly mention the laws/rules you use.
+\begin{solution}
+
+1. Since Adam keeps $b/2$ and does the gamble with $a = b/2$, we have
+\begin{equation*}
+\E{X} = b/2 + \tfrac15 \cdot 4(b/2) + \tfrac45 \cdot 0 = 0.9 b.
+\end{equation*}
+2. The computation is the same as in part 1., but with $X$ instead of $b$:
+\begin{equation*}
+\E{Y|X} = X/2 + \tfrac15 \cdot 4(X/2) + \tfrac45 \cdot 0 = 0.9 X.
+\end{equation*}
+Note that the result is a random variable. \\
+3. Using Adam's law (and linearity of expectation), we conclude that:
+\begin{equation*}
+\E{Y} = \E{\E{Y|X}} = \E{0.9X} = 0.9\E{X} = 0.81b.
+\end{equation*}
+In general, if Adam would do this $n$ times, the expected amount of money he has after $n$ such gambles would be $0.9^n b$. This would be very difficult to show without Adam's law!
+\end{solution}
+\end{exercise}
+
+
+\begin{exercise}
+Let $N \sim \Pois{\lambda}$, and let $X|N \sim \Bin{N, p}$, where $p \in (0,1)$ and $\lambda > 0$ are known constants.
+Compute $\E{X}$ using Adam's law.
+Check your answer using the chicken-egg story; with this story you can also obtain the distribution of $X$.
+\begin{solution}
+We have $\E{X|N} = Np$, so using Adam's law (and linearity of expectation), we conclude that $\E{X} = \E{\E{X|N}} = \E{Np} = \E{N}p = \lambda p$.
+
+This is in accordance with $X \sim \Pois{\lambda p}$, which was shown in the chicken-egg story.
+
+Some students reported answers like $\lambda^{2}p$. This is wrong, and can be immediately seen by checking units: the unit of $\lambda$ being 1 per time.
+
+Others wrote $\E{X\given N= n} n p$, hence $\E X = \E{\E{X\given N}}= \E{np} = np$.
+
+Apparently, such students are not aware of the idea that $\E{X\given N}$ is a random variable.
+When this happens during the exam, you will score 0 points for that particular part of a question.
+
+\end{solution}
+\end{exercise}
+
+
+\begin{exercise}
+Correct? If $A$ is an event and $\1{A}$ is its indicator, then for all random variables $X$ we have $\E{X \given A} = \E{X \given \1{A}}$.
+\begin{solution}
+Incorrect:  $\E{X \given A}$ is a number since $A$ is an event, whereas $\E{X \given \1{A}}$ is a random variable since $\1{A}$ is a random variable. A correct statement is $\E{X \given A} = \E{X \given \1{A} = 1}$.
+\end{solution}
+\end{exercise}
+
+\begin{exercise}
+Correct? If $X$ and $Y$ are independent, then $\V{\E{Y \given X}} = 0$.
+\begin{solution}
+Correct, if  $X$ and $Y$ are independent, then $\E{Y \given X} = \E{Y}$ which is constant (formally, a degenerate random variable).
+
+Since the variance of a constant is 0, we conclude that $\V{\E{Y \given X}} = 0$.
+\end{solution}
+\end{exercise}
+
+\begin{exercise}
+Let $X \sim \Exp{\lambda}$, and let $a$ be a constant.
+\begin{enumerate}
+\item Compute $\E{X \given X \geq a}$ using an integral and an indicator.
+\item Explain the answer using a property of the exponential distribution.
+\end{enumerate}
+\begin{solution}
+1. We compute $\E{X \given X \geq a}$ as follows:
+\begin{align*} \E{X \given X \geq a} &= \int_0^\infty y f(y|A) \d y
+\\ &= \int_0^\infty y \frac{\lambda e^{-\lambda y} \1{y \geq a}}{e^{-\lambda a}} \d y
+\\ &= \lambda \int_a^\infty y e^{-\lambda (y-a)} \d y
+\\ &= -y e^{-\lambda (y-a)}\biggr|_a^\infty +  \int_a^\infty e^{-\lambda (y-a)} \d y
+\\ &= a   - \frac1{\lambda} e^{-\lambda (y-a)}\biggr|_a^\infty   = a+\frac1\lambda.    \end{align*}
+
+2.
+The result also follows from the memoryless property, which states that conditional on the event that $X \geq a$, we have that $X-a | X \geq a \sim\Exp{\lambda}$.
+\end{solution}
+\end{exercise}
+
+\begin{exercise}
+A hat contains 9 fair coins and one coin that lands heads with probability 0.8. You pick a coin from the hat uniformly at random and toss it 10 times. Let $A$ be the event that you pick a fair coin, and let $X$ be the number of heads. Let $B$ be the event that the first four tosses all show heads.
+
+\begin{enumerate}
+\item Compute $\E{X \given A}$.
+\item Compute $\E{X \given A^c}$.
+\item Compute $\E{X}$.
+\item Compute $\P{B}$.
+\item Compute $\P{A \given B}$.
+\item Compute $\E{X \given B}$.
+\item Compute $\E{X \given B^c}$. \textit{Hint}: it is not necessary to compute $\P{A \given B^c}$.
+\end{enumerate}
+
+\begin{solution}
+1. Note that $X \, |\, A \sim \Bin{10, 0.5}$, so $\E{X \given A} = 10 \cdot 0.5 = 5$. \\
+2. Note that $X \, |\,  A^c \sim \Bin{10, 0.8}$, so $\E{X \given A^c} = 10 \cdot 0.8 = 8$. \\
+3. By LOTE we have $\E{X} = \P{A}\E{X \given A} +\P{A^c} \E{X \given A^c}  = 0.9 \cdot 5 + 0.1\cdot 8 = 5.3$. \\
+4. Note that  $\P{B \given A}  = 0.5^4$ and $\P{B \given A^c}  = 0.8^4$.
+By LOTP we have
+\begin{equation*}
+\P{B} = \P{A}\P{B \given A} +\P{A^c} \P{B \given A^c}  = 0.9 \cdot 5 + 0.1\cdot 8 = 0.09721.
+\end{equation*}
+5. By Bayes' rule $\P{A \given B} = \frac{\P{B \given A}\P{A}}{\P{B}} \approx 0.57864$. \\
+6. Note that $\E{X \given A, B} = 4 + 6 \cdot 0.5 = 7$ and $\E{X \given A^c, B} = 4 + 6 \cdot 0.8 = 8.8$. By LOTP with extra conditioning we have
+\begin{equation*}
+\P{X \given B} = \P{A \given B}\E{X \given A, B} + \P{A^c \given B}\E{X \given A^c, B} \approx 7.75844.
+\end{equation*}
+7. By LOTE we have $\P{B}\E{X \given B} +\P{B^c} \E{X \given B^c}  = \E{X} = 5.3$. We know $\P{B}$ and $\E{X \given B}$, so solving this for $\E{X \given B^c}$ yields $\E{X \given B^c} \approx 5.035$.
+
+One or more students wrote the LOTE as $\E X = \sum_{Y} \E{X\given Y} \P{Y}$. This is wrong, as you cannot sum over a rv. This is correct: $\E{X} = \sum_{y} \E{X\given Y=y} \P{Y=y}$, so sum over the \emph{outcomes} of a rv.
+
+\end{solution}
+\end{exercise}
+
+
+\begin{exercise}
+Consider random variables $X, Y \in [0,1]^2$ with joint PDF $f_{X,Y}(x,y) = 2 \1{x \leq y}$.
+
+Determine $\E{Y \given X}$ and $\E{X \given Y}$.
+\begin{solution}
+The marginal density of $X$ is given by $f_X(x) = 2(1-x)$.
+
+So the conditional density is given by $f_{Y|X}(y|x) = \frac{f_{X,Y}(x,y)}{f_X(x)} = \frac{\1{x \leq y}}{1-x}$. Hence,
+\begin{equation*}
+\E{Y \given X = x} = \int_0^1 y \frac{\1{x \leq y}}{1-x} \d y  = \frac1{1-x}  \int_x^1 y \d y = \frac1{1-x} \left[\tfrac12y^2\right]_x^1 = \frac{\tfrac12\left(1-x^2\right)}{1-x} =  \tfrac12 \left(1+x\right) .
+\end{equation*}
+We conclude that $\E{Y \given X} = \tfrac12(1+X)$.
+
+
+The marginal density of $Y$ is given by $f_Y(y) = 2y$.
+
+So the conditional density is given by $f_{X|Y}(x|y) = \frac{f_{X,Y}(x,y)}{f_Y(y)} = \frac{\1{x \leq y}}{y}$. So
+\begin{equation*}
+\E{X \given Y = y} = \int_0^1 x \frac{\1{x \leq y}}{y} \d x  = \frac1{y}   \int_0^y x \d x = \tfrac12 y.
+\end{equation*}
+We conclude that $\E{X \given Y} = \tfrac12Y$.
+
+Some students wrote for instance $\E{X\given Y} = y/2$.
+Apparently, such students are not aware of the idea that $\E{X\given N}$ is a random variable.
+When this happens during the exam, you will score 0 points for that particular part of a question.
+
+\end{solution}
+\end{exercise}
+
+
+
+
+
+\begin{exercise}
+Prove that $\E{X \given X \geq a} > \E{X}$ for any $a$ with $0 < \P{X \geq a} < 1$.
+\begin{solution}
+Note that $\E{X \given X \geq a} \geq a > \E{X \given X < a}$. By LOTE:
+\begin{align*}
+\E{X} &= \P{X \geq a}  \E{X \given X \geq a} + \P{X <a}  \E{X \given X < a}
+\\  &< \P{X \geq a}  \E{X \given X \geq a} + \P{X <a}  \E{X \given X \geq a}
+\\  &= \E{X \given X \geq a},
+\end{align*}
+where the inequality is strict since $ \P{X <a} > 0$.
+\end{solution}
+\end{exercise}
+
+
+
+
+\begin{exercise}
+Let $N \sim \Pois{\lambda}$ and let  $X|N \sim \Bin{N, p}$, where $p \in (0,1)$ and $\lambda > 0$ are known constants. Find $\E{N \given X}$.
+\begin{hint}
+  For a smart argument, use the chicken-egg story.
+  Recall that the number of hatched eggs and the number of unhatched eggs are independent (since $N \sim \Pois{\lambda}$); i.e.
+  $N-X$ and $X$ are independent.
+\end{hint}
+\begin{solution}
+With the hint,
+\begin{equation*} \E{N \given X} = \E{N-X \given X} + \E{X \given X} = \E{N-X} + X = \lambda(1-p) + X. \end{equation*}
+As a check, $\E{ \E{N \given X}} = \E{\lambda(1-p) + X} = \lambda(1-p)  + \lambda p = \lambda  = \E{N}$.
+
+Here is straightforward computation.
+You should check each and every step as they are based on pattern recognition.
+\begin{align}
+  \label{eq:22}
+\E{N \given X=k}
+&= \sum_{n=k}^{\infty} n \P{N=n \given X=k } \\
+&= \frac{1}{\P{X=k}} \sum_{n=k}^{\infty} n e^{-\lambda}\frac{\lambda^{n}}{n!} {n \choose k} p^{k}(1-p)^{n-k} \\
+&= \frac{1}{\P{X=k}}\sum_{n=k}^{\infty} n e^{-\lambda}\frac{1}{n!} \frac{n!}{k!(n-k)!}(\lambda p)^{k}(\lambda(1-p))^{n-k} \\
+&= \frac{e^{-\lambda p} (\lambda p)^{k}/k!}{\P{X=k}}\sum_{n=k}^{\infty} n e^{-\lambda(1-p)}\frac{1}{(n-k)!}(\lambda(1-p))^{n-k} \\
+&= \sum_{n=k}^{\infty} n e^{-\lambda(1-p)}\frac{1}{(n-k)!}(\lambda(1-p))^{n-k} \\
+&= \sum_{n=0}^{\infty} (n+k) e^{-\lambda(1-p)}\frac{1}{n!}(\lambda(1-p))^{n} \\
+&= k  + \sum_{n=0}^{\infty} n e^{-\lambda(1-p)}\frac{1}{n!}(\lambda(1-p))^{n} \\
+&= k  + \lambda (1-p).
+\end{align}
+Hence, $\E{N\given X}= \lambda(1-p) + X$. Since $\E X = \lambda p$, we get $\E N = \lambda$ with Adam's law, as above.
+\end{solution}
+\end{exercise}
+
+
+
+\subsection{Exercises at about exam level}
+\label{sec:exercises-at-about-1}
+
+We derive Eve's law in a slightly different way then in BH.
+
+Define $\hat X = \E{X\given Y}$ as an \emph{estimator} of $X$ and $\tilde X = X - \hat X$ as the estimation error.
+
+\begin{exercise}\label{ex:5}
+Show that $\E{\tilde X\given Y} = 0$.
+\begin{solution}
+\begin{align}
+\label{eq:4}
+\E{\tilde X \given Y} = \E{X - \hat X \given Y} &=
+\E{X\given Y}  - \E{ \E{X\given Y}\given Y}  \\
+&=\E{X\given Y}  -  \E{X\given Y}\E{1\given Y}  \\
+&=\E{X\given Y}  -  \E{X\given Y}1 = 0
+\end{align}
+\end{solution}
+\end{exercise}
+
+\begin{exercise}\label{ex:4}
+Prove that $\E{\tilde X} = 0$. What does it mean that $\E{\tilde X} =0$?
+\begin{hint}
+  Use~\cref{ex:5}
+\end{hint}
+\begin{solution}
+\begin{equation}
+\label{eq:5}
+\E{\tilde X} = \E{\E{\tilde X\given Y}} = \E{ 0 \given Y} =0.
+\end{equation}
+This means that the estimation error $\tilde X$ does not have bias.
+\end{solution}
+\end{exercise}
+
+\begin{exercise}
+Prove that $\E{\tilde X\hat X} = 0$.
+\begin{hint}
+  Use~\cref{ex:4} and the definitions.
+\end{hint}
+\begin{solution}
+\begin{align}
+\label{eq:6}
+\E{\tilde X\hat X} &= \E{\E{\tilde X \hat X \given Y}}  \\
+&= \E{\E{\tilde X \E{X\given Y} \given Y}}  \\
+&= \E{\E{X\given Y}\E{\tilde X \given Y}}  \\
+&= \E{\E{X\given Y} 0  \given Y}  = 0
+\end{align}
+
+Here, in the rest of the exercises about this topic, we have seen the most terrible mistakes during grading.
+Hence, study the reasonging applied very carefully, and ensure you know the motivation behind each and every step.
+There will be questions in the exam about this, and you have to be able to use the arguments. If not, you fail the exam; simple as that. So, you are warned!
+\end{solution}
+\end{exercise}
+
+\begin{exercise}
+Show that $\cov{\hat X, \tilde X} = 0$. Conclude that
+\begin{equation}
+\label{eq:8}
+\V{X} = \V{\hat X + \tilde X} = \V{\hat X} + \V{\tilde X}.
+\end{equation}
+\begin{solution}
+Using the previous exercises,
+\begin{equation}
+\label{eq:7}
+\cov{\hat X, \tilde X} = \E{\hat X \tilde X} - \E{\hat X} \E{\tilde X} = 0 - \E{\hat X} 0 = 0.
+\end{equation}
+Next, from the definition of $\tilde X = X - \hat X \implies X = \tilde X + \hat X$.
+The variance of the sum is the sum of the variances since $\hat X$ and $\tilde X$ are uncorrelated.
+\end{solution}
+\end{exercise}
+
+\begin{exercise}
+Prove that $\V{\tilde X} = \E{\V{X\given Y}}$. Conclude Eve's law.
+\begin{solution}
+Since $\E{\tilde X} = 0$,
+\begin{align}
+\label{eq:9}
+\V{\tilde X} &= \E{\tilde X^{2}}  \\
+&= \E{\E{\tilde X^{2}\given Y}} \\
+&= \E{\E{(X - \hat X)^{2}\given Y}} \\
+&= \E{\E{(X - \E{X\given Y})^{2}\given Y}} \\
+&= \E{\V{X\given Y}},
+\end{align}
+where the last equation follow from the definition of $\V{X\given Y}$.
+
+For Eve's law, use the above and the previous exercise to see that
+\begin{equation}
+\label{eq:10}
+\V{X} = \V{\hat X} + \V{\tilde X} = \V{\E{X\given Y}} + \E{\V{X\given Y}}.
+\end{equation}
+\end{solution}
+\end{exercise}
+
+\begin{exercise}
+Prove that
+\begin{equation}
+  \label{eq:21}
+\E{(Y - \E{Y|X} - h(X))^2} = \E{(Y - \E{Y|X})^2} + \E{(h(X))^2}
+\end{equation}
+for all random variables $X, Y$ and all functions $h$.
+
+Explain why this result implies that  $\E{Y|X}$ is the best predictor of $Y$ based on $X$.
+\begin{solution}
+By the linearity of expectation and BH Theorem 9.3.9:
+\begin{align*}
+\E{(Y - \E{Y|X} - h(X))^2} &= \E{(Y - \E{Y|X})^2 - 2(Y - \E{Y|X})h(X) + (h(X))^2}
+\\ &= \E{(Y - \E{Y|X})^2} - \E{2(Y - \E{Y|X})h(X)} + \E{(h(X))^2}
+\\ &= \E{(Y - \E{Y|X})^2} + \E{(h(X))^2}.
+\end{align*}
+Since $\E{(h(X))^2} \geq 0$, we conclude that $\E{(Y - \E{Y|X} - h(X))^2} \geq \E{(Y - \E{Y|X})^2}$ for any function $h$, so $\E{Y|X}$ is the predictor of $Y$ based on $X$ with the lowest mean squared error, i.e. the best predictor of $Y$ based on $X$.
+\end{solution}
+\end{exercise}
+
+
+\subsection{Coding skills}
+\label{sec:coding-skills-1}
+
+\paragraph{The mystery box}
+
+We use  simulation to solve  BH.9.7.
+Read it now, i.e., before reading the text below, then read the code below.
+Note how short  this code is;  amazing, isn't it?
+
+
+
+\begin{minted}[]{python}
+import numpy as np
+from scipy.stats import uniform
+import matplotlib.pyplot as plt
+
+np.random.seed(3)
+
+
+N = 1000
+a, b = 0, 1000_000
+V = uniform(a, b).rvs(N)
+
+x_range = np.linspace(b / 5, b / 2, num=50)
+y = np.zeros_like(x_range)
+
+for i, b in enumerate(x_range):
+    payoff = (V - b) * (b >= V / 4)
+    y[i] = payoff.mean()
+
+
+plt.plot(x_range, y)
+plt.show()
+\end{minted}
+
+\begin{minted}[]{R}
+set.seed(3)
+
+N = 1000
+a = 0
+b = 1000000
+V = runif(N, min = a, max = b)
+
+x_range = seq(b / 5, b / 2, length.out = 50)
+y = rep(0, length(x_range))
+
+
+i = 1
+for (b in x_range) {
+  payoff = (V - b) * (b >= V / 4)
+  y[i] = mean(payoff)
+  i = i + 1
+}
+
+plot(x_range, y, type = "l", col = "blue")
+\end{minted}
+
+
+\begin{exercise}
+For the python code use the scipy documentation to explain why $V\sim\Unif{[0,10^{6}]}$. For R, explain the save fo \texttt{runif}.
+\end{exercise}
+
+
+
+\begin{exercise}
+What are the smallest and the largest value of \verb|x_range|?
+\end{exercise}
+
+\begin{exercise}
+Run the code above and make a graph. Include the graph in your report, and explain what you see in the graph. For instance, is there a maximum? If so, can you explain where the maximum occurs? Can you explain how the maximum should be?
+\end{exercise}
+
+
+\begin{exercise}
+Suppose after seeing the graph of the payoffs, and this graph would only increase, or decrease, how would you change \verb|x_range|? Do you expect to see a maximum?
+\end{exercise}
+
+
+
+
+\begin{exercise}
+For N small, e.g. N=10, you can get quite strange values. Why is that?
+\end{exercise}
+
+
+\begin{exercise}
+Change the acceptance threshold from to $V/4$ to $V/5$ (or $V/6$, or some other value you like), and make a graph of the payoffs.
+Include the graph in your report.
+\end{exercise}
+
+\begin{exercise}
+Change the payoff function to e.g $\sqrt{V-b}$, or some weird function that you like particularly such as $\sin |V-b|$ (any non-trivial function goes).
+Make a graph of the  mean and std of the payoff. Can you explain your graph?
+\end{exercise}
+
+\paragraph{Kelly makes bets}
+
+This simulation exercise is based on BH.9.25.  Please read the exercise first, and then the code below.
+
+
+
+\begin{minted}[]{python}
+import numpy as np
+from scipy.stats import bernoulli
+
+np.random.seed(3)
+
+n = 5
+num = 10
+
+p = 0.5
+S = bernoulli(p).rvs([num, n]) * 2 - 1
+# print(S)
+
+x = np.zeros([num, n])
+x[:, 0] = 100
+# print(x)
+f = 0.25
+
+for i in range(1, n):
+    x[:, i] = x[:, i - 1] * (1 + f * S[:, i])
+
+# print(x)
+print(x.mean(axis=0), x.std(axis=0))
+\end{minted}
+
+\begin{minted}[]{R}
+set.seed(3)
+
+n = 5
+num = 10
+
+p = 0.5
+S = matrix(rbinom(n * num, size = 1, prob = p), num, n) * 2 - 1
+
+x = matrix(0, num, n)
+x[, 1] = 100
+f = 0.25
+
+for (i in 2:n) {
+  x[, i] = x[, i - 1] * (1 + f * S[, i])
+}
+
+print(colMeans(x))
+print(apply(x, MARGIN = 2, sd))
+\end{minted}
+
+
+
+\begin{exercise}
+The documentation of \texttt{bernoulli} (\texttt{rbinom}) tells us that we get an array (matrix) with \texttt{num} rows and $n$ columns with $0$ and $1$s. Explain that by multiplying with 2 and subtracting 1 we get an array with $1$s and $-1$s.
+\end{exercise}
+
+\begin{exercise}
+The $j$th columns of \texttt{X} corresponds to the $j$th bet. Explain how line P.19 (r.14) works.
+\end{exercise}
+
+\begin{exercise}
+Choose some $p$ and $f$ to your liking, run an experiment, and compare the values of the experiment(simulation) to the theoretical values, i.e., what you get when you solve  problem BH.9.25.
+\end{exercise}
+
+
+\subsection{Challenges}
+
+Consider the setting of BH Exercise 9.25, which you also studied in the coding section. We use the notation from that exercise.
+In this exercise we will discuss how to set $f$, the betting fraction. In particular, we will discuss the \textit{Kelly criterion}, which states that the betting fraction should be $f = 2p-1$ if $p > \tfrac12$ is the winning probability.
+
+We discuss its relationship to expected utility theory, which you will also study in Introduction to Mathematical Economics. Expected utility theory states that bets should be chosen to maximize expected utility. So we solve $\max\limits_{0 \leq f \leq 1} \E{U(X_{n+1}) \given X_n}$.
+
+
+
+
+\begin{exercise}
+Show that solving the maximization problem for the utility function $U(x) = \log(x)$ yields the betting fractions from the Kelly criterion, $f = 2p-1$ if $p > \tfrac12$ and $f=0$ if $p \leq \tfrac12$.
+
+\opt{check}{
+\begin{solution}
+For $U(x) = \log(x)$, we have:
+\begin{align*}
+\E{U(X_{n+1}) \given X_n} &= p U((1+f) X_n) + (1-p) U((1-f) X_n) \\
+&= p \log\left((1+f) X_n\right) + (1-p) \log\left((1-f) X_n\right) \\
+&= p \log\left(1+f\right) + (1-p) \log\left(1-f\right) + \log\left(X_n\right)
+\end{align*}
+So we maximize $p \log\left(1+f\right) + (1-p) \log\left(1-f\right)$.
+
+Differentiating this expression to $f$ and setting it to 0 yields
+\begin{align*} p \frac{1}{1+f} &= (1-p) \frac{1}{1-f} \\
+p(1-f) &= (1-p)(1+f) \\
+f &= 2p-1.
+\end{align*}
+If $p  \leq \tfrac12$, this is non-positive and we instead set $f=0$.
+\end{solution}
+}
+\end{exercise}
+
+Other people may have a different utility function, which yields a different betting fraction.
+
+\begin{exercise}
+Calculate the utility maximizing betting fraction $f$ if $U(x) = \sqrt{x}$.
+
+\opt{check}{
+\begin{solution}
+For $U(x) = \sqrt{x}$, we have:
+\begin{align*}
+\E{U(X_{n+1}) \given X_n} &= p U((1+f) X_n) + (1-p) U((1-f) X_n) \\
+&= p \sqrt{(1+f) X_n} + (1-p) \sqrt{(1-f) X_n} \\
+&=  \left(p \sqrt{1+f} + (1-p) \sqrt{1-f}\right) \sqrt{X_n}.
+\end{align*}
+So we maximize $p \sqrt{1+f} + (1-p) \sqrt{1-f}$.
+
+Differentiating this expression to $f$ and setting it to 0 yields
+\begin{align*} p \frac{1}{2\sqrt{1+f}} &= (1-p) \frac{1}{2\sqrt{1-f}} \\
+p \sqrt{1-f} &= (1-p)\sqrt{1+f} \\
+p^2(1-f) &= (1-p)^2(1+f) \\
+p^2 - (1-p)^2 &= (p^2+(1-p)^2) f \\
+f &= \frac{2p-1}{p^2+(1-p)^2}.
+\end{align*}
+If $p  \leq \tfrac12$, this is non-positive and we instead set $f=0$.
+\end{solution}
+}
+\end{exercise}
+
+Note that for both of these utility functions, the betting fraction $f$ does not depend on the wealth $X_n$ before the gamble, but in general $f$ does depend on $X_n$.
+
+Now that we have two different betting fractions, we compare them. For that, we first need the following result:
+
+\begin{exercise}
+Assume that $f$ does not depend on $X_n$. Let $x_0 = 1$. Show that there exist constants $a, b$ such that $\log (X_n) = a W + b$ and $W  \sim \Bin{n, p}$, and determine $a$ and $b$ in terms of $f$.
+\opt{check}{
+\begin{solution}
+Note that each won bet multiplies wealth with $1+f$, whereas each lost bet multiplies wealth by $1-f$. So a won bet adds $\log(1+f)$ to the logarithm of wealth, a lost bet adds $\log(1-f)$. The order in which this happens doesn't matter, only the number of wins and losses. Note that changing a loss to a win increments $\log(X_n)$ by $\log\left(\frac{1+f}{1-f}\right)$. If all games are lost, then $\log(X_n) = n\log(1-f)$. If $W  \sim \Bin{n, p}$ is the number of games won, then $$\log(X_n) = W \log\left(\frac{1+f}{1-f}\right) + n\log(1-f).$$
+Hence, $a = \log\left(\dfrac{1+f}{1-f}\right)$ and $b = n\log(1-f)$.
+\end{solution}
+}
+\end{exercise}
+
+Theorem 10.3.6. states that (for sufficiently large $n$) we can approximate a random variable with the binomial distribution $W  \sim \Bin{n, p}$ by a random variable with the normal distribution $\Norm{np, np(1-p)}$. While you will only learn about the proof of this next week, we are already going to use this approximation here.
+
+\begin{exercise}
+Two people (Carl and Daria) participate in $n$ rounds of this betting game. Their games are independent. Carl's initial wealth is $x_0 = 1$ and Daria's initial wealth is $y_0 = 1$. We denote Carl's wealth after $n$ rounds by $X_n$ and Daria's wealth after $n$ rounds by $Y_n$. Carl chooses $f$ according to the Kelly criterion, i.e. $f = 2p-1$.  Daria chooses $f$ to be the  utility maximizing betting fraction for  $U(x) = \sqrt{x}$.
+Use the previously mentioned normal approximation to derive an approximation for the difference $\log(Y_n) - \log(X_n)$.
+
+\opt{check}{
+\begin{solution}
+For both Carl and Daria the number of wins is $W  \sim \Bin{n, p}$, so approximately  $W  \sim \Norm{np, np(1-p)}$. Hence, we have $a W + b  \sim \Norm{anp+b, a^2np(1-p)}$.
+
+For Carl $f = 2p-1$, so we find $a_{\text{Carl}} = \log\left(\frac{p}{1-p}\right)$ and $b_{\text{Carl}} = n\log(2(1-p))$. Hence,
+\begin{align*}
+\log (X_n) &= a_{\text{Carl}} W + b_{\text{Carl}} \\ &\sim   \mathrm{Norm}\left(np\log\left(\frac{p}{1-p}\right) + n\log(2(1-p)), np(1-p) \left(\log\left(\frac{p}{1-p}\right)\right)^2\right).
+\end{align*}
+
+For Daria $f = \frac{2p-1}{p^2+(1-p)^2}$, so we find
+\begin{equation*}
+a_{\text{Daria}} = \log\left(\frac{{p^2+(1-p)^2}+{2p-1}}{{p^2+(1-p)^2}-{2p-1}}\right) = \log\left(\frac{p^2}{(1-p)^2}\right) = 2 \log\left(\frac{p}{1-p}\right)
+\end{equation*}
+and $b_{\text{Daria}} = n\log\left(\frac{2(1-p)^2}{p^2+(1-p)^2}\right)$. Hence,
+\begin{align*}
+\log (Y_n) &= a_{\text{Daria}} W + b_{\text{Daria}} \\ &\sim   \mathrm{Norm}\left(2np \log\left(\frac{p}{1-p}\right) + n\log\left(\frac{2(1-p)^2}{p^2+(1-p)^2}\right), np(1-p) \left(2\log\left(\frac{p}{1-p}\right)\right)^2\right).
+\end{align*}
+
+Since the games of Carl and Daria are independent, so are the logarithms of the outcomes. Hence, the difference $\log(Y_n) - \log(X_n)$ is also approximately normal; the mean is the difference of the means, but the variances add. Hence:
+\begin{align*}
+&\log (Y_n) - \log(X_n) \\ &\qquad\sim   \mathrm{Norm}\left(np \log\left(\frac{p}{1\!-\!p}\right) + n\log\left(\frac{1-p}{p^2\!+\!(1\!-\!p)^2}\right), 5np(1\!-\!p) \left(\log\left(\frac{p}{1\!-\!p}\right)\right)^2\right).
+\end{align*}
+\end{solution}
+}
+\end{exercise}
+
+Kelly's criterion does not mention utility functions, it just recommends to set $f = 2p-1$ regardless of one's utility function. The next exercise is meant to give some insight why.
+
+
+\begin{exercise}
+Use \texttt{pnorm} in R, or \texttt{norm.cdf} in Python, to approximate $P(X_n > Y_n)$ for some chosen values for $n$ and $p$. What do you think that happens if $n \to \infty$ for a fixed $p$? Explain why this is an argument to use the Kelly criterion  regardless of one's utility function. Also, explain why maximizing utility suggests a different $f$ in spite of this result.
+
+
+\opt{check}{
+\begin{solution}
+First note that $P(X_n > Y_n) = P(\log(X_n) > \log(Y_n)) = P(\log(X_n) - \log(Y_n) > 0)$.
+You can use the following function: NV:: The code is in the tex file, but for some reason it gives a conflict with the check option. Hence I put it in comments.
+
+% \begin{minted}[]{R}
+% Kelly <- function(n, p) {
+%   mean <- n * p * log(p/(1-p)) + n * log((1-p)/(p^2 + (1-p)^2))
+%   sd <- sqrt(5 * n * p * (1-p)) * log(p/(1-p))
+%   return(pnorm(0, mean, sd))
+% }
+% \end{minted}
+
+The numerical results suggest $\lim\limits_{n\to\infty} P(X_n > Y_n) = 1$.
+
+
+This shows that in the limit $n \to\infty$, Kelly bets lead to a higher wealth than the utility maximizing betting fraction for  $U(x) = \sqrt{x}$. But then (since $U(x) = \sqrt{x}$ is increasing), it also holds that Daria would be better off when using the Kelly criterion with a probability approaching 1 as $n \to\infty$.
+
+Maximizing utility suggests a different $f$, because it can put a lot of weight on huge utilities that occur with a tiny probability. For $U(x) = \sqrt{x}$, this effect is much larger than for $U(x) = \log(x)$, since the square root of something growing exponentially still grows exponentially, whereas its logarithm grows only linearly.
+\end{solution}
+}
+\end{exercise}
+
+
+\end{document}
+
+\subsection{Bayes' Billiards}
+\label{sec:orgf93559e}
+Take \(n=100\) samples.
+
+\subsection{One coin}
+\label{sec:org1e9a031}
+\begin{enumerate}
+\item Take success probability \(p=1/2\).
+\item Make matrix with \(n\) rows, \(n\) columns. Each row is an experiment of \(n\) throws of the coin.
+\item Plot the histogram of the number of heads.
+\end{enumerate}
+
+\subsection{Three coins}
+\label{sec:orga657159}
+\begin{enumerate}
+\item Take three coins with success probabilities \(p=1/4, 1/2, 3/4\).
+\item Make a simulation for each coin.
+\item If we select a coin with probability \(1/3\), the total histogram is the 1/3 times the sum of the histograms of each of the coins. That is, \(\P{X=k} = \P{X=k|C = i}\P{C=i}\), where \(C\) is one of chosen coins;  here we take \(\P{C=i} = 1/3\).
+\end{enumerate}
+
+\subsection{five coins}
+\label{sec:orga1a3b28}
+\begin{enumerate}
+\item Select with uniform probability one out of five coins with success probabilities \(p=i/5\),  \(i=1,\ldots, 5\).
+\item Make a simulation for each coin.
+\item Make the histogram \(\P{X=k} = \P{X=k|C = i}\P{C=i}\), where \(\P{C=i} = 1/5\).
+\end{enumerate}
